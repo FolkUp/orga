@@ -58,7 +58,7 @@ draft: false
 ---
 
 {{< hero-investigation
-    poster_url="/images/investigations/oxymiron/underground-resistance-poster.webp"
+    poster_url="/images/underground-resistance-poster.webp"
     video_url="/videos/investigations/oxymiron/cultural-seismography-loop.mp4"
     resistance_effect=true
     title="«Организация» Оксимирона"

@@ -1,0 +1,135 @@
+# Evidence shortcode
+evidenceConfirmed: "Confirmed"
+evidencePartial: "Partially Confirmed"
+evidenceRefuted: "Refuted"
+evidenceUnverified: "Unverified"
+
+# Verdict summary
+verdictClaim: "Claim"
+verdictStatus: "Status"
+verdictAccuracy: "Accuracy"
+
+# Source card
+sourceTier1: "Tier 1 — Primary"
+sourceTier2: "Tier 2 — Secondary"
+sourceTier3: "Tier 3 — Tertiary"
+
+# Methodology box
+methodologyTitle: "Methodology"
+methodologyReadMore: "Read full methodology"
+
+# Confidence badge
+confidenceHigh: "HIGH"
+confidenceMedium: "MEDIUM"
+confidenceLow: "LOW"
+
+# Investigation meta
+metaId: "ID"
+metaType: "Type"
+metaStatus: "Status"
+metaConfidence: "Confidence"
+metaSources: "Sources"
+metaReviewedBy: "Reviewed by"
+metaReviewDate: "Review date"
+
+# Disclaimers
+disclaimerLegalTitle: "Legal Disclaimer"
+disclaimerLegalText: "This content is provided for informational purposes only and does not constitute legal advice. Always consult a qualified professional for specific legal questions."
+disclaimerOsintTitle: "Research Ethics"
+disclaimerOsintText: "This investigation uses only publicly available information (open-source intelligence). No private systems were accessed. All methods are disclosed in the methodology section."
+disclaimerPiiTitle: "Personal Data Notice"
+disclaimerPiiText: "This article references publicly available information about public figures acting in their professional capacity. If you believe your personal data has been included in error, please contact us."
+disclaimerHarmReductionTitle: "Health & Safety Disclaimer"
+disclaimerHarmReductionText: "This content is for educational and harm reduction purposes only. It does not constitute medical advice. Some substances discussed are controlled or illegal in most jurisdictions. Consult a licensed healthcare professional before using any psychoactive substance. In case of emergency, call 112 (EU) immediately. [Full Disclaimer](/legal/disclaimer/)"
+
+# Declassified template
+classificationRevoked: "CLASSIFICATION REVOKED"
+classificationRevokedFull: "CLASSIFICATION REVOKED — FOLKUP TECHNICAL INTELLIGENCE"
+declassifiedWatermark: "DECLASSIFIED"
+agencyName: "FOLKUP RESEARCH LAB"
+investigationFile: "INVESTIGATION FILE"
+investigationPrefix: "INVESTIGATION"
+metaDate: "DATE"
+endOfDocument: "END OF DOCUMENT"
+endOfIndex: "END OF INDEX"
+docPage: "Page"
+indexOfDossiers: "INDEX OF DOSSIERS"
+investigationFiles: "Investigation Files"
+dossierSection: "SECTION"
+dossierRecords: "RECORDS"
+dossierClassification: "CLASSIFICATION"
+dossierPublic: "PUBLIC"
+noInvestigations: "No investigation files available."
+dossierColId: "ID"
+dossierColDate: "Date"
+dossierColSubject: "Subject"
+dossierColStatus: "Status"
+dossierColConfidence: "Confidence"
+
+# Hero
+heroSrLabel: "Independent OSINT Research Lab"
+heroCta: "Explore research"
+
+# Hero stats strip
+heroStatPages: "pages"
+heroStatSources: "sources per investigation"
+heroStatLanguages: "languages"
+heroStatLicense: "CC BY-SA"
+heroStatLicenseLabel: "license"
+
+# Methodology highlight
+heroMethodText: "Our method: transparent sources, reproducible analysis, peer-reviewed conclusions."
+heroMethodLink: "Read our methodology"
+
+# Reader mode
+readerModeOn: "Reader view"
+readerModeOff: "Normal view"
+
+# Featured investigations
+heroFeaturedTitle: "Featured Investigations"
+
+# Methodology ref in investigation meta
+metaMethodology: "Methodology"
+metaMethodologyLink: "Read methodology"
+
+# Newsletter
+newsletterSubscribe: "Subscribe"
+newsletterFormLabel: "Newsletter subscription"
+newsletterEmailLabel: "Email address"
+newsletterEmailPlaceholder: "your@email.com"
+newsletterButtonText: "Subscribe"
+newsletterConsentText: "By subscribing, you agree to receive the OSINT Digest newsletter. We process your email solely for sending the newsletter."
+newsletterPrivacyLink: "Privacy Policy"
+newsletterUnsubscribeText: "You can unsubscribe at any time."
+newsletterFallback: "To subscribe, send an email to"
+newsletterEmailFallback: "Subscribe via email"
+newsletterLoading: "Subscribing..."
+newsletterSuccess: "Please check your email to confirm your subscription."
+newsletterErrorInvalidEmail: "Please enter a valid email address."
+newsletterErrorConsent: "Please accept the privacy policy to subscribe."
+newsletterErrorDuplicate: "This email is already subscribed."
+newsletterErrorRateLimit: "Too many requests. Please try again later."
+newsletterErrorService: "Service temporarily unavailable. Please try again later."
+newsletterErrorNetwork: "Connection error. Please check your internet and try again."
+newsletterConfirmedTitle: "Subscription confirmed"
+newsletterConfirmedMessage: "You are now subscribed to the OSINT Digest. Welcome aboard."
+
+# Support CTA
+supportHeading: "OSINT research costs time, servers, and tools"
+supportDesc: "Lucerna is funded by reader support. No ads, no paywalls. Your contribution keeps investigations open and verifiable."
+supportButton: "Support on Ko-fi"
+
+# Services CTA
+servicesCtaQuote: "Request a quote"
+servicesCtaCall: "Book a call"
+servicesCtaSubjectQuote: "Lucerna Services — Quote Request"
+servicesCtaSubjectCall: "Lucerna Services — Call Request"
+servicesCtaGroupLabel: "Contact options"
+
+# Cookie consent
+manageCookies: "Manage cookies"
+
+# 404 page
+404Title: "File Not Found"
+404Text: "The requested document has been redacted, relocated, or never existed."
+404Home: "Return to Headquarters"

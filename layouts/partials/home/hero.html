@@ -1,0 +1,101 @@
+{{/* Lucerna hero override — compact brand-block + featured content */}}
+<header class="lucerna-hero">
+  <div class="lucerna-hero__accent" aria-hidden="true"></div>
+  <div class="lucerna-hero__inner">
+    <h1 class="lucerna-hero__title">
+      Lucerna
+      <span class="sr-only"> — {{ i18n "heroSrLabel" | default "Independent OSINT Research Lab" }}</span>
+    </h1>
+    {{ with .Site.Params.Author.headline }}
+      <p class="lucerna-hero__subtitle">{{ . | markdownify }}</p>
+    {{ end }}
+    <div class="lucerna-hero__divider" aria-hidden="true"></div>
+    <a href="{{ relLangURL "research/" }}" class="lucerna-hero__cta">
+      {{ i18n "heroCta" | default "Explore research" }}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</header>
+
+{{/* ═══ STATS STRIP ═══ */}}
+{{ $totalPages := len .Site.AllPages }}
+<div class="hero-stats" aria-label="Key metrics">
+  <div class="hero-stats__inner">
+    <div class="hero-stats__item">
+      <span class="hero-stats__number">{{ $totalPages }}+</span>
+      <span class="hero-stats__label">{{ i18n "heroStatPages" | default "pages" }}</span>
+    </div>
+    <div class="hero-stats__sep" aria-hidden="true"></div>
+    <div class="hero-stats__item">
+      <span class="hero-stats__number">60+</span>
+      <span class="hero-stats__label">{{ i18n "heroStatSources" | default "sources per investigation" }}</span>
+    </div>
+    <div class="hero-stats__sep" aria-hidden="true"></div>
+    <div class="hero-stats__item">
+      <span class="hero-stats__number">3</span>
+      <span class="hero-stats__label">{{ i18n "heroStatLanguages" | default "languages" }}</span>
+    </div>
+    <div class="hero-stats__sep" aria-hidden="true"></div>
+    <div class="hero-stats__item">
+      <span class="hero-stats__number">{{ i18n "heroStatLicense" | default "CC BY-SA" }}</span>
+      <span class="hero-stats__label">{{ i18n "heroStatLicenseLabel" | default "license" }}</span>
+    </div>
+  </div>
+</div>
+
+{{/* ═══ METHODOLOGY HIGHLIGHT ═══ */}}
+<div class="hero-method" aria-label="Methodology">
+  <p class="hero-method__text">
+    {{ i18n "heroMethodText" | default "Our method: transparent sources, reproducible analysis, peer-reviewed conclusions." }}
+  </p>
+  <a href="{{ relLangURL "methodology/" }}" class="hero-method__link">
+    {{ i18n "heroMethodLink" | default "Read our methodology" }}
+    <span aria-hidden="true">&rarr;</span>
+  </a>
+</div>
+
+{{/* ═══ FEATURED INVESTIGATIONS ═══ */}}
+{{ $featured := slice }}
+{{ $paths := slice "/investigations/flightpath3d-osint-audit" "/investigations/osint-career-reconstruction-case" "/investigations/headframe-shtanov-osint" }}
+{{ range $paths }}
+  {{ with site.GetPage . }}
+    {{ $featured = $featured | append . }}
+  {{ end }}
+{{ end }}
+
+{{ if gt (len $featured) 0 }}
+<section class="hero-featured" aria-labelledby="featured-heading">
+  <h2 id="featured-heading" class="hero-featured__title">
+    {{ i18n "heroFeaturedTitle" | default "Featured Investigations" }}
+  </h2>
+  <div class="hero-featured__grid">
+    {{ range $featured }}
+      <a href="{{ .RelPermalink }}" class="hero-featured__card">
+        <h3 class="hero-featured__card-title">{{ .Title }}</h3>
+        {{ with .Description }}
+          <p class="hero-featured__card-desc">{{ . | truncate 120 }}</p>
+        {{ end }}
+        <span class="hero-featured__card-cta" aria-hidden="true">&rarr;</span>
+      </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ═══ SUPPORT CTA ═══ */}}
+<div class="hero-support">
+  <div class="hero-support__inner">
+    <div class="hero-support__text">
+      <p class="hero-support__heading">{{ i18n "supportHeading" | default "Independent research needs your support" }}</p>
+      <p class="hero-support__desc">{{ i18n "supportDesc" | default "Lucerna operates without grants or advertising. Every contribution helps us maintain rigorous, transparent OSINT research." }}</p>
+    </div>
+    <a href="https://ko-fi.com/folkup" class="hero-support__button" target="_blank" rel="noopener">
+      <svg class="hero-support__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      {{ i18n "supportButton" | default "Support on Ko-fi" }}
+    </a>
+  </div>
+</div>
+
+<section>
+  {{ partial "recent-articles/main.html" . }}
+</section>

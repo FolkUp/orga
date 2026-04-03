@@ -1,0 +1,85 @@
+colorScheme: "lucerna"
+defaultAppearance: "dark"
+autoSwitchAppearance: true
+
+logo: "img/folkup-wordmark-auto.svg"
+
+enableA11y: true
+enableSearch: true
+enableCodeCopy: true
+enableStructuredBreadcrumbs: true
+
+defaultSocialImage: "img/og-default.png"
+disableImageOptimization: false
+
+fingerprintAlgorithm: "sha512"
+
+header:
+  layout: "fixed"
+
+footer:
+  showMenu: true
+  showCopyright: true
+  showThemeAttribution: false
+  showAppearanceSwitcher: true
+  showScrollToTop: true
+
+homepage:
+  layout: "hero"
+  showRecent: true
+  showRecentItems: 6
+  showMoreLink: true
+  showMoreLinkDest: "/research/"
+  cardView: true
+  cardViewScreenWidth: false
+
+article:
+  showDate: true
+  showDateUpdated: true
+  showAuthor: true
+  showHero: false
+  showBreadcrumbs: true
+  showDraftLabel: true
+  showEdit: false
+  seriesOpened: true
+  showHeadingAnchors: true
+  showPagination: true
+  showReadingTime: true
+  showTableOfContents: true
+  showRelatedContent: true
+  relatedContentLimit: 3
+  showTaxonomies: true
+  showWordCount: true
+  sharingLinks:
+    - linkedin
+    - twitter
+    - telegram
+    - email
+
+list:
+  showBreadcrumbs: true
+  showSummary: true
+  showTableOfContents: false
+  showCards: true
+  cardView: true
+  groupByYear: false
+
+taxonomy:
+  showTermCount: true
+  showBreadcrumbs: true
+  cardView: true
+
+term:
+  showBreadcrumbs: true
+  showTableOfContents: true
+  groupByYear: false
+  cardView: true
+
+sitemap:
+  excludedKinds: ["taxonomy", "term"]
+
+# Umami analytics — loaded conditionally via cookie-consent.html (LCRN-099)
+# Script injection happens client-side ONLY after explicit user opt-in.
+# Config values used by layouts/partials/cookie-consent.html:
+# websiteid: 92bc4e09-7e2a-47fa-9536-6d71cb01b75a
+# domain: analytics.folkup.app
