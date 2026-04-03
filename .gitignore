@@ -1,0 +1,50 @@
+# Hugo
+public/
+.hugo_build.lock
+resources/_gen/
+
+# Node.js
+node_modules/
+npm-debug.log*
+.npm
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude
+.claude/
+SESSION_CONTEXT.md
+settings.local.json
+PLAN.md
+
+# Build artifacts
+test-build/
+dist/
+*.log
+
+# Asset optimization
+static/images/**/*.webp.backup
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+nul

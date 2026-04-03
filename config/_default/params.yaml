@@ -1,0 +1,58 @@
+# Basic theme configuration
+colorScheme: "blowfish"
+defaultAppearance: "dark"
+autoSwitchAppearance: true
+
+homepage:
+  layout: "hero"
+  homepageImage: "images/hero-bg.jpg"
+  showRecent: true
+  showRecentItems: 5
+
+article:
+  showDate: true
+  showViews: false
+  showLikes: false
+  showDateUpdated: true
+  showAuthor: true
+  showBreadcrumbs: true
+  showDraftLabel: true
+  showEdit: false
+  editURL: ""
+  editAppendPath: true
+  seriesOpened: false
+  showHeadingAnchors: true
+  showPagination: true
+  invertPagination: false
+  showReadingTime: true
+  showTableOfContents: true
+  showTaxonomies: true
+  showWordCount: true
+  sharingLinks: ["facebook", "twitter", "reddit", "telegram"]
+
+list:
+  showHero: false
+  showBreadcrumbs: false
+  showSummary: true
+  showTableOfContents: true
+  showCards: true
+  groupByYear: false
+  cardView: true
+  cardViewScreenWidth: false
+  constrainItemsWidth: false
+
+sitemap:
+  excludedKinds: ["taxonomy", "term"]
+
+taxonomy:
+  showTermCount: true
+
+fathomAnalytics:
+  site: ""
+  domain: ""
+
+verification:
+  google: ""
+  bing: ""
+  pinterest: ""
+  yandex: ""

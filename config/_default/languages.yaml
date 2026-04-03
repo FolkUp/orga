@@ -1,0 +1,15 @@
+en:
+  languageCode: "en"
+  languageName: "English"
+  weight: 1
+  title: "ORGA Investigation"
+  params:
+    displayName: "EN"
+
+ru:
+  languageCode: "ru"
+  languageName: "Русский"
+  weight: 2
+  title: "Расследование ORGA"
+  params:
+    displayName: "RU"

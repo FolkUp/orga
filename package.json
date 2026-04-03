@@ -1,0 +1,26 @@
+{
+  "name": "orga-investigation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ORGA: Oxymiron Organization Investigation — Standalone Research Site",
+  "scripts": {
+    "dev": "hugo server --bind 0.0.0.0 --disableFastRender --buildDrafts",
+    "build": "hugo --gc --minify",
+    "build-dev": "hugo --buildDrafts --gc",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "validate-site": "node scripts/validate-site.mjs",
+    "check-links": "node scripts/check-links.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0",
+    "puppeteer": "^22.0.0"
+  },
+  "keywords": [
+    "hugo",
+    "investigation",
+    "oxymiron",
+    "folkup",
+    "osint"
+  ],
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,26 @@
+main:
+  - name: "Investigation"
+    pageRef: "/"
+    weight: 10
+
+  - name: "Methodology"
+    pageRef: "/methodology/"
+    weight: 20
+
+  - name: "About"
+    pageRef: "/about/"
+    weight: 30
+
+footer:
+  - name: "Privacy"
+    pageRef: "/privacy/"
+    weight: 10
+
+  - name: "Terms"
+    pageRef: "/terms/"
+    weight: 20
+
+  - name: "FolkUp"
+    url: "https://folkup.app"
+    external: true
+    weight: 30
