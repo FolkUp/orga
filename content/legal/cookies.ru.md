@@ -1,8 +1,8 @@
 ---
 title: "Политика использования файлов cookie"
 description: "Информация об использовании файлов cookie на сайте Orga в соответствии с ePrivacy Directive"
-date: 2026-04-08
-lastmod: 2026-04-08
+date: 2026-04-08T10:00:00Z
+lastmod: 2026-04-08T10:00:00Z
 draft: false
 weight: 20
 menu:

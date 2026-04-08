@@ -1,12 +1,13 @@
 ---
 title: "«Организация» Оксимирона — OSINT-расследование культурного феномена"
 slug: oxymiron-organizatsiya-cultural-investigation
+date: 2026-03-26T10:00:00Z
 date_created: 2026-03-26
-date_updated: 2026-03-28
+date_updated: 2026-04-08
 status: partially_verified
 confidence: medium
 category: cultural-intelligence
-tags: [hip-hop-osint, cultural-analysis, music-investigation, title-change-mystery, tim-roho, longform, multimedia]
+tags: ["hip-hop-osint", "cultural-analysis", "music-investigation", "title-change-mystery", "tim-roho", "longform", "multimedia"]
 sources: [
   "Fontanka.ru - Oxymiron single release verification (November 8, 2021)",
   "Wikipedia - miXXXtape III album metadata (November 12, 2021)",
