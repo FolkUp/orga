@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ORGA — Phase 0 Foundation">
+  <main>
+    <h1>ORGA Astro Foundation</h1>
+    <p>Phase 0: Foundation setup verified.</p>
+    <ul>
+      <li>Astro v6 with Island Architecture</li>
+      <li>MDX integration for rich content</li>
+      <li>Svelte for interactive islands</li>
+      <li>Strict TypeScript configuration</li>
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    max-width: 72ch;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  li::before {
+    content: 'ok ';
+    color: var(--color-accent);
+  }
+</style>

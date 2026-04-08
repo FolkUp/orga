@@ -1,0 +1,24 @@
+{
+  "name": "orga-astro",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ORGA — multimedia longform investigation platform (Astro)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.18.1",
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/svelte": "^7.2.5",
+    "svelte": "^5.25.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "typescript": "^5.8.0"
+  }
+}

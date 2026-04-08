@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Counter from '@islands/Counter.svelte';
+---
+
+<BaseLayout title="Island Architecture Test">
+  <main>
+    <h1>Island Architecture Verification</h1>
+    <p>Static content renders without JavaScript.</p>
+
+    <section>
+      <h2>Svelte Island (client:visible)</h2>
+      <Counter client:visible />
+    </section>
+
+    <section>
+      <h2>Svelte Island (client:idle)</h2>
+      <Counter client:idle />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    max-width: 72ch;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+</style>
