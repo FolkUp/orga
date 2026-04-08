@@ -2,18 +2,50 @@ baseURL: "https://orga.folkup.app/"
 theme: "blowfish"
 defaultContentLanguage: en
 
-enableRobotsTXT: false
+# Production Excellence Configuration
+enableRobotsTXT: true
 disableHugoGeneratorInject: true
 summaryLength: 0
 buildDrafts: false
 buildFuture: false
 enableEmoji: true
+enableGitInfo: true
+canonifyURLs: true
+
+# Performance & SEO
+googleAnalytics: "G-FOLKUP-ORGA"
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true
+  tdewolff:
+    css:
+      version: 1
+      precision: 2
+    html:
+      keepSpecialComments: false
+      keepDefaultAttrVals: false
+      keepDocumentTags: false
+      keepWhitespace: false
+    js:
+      keepVarNames: false
+      precision: 2
 
 pagination:
   pagerSize: 20
 
+# Enhanced Image Processing - ProPublica Level
 imaging:
   anchor: Center
+  quality: 85
+  resampleFilter: lanczos
+  webp:
+    quality: 85
+    lossless: false
 
 taxonomies:
   tag: tags

@@ -66,6 +66,8 @@ timeline_span: "2021-11-08 to 2022-10-07"
 languages: ["en", "ru"]
 ---
 
+<div id="investigation"></div>
+
 ## Executive Summary
 
 In November 2021, Russian hip-hop artist Oxymiron released two pivotal works: the single "Организация" (November 8) and the album miXXXtape III (November 12). These releases would prove remarkably prescient, containing themes and cultural observations that accurately predicted the seismic social and political shifts that would unfold throughout 2022, culminating in Oxymiron's designation as a "foreign agent" by Russian authorities on October 7, 2022.
@@ -76,7 +78,9 @@ This investigation examines the phenomenon of **cultural seismography**—how ar
 
 ## The Cultural Timeline
 
-{{< cultural-timeline >}}
+<div id="year-2019" class="timeline-anchor"></div>
+
+{{< enhanced-cultural-timeline evidence-gallery="oxymiron-evidence" zoom="true" gestures="true" >}}
 
 ## Methodology: Detecting Cultural Seismic Activity
 
@@ -116,7 +120,14 @@ The track's Russian title "Организация" (Organization) proved particu
 
 Four days later, miXXXtape III provided a comprehensive artistic framework that mapped remarkably closely to the cultural and political developments of 2022:
 
-{{< evidence-gallery images="oxymiron-album-analysis.webp,streaming-patterns-2021.webp,lyrical-correlation-matrix.webp" caption="Evidence Analysis: miXXXtape III Cultural Prediction" >}}
+{{< enhanced-evidence-gallery
+   id="oxymiron-evidence"
+   images="oxymiron-album-analysis.webp,streaming-patterns-2021.webp,lyrical-correlation-matrix.webp,geopolitical-context.webp,platform-response-feb.webp,foreign-agent-document.webp,censorship-timeline.webp"
+   caption="Evidence Analysis: Cultural Seismography Documentation"
+   timeline-events="organization-single,mixtape-release,ukraine-invasion,foreign-agent"
+   smart-filter="true"
+   show-metadata="true"
+>}}
 
 ### Evidence Analysis Details
 
@@ -164,6 +175,8 @@ Russia's invasion of Ukraine on February 24, 2022, served as the cultural earthq
 
 Our analysis reveals a complex pattern of platform responses that evolved dramatically between November 2021 and October 2022:
 
+<div id="year-2020" class="timeline-anchor"></div>
+
 ### Phase 1: Pre-Crisis Tolerance (November 2021 - February 2022)
 - Minimal content flags or restrictions
 - Normal algorithmic promotion patterns
@@ -184,6 +197,8 @@ Platform response data indicates that "Организация" and tracks from m
 {{< /evidence >}}
 
 ## The Foreign Agent Designation: Official Recognition
+
+<div id="year-2022" class="timeline-anchor"></div>
 
 On October 7, 2022—exactly 333 days after the release of "Организация"—Russian authorities designated Oxymiron as a "foreign agent." This official action represented:
 

@@ -4,15 +4,45 @@ autoSwitchAppearance: true
 
 logo: "img/folkup-wordmark-auto.svg"
 
+# Production Excellence - A11y & Performance
 enableA11y: true
 enableSearch: true
 enableCodeCopy: true
 enableStructuredBreadcrumbs: true
+enableImageZoom: true
+enableImageLazyLoading: true
+enableInstantClick: true
 
-defaultSocialImage: "img/og-default.png"
+# SEO & Social Media Optimization
+defaultSocialImage: "img/og-orga-default.webp"
 disableImageOptimization: false
-
 fingerprintAlgorithm: "sha512"
+
+# Site Metadata for Enhanced SEO
+title: "ORGA - Open Research on Global Affairs"
+description: "Multimedia investigations and cultural seismography analysis. ProPublica-level open source intelligence and evidence-based research on global affairs."
+keywords:
+  - "OSINT"
+  - "investigations"
+  - "cultural seismography"
+  - "multimedia longform"
+  - "open research"
+  - "global affairs"
+  - "evidence-based analysis"
+
+# Enhanced Social Media Metadata
+author:
+  name: "ORGA Editorial Board"
+  links:
+    - name: "ORGA"
+      url: "https://orga.folkup.app/"
+    - name: "FolkUp"
+      url: "https://folkup.app/"
+
+# OpenGraph & Twitter Card Optimization
+images:
+  - "img/og-orga-hero.webp"
+  - "img/og-orga-seismography.webp"
 
 header:
   layout: "fixed"

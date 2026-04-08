@@ -1,0 +1,61 @@
+{{/* Extend Footer - Hero & Visual Storytelling JavaScript */}}
+
+{{/* Load Hero Storytelling JS */}}
+{{ $heroJS := resources.Get "js/hero-storytelling.js" }}
+{{ if $heroJS }}
+  {{ $heroJS = $heroJS | resources.Minify }}
+  <script src="{{ $heroJS.RelPermalink }}" integrity="{{ $heroJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
+
+{{/* Initialize enhanced scrolling for investigation pages */}}
+{{ if or .IsHome (eq .Section "investigations") }}
+<script>
+  // Initialize smooth scroll behavior for ORGA investigations
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure smooth scrolling is enabled
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Initialize anchor link handling for timeline markers
+    document.querySelectorAll('.event-marker').forEach(marker => {
+      marker.addEventListener('click', function(e) {
+        const year = this.dataset.year;
+        if (year) {
+          const target = document.getElementById('year-' + year);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Enhanced keyboard navigation for accessibility
+    document.addEventListener('keydown', function(e) {
+      // Alt + H = Home/Hero section
+      if (e.altKey && e.key === 'h') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Alt + I = Investigation section
+      if (e.altKey && e.key === 'i') {
+        e.preventDefault();
+        const investigation = document.getElementById('investigation');
+        if (investigation) {
+          investigation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+{{ end }}
+
+{{/* Performance optimization: Intersection Observer polyfill for older browsers */}}
+<script>
+  // Intersection Observer polyfill check
+  if (!window.IntersectionObserver) {
+    const script = document.createElement('script');
+    script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+    script.async = true;
+    document.head.appendChild(script);
+  }
+</script>

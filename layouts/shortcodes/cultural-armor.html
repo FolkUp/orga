@@ -1,0 +1,792 @@
+{{/* Cultural Armor Infographic — ORGA Investigation Shortcode */}}
+{{/* Interactive 3-layer visualization of Oxymiron's censorship protection system */}}
+{{/* Usage: {{< cultural-armor >}} */}}
+
+<div class="cultural-armor-container" role="region" aria-label="Cultural Armor Visualization">
+  <div class="armor-header">
+    <h3 class="armor-title">Cultural Armor: Three-Layer Protection System</h3>
+    <p class="armor-subtitle">How Oxymiron built immunity against censorship through strategic cultural encoding</p>
+  </div>
+
+  <div class="armor-controls">
+    <button
+      id="armor-reset"
+      class="armor-control-btn"
+      aria-label="Reset armor visualization"
+      role="button"
+    >
+      <span class="reset-icon">⟲</span>
+      Reset View
+    </button>
+    <div class="armor-legend">
+      <div class="legend-item">
+        <div class="legend-color layer1"></div>
+        <span>Literary Foundation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color layer2"></div>
+        <span>Visual Encoding</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color layer3"></div>
+        <span>Title Surgery</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="armor-wrapper">
+    <svg class="cultural-armor-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+      <!-- Definitions for gradients, filters, and patterns -->
+      <defs>
+        <!-- Layer gradients -->
+        <linearGradient id="layer1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#ffb347;stop-opacity:0.6" />
+        </linearGradient>
+
+        <linearGradient id="layer2Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#c0c0c0;stop-opacity:0.7" />
+          <stop offset="100%" style="stop-color:#a8a8a8;stop-opacity:0.5" />
+        </linearGradient>
+
+        <linearGradient id="layer3Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#708090;stop-opacity:0.6" />
+          <stop offset="100%" style="stop-color:#4682b4;stop-opacity:0.4" />
+        </linearGradient>
+
+        <!-- Glow effects -->
+        <filter id="layer1Glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ffd700" flood-opacity="0.6"/>
+        </filter>
+
+        <filter id="layer2Glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#c0c0c0" flood-opacity="0.5"/>
+        </filter>
+
+        <filter id="layer3Glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#708090" flood-opacity="0.4"/>
+        </filter>
+
+        <!-- Pattern for text encoding visualization -->
+        <pattern id="textPattern" patternUnits="userSpaceOnUse" width="8" height="8">
+          <rect width="8" height="8" fill="rgba(255,255,255,0.1)"/>
+          <circle cx="4" cy="4" r="1" fill="rgba(255,255,255,0.3)"/>
+        </pattern>
+      </defs>
+
+      <!-- Background shield outline -->
+      <path
+        id="shield-base"
+        d="M400 50 L250 120 L200 250 L250 450 L400 520 L550 450 L600 250 L550 120 Z"
+        fill="rgba(30,30,30,0.1)"
+        stroke="rgba(100,100,100,0.3)"
+        stroke-width="2"
+        class="shield-outline"
+      />
+
+      <!-- Layer 3: Title Surgery (outermost) -->
+      <g id="layer3" class="armor-layer" data-layer="3">
+        <path
+          class="layer-shape"
+          d="M400 80 L280 140 L230 250 L280 420 L400 480 L520 420 L570 250 L520 140 Z"
+          fill="url(#layer3Gradient)"
+          filter="url(#layer3Glow)"
+          stroke="rgba(70,130,180,0.6)"
+          stroke-width="2"
+          style="cursor: pointer; transition: all 0.3s ease;"
+        />
+
+        <!-- Title Surgery icons -->
+        <g class="layer-icons" opacity="0.7">
+          <!-- Scalpel/surgical tool -->
+          <line x1="480" y1="180" x2="520" y2="220" stroke="#fff" stroke-width="2"/>
+          <circle cx="478" cy="178" r="3" fill="#fff"/>
+
+          <!-- Abstract title visualization -->
+          <rect x="320" y="320" width="160" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+          <rect x="340" y="340" width="120" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+          <rect x="360" y="360" width="80" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+        </g>
+      </g>
+
+      <!-- Layer 2: Visual Encoding (middle) -->
+      <g id="layer2" class="armor-layer" data-layer="2">
+        <path
+          class="layer-shape"
+          d="M400 110 L310 160 L270 250 L310 400 L400 450 L490 400 L530 250 L490 160 Z"
+          fill="url(#layer2Gradient)"
+          filter="url(#layer2Glow)"
+          stroke="rgba(192,192,192,0.7)"
+          stroke-width="2"
+          style="cursor: pointer; transition: all 0.3s ease;"
+        />
+
+        <!-- Visual encoding patterns -->
+        <g class="layer-icons" opacity="0.8">
+          <!-- Cryptographic symbols -->
+          <circle cx="350" cy="200" r="15" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M342 200 L350 192 L358 200 L350 208 Z" fill="#fff"/>
+
+          <rect x="420" y="185" width="30" height="30" rx="5" fill="url(#textPattern)" stroke="#fff" stroke-width="1"/>
+
+          <!-- Multi-layer meaning visualization -->
+          <g transform="translate(380,320)">
+            <circle cx="0" cy="0" r="20" fill="rgba(255,255,255,0.2)" stroke="#fff" stroke-width="1"/>
+            <circle cx="0" cy="0" r="12" fill="rgba(255,255,255,0.3)" stroke="#fff" stroke-width="1"/>
+            <circle cx="0" cy="0" r="4" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Layer 1: Literary Foundation (innermost) -->
+      <g id="layer1" class="armor-layer" data-layer="1">
+        <path
+          class="layer-shape"
+          d="M400 140 L340 180 L310 250 L340 370 L400 420 L460 370 L490 250 L460 180 Z"
+          fill="url(#layer1Gradient)"
+          filter="url(#layer1Glow)"
+          stroke="rgba(255,215,0,0.8)"
+          stroke-width="3"
+          style="cursor: pointer; transition: all 0.3s ease;"
+        />
+
+        <!-- Literary foundation symbols -->
+        <g class="layer-icons" opacity="0.9">
+          <!-- Open book -->
+          <path d="M360 230 Q380 220 400 230 Q420 220 440 230 L440 270 Q420 260 400 270 Q380 260 360 270 Z" fill="#fff" stroke="rgba(255,215,0,0.8)" stroke-width="1"/>
+          <line x1="400" y1="235" x2="400" y2="265" stroke="rgba(255,215,0,0.8)" stroke-width="1"/>
+
+          <!-- Poetic meter visualization -->
+          <g transform="translate(370,320)">
+            <circle cx="0" cy="0" r="3" fill="#fff"/>
+            <circle cx="15" cy="0" r="3" fill="#fff"/>
+            <circle cx="30" cy="0" r="2" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="42" cy="0" r="4" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Central core -->
+      <circle
+        id="armor-core"
+        cx="400"
+        cy="280"
+        r="25"
+        fill="rgba(255,215,0,0.3)"
+        stroke="rgba(255,215,0,0.8)"
+        stroke-width="2"
+        style="cursor: pointer;"
+      />
+
+      <!-- Core text -->
+      <text x="400" y="285" text-anchor="middle" class="core-text" fill="#fff" font-size="12" font-weight="bold">
+        CORE
+      </text>
+
+      <!-- Attack arrows (showing censorship attempts) -->
+      <g id="attack-arrows" class="attack-visualization" style="opacity: 0;">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7"
+                  refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#ff4444" />
+          </marker>
+        </defs>
+
+        <!-- Multiple attack vectors -->
+        <path d="M100 150 L250 180" stroke="#ff4444" stroke-width="2" marker-end="url(#arrowhead)" class="attack-arrow"/>
+        <path d="M100 300 L230 280" stroke="#ff4444" stroke-width="2" marker-end="url(#arrowhead)" class="attack-arrow"/>
+        <path d="M700 200 L570 220" stroke="#ff4444" stroke-width="2" marker-end="url(#arrowhead)" class="attack-arrow"/>
+        <path d="M650 400 L520 370" stroke="#ff4444" stroke-width="2" marker-end="url(#arrowhead)" class="attack-arrow"/>
+
+        <!-- Attack labels -->
+        <text x="120" y="145" class="attack-label" fill="#ff4444" font-size="10">Automated Detection</text>
+        <text x="120" y="295" class="attack-label" fill="#ff4444" font-size="10">Platform Rules</text>
+        <text x="600" y="195" class="attack-label" fill="#ff4444" font-size="10">Content Filters</text>
+        <text x="580" y="395" class="attack-label" fill="#ff4444" font-size="10">Manual Review</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Layer information panels -->
+  <div class="armor-info-panels">
+    <!-- Layer 1 Panel -->
+    <div id="layer1-panel" class="armor-panel" style="display: none;">
+      <div class="panel-header">
+        <h4>Layer 1: Literary Foundation</h4>
+        <span class="panel-badge layer1">литературное основание</span>
+      </div>
+      <div class="panel-content">
+        <div class="protection-mechanism">
+          <strong>Protection Mechanism:</strong> Classical poetry legitimizes controversial content
+        </div>
+        <ul class="layer-features">
+          <li><strong>Dol'nik meter</strong> from Blok's "The Twelve" (1918)</li>
+          <li><strong>Rhythmic instability</strong> transmitting social tension</li>
+          <li><strong>Poetic genetics:</strong> 3-3-2-4 stress pattern</li>
+          <li><strong>Cultural legitimacy</strong> through literary heritage</li>
+        </ul>
+        <blockquote class="layer-quote">
+          «Я делаю рэп, как запрещённая организация»
+        </blockquote>
+        <p class="layer-explanation">
+          By grounding his work in classical Russian poetic traditions, Oxymiron creates cultural legitimacy that makes censorship more difficult to justify.
+        </p>
+      </div>
+    </div>
+
+    <!-- Layer 2 Panel -->
+    <div id="layer2-panel" class="armor-panel" style="display: none;">
+      <div class="panel-header">
+        <h4>Layer 2: Visual Encoding</h4>
+        <span class="panel-badge layer2">визуальная кодировка</span>
+      </div>
+      <div class="panel-content">
+        <div class="protection-mechanism">
+          <strong>Protection Mechanism:</strong> Complex meaning prevents easy interpretation
+        </div>
+        <ul class="layer-features">
+          <li><strong>Poetic cryptography</strong> as defense system</li>
+          <li><strong>Multi-layered meaning</strong> preventing surface-level censorship</li>
+          <li><strong>Literary allusions</strong> creating cultural depth</li>
+          <li><strong>Semantic compression</strong> hiding subversive content</li>
+        </ul>
+        <p class="layer-explanation">
+          Visual and literary encoding creates multiple interpretation layers, making it difficult for automated systems to detect problematic content.
+        </p>
+      </div>
+    </div>
+
+    <!-- Layer 3 Panel -->
+    <div id="layer3-panel" class="armor-panel" style="display: none;">
+      <div class="panel-header">
+        <h4>Layer 3: Title Surgery</h4>
+        <span class="panel-badge layer3">хирургия названия</span>
+      </div>
+      <div class="panel-content">
+        <div class="protection-mechanism">
+          <strong>Protection Mechanism:</strong> Abstract titles survive automated content filtering
+        </div>
+        <ul class="layer-features">
+          <li><strong>Strategic title transformation</strong> from explicit to implicit</li>
+          <li><strong>Meaning preservation</strong> through compression</li>
+          <li><strong>Tactical flexibility</strong> allowing platform survival</li>
+          <li><strong>Cultural resonance</strong> maintaining artistic integrity</li>
+        </ul>
+        <p class="layer-explanation">
+          By abstracting titles while preserving core meaning, content survives automated filtering while maintaining cultural impact.
+        </p>
+      </div>
+    </div>
+
+    <!-- Core Panel -->
+    <div id="core-panel" class="armor-panel" style="display: none;">
+      <div class="panel-header">
+        <h4>Protected Core: Artistic Message</h4>
+        <span class="panel-badge core">защищённое ядро</span>
+      </div>
+      <div class="panel-content">
+        <p class="layer-explanation">
+          At the center lies the true artistic and political message, protected by all three layers of cultural encoding. This system allows controversial content to reach audiences while evading censorship mechanisms.
+        </p>
+        <div class="armor-effectiveness">
+          <strong>System Effectiveness:</strong>
+          <ul>
+            <li>✓ Automated detection evasion</li>
+            <li>✓ Cultural legitimacy maintenance</li>
+            <li>✓ Platform survival capability</li>
+            <li>✓ Audience reach preservation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cultural-armor-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(20,20,30,0.95), rgba(30,30,40,0.95));
+  border-radius: 12px;
+  border: 1px solid rgba(100,100,100,0.2);
+  color: #ffffff;
+  font-family: 'Source Serif Pro', serif;
+}
+
+.armor-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.armor-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.armor-subtitle {
+  font-size: 1rem;
+  color: #cccccc;
+  margin: 0;
+  font-style: italic;
+}
+
+.armor-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.armor-control-btn {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.armor-control-btn:hover {
+  background: linear-gradient(135deg, #3730a3, #5b21b6);
+  transform: translateY(-1px);
+}
+
+.armor-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-color.layer1 {
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+}
+
+.legend-color.layer2 {
+  background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+}
+
+.legend-color.layer3 {
+  background: linear-gradient(135deg, #708090, #4682b4);
+}
+
+.armor-wrapper {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(ellipse at center, rgba(50,50,80,0.1), rgba(20,20,30,0.3));
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cultural-armor-svg {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+}
+
+.armor-layer {
+  transition: all 0.3s ease;
+}
+
+.armor-layer:hover .layer-shape {
+  filter: brightness(1.2);
+  stroke-width: 3;
+}
+
+.armor-layer.active .layer-shape {
+  filter: brightness(1.3) drop-shadow(0 0 10px currentColor);
+}
+
+.attack-visualization {
+  transition: opacity 0.5s ease;
+}
+
+.attack-arrow {
+  stroke-dasharray: 5,5;
+  animation: attack-dash 2s linear infinite;
+}
+
+@keyframes attack-dash {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -10; }
+}
+
+.attack-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.core-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.armor-info-panels {
+  space-y: 1rem;
+}
+
+.armor-panel {
+  background: rgba(40,40,50,0.8);
+  border: 1px solid rgba(100,100,100,0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  animation: panel-slide-in 0.3s ease-out;
+}
+
+@keyframes panel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.panel-header h4 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+.panel-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.panel-badge.layer1 {
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #000;
+}
+
+.panel-badge.layer2 {
+  background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+  color: #000;
+}
+
+.panel-badge.layer3 {
+  background: linear-gradient(135deg, #708090, #4682b4);
+  color: #fff;
+}
+
+.panel-badge.core {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: #fff;
+}
+
+.panel-content {
+  line-height: 1.6;
+}
+
+.protection-mechanism {
+  background: rgba(255,215,0,0.1);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 3px solid #ffd700;
+}
+
+.layer-features {
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+
+.layer-features li {
+  margin-bottom: 0.5rem;
+}
+
+.layer-quote {
+  background: rgba(255,255,255,0.05);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 3px solid #ffd700;
+  font-style: italic;
+  border-radius: 4px;
+}
+
+.layer-explanation {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.armor-effectiveness ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+.armor-effectiveness li {
+  padding: 0.25rem 0;
+  color: #4ade80;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cultural-armor-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .armor-title {
+    font-size: 1.4rem;
+  }
+
+  .armor-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .armor-legend {
+    justify-content: center;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cultural-armor-svg {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .armor-legend {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legend-item {
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const armorLayers = document.querySelectorAll('.armor-layer');
+  const armorCore = document.getElementById('armor-core');
+  const resetBtn = document.getElementById('armor-reset');
+  const attackArrows = document.getElementById('attack-arrows');
+  const panels = document.querySelectorAll('.armor-panel');
+
+  let activePanel = null;
+  let attacksVisible = false;
+
+  // Function to show layer info
+  function showLayerInfo(layerNum) {
+    // Hide all panels
+    panels.forEach(panel => {
+      panel.style.display = 'none';
+    });
+
+    // Remove active state from all layers
+    armorLayers.forEach(layer => {
+      layer.classList.remove('active');
+    });
+
+    // Show selected panel
+    const targetPanel = document.getElementById(`layer${layerNum}-panel`);
+    if (targetPanel) {
+      targetPanel.style.display = 'block';
+      activePanel = targetPanel;
+    }
+
+    // Add active state to selected layer
+    const targetLayer = document.getElementById(`layer${layerNum}`);
+    if (targetLayer) {
+      targetLayer.classList.add('active');
+    }
+
+    // Show attack visualization
+    if (!attacksVisible) {
+      attackArrows.style.opacity = '1';
+      attacksVisible = true;
+    }
+  }
+
+  // Function to show core info
+  function showCoreInfo() {
+    panels.forEach(panel => {
+      panel.style.display = 'none';
+    });
+
+    armorLayers.forEach(layer => {
+      layer.classList.remove('active');
+    });
+
+    const corePanel = document.getElementById('core-panel');
+    if (corePanel) {
+      corePanel.style.display = 'block';
+      activePanel = corePanel;
+    }
+
+    // Show all layers as active for core view
+    armorLayers.forEach(layer => {
+      layer.classList.add('active');
+    });
+
+    if (!attacksVisible) {
+      attackArrows.style.opacity = '1';
+      attacksVisible = true;
+    }
+  }
+
+  // Function to reset view
+  function resetView() {
+    panels.forEach(panel => {
+      panel.style.display = 'none';
+    });
+
+    armorLayers.forEach(layer => {
+      layer.classList.remove('active');
+    });
+
+    attackArrows.style.opacity = '0';
+    attacksVisible = false;
+    activePanel = null;
+  }
+
+  // Add click event listeners to layers
+  armorLayers.forEach(layer => {
+    layer.addEventListener('click', function() {
+      const layerNum = this.getAttribute('data-layer');
+      if (activePanel && activePanel.id === `layer${layerNum}-panel`) {
+        resetView();
+      } else {
+        showLayerInfo(layerNum);
+      }
+    });
+
+    // Add hover effects
+    layer.addEventListener('mouseenter', function() {
+      if (!this.classList.contains('active')) {
+        this.style.filter = 'brightness(1.1)';
+      }
+    });
+
+    layer.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('active')) {
+        this.style.filter = '';
+      }
+    });
+  });
+
+  // Add click event listener to core
+  armorCore.addEventListener('click', function() {
+    if (activePanel && activePanel.id === 'core-panel') {
+      resetView();
+    } else {
+      showCoreInfo();
+    }
+  });
+
+  // Add hover effect to core
+  armorCore.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.1)';
+    this.style.filter = 'brightness(1.2)';
+  });
+
+  armorCore.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+    this.style.filter = '';
+  });
+
+  // Reset button functionality
+  resetBtn.addEventListener('click', resetView);
+
+  // Touch support for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+
+  document.addEventListener('touchend', function(e) {
+    if (!touchStartX || !touchStartY) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    // Simple swipe detection
+    if (Math.abs(deltaX) > 50 || Math.abs(deltaY) > 50) {
+      // Swipe gesture detected - could implement layer cycling here
+    }
+
+    touchStartX = 0;
+    touchStartY = 0;
+  });
+
+  // Keyboard accessibility
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && activePanel) {
+      resetView();
+    }
+
+    if (e.key >= '1' && e.key <= '3') {
+      const layerNum = parseInt(e.key);
+      showLayerInfo(layerNum);
+    }
+
+    if (e.key === '0' || e.key === 'c' || e.key === 'C') {
+      showCoreInfo();
+    }
+  });
+
+  // Add ARIA labels and roles for accessibility
+  armorLayers.forEach((layer, index) => {
+    layer.setAttribute('role', 'button');
+    layer.setAttribute('tabindex', '0');
+    layer.setAttribute('aria-label', `Layer ${index + 1} of cultural armor system`);
+  });
+
+  armorCore.setAttribute('role', 'button');
+  armorCore.setAttribute('tabindex', '0');
+  armorCore.setAttribute('aria-label', 'Protected core of the cultural armor system');
+});
+</script>

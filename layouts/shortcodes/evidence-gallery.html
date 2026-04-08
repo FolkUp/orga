@@ -1,0 +1,276 @@
+{{ $images := .Get "images" | split "," }}
+{{ $caption := .Get "caption" | default "Evidence Screenshots" }}
+
+<div class="evidence-gallery">
+  <h3 class="evidence-gallery__title">{{ $caption }}</h3>
+  <div class="evidence-gallery__grid">
+    {{ range $index, $image := $images }}
+    {{ $imagePath := printf "images/evidence/%s" (trim $image " ") }}
+    {{ $imageResource := resources.Get $imagePath }}
+    {{ if $imageResource }}
+    {{ $webp := $imageResource.Resize "800x webp q85" }}
+    {{ $thumb := $imageResource.Resize "400x webp q75" }}
+    <div class="evidence-gallery__item" data-index="{{ $index }}">
+      <img
+        src="{{ $thumb.RelPermalink }}"
+        data-full="{{ $webp.RelPermalink }}"
+        alt="Evidence screenshot {{ add $index 1 }}"
+        class="evidence-gallery__image"
+        loading="lazy"
+        onclick="openLightbox({{ $index }}, '{{ $webp.RelPermalink }}')"
+      />
+      <div class="evidence-gallery__overlay">
+        <svg class="evidence-gallery__zoom-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="white"/>
+          <path d="M12 10H10V12H9V10H7V9H9V7H10V9H12V10Z" fill="white"/>
+        </svg>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="evidence-lightbox" class="evidence-lightbox">
+  <div class="evidence-lightbox__content">
+    <span class="evidence-lightbox__close">&times;</span>
+    <img class="evidence-lightbox__image" id="lightbox-image" />
+    <div class="evidence-lightbox__nav">
+      <button class="evidence-lightbox__nav-btn evidence-lightbox__prev">&lt;</button>
+      <button class="evidence-lightbox__nav-btn evidence-lightbox__next">&gt;</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.evidence-gallery {
+  margin: 2rem 0;
+  border-radius: 8px;
+  background: var(--color-neutral-100);
+  padding: 1.5rem;
+  border: 1px solid var(--color-neutral-300);
+}
+
+.evidence-gallery__title {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-neutral-800);
+}
+
+.evidence-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .evidence-gallery__grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.evidence-gallery__item {
+  position: relative;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.evidence-gallery__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.evidence-gallery__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 150px;
+  object-fit: cover;
+}
+
+.evidence-gallery__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.evidence-gallery__item:hover .evidence-gallery__overlay {
+  opacity: 1;
+}
+
+.evidence-gallery__zoom-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Lightbox Styles */
+.evidence-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.evidence-lightbox__content {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evidence-lightbox__image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.evidence-lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.evidence-lightbox__close:hover,
+.evidence-lightbox__close:focus {
+  opacity: 0.7;
+}
+
+.evidence-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.evidence-lightbox__nav-btn {
+  background: rgba(255,255,255,0.8);
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.2s ease;
+}
+
+.evidence-lightbox__nav-btn:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+@media (max-width: 768px) {
+  .evidence-lightbox__nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+</style>
+
+<script>
+let currentImageIndex = 0;
+let lightboxImages = [];
+
+function openLightbox(index, imageSrc) {
+  const lightbox = document.getElementById('evidence-lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+
+  // Collect all images in the gallery
+  lightboxImages = Array.from(document.querySelectorAll('.evidence-gallery__image')).map(img => img.dataset.full);
+  currentImageIndex = index;
+
+  lightboxImage.src = imageSrc;
+  lightbox.style.display = 'block';
+
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('evidence-lightbox');
+  lightbox.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function showImage(direction) {
+  if (lightboxImages.length === 0) return;
+
+  currentImageIndex += direction;
+
+  if (currentImageIndex < 0) {
+    currentImageIndex = lightboxImages.length - 1;
+  } else if (currentImageIndex >= lightboxImages.length) {
+    currentImageIndex = 0;
+  }
+
+  const lightboxImage = document.getElementById('lightbox-image');
+  lightboxImage.src = lightboxImages[currentImageIndex];
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Close lightbox on background click
+  document.getElementById('evidence-lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeLightbox();
+    }
+  });
+
+  // Close button
+  document.querySelector('.evidence-lightbox__close').addEventListener('click', closeLightbox);
+
+  // Navigation buttons
+  document.querySelector('.evidence-lightbox__prev').addEventListener('click', () => showImage(-1));
+  document.querySelector('.evidence-lightbox__next').addEventListener('click', () => showImage(1));
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('evidence-lightbox').style.display === 'block') {
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          showImage(-1);
+          break;
+        case 'ArrowRight':
+          showImage(1);
+          break;
+      }
+    }
+  });
+});
+</script>

@@ -2,7 +2,8 @@
 
 [![Hugo](https://img.shields.io/badge/Hugo-Extended-0052CC?style=flat&logo=hugo)](https://gohugo.io/)
 [![Blowfish](https://img.shields.io/badge/Theme-Blowfish-blueviolet)](https://github.com/nunocoracao/blowfish)
-[![License](https://img.shields.io/badge/License-CC_BY_4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-green.svg)](LICENSE-CONTENT)
 
 Мультимедийное расследование культурного феномена: как художники интуитивно улавливают культурные изменения до их массового проявления.
 

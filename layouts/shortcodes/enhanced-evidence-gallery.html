@@ -1,0 +1,246 @@
+{{/* Enhanced Evidence Gallery — ORGA Investigation Timeline Integration */}}
+{{/* Advanced evidence gallery with timeline integration and smart filtering */}}
+{{/* Usage: {{< enhanced-evidence-gallery id="gallery-id" images="image1.webp,image2.webp" caption="Evidence Gallery" timeline-events="org-single,mixtape" >}} */}}
+
+{{ $images := .Get "images" | split "," }}
+{{ $caption := .Get "caption" | default "Evidence Screenshots" }}
+{{ $galleryId := .Get "id" | default "evidence-gallery" }}
+{{ $timelineEvents := .Get "timeline-events" | default "" }}
+{{ $smartFilter := .Get "smart-filter" | default "true" }}
+{{ $showMetadata := .Get "show-metadata" | default "true" }}
+
+<div class="enhanced-evidence-gallery"
+     id="{{ $galleryId }}"
+     data-timeline-events="{{ $timelineEvents }}"
+     data-smart-filter="{{ $smartFilter }}"
+     role="region"
+     aria-label="Enhanced Evidence Gallery">
+
+  <div class="gallery-header">
+    <h3 class="gallery-title">{{ $caption }}</h3>
+
+    {{ if ne $timelineEvents "" }}
+    <div class="gallery-controls">
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all" aria-label="Show all evidence">
+          <span class="filter-icon">🔍</span>
+          All Evidence
+        </button>
+        {{ range split $timelineEvents "," }}
+        {{ $eventKey := trim . " " }}
+        <button class="filter-btn" data-filter="{{ $eventKey }}" aria-label="Filter by {{ $eventKey }} event">
+          <span class="filter-dot" data-event="{{ $eventKey }}"></span>
+          {{ $eventKey }}
+        </button>
+        {{ end }}
+      </div>
+
+      <div class="view-controls">
+        <button class="view-btn active" data-view="grid" aria-label="Grid view" title="Grid View">
+          <span class="view-icon">⚏</span>
+        </button>
+        <button class="view-btn" data-view="list" aria-label="List view" title="List View">
+          <span class="view-icon">☰</span>
+        </button>
+        <button class="view-btn" data-view="carousel" aria-label="Carousel view" title="Carousel View">
+          <span class="view-icon">⬌</span>
+        </button>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="gallery-container" data-view="grid">
+    <div class="enhanced-gallery-grid" id="{{ $galleryId }}-grid">
+      {{ range $index, $image := $images }}
+      {{ $imagePath := printf "images/evidence/%s" (trim $image " ") }}
+      {{ $imageResource := resources.Get $imagePath }}
+      {{ if $imageResource }}
+      {{ $webp := $imageResource.Resize "1200x webp q90" }}
+      {{ $thumb := $imageResource.Resize "400x webp q80" }}
+      {{ $micro := $imageResource.Resize "150x webp q75" }}
+
+      <div class="enhanced-gallery-item"
+           data-index="{{ $index }}"
+           data-image="{{ trim $image " " }}"
+           data-full="{{ $webp.RelPermalink }}"
+           data-thumb="{{ $thumb.RelPermalink }}"
+           data-micro="{{ $micro.RelPermalink }}"
+           data-timeline-highlight="false"
+           tabindex="0"
+           role="button"
+           aria-describedby="evidence-{{ $index }}-desc">
+
+        <div class="item-image-container">
+          <img
+            src="{{ $thumb.RelPermalink }}"
+            alt="Evidence screenshot {{ add $index 1 }}"
+            class="gallery-item-image"
+            loading="lazy"
+          />
+
+          <div class="item-overlay">
+            <div class="overlay-content">
+              <div class="zoom-controls">
+                <button class="zoom-btn" data-action="view" aria-label="View full size">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="white"/>
+                  </svg>
+                </button>
+                <button class="zoom-btn" data-action="timeline" aria-label="Show in timeline">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="white"/>
+                  </svg>
+                </button>
+              </div>
+
+              {{ if eq $showMetadata "true" }}
+              <div class="item-metadata">
+                <span class="item-number">{{ add $index 1 }}</span>
+                <span class="item-filename">{{ trim $image " " }}</span>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- Timeline connection indicator -->
+          <div class="timeline-connection-indicator" style="display: none;">
+            <div class="connection-pulse"></div>
+            <span class="connection-label">Timeline Connected</span>
+          </div>
+        </div>
+
+        <!-- Hidden description for accessibility -->
+        <div id="evidence-{{ $index }}-desc" class="sr-only">
+          Evidence image {{ add $index 1 }}: {{ trim $image " " }}. Click to view full size or connect to timeline.
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <!-- Carousel view (hidden by default) -->
+    <div class="gallery-carousel" id="{{ $galleryId }}-carousel" style="display: none;">
+      <div class="carousel-track">
+        {{ range $index, $image := $images }}
+        {{ $imagePath := printf "images/evidence/%s" (trim $image " ") }}
+        {{ $imageResource := resources.Get $imagePath }}
+        {{ if $imageResource }}
+        {{ $webp := $imageResource.Resize "800x webp q85" }}
+        <div class="carousel-slide" data-index="{{ $index }}">
+          <img src="{{ $webp.RelPermalink }}" alt="Evidence {{ add $index 1 }}" class="carousel-image">
+          <div class="carousel-caption">
+            <h4>Evidence {{ add $index 1 }}</h4>
+            <p>{{ trim $image " " }}</p>
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+        <div class="carousel-indicators">
+          {{ range $index, $image := $images }}
+          <button class="carousel-indicator {{ if eq $index 0 }}active{{ end }}" data-slide="{{ $index }}" aria-label="Go to slide {{ add $index 1 }}"></button>
+          {{ end }}
+        </div>
+        <button class="carousel-btn next" aria-label="Next image">›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Lightbox Modal -->
+  <div id="{{ $galleryId }}-lightbox" class="enhanced-evidence-lightbox">
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <div class="lightbox-title">
+          <h4 id="lightbox-image-title">Evidence Analysis</h4>
+          <span id="lightbox-image-counter">1 / {{ len $images }}</span>
+        </div>
+        <div class="lightbox-controls">
+          <button class="lightbox-control-btn" id="lightbox-timeline-link" title="Connect to Timeline">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="lightbox-control-btn" id="lightbox-download" title="Download">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 9H15L13 7H9C7.9 7 7 7.9 7 9V15C7 16.1 7.9 17 9 17H19C20.1 17 21 16.1 21 15V11C21 9.9 20.1 9 19 9ZM19 15H9V9H12.17L14.17 11H19V15Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="lightbox-control-btn" id="lightbox-close" title="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lightbox-body">
+        <div class="lightbox-image-container">
+          <img class="lightbox-image" id="lightbox-main-image" />
+          <div class="lightbox-loading" id="lightbox-loading">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+
+        <div class="lightbox-metadata" id="lightbox-metadata">
+          <div class="metadata-section">
+            <h5>Evidence Details</h5>
+            <div class="metadata-grid">
+              <div class="metadata-item">
+                <span class="metadata-label">Image:</span>
+                <span class="metadata-value" id="metadata-filename">-</span>
+              </div>
+              <div class="metadata-item">
+                <span class="metadata-label">Type:</span>
+                <span class="metadata-value" id="metadata-type">Screenshot</span>
+              </div>
+              <div class="metadata-item">
+                <span class="metadata-label">Connected Events:</span>
+                <span class="metadata-value" id="metadata-events">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lightbox-navigation">
+        <button class="lightbox-nav-btn lightbox-prev" aria-label="Previous image">
+          <span>‹</span>
+        </button>
+        <button class="lightbox-nav-btn lightbox-next" aria-label="Next image">
+          <span>›</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smart filter indicator -->
+  {{ if eq $smartFilter "true" }}
+  <div class="smart-filter-status" id="{{ $galleryId }}-filter-status" style="display: none;">
+    <div class="filter-status-content">
+      <span class="filter-status-icon">🎯</span>
+      <span class="filter-status-text">Smart filtered: <span id="filter-count">0</span> items shown</span>
+      <button class="filter-clear-btn" id="clear-smart-filter">Show All</button>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<!-- Include enhanced evidence gallery styles -->
+<link rel="stylesheet" href="/css/enhanced-evidence-gallery.css">
+
+<!-- Include enhanced evidence gallery JavaScript -->
+<script src="/js/enhanced-evidence-gallery.js" defer></script>
+<script>
+// Initialize enhanced evidence gallery on DOM load
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof EnhancedEvidenceGallery !== 'undefined') {
+    new EnhancedEvidenceGallery({
+      galleryId: '{{ $galleryId }}',
+      timelineEvents: '{{ $timelineEvents }}',
+      smartFilter: {{ $smartFilter }},
+      showMetadata: {{ $showMetadata }}
+    });
+  }
+});
+</script>

@@ -1,0 +1,70 @@
+# Production Configuration - ORGA Production Excellence
+
+# Environment Settings
+environment: "production"
+
+# Asset Processing
+assetDir: "assets"
+publishDir: "public"
+
+# Compression & Optimization
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true
+
+# Security Settings
+security:
+  enableInlineShortcodes: false
+  exec:
+    allow:
+      - "^dart-sass-embedded$"
+      - "^go$"
+      - "^npx$"
+      - "^postcss$"
+      - "^git$"
+    osEnv:
+      - "(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM|GO.*)$"
+
+# Performance Optimizations
+timeout: "30s"
+enableGitInfo: true
+enableMissingTranslationPlaceholders: false
+
+# Cache Configuration
+caches:
+  images:
+    dir: ":cacheDir/:project/images"
+    maxAge: "168h"
+  assets:
+    dir: ":cacheDir/:project/assets"
+    maxAge: "168h"
+  modules:
+    dir: ":cacheDir/:project/modules"
+    maxAge: "168h"
+
+# Media Types for WebP
+mediaTypes:
+  "image/webp":
+    suffixes: ["webp"]
+
+# Output Formats for RSS and JSON Feed
+outputFormats:
+  RSS:
+    baseName: "index"
+    mediaType: "application/rss+xml"
+    rel: "alternate"
+    isHTML: false
+    isPlainText: false
+    noUgly: true
+  JSON:
+    baseName: "index"
+    mediaType: "application/json"
+    rel: "alternate"
+    isHTML: false
+    isPlainText: true
+    noUgly: true
