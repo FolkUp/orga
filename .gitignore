@@ -36,3 +36,6 @@ yarn-error.log*
 personal/
 confidential/
 sensitive/
+
+# Development session files and private data
+.claude/
