@@ -1,0 +1,575 @@
+{{/* Cultural Timeline Chart — ORGA Investigation Shortcode */}}
+{{/* Interactive SVG-based timeline for Oxymiron's cultural seismography */}}
+{{/* Usage: {{< cultural-timeline >}} */}}
+
+<div class="cultural-timeline-container" role="region" aria-label="Cultural Timeline Visualization">
+  <div class="timeline-header">
+    <h3 class="timeline-title">Cultural Seismography: Timeline of Events</h3>
+    <p class="timeline-subtitle">How artists sense cultural shifts before mass manifestation</p>
+  </div>
+
+  <div class="timeline-controls">
+    <button
+      id="timeline-play"
+      class="timeline-control-btn"
+      aria-label="Play timeline animation"
+      role="button"
+    >
+      <span class="play-icon">▶</span>
+      <span class="pause-icon" style="display: none;">⏸</span>
+    </button>
+    <div class="timeline-legend">
+      <div class="legend-item">
+        <div class="legend-color music"></div>
+        <span>Music Events</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color political"></div>
+        <span>Political Events</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color cultural"></div>
+        <span>Cultural Shifts</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-wrapper">
+    <svg class="cultural-timeline-svg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background cultural waves -->
+      <defs>
+        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.1" />
+          <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+          <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.1" />
+        </linearGradient>
+
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#6366f1" flood-opacity="0.4"/>
+        </filter>
+
+        <!-- Cultural wave pattern -->
+        <pattern id="seismicWaves" patternUnits="userSpaceOnUse" width="100" height="40">
+          <path d="M0,20 Q25,5 50,20 T100,20" stroke="#8b5cf6" stroke-width="1" fill="none" opacity="0.2"/>
+        </pattern>
+      </defs>
+
+      <!-- Background seismic waves -->
+      <rect x="0" y="0" width="1200" height="600" fill="url(#seismicWaves)" opacity="0.3"/>
+
+      <!-- Timeline spine -->
+      <line x1="100" y1="300" x2="1100" y2="300" stroke="#374151" stroke-width="3" class="timeline-spine"/>
+
+      <!-- Timeline events -->
+      <!-- Event 1: November 8, 2021 - Single "Организация" release -->
+      <g class="timeline-event music-event" data-event="organization-single">
+        <circle cx="200" cy="300" r="8" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2" class="event-marker"/>
+        <line x1="200" y1="280" x2="200" y2="200" stroke="#3b82f6" stroke-width="2" class="event-line"/>
+        <rect x="120" y="160" width="160" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1" class="event-card" opacity="0"/>
+        <text x="200" y="185" text-anchor="middle" class="event-date" fill="#e2e8f0">Nov 8, 2021</text>
+        <text x="200" y="205" text-anchor="middle" class="event-title" fill="#3b82f6">Single "Организация"</text>
+        <text x="200" y="225" text-anchor="middle" class="event-subtitle" fill="#94a3b8">Underground resistance signal</text>
+      </g>
+
+      <!-- Event 2: November 12, 2021 - Album miXXXtape III -->
+      <g class="timeline-event music-event" data-event="mixtape-release">
+        <circle cx="280" cy="300" r="10" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2" class="event-marker"/>
+        <line x1="280" y1="320" x2="280" y2="400" stroke="#3b82f6" stroke-width="2" class="event-line"/>
+        <rect x="200" y="420" width="160" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1" class="event-card" opacity="0"/>
+        <text x="280" y="445" text-anchor="middle" class="event-date" fill="#e2e8f0">Nov 12, 2021</text>
+        <text x="280" y="465" text-anchor="middle" class="event-title" fill="#3b82f6">Album miXXXtape III</text>
+        <text x="280" y="485" text-anchor="middle" class="event-subtitle" fill="#94a3b8">Complete artistic statement</text>
+      </g>
+
+      <!-- Event 3: February 24, 2022 - Russia invades Ukraine -->
+      <g class="timeline-event political-event" data-event="ukraine-invasion">
+        <circle cx="600" cy="300" r="12" fill="#dc2626" stroke="#991b1b" stroke-width="3" class="event-marker critical"/>
+        <line x1="600" y1="280" x2="600" y2="180" stroke="#dc2626" stroke-width="3" class="event-line"/>
+        <rect x="520" y="140" width="160" height="100" rx="8" fill="#1e293b" stroke="#dc2626" stroke-width="2" class="event-card" opacity="0"/>
+        <text x="600" y="165" text-anchor="middle" class="event-date" fill="#e2e8f0">Feb 24, 2022</text>
+        <text x="600" y="185" text-anchor="middle" class="event-title" fill="#dc2626">Russia invades Ukraine</text>
+        <text x="600" y="205" text-anchor="middle" class="event-subtitle" fill="#94a3b8">Cultural shift catalyst</text>
+        <text x="600" y="225" text-anchor="middle" class="event-detail" fill="#6b7280">Seismic change predicted</text>
+      </g>
+
+      <!-- Event 4: October 7, 2022 - Foreign agent designation -->
+      <g class="timeline-event political-event" data-event="foreign-agent">
+        <circle cx="900" cy="300" r="10" fill="#dc2626" stroke="#991b1b" stroke-width="2" class="event-marker"/>
+        <line x1="900" y1="320" x2="900" y2="420" stroke="#dc2626" stroke-width="2" class="event-line"/>
+        <rect x="820" y="440" width="160" height="80" rx="8" fill="#1e293b" stroke="#dc2626" stroke-width="1" class="event-card" opacity="0"/>
+        <text x="900" y="465" text-anchor="middle" class="event-date" fill="#e2e8f0">Oct 7, 2022</text>
+        <text x="900" y="485" text-anchor="middle" class="event-title" fill="#dc2626">"Foreign agent"</text>
+        <text x="900" y="505" text-anchor="middle" class="event-subtitle" fill="#94a3b8">Official silencing begins</text>
+      </g>
+
+      <!-- Cultural context markers -->
+      <g class="cultural-context">
+        <!-- Underground resistance wave -->
+        <path d="M100,350 Q300,330 500,350 T900,350" stroke="#8b5cf6" stroke-width="2" fill="none" opacity="0.6" class="cultural-wave"/>
+        <text x="300" y="370" text-anchor="middle" class="context-label" fill="#8b5cf6">Underground Resistance</text>
+
+        <!-- Platform censorship wave -->
+        <path d="M400,250 Q600,230 800,250 T1100,250" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.6" class="cultural-wave"/>
+        <text x="700" y="240" text-anchor="middle" class="context-label" fill="#f59e0b">Platform Censorship</text>
+      </g>
+
+      <!-- Seismic prediction arrows -->
+      <g class="prediction-arrows">
+        <!-- Arrow from Organization to Ukraine invasion -->
+        <path d="M240,280 Q400,200 560,280" stroke="#6366f1" stroke-width="2" fill="none" stroke-dasharray="5,5" class="prediction-line"/>
+        <polygon points="555,275 565,280 555,285" fill="#6366f1" class="arrow-head"/>
+        <text x="400" y="230" text-anchor="middle" class="prediction-label" fill="#6366f1">Cultural Prediction</text>
+      </g>
+
+      <!-- Interactive overlay -->
+      <rect x="0" y="0" width="1200" height="600" fill="transparent" class="interaction-layer"/>
+    </svg>
+  </div>
+
+  <!-- Event details panel -->
+  <div id="event-details" class="event-details-panel" style="display: none;">
+    <div class="details-header">
+      <h4 id="details-title"></h4>
+      <button id="close-details" class="close-btn" aria-label="Close details">&times;</button>
+    </div>
+    <div id="details-content" class="details-content"></div>
+  </div>
+</div>
+
+<style>
+.cultural-timeline-container {
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.timeline-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.timeline-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.timeline-control-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.timeline-control-btn:hover {
+  background: #2563eb;
+}
+
+.timeline-legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-color.music { background: #3b82f6; }
+.legend-color.political { background: #dc2626; }
+.legend-color.cultural { background: #8b5cf6; }
+
+.timeline-wrapper {
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cultural-timeline-svg {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to bottom, #0f172a 0%, #1e293b 100%);
+  border-radius: 8px;
+}
+
+.timeline-event {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeline-event:hover .event-marker {
+  r: 12;
+  filter: url(#glow);
+}
+
+.timeline-event:hover .event-card {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.event-marker {
+  transition: all 0.3s ease;
+}
+
+.event-marker.critical {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.event-card {
+  transition: all 0.3s ease;
+}
+
+.event-date {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.event-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.event-subtitle, .event-detail {
+  font-size: 11px;
+}
+
+.context-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.prediction-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.cultural-wave {
+  animation: wave 4s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { stroke-opacity: 0.3; }
+  50% { stroke-opacity: 0.8; }
+}
+
+.prediction-line {
+  animation: dash 3s linear infinite;
+}
+
+@keyframes dash {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 20; }
+}
+
+.event-details-panel {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.details-header h4 {
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #f1f5f9;
+}
+
+.details-content {
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cultural-timeline-container {
+    padding: 1rem;
+  }
+
+  .timeline-controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .timeline-legend {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cultural-timeline-svg {
+    height: 400px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .event-marker.critical {
+    animation: none;
+  }
+
+  .cultural-wave {
+    animation: none;
+    stroke-opacity: 0.6;
+  }
+
+  .prediction-line {
+    animation: none;
+  }
+
+  .timeline-event:hover .event-card {
+    transform: none;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const timelineContainer = document.querySelector('.cultural-timeline-container');
+  const playButton = document.getElementById('timeline-play');
+  const playIcon = playButton.querySelector('.play-icon');
+  const pauseIcon = playButton.querySelector('.pause-icon');
+  const detailsPanel = document.getElementById('event-details');
+  const detailsTitle = document.getElementById('details-title');
+  const detailsContent = document.getElementById('details-content');
+  const closeDetailsBtn = document.getElementById('close-details');
+
+  let isPlaying = false;
+  let animationTimeout;
+
+  // Event data
+  const eventData = {
+    'organization-single': {
+      title: 'Single "Организация" Released',
+      date: 'November 8, 2021',
+      content: `
+        <p><strong>Cultural Significance:</strong> The release of "Организация" marked a pivotal moment in Russian underground hip-hop, serving as an early warning signal of impending cultural and political upheaval.</p>
+
+        <p><strong>Artistic Context:</strong> The single contained subtle references to systemic resistance and organizational structures, themes that would become central to the broader cultural discourse following the 2022 geopolitical shift.</p>
+
+        <p><strong>Platform Response:</strong> Initial reception on streaming platforms was measured, but underground communities recognized the track's prescient commentary on state-society dynamics.</p>
+
+        <p><strong>Seismic Prediction:</strong> The track's themes and timing suggest Oxymiron sensed cultural tensions months before they manifested in mass social and political events.</p>
+      `
+    },
+    'mixtape-release': {
+      title: 'Album miXXXtape III',
+      date: 'November 12, 2021',
+      content: `
+        <p><strong>Complete Artistic Statement:</strong> miXXXtape III represented a comprehensive exploration of themes introduced in "Организация," expanding the narrative framework around systemic change and cultural resistance.</p>
+
+        <p><strong>Underground Impact:</strong> The album became a rallying point for underground cultural movements, with tracks being shared through encrypted channels and alternative platforms.</p>
+
+        <p><strong>Censorship Precursors:</strong> Several tracks on the album would later be flagged by platform algorithms, suggesting early automated detection of "sensitive" content.</p>
+
+        <p><strong>Cultural Prediction:</strong> The album's thematic arc closely paralleled events that would unfold throughout 2022, demonstrating the artist's ability to sense and articulate emerging social tensions.</p>
+      `
+    },
+    'ukraine-invasion': {
+      title: 'Russia Invades Ukraine',
+      date: 'February 24, 2022',
+      content: `
+        <p><strong>Cultural Watershed Moment:</strong> The invasion of Ukraine marked a fundamental shift in Russian cultural discourse, validating many of the themes Oxymiron had explored months earlier in his work.</p>
+
+        <p><strong>Platform Censorship Acceleration:</strong> Following the invasion, Russian content platforms implemented aggressive censorship measures, particularly targeting artists who had previously addressed systemic issues.</p>
+
+        <p><strong>Underground Amplification:</strong> The events led to increased circulation of Oxymiron's earlier work through alternative channels, as audiences sought cultural artifacts that had "predicted" the crisis.</p>
+
+        <p><strong>Seismic Validation:</strong> The timing and themes of "Организация" and miXXXtape III were retrospectively recognized as early cultural seismography—art sensing and expressing social tensions before they manifested politically.</p>
+      `
+    },
+    'foreign-agent': {
+      title: 'Oxymiron Designated "Foreign Agent"',
+      date: 'October 7, 2022',
+      content: `
+        <p><strong>Official Silencing Campaign:</strong> The foreign agent designation represented the state's formal acknowledgment of Oxymiron's cultural influence and an attempt to marginalize his voice in ongoing discourse.</p>
+
+        <p><strong>Platform Compliance:</strong> Major streaming platforms began removing or restricting access to Oxymiron's catalog, including the prescient tracks from late 2021.</p>
+
+        <p><strong>Cultural Martyrdom:</strong> The designation ironically amplified interest in Oxymiron's work, particularly the earlier tracks that had "predicted" the current crisis.</p>
+
+        <p><strong>Artistic Vindication:</strong> The state's response validated the power and accuracy of Oxymiron's cultural seismography, confirming that artists can indeed sense and articulate societal tensions before they reach critical mass.</p>
+      `
+    }
+  };
+
+  // Timeline events interaction
+  document.querySelectorAll('.timeline-event').forEach(event => {
+    event.addEventListener('click', function() {
+      const eventType = this.getAttribute('data-event');
+      const data = eventData[eventType];
+
+      if (data) {
+        detailsTitle.textContent = data.title;
+        detailsContent.innerHTML = data.content;
+        detailsPanel.style.display = 'block';
+
+        // Scroll to details panel
+        detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+
+    // Enhanced hover effects
+    event.addEventListener('mouseenter', function() {
+      const eventCard = this.querySelector('.event-card');
+      if (eventCard) {
+        eventCard.style.opacity = '1';
+      }
+    });
+
+    event.addEventListener('mouseleave', function() {
+      const eventCard = this.querySelector('.event-card');
+      if (eventCard) {
+        eventCard.style.opacity = '0';
+      }
+    });
+  });
+
+  // Close details panel
+  closeDetailsBtn.addEventListener('click', function() {
+    detailsPanel.style.display = 'none';
+  });
+
+  // Timeline animation control
+  playButton.addEventListener('click', function() {
+    if (isPlaying) {
+      pauseAnimation();
+    } else {
+      playAnimation();
+    }
+  });
+
+  function playAnimation() {
+    isPlaying = true;
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'inline';
+
+    // Animate timeline events in sequence
+    const events = document.querySelectorAll('.timeline-event');
+    events.forEach((event, index) => {
+      setTimeout(() => {
+        event.style.opacity = '0';
+        setTimeout(() => {
+          event.style.opacity = '1';
+          event.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+            event.style.transform = 'scale(1)';
+          }, 300);
+        }, 100);
+      }, index * 800);
+    });
+
+    // Auto-pause after animation completes
+    animationTimeout = setTimeout(() => {
+      pauseAnimation();
+    }, events.length * 800 + 1000);
+  }
+
+  function pauseAnimation() {
+    isPlaying = false;
+    playIcon.style.display = 'inline';
+    pauseIcon.style.display = 'none';
+
+    if (animationTimeout) {
+      clearTimeout(animationTimeout);
+    }
+  }
+
+  // Keyboard navigation support
+  document.querySelectorAll('.timeline-event').forEach(event => {
+    event.setAttribute('tabindex', '0');
+    event.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+
+  // Escape key closes details panel
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && detailsPanel.style.display !== 'none') {
+      detailsPanel.style.display = 'none';
+    }
+  });
+
+  // Touch support for mobile
+  let touchStartX, touchStartY;
+
+  timelineContainer.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+
+  timelineContainer.addEventListener('touchend', function(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = Math.abs(touchEndX - touchStartX);
+    const deltaY = Math.abs(touchEndY - touchStartY);
+
+    // If it's a tap (minimal movement), find the closest event
+    if (deltaX < 10 && deltaY < 10) {
+      const target = document.elementFromPoint(touchEndX, touchEndY);
+      const timelineEvent = target.closest('.timeline-event');
+      if (timelineEvent) {
+        timelineEvent.click();
+      }
+    }
+  });
+});
+</script>
