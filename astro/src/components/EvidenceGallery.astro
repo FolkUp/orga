@@ -1109,7 +1109,13 @@ class EvidenceGallery {
     this.modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    // Focus trap
+    // Store the element that triggered the modal for return focus
+    this.previousActiveElement = document.activeElement;
+
+    // Setup focus trap
+    this.setupFocusTrap();
+
+    // Focus first element
     const firstFocusable = this.modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     firstFocusable?.focus();
   }
@@ -1118,6 +1124,44 @@ class EvidenceGallery {
     this.modal.classList.add('hidden');
     this.modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    // Return focus to trigger element
+    if (this.previousActiveElement) {
+      this.previousActiveElement.focus();
+    }
+  }
+
+  setupFocusTrap() {
+    // Get all focusable elements within modal
+    const focusableElements = this.modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Remove previous trap listeners
+    if (this.trapHandler) {
+      this.modal.removeEventListener('keydown', this.trapHandler);
+    }
+
+    // Create new trap handler
+    this.trapHandler = (e) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    // Add trap listener
+    this.modal.addEventListener('keydown', this.trapHandler);
   }
 
   handleKeyboard(e) {

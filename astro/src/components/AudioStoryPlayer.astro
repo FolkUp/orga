@@ -74,7 +74,6 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
           {chapters.map((chapter, index) => (
             <button
               class="chapter-marker"
-              style={`left: ${(chapter.timestamp / 100)}%`}
               data-timestamp={chapter.timestamp}
               aria-label={`Jump to ${chapter.title}`}
             >
@@ -143,8 +142,7 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
                 <div class="evidence-refs">
                   <button class="evidence-toggle" aria-label="Show evidence">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <folder xmlns="http://www.w3.org/2000/svg" x="3" y="4" width="18" height="18" rx="2" ry="2"></folder>
-                      <path d="M7 4V2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"></path>
+                      <path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/>
                     </svg>
                     <span>{segment.evidence.length} evidence</span>
                   </button>
@@ -380,6 +378,7 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
     cursor: pointer;
     pointer-events: all;
     z-index: 10;
+    display: none; /* Hidden until positioned by JavaScript */
   }
 
   .marker-dot {
@@ -756,6 +755,7 @@ class AudioStoryPlayer {
   init() {
     this.bindEvents();
     this.updateTimeDisplay();
+    this.setupChapterMarkers();
   }
 
   bindEvents() {
@@ -764,7 +764,10 @@ class AudioStoryPlayer {
 
     // Progress tracking
     this.audio?.addEventListener('timeupdate', () => this.updateProgress());
-    this.audio?.addEventListener('loadedmetadata', () => this.updateTimeDisplay());
+    this.audio?.addEventListener('loadedmetadata', () => {
+      this.updateTimeDisplay();
+      this.updateChapterPositions();
+    });
     this.audio?.addEventListener('ended', () => this.onAudioEnded());
 
     // Progress interaction
@@ -841,6 +844,19 @@ class AudioStoryPlayer {
 
     const currentTime = this.formatTime(this.audio.currentTime || 0);
     this.currentTimeSpan.textContent = currentTime;
+
+    // Update total time display if audio duration is available
+    const totalTimeSpan = this.container.querySelector('.total-time');
+    if (totalTimeSpan && this.audio.duration && !isNaN(this.audio.duration)) {
+      const formattedDuration = this.formatTime(this.audio.duration);
+      totalTimeSpan.textContent = formattedDuration;
+
+      // Also update header duration badge
+      const durationBadge = this.container.querySelector('.duration');
+      if (durationBadge) {
+        durationBadge.textContent = formattedDuration;
+      }
+    }
   }
 
   updateActiveSegment() {
@@ -928,6 +944,32 @@ class AudioStoryPlayer {
         this.toggleTranscript();
         break;
     }
+  }
+
+  setupChapterMarkers() {
+    // Initial setup - will position once audio metadata loads
+    this.updateChapterPositions();
+  }
+
+  updateChapterPositions() {
+    if (!this.audio || !this.audio.duration || isNaN(this.audio.duration)) {
+      return; // Wait for metadata to load
+    }
+
+    const audioDuration = this.audio.duration;
+
+    this.chapterMarkers.forEach(marker => {
+      const timestamp = parseFloat(marker.dataset.timestamp);
+      const position = (timestamp / audioDuration) * 100;
+
+      // Only position if timestamp is valid and within duration
+      if (!isNaN(timestamp) && timestamp <= audioDuration) {
+        marker.style.left = `${Math.max(0, Math.min(100, position))}%`;
+        marker.style.display = 'block';
+      } else {
+        marker.style.display = 'none'; // Hide invalid chapters
+      }
+    });
   }
 
   formatTime(seconds) {
