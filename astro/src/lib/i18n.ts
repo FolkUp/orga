@@ -54,16 +54,16 @@ function loadI18nData(lang: string): I18nData {
   }
 
   try {
-    // Try to load from Hugo theme i18n files first (for compatibility)
-    const themePath = join(process.cwd(), '..', 'themes', 'blowfish', 'i18n', `${lang}.yaml`);
+    // For Astro migration: try local files first, then Hugo theme as fallback
+    const localPath = join(process.cwd(), 'src', 'i18n', `${lang}.yaml`);
     let yamlContent: string;
 
     try {
-      yamlContent = readFileSync(themePath, 'utf-8');
-    } catch {
-      // Fallback to local i18n files
-      const localPath = join(process.cwd(), 'src', 'i18n', `${lang}.yaml`);
       yamlContent = readFileSync(localPath, 'utf-8');
+    } catch (localError) {
+      // Fallback to Hugo theme i18n files (for compatibility)
+      const themePath = join(process.cwd(), '..', 'themes', 'blowfish', 'i18n', `${lang}.yaml`);
+      yamlContent = readFileSync(themePath, 'utf-8');
     }
 
     const data = parseYaml(yamlContent) as I18nData;

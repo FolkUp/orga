@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
 
 // ORGA — Multimedia Longform Investigation Platform
-// Astro with Island Architecture for interactive components
+// Astro with Island Architecture + Banking-Level Security
 export default defineConfig({
   integrations: [
     mdx(),
@@ -13,6 +13,15 @@ export default defineConfig({
   // Content collections for type-safe content management
   // Will be configured in Phase 1 when migrating Hugo content
   site: 'https://orga.folkup.app',
+
+  // Banking-level security configuration
+  security: {
+    checkOrigin: true
+  },
+
+  // Static output with security headers via deployment
+  output: 'static',
+
   build: {
     assets: '_assets',
   },

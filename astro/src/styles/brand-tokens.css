@@ -1,0 +1,200 @@
+/* FolkUp Brand Guide v2.5 — Brand Token System */
+/* Complete palette implementation for multimedia longread excellence */
+
+:root {
+  /* ==========================================================================
+     BRAND GUIDE v2.5 PALETTE D — PRIMARY SYSTEM
+     Maritime Deep (Primary) + Amber Warm (Accent) + Supporting Colors
+     ========================================================================== */
+
+  /* Core Brand Colors */
+  --folkup-maritime-deep:       #1D4ED8;    /* Primary brand - deep blue */
+  --folkup-amber-warm:          #F59E0B;    /* Accent brand - warm amber */
+  --folkup-sage-fresh:          #10B981;    /* Success/positive - fresh sage */
+  --folkup-coral-vibrant:       #F87171;    /* Warning/alert - vibrant coral */
+  --folkup-neutral-sophisticated: #64748B;  /* Text/neutral - sophisticated gray */
+  --folkup-dark-professional:   #0F172A;    /* Dark mode/text - professional navy */
+
+  /* ==========================================================================
+     BRAND TOKEN SCALE SYSTEM — RGB TUPLES FOR TRANSPARENCY
+     Each brand color with full scale for flexibility
+     ========================================================================== */
+
+  /* Maritime Deep Scale (Primary) */
+  --folkup-maritime-50:   239, 246, 255;    /* Lightest tint */
+  --folkup-maritime-100:  219, 234, 254;
+  --folkup-maritime-200:  191, 219, 254;
+  --folkup-maritime-300:  147, 197, 253;
+  --folkup-maritime-400:  96, 165, 250;
+  --folkup-maritime-500:  29, 78, 216;      /* Brand maritime deep */
+  --folkup-maritime-600:  37, 99, 235;
+  --folkup-maritime-700:  29, 78, 216;
+  --folkup-maritime-800:  30, 64, 175;
+  --folkup-maritime-900:  30, 58, 138;      /* Darkest shade */
+
+  /* Amber Warm Scale (Accent) */
+  --folkup-amber-50:      255, 251, 235;    /* Lightest tint */
+  --folkup-amber-100:     254, 243, 199;
+  --folkup-amber-200:     253, 230, 138;
+  --folkup-amber-300:     252, 211, 77;
+  --folkup-amber-400:     251, 191, 36;     /* Brand amber warm */
+  --folkup-amber-500:     245, 158, 11;
+  --folkup-amber-600:     217, 119, 6;
+  --folkup-amber-700:     180, 83, 9;
+  --folkup-amber-800:     146, 64, 14;
+  --folkup-amber-900:     120, 53, 15;      /* Darkest shade */
+
+  /* Sage Fresh Scale (Success) */
+  --folkup-sage-50:      236, 253, 245;     /* Lightest tint */
+  --folkup-sage-100:     209, 250, 229;
+  --folkup-sage-200:     167, 243, 208;
+  --folkup-sage-300:     110, 231, 183;
+  --folkup-sage-400:     52, 211, 153;
+  --folkup-sage-500:     16, 185, 129;      /* Brand sage fresh */
+  --folkup-sage-600:     5, 150, 105;
+  --folkup-sage-700:     4, 120, 87;
+  --folkup-sage-800:     6, 95, 70;
+  --folkup-sage-900:     6, 78, 59;         /* Darkest shade */
+
+  /* Coral Vibrant Scale (Warning) */
+  --folkup-coral-50:     254, 242, 242;     /* Lightest tint */
+  --folkup-coral-100:    254, 226, 226;
+  --folkup-coral-200:    252, 165, 165;
+  --folkup-coral-300:    248, 113, 113;
+  --folkup-coral-400:    248, 113, 113;     /* Brand coral vibrant */
+  --folkup-coral-500:    239, 68, 68;
+  --folkup-coral-600:    220, 38, 38;
+  --folkup-coral-700:    185, 28, 28;
+  --folkup-coral-800:    153, 27, 27;
+  --folkup-coral-900:    127, 29, 29;       /* Darkest shade */
+
+  /* Professional Scale (Dark/Text) */
+  --folkup-professional-50:  248, 250, 252; /* Lightest tint */
+  --folkup-professional-100: 241, 245, 249;
+  --folkup-professional-200: 226, 232, 240;
+  --folkup-professional-300: 203, 213, 225;
+  --folkup-professional-400: 148, 163, 184;
+  --folkup-professional-500: 100, 116, 139; /* Medium gray */
+  --folkup-professional-600: 71, 85, 105;
+  --folkup-professional-700: 51, 65, 85;
+  --folkup-professional-800: 30, 41, 59;
+  --folkup-professional-900: 15, 23, 42;    /* Brand dark professional */
+
+  /* ==========================================================================
+     SEMANTIC BRAND MAPPING
+     Maps common UI patterns to brand tokens
+     ========================================================================== */
+
+  /* Primary Actions & Links */
+  --brand-primary:              var(--folkup-maritime-deep);
+  --brand-primary-hover:        #1e40af;     /* Darker on hover */
+  --brand-primary-pressed:      #1e3a8a;     /* Darkest on press */
+  --brand-primary-subtle:       rgba(var(--folkup-maritime-500), 0.1);
+
+  /* Accent & Highlights */
+  --brand-accent:               var(--folkup-amber-warm);
+  --brand-accent-hover:         #d97706;     /* Darker amber on hover */
+  --brand-accent-subtle:        rgba(var(--folkup-amber-400), 0.1);
+
+  /* Success States */
+  --brand-success:              var(--folkup-sage-fresh);
+  --brand-success-subtle:       rgba(var(--folkup-sage-500), 0.1);
+
+  /* Warning States */
+  --brand-warning:              var(--folkup-coral-vibrant);
+  --brand-warning-subtle:       rgba(var(--folkup-coral-400), 0.1);
+
+  /* Text & Neutrals */
+  --brand-text-primary:         var(--folkup-dark-professional);
+  --brand-text-secondary:       var(--folkup-neutral-sophisticated);
+  --brand-text-muted:           #9ca3af;     /* Lighter gray */
+
+  /* Surfaces */
+  --brand-surface-primary:      #ffffff;
+  --brand-surface-elevated:     #f8fafc;
+  --brand-surface-accent:       rgba(var(--folkup-maritime-50), 0.5);
+
+  /* ==========================================================================
+     INVESTIGATION SPECIFIC BRAND COLORS
+     Brand-aligned status and tier colors
+     ========================================================================== */
+
+  /* Evidence Status (Brand-aligned) */
+  --brand-evidence-confirmed:   var(--folkup-sage-fresh);    /* Success green */
+  --brand-evidence-partial:     var(--folkup-amber-warm);    /* Accent amber */
+  --brand-evidence-disputed:    var(--folkup-coral-vibrant); /* Warning coral */
+  --brand-evidence-unverified:  var(--folkup-neutral-sophisticated); /* Neutral gray */
+
+  /* Source Reliability (Brand-aligned) */
+  --brand-source-tier1:         var(--folkup-sage-fresh);    /* High reliability */
+  --brand-source-tier2:         var(--folkup-maritime-deep); /* Medium reliability */
+  --brand-source-tier3:         var(--folkup-neutral-sophisticated); /* Low reliability */
+
+  /* Timeline & Progress */
+  --brand-timeline-active:      var(--folkup-maritime-deep);
+  --brand-timeline-completed:   var(--folkup-sage-fresh);
+  --brand-timeline-pending:     var(--folkup-neutral-sophisticated);
+
+  /* ==========================================================================
+     DARK MODE BRAND OVERRIDES
+     Brand-compliant dark mode variations
+     ========================================================================== */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Adjusted brand colors for dark mode */
+    --brand-primary:            #60a5fa;     /* Lighter maritime for contrast */
+    --brand-primary-hover:      #3b82f6;     /* Medium blue on hover */
+    --brand-primary-subtle:     rgba(96, 165, 250, 0.15); /* More opacity */
+
+    --brand-accent:             #fbbf24;     /* Slightly lighter amber */
+    --brand-accent-hover:       #f59e0b;     /* Standard amber on hover */
+    --brand-accent-subtle:      rgba(251, 191, 36, 0.15); /* More opacity */
+
+    /* Text colors for dark mode */
+    --brand-text-primary:       #f8fafc;     /* Light text */
+    --brand-text-secondary:     #cbd5e1;     /* Medium light gray */
+    --brand-text-muted:         #94a3b8;     /* Darker muted text */
+
+    /* Surfaces for dark mode */
+    --brand-surface-primary:    var(--folkup-dark-professional);
+    --brand-surface-elevated:   #1e293b;     /* Slightly lighter than primary */
+    --brand-surface-accent:     rgba(96, 165, 250, 0.1); /* Subtle blue tint */
+  }
+}
+
+/* ==========================================================================
+   BRAND UTILITY CLASSES
+   Quick application classes for brand tokens
+   ========================================================================== */
+
+/* Primary Brand Colors */
+.text-brand-primary { color: var(--brand-primary); }
+.text-brand-accent { color: var(--brand-accent); }
+.text-brand-success { color: var(--brand-success); }
+.text-brand-warning { color: var(--brand-warning); }
+
+.bg-brand-primary { background-color: var(--brand-primary); }
+.bg-brand-accent { background-color: var(--brand-accent); }
+.bg-brand-primary-subtle { background-color: var(--brand-primary-subtle); }
+.bg-brand-accent-subtle { background-color: var(--brand-accent-subtle); }
+
+.border-brand-primary { border-color: var(--brand-primary); }
+.border-brand-accent { border-color: var(--brand-accent); }
+
+/* Hover States */
+.hover\:text-brand-primary:hover { color: var(--brand-primary-hover); }
+.hover\:text-brand-accent:hover { color: var(--brand-accent-hover); }
+.hover\:bg-brand-primary:hover { background-color: var(--brand-primary-hover); }
+.hover\:bg-brand-accent:hover { background-color: var(--brand-accent-hover); }
+
+/* Investigation Brand Colors */
+.evidence-confirmed { color: var(--brand-evidence-confirmed); }
+.evidence-partial { color: var(--brand-evidence-partial); }
+.evidence-disputed { color: var(--brand-evidence-disputed); }
+.evidence-unverified { color: var(--brand-evidence-unverified); }
+
+.source-tier1 { color: var(--brand-source-tier1); }
+.source-tier2 { color: var(--brand-source-tier2); }
+.source-tier3 { color: var(--brand-source-tier3); }

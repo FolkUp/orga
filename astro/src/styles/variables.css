@@ -1,0 +1,133 @@
+/* ORGA Astro Migration — Core Variables Foundation */
+/* Semantic Variable System — Bridges component expectations with design token system */
+
+:root {
+  /* ==========================================================================
+     FONT FAMILY SEMANTIC MAPPING
+     Maps component expectations to typography.css system
+     ========================================================================== */
+  --font-family-sans:       var(--font-body-enhanced);      /* 'Inter', system-ui, sans-serif */
+  --font-family-serif:      var(--font-display-enhanced);   /* 'Playfair Display', Georgia, serif */
+  --font-family-mono:       var(--font-code);               /* 'Source Code Pro', monospace */
+
+  /* ==========================================================================
+     FONT SIZE SEMANTIC MAPPING
+     Direct pass-through from typography.css (already correctly named)
+     ========================================================================== */
+  /* These are already correctly defined in typography.css:
+     --font-size-xs, --font-size-sm, --font-size-base, --font-size-lg,
+     --font-size-xl, --font-size-2xl, --font-size-3xl, --font-size-4xl,
+     --font-size-5xl, --font-size-6xl */
+
+  /* ==========================================================================
+     LINE HEIGHT SEMANTIC MAPPING
+     Direct pass-through from typography.css
+     ========================================================================== */
+  --line-height-base:       var(--line-height-normal);      /* 1.5 */
+  --line-height-relaxed:    var(--line-height-relaxed);     /* 1.6 */
+
+  /* ==========================================================================
+     FONT WEIGHT SEMANTIC MAPPING
+     Direct pass-through from typography.css
+     ========================================================================== */
+  --font-weight-medium:     var(--font-weight-medium);      /* 500 */
+  --font-weight-semibold:   var(--font-weight-semibold);    /* 600 */
+
+  /* ==========================================================================
+     COLOR SEMANTIC MAPPING — BRAND GUIDE v2.5 INTEGRATION
+     Maps semantic names to FolkUp brand token system
+     ========================================================================== */
+
+  /* Primary text colors (Brand-aligned) */
+  --color-text-primary:     var(--brand-text-primary);        /* Brand professional dark */
+  --color-text-secondary:   var(--brand-text-secondary);      /* Brand sophisticated gray */
+  --color-text-muted:       var(--brand-text-muted);          /* Brand muted gray */
+
+  /* Surface/background colors (Brand-aligned) */
+  --color-surface-primary:          var(--brand-surface-primary);      /* Brand white */
+  --color-surface-elevated:         var(--brand-surface-elevated);     /* Brand light */
+  --color-surface-elevated-hover:   #f1f5f9;                          /* Slight hover */
+
+  /* Accent colors (Brand Guide v2.5) */
+  --color-accent-primary:           var(--brand-primary);              /* FolkUp maritime */
+  --color-accent-primary-translucent: var(--brand-primary-subtle);    /* Brand primary subtle */
+  --color-accent-secondary:         var(--brand-accent);               /* FolkUp amber */
+
+  /* Status colors (Brand-aligned) */
+  --color-status-success:           var(--brand-success);              /* Brand sage */
+  --color-status-warning:           var(--brand-warning);              /* Brand coral */
+  --color-status-info:              var(--brand-primary);              /* Brand maritime */
+
+  /* Border colors (Brand-aligned) */
+  --color-border-subtle:            #e2e8f0;                          /* Brand neutral light */
+
+  /* ==========================================================================
+     SPACING SEMANTIC MAPPING
+     Maps semantic spacing to spacing.css system
+     ========================================================================== */
+  --space-xs:               var(--space-2);     /* 8px */
+  --space-sm:               var(--space-3);     /* 12px */
+  --space-md:               var(--space-4);     /* 16px */
+  --space-lg:               var(--space-6);     /* 24px */
+  --space-xl:               var(--space-8);     /* 32px */
+  --space-2xl:              var(--space-12);    /* 48px */
+
+  /* Negative spacing for positioning */
+  --space-sm-negative:      calc(-1 * var(--space-sm));     /* -12px */
+  --space-md-negative:      calc(-1 * var(--space-md));     /* -16px */
+
+  /* ==========================================================================
+     BORDER RADIUS SEMANTIC MAPPING
+     Maps semantic radius to spacing.css system
+     ========================================================================== */
+  --border-radius-sm:       var(--radius-sm);              /* 2px */
+  --border-radius-md:       var(--radius-lg);              /* 8px */
+
+  /* ==========================================================================
+     SHADOW SEMANTIC MAPPING
+     Maps semantic shadows to effects.css system
+     ========================================================================== */
+  --shadow-lg:              var(--shadow-lg);              /* 20px blur shadow */
+
+  /* ==========================================================================
+     DARK MODE OVERRIDES
+     Inverts colors for dark mode while preserving semantic meaning
+     ========================================================================== */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Brand-compliant dark mode colors */
+    --color-text-primary:           var(--brand-text-primary);        /* Brand light text */
+    --color-text-secondary:         var(--brand-text-secondary);      /* Brand medium gray */
+    --color-text-muted:             var(--brand-text-muted);          /* Brand muted */
+
+    /* Brand dark mode surfaces */
+    --color-surface-primary:        var(--brand-surface-primary);     /* Brand dark */
+    --color-surface-elevated:       var(--brand-surface-elevated);    /* Brand elevated */
+    --color-surface-elevated-hover: #334155;                          /* Darker hover */
+
+    /* Brand dark mode accents */
+    --color-accent-primary:         var(--brand-primary);             /* Brand maritime (adjusted) */
+    --color-accent-primary-translucent: var(--brand-primary-subtle);  /* Brand subtle */
+
+    /* Brand dark mode borders */
+    --color-border-subtle:          #475569;                          /* Brand border dark */
+  }
+}
+
+/* ==========================================================================
+   COMPONENT COMPATIBILITY LAYER
+   Additional variables for specific component requirements
+   ========================================================================== */
+
+/* Dark mode specific variants (used by PullQuote) */
+:root {
+  --color-text-primary-dark:      rgb(var(--color-neutral-900));
+  --color-text-secondary-dark:    rgb(var(--color-neutral-400));
+  --color-text-muted-dark:        rgb(var(--color-neutral-500));
+  --color-accent-primary-dark:    rgb(var(--color-primary-400));
+  --color-surface-elevated-dark:  rgb(var(--color-neutral-50));
+  --color-surface-elevated-hover-dark: rgb(var(--color-neutral-100));
+  --color-border-subtle-dark:     rgb(var(--color-neutral-700));
+}

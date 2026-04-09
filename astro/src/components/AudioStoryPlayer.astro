@@ -1,0 +1,945 @@
+---
+/**
+ * Enhanced Audio Storytelling Component
+ * Multimedia investigation journalism with synchronized transcript
+ */
+
+interface Props {
+  title: string;
+  duration?: string;
+  audioSrc: string;
+  transcript: Array<{
+    start: number;
+    end: number;
+    speaker?: string;
+    text: string;
+    chapter?: string;
+    evidence?: Array<{
+      type: 'document' | 'image' | 'link';
+      title: string;
+      url: string;
+      description?: string;
+    }>;
+  }>;
+  chapters: Array<{
+    title: string;
+    timestamp: number;
+    description?: string;
+  }>;
+}
+
+const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.props;
+---
+
+<div class="audio-story-player" data-audio-src={audioSrc}>
+  <!-- Header Section -->
+  <header class="player-header">
+    <div class="story-meta">
+      <h2 class="story-title">{title}</h2>
+      <div class="story-info">
+        <span class="duration">{duration}</span>
+        <span class="format">Investigative Audio</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Audio Controls Section -->
+  <section class="audio-controls-section">
+    <div class="primary-controls">
+      <button class="play-pause-btn" aria-label="Play/Pause">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5,3 19,12 5,21 5,3"></polygon>
+        </svg>
+        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+      </button>
+
+      <div class="time-display">
+        <span class="current-time">00:00</span>
+        <span class="separator">/</span>
+        <span class="total-time">{duration}</span>
+      </div>
+    </div>
+
+    <!-- Progress and Chapters -->
+    <div class="progress-container">
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+        <div class="progress-handle"></div>
+
+        <!-- Chapter Markers -->
+        <div class="chapter-markers">
+          {chapters.map((chapter, index) => (
+            <button
+              class="chapter-marker"
+              style={`left: ${(chapter.timestamp / 100)}%`}
+              data-timestamp={chapter.timestamp}
+              aria-label={`Jump to ${chapter.title}`}
+            >
+              <span class="marker-dot"></span>
+              <div class="chapter-tooltip">
+                <strong>{chapter.title}</strong>
+                {chapter.description && <p>{chapter.description}</p>}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Controls -->
+    <div class="secondary-controls">
+      <button class="speed-control" aria-label="Playback speed">1×</button>
+      <button class="transcript-toggle active" aria-label="Toggle transcript">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14,2 14,8 20,8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10,9 9,9 8,9"></polyline>
+        </svg>
+      </button>
+      <button class="volume-control" aria-label="Volume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Transcript Section -->
+  <section class="transcript-section">
+    <div class="transcript-container">
+      <div class="transcript-header">
+        <h3>Interactive Transcript</h3>
+        <p>Click any line to jump to that moment</p>
+      </div>
+
+      <div class="transcript-content">
+        {transcript.map((segment, index) => (
+          <div
+            class="transcript-segment"
+            data-start={segment.start}
+            data-end={segment.end}
+            data-segment={index}
+          >
+            {segment.chapter && (
+              <div class="chapter-break">
+                <h4 class="chapter-title">{segment.chapter}</h4>
+              </div>
+            )}
+
+            <div class="segment-content">
+              {segment.speaker && (
+                <span class="speaker-label">{segment.speaker}</span>
+              )}
+              <p class="segment-text">{segment.text}</p>
+
+              {segment.evidence && segment.evidence.length > 0 && (
+                <div class="evidence-refs">
+                  <button class="evidence-toggle" aria-label="Show evidence">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <folder xmlns="http://www.w3.org/2000/svg" x="3" y="4" width="18" height="18" rx="2" ry="2"></folder>
+                      <path d="M7 4V2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>{segment.evidence.length} evidence</span>
+                  </button>
+
+                  <div class="evidence-panel">
+                    {segment.evidence.map((evidence, evidenceIndex) => (
+                      <div class="evidence-item">
+                        <div class="evidence-type">{evidence.type}</div>
+                        <a href={evidence.url} class="evidence-link" target="_blank" rel="noopener noreferrer">
+                          <h5>{evidence.title}</h5>
+                          {evidence.description && <p>{evidence.description}</p>}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Hidden Audio Element -->
+  <audio class="audio-element" preload="metadata">
+    <source src={audioSrc} type="audio/mpeg">
+    <source src={audioSrc.replace('.mp3', '.ogg')} type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<style>
+  .audio-story-player {
+    --player-primary: var(--folkup-maritime-deep);
+    --player-accent: var(--folkup-amber-warm);
+    --player-bg-primary: #0a0a0a;
+    --player-bg-secondary: #1a1a1a;
+    --player-bg-elevated: #2a2a2a;
+    --player-text-primary: #f8fafc;
+    --player-text-secondary: #94a3b8;
+    --player-border: rgba(255, 255, 255, 0.1);
+    --player-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+
+    background: var(--player-bg-primary);
+    border-radius: 24px;
+    border: 1px solid var(--player-border);
+    box-shadow: var(--player-shadow);
+    color: var(--player-text-primary);
+    font-family: var(--font-family-sans);
+    overflow: hidden;
+    max-width: 100%;
+    margin: 2rem 0;
+  }
+
+  /* Header Section */
+  .player-header {
+    background: linear-gradient(135deg, var(--player-bg-secondary) 0%, var(--player-bg-elevated) 100%);
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid var(--player-border);
+  }
+
+  .story-title {
+    font-family: var(--font-family-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--player-text-primary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+  }
+
+  .story-info {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--player-text-secondary);
+  }
+
+  .duration {
+    font-family: var(--font-family-mono);
+    background: var(--player-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .format {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* Audio Controls Section */
+  .audio-controls-section {
+    padding: 2rem 2.5rem;
+    background: var(--player-bg-secondary);
+    border-bottom: 1px solid var(--player-border);
+  }
+
+  .primary-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .play-pause-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--player-primary) 0%, var(--player-accent) 100%);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(29, 78, 216, 0.3);
+  }
+
+  .play-pause-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(29, 78, 216, 0.4);
+  }
+
+  .play-pause-btn:active {
+    transform: scale(0.98);
+  }
+
+  .play-pause-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .time-display {
+    font-family: var(--font-family-mono);
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .current-time {
+    color: var(--player-accent);
+  }
+
+  .separator {
+    color: var(--player-text-secondary);
+  }
+
+  /* Progress Section */
+  .progress-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-track {
+    height: 12px;
+    background: var(--player-bg-elevated);
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--player-border);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--player-primary) 0%, var(--player-accent) 100%);
+    border-radius: 6px;
+    width: 0%;
+    transition: width 0.1s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .progress-handle {
+    width: 20px;
+    height: 20px;
+    background: var(--player-accent);
+    border: 3px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .progress-handle:hover,
+  .progress-handle:active {
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  }
+
+  /* Chapter Markers */
+  .chapter-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  .chapter-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 10;
+  }
+
+  .marker-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--player-text-primary);
+    border: 2px solid var(--player-bg-primary);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.2s ease;
+  }
+
+  .chapter-marker:hover .marker-dot {
+    background: var(--player-accent);
+    transform: scale(1.5);
+  }
+
+  .chapter-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--player-bg-elevated);
+    border: 1px solid var(--player-border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    text-align: left;
+  }
+
+  .chapter-tooltip strong {
+    color: var(--player-accent);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .chapter-tooltip p {
+    margin: 0;
+    color: var(--player-text-secondary);
+    font-size: 0.8125rem;
+    white-space: normal;
+  }
+
+  .chapter-marker:hover .chapter-tooltip {
+    opacity: 1;
+  }
+
+  /* Secondary Controls */
+  .secondary-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .secondary-controls button {
+    background: var(--player-bg-elevated);
+    border: 1px solid var(--player-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    color: var(--player-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .secondary-controls button:hover,
+  .secondary-controls button.active {
+    background: var(--player-primary);
+    color: white;
+    border-color: var(--player-primary);
+  }
+
+  .secondary-controls button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Transcript Section */
+  .transcript-section {
+    background: var(--player-bg-primary);
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .transcript-container {
+    padding: 2rem 2.5rem;
+  }
+
+  .transcript-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--player-border);
+  }
+
+  .transcript-header h3 {
+    font-family: var(--font-family-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--player-text-primary);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .transcript-header p {
+    color: var(--player-text-secondary);
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .transcript-content {
+    space-y: 1.5rem;
+  }
+
+  .transcript-segment {
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    padding: 1.25rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .transcript-segment:hover {
+    background: var(--player-bg-secondary);
+    border-color: var(--player-border);
+  }
+
+  .transcript-segment.active {
+    background: var(--player-bg-elevated);
+    border-color: var(--player-primary);
+    box-shadow: 0 0 0 1px var(--player-primary);
+  }
+
+  .transcript-segment.current {
+    background: linear-gradient(135deg, rgba(29, 78, 216, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border-color: var(--player-accent);
+  }
+
+  .chapter-break {
+    margin: 2rem 0 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 2px solid var(--player-primary);
+  }
+
+  .chapter-title {
+    font-family: var(--font-family-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--player-accent);
+    margin: 0;
+  }
+
+  .speaker-label {
+    display: inline-block;
+    background: var(--player-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .segment-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--player-text-primary);
+    margin: 0;
+  }
+
+  /* Evidence References */
+  .evidence-refs {
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .evidence-toggle {
+    background: var(--player-bg-elevated);
+    border: 1px solid var(--player-border);
+    border-radius: 8px;
+    padding: 0.625rem 1rem;
+    color: var(--player-accent);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .evidence-toggle:hover {
+    background: var(--player-accent);
+    color: white;
+    border-color: var(--player-accent);
+  }
+
+  .evidence-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .evidence-panel {
+    background: var(--player-bg-elevated);
+    border: 1px solid var(--player-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    display: none;
+  }
+
+  .evidence-panel.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .evidence-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--player-border);
+  }
+
+  .evidence-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .evidence-type {
+    background: var(--player-primary);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    height: fit-content;
+    flex-shrink: 0;
+  }
+
+  .evidence-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+  }
+
+  .evidence-link h5 {
+    color: var(--player-accent);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .evidence-link:hover h5 {
+    color: var(--player-text-primary);
+  }
+
+  .evidence-link p {
+    color: var(--player-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Hidden States */
+  .hidden {
+    display: none;
+  }
+
+  .audio-element {
+    display: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .audio-story-player {
+      border-radius: 16px;
+      margin: 1rem 0;
+    }
+
+    .player-header,
+    .audio-controls-section,
+    .transcript-container {
+      padding: 1.5rem;
+    }
+
+    .story-title {
+      font-size: 1.5rem;
+    }
+
+    .story-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .primary-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .play-pause-btn {
+      width: 56px;
+      height: 56px;
+    }
+
+    .secondary-controls {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .transcript-section {
+      max-height: 400px;
+    }
+
+    .chapter-tooltip {
+      min-width: 150px;
+    }
+  }
+</style>
+
+<script>
+class AudioStoryPlayer {
+  constructor(container) {
+    this.container = container;
+    this.audio = container.querySelector('.audio-element');
+    this.playPauseBtn = container.querySelector('.play-pause-btn');
+    this.playIcon = container.querySelector('.play-icon');
+    this.pauseIcon = container.querySelector('.pause-icon');
+    this.currentTimeSpan = container.querySelector('.current-time');
+    this.progressFill = container.querySelector('.progress-fill');
+    this.progressHandle = container.querySelector('.progress-handle');
+    this.progressTrack = container.querySelector('.progress-track');
+    this.chapterMarkers = container.querySelectorAll('.chapter-marker');
+    this.transcriptSegments = container.querySelectorAll('.transcript-segment');
+    this.evidenceToggles = container.querySelectorAll('.evidence-toggle');
+    this.speedControl = container.querySelector('.speed-control');
+    this.transcriptToggle = container.querySelector('.transcript-toggle');
+    this.transcriptSection = container.querySelector('.transcript-section');
+
+    this.isPlaying = false;
+    this.currentSegment = null;
+    this.playbackSpeeds = [0.75, 1, 1.25, 1.5, 2];
+    this.currentSpeedIndex = 1;
+
+    this.init();
+  }
+
+  init() {
+    this.bindEvents();
+    this.updateTimeDisplay();
+  }
+
+  bindEvents() {
+    // Play/Pause
+    this.playPauseBtn?.addEventListener('click', () => this.togglePlay());
+
+    // Progress tracking
+    this.audio?.addEventListener('timeupdate', () => this.updateProgress());
+    this.audio?.addEventListener('loadedmetadata', () => this.updateTimeDisplay());
+    this.audio?.addEventListener('ended', () => this.onAudioEnded());
+
+    // Progress interaction
+    this.progressTrack?.addEventListener('click', (e) => this.seekToPosition(e));
+
+    // Chapter markers
+    this.chapterMarkers.forEach(marker => {
+      marker.addEventListener('click', (e) => {
+        const timestamp = parseFloat(e.currentTarget.dataset.timestamp);
+        this.seekToTime(timestamp);
+      });
+    });
+
+    // Transcript interaction
+    this.transcriptSegments.forEach(segment => {
+      segment.addEventListener('click', () => {
+        const startTime = parseFloat(segment.dataset.start);
+        this.seekToTime(startTime);
+      });
+    });
+
+    // Evidence toggles
+    this.evidenceToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const panel = toggle.nextElementSibling;
+        panel.classList.toggle('show');
+      });
+    });
+
+    // Speed control
+    this.speedControl?.addEventListener('click', () => this.cycleSpeed());
+
+    // Transcript toggle
+    this.transcriptToggle?.addEventListener('click', () => this.toggleTranscript());
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+  }
+
+  togglePlay() {
+    if (this.isPlaying) {
+      this.audio.pause();
+    } else {
+      this.audio.play();
+    }
+    this.isPlaying = !this.isPlaying;
+    this.updatePlayButton();
+  }
+
+  updatePlayButton() {
+    if (this.isPlaying) {
+      this.playIcon?.classList.add('hidden');
+      this.pauseIcon?.classList.remove('hidden');
+    } else {
+      this.playIcon?.classList.remove('hidden');
+      this.pauseIcon?.classList.add('hidden');
+    }
+  }
+
+  updateProgress() {
+    if (!this.audio) return;
+
+    const progress = (this.audio.currentTime / this.audio.duration) * 100;
+    this.progressFill.style.width = `${progress}%`;
+    this.progressHandle.style.left = `${progress}%`;
+
+    this.updateTimeDisplay();
+    this.updateActiveSegment();
+  }
+
+  updateTimeDisplay() {
+    if (!this.audio || !this.currentTimeSpan) return;
+
+    const currentTime = this.formatTime(this.audio.currentTime || 0);
+    this.currentTimeSpan.textContent = currentTime;
+  }
+
+  updateActiveSegment() {
+    if (!this.audio) return;
+
+    const currentTime = this.audio.currentTime;
+
+    this.transcriptSegments.forEach(segment => {
+      const start = parseFloat(segment.dataset.start);
+      const end = parseFloat(segment.dataset.end);
+
+      segment.classList.remove('current', 'active');
+
+      if (currentTime >= start && currentTime <= end) {
+        segment.classList.add('current');
+        this.currentSegment = segment;
+
+        // Auto-scroll to current segment
+        segment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+
+  seekToPosition(e) {
+    if (!this.audio || !this.progressTrack) return;
+
+    const rect = this.progressTrack.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    const seekTime = percent * this.audio.duration;
+
+    this.seekToTime(seekTime);
+  }
+
+  seekToTime(time) {
+    if (!this.audio) return;
+
+    this.audio.currentTime = Math.max(0, Math.min(time, this.audio.duration));
+    this.updateProgress();
+  }
+
+  cycleSpeed() {
+    this.currentSpeedIndex = (this.currentSpeedIndex + 1) % this.playbackSpeeds.length;
+    const newSpeed = this.playbackSpeeds[this.currentSpeedIndex];
+
+    if (this.audio) {
+      this.audio.playbackRate = newSpeed;
+    }
+
+    if (this.speedControl) {
+      this.speedControl.textContent = `${newSpeed}×`;
+    }
+  }
+
+  toggleTranscript() {
+    this.transcriptSection?.classList.toggle('hidden');
+    this.transcriptToggle?.classList.toggle('active');
+  }
+
+  onAudioEnded() {
+    this.isPlaying = false;
+    this.updatePlayButton();
+    this.audio.currentTime = 0;
+    this.updateProgress();
+  }
+
+  handleKeyboard(e) {
+    // Only handle if this player is in focus
+    if (!this.container.contains(document.activeElement)) return;
+
+    switch (e.code) {
+      case 'Space':
+        e.preventDefault();
+        this.togglePlay();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        this.seekToTime(this.audio.currentTime - 10);
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        this.seekToTime(this.audio.currentTime + 10);
+        break;
+      case 'KeyT':
+        e.preventDefault();
+        this.toggleTranscript();
+        break;
+    }
+  }
+
+  formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
+}
+
+// Initialize all audio story players
+document.addEventListener('DOMContentLoaded', () => {
+  const players = document.querySelectorAll('.audio-story-player');
+  players.forEach(player => new AudioStoryPlayer(player));
+});
+</script>

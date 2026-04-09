@@ -1,0 +1,362 @@
+---
+/**
+ * Brand Guide v2.5 Integration Test Page
+ * Demonstrates complete FolkUp brand system implementation
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PullQuote from '../components/PullQuote.astro';
+---
+
+<BaseLayout title="Brand Guide v2.5 Test — ORGA Astro">
+  <main>
+    <div class="container">
+      <!-- Hero Section -->
+      <header class="brand-hero">
+        <h1>Brand Guide v2.5 Integration</h1>
+        <p class="hero-subtitle">Complete FolkUp brand system for multimedia longread excellence</p>
+        <div class="button-showcase">
+          <button class="btn-primary">Primary Action</button>
+          <button class="btn-secondary">Secondary Action</button>
+          <button class="btn-subtle">Subtle Action</button>
+        </div>
+      </header>
+
+      <!-- Color Palette Showcase -->
+      <section class="color-showcase">
+        <h2>Brand Color Palette</h2>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-maritime-deep);"></div>
+            <h4>Maritime Deep</h4>
+            <p>Primary Brand</p>
+            <code>#1D4ED8</code>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-amber-warm);"></div>
+            <h4>Amber Warm</h4>
+            <p>Accent Brand</p>
+            <code>#F59E0B</code>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-sage-fresh);"></div>
+            <h4>Sage Fresh</h4>
+            <p>Success</p>
+            <code>#10B981</code>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-coral-vibrant);"></div>
+            <h4>Coral Vibrant</h4>
+            <p>Warning</p>
+            <code>#F87171</code>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-neutral-sophisticated);"></div>
+            <h4>Neutral Sophisticated</h4>
+            <p>Text/Neutral</p>
+            <code>#64748B</code>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: var(--folkup-dark-professional);"></div>
+            <h4>Dark Professional</h4>
+            <p>Dark Text</p>
+            <code>#0F172A</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography Showcase -->
+      <section class="typography-showcase">
+        <h2>Typography System</h2>
+        <div class="type-example">
+          <h1>Heading 1 — Playfair Display</h1>
+          <h2>Heading 2 — Playfair Display</h2>
+          <h3>Heading 3 — Playfair Display</h3>
+          <p>Body text using Inter font family. This demonstrates the complete typographic system with proper hierarchy and brand-compliant font choices.</p>
+          <code>Code text using Source Code Pro</code>
+        </div>
+      </section>
+
+      <!-- PullQuote Component Test -->
+      <section class="pullquote-showcase">
+        <h2>Enhanced PullQuote Component</h2>
+        <PullQuote attribution="Brand Integration Test" enhanced={true}>
+          This enhanced PullQuote component showcases Brand Guide v2.5 integration with maritime deep primary colors, sophisticated typography, and multimedia longread excellence.
+        </PullQuote>
+      </section>
+
+      <!-- Investigation Components -->
+      <section class="investigation-showcase">
+        <h2>Investigation Components</h2>
+
+        <h3>Evidence Cards</h3>
+        <div class="component-grid">
+          <div class="evidence-card confirmed">
+            <h4>Confirmed Evidence</h4>
+            <p>Evidence that has been verified through multiple independent sources.</p>
+          </div>
+          <div class="evidence-card partial">
+            <h4>Partially Verified</h4>
+            <p>Evidence with some corroboration but requiring additional verification.</p>
+          </div>
+          <div class="evidence-card disputed">
+            <h4>Disputed Evidence</h4>
+            <p>Evidence that contradicts other findings and requires careful analysis.</p>
+          </div>
+          <div class="evidence-card unverified">
+            <h4>Unverified Evidence</h4>
+            <p>Evidence that has not yet been independently confirmed.</p>
+          </div>
+        </div>
+
+        <h3>Source Reliability</h3>
+        <div class="source-grid">
+          <div class="source-card">
+            <span class="source-reliability tier-1">Tier 1</span>
+            <h4>Primary Source</h4>
+            <p>Government documents, official records, first-hand testimony</p>
+          </div>
+          <div class="source-card">
+            <span class="source-reliability tier-2">Tier 2</span>
+            <h4>Secondary Source</h4>
+            <p>Reputable news organizations, academic research, verified reports</p>
+          </div>
+          <div class="source-card">
+            <span class="source-reliability tier-3">Tier 3</span>
+            <h4>Tertiary Source</h4>
+            <p>Social media, unverified claims, anonymous sources</p>
+          </div>
+        </div>
+
+        <h3>Timeline Component</h3>
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-item">
+            <div class="timeline-marker completed"></div>
+            <div class="timeline-content">
+              <h4>Initial Report</h4>
+              <p>Investigation begins with initial evidence gathering</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker active"></div>
+            <div class="timeline-content">
+              <h4>Verification Phase</h4>
+              <p>Current phase: cross-referencing sources and evidence</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h4>Publication</h4>
+              <p>Final analysis and public release of findings</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Audio Player Component -->
+      <section class="audio-showcase">
+        <h2>Audio Player Component</h2>
+        <div class="audio-player">
+          <div class="audio-player-controls">
+            <button class="play-button">▶</button>
+            <div class="audio-progress">
+              <div class="audio-progress-fill" style="width: 35%;"></div>
+            </div>
+            <span class="audio-time">02:15</span>
+            <span class="audio-time">06:30</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand Utility Classes -->
+      <section class="utilities-showcase">
+        <h2>Brand Utility Classes</h2>
+        <div class="utility-examples">
+          <p class="text-brand-primary">Primary brand text color</p>
+          <p class="text-brand-accent">Accent brand text color</p>
+          <p class="text-brand-success">Success state color</p>
+          <p class="text-brand-warning">Warning state color</p>
+          <div class="bg-brand-primary-subtle" style="padding: 1rem; border-radius: 0.5rem;">
+            Subtle primary background
+          </div>
+          <div class="bg-brand-accent-subtle" style="padding: 1rem; border-radius: 0.5rem; margin-top: 0.5rem;">
+            Subtle accent background
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+  }
+
+  .brand-hero {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    background: linear-gradient(
+      135deg,
+      var(--brand-surface-primary) 0%,
+      var(--brand-surface-elevated) 100%
+    );
+    border-radius: 1rem;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--brand-text-secondary);
+    margin: var(--space-md) 0 var(--space-xl) 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button-showcase {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .color-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .color-card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--brand-surface-elevated);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .color-swatch {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto var(--space-md) auto;
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .color-card h4 {
+    margin: 0 0 var(--space-xs) 0;
+    font-size: var(--font-size-lg);
+  }
+
+  .color-card p {
+    margin: 0 0 var(--space-xs) 0;
+    color: var(--brand-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  .color-card code {
+    font-size: var(--font-size-xs);
+    background: var(--brand-primary-subtle);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .typography-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .type-example {
+    background: var(--brand-surface-elevated);
+    padding: var(--space-xl);
+    border-radius: 0.75rem;
+    margin-top: var(--space-lg);
+  }
+
+  .pullquote-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .investigation-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .audio-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .utilities-showcase {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .utility-examples > * {
+    margin-bottom: var(--space-md);
+  }
+
+  section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  section h2 {
+    border-bottom: 2px solid var(--brand-primary);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  section h3 {
+    margin: var(--space-xl) 0 var(--space-md) 0;
+    color: var(--brand-text-primary);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      padding: var(--space-md);
+    }
+
+    .color-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .component-grid,
+    .source-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .button-showcase {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-showcase .btn-primary,
+    .button-showcase .btn-secondary,
+    .button-showcase .btn-subtle {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>

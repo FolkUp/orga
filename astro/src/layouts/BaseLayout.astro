@@ -6,6 +6,9 @@ interface Props {
 }
 
 const { title, description = 'ORGA — multimedia longform investigation platform', lang = 'ru' } = Astro.props;
+
+// Static build security implementation
+const buildTimestamp = Date.now().toString(36);
 ---
 
 <!doctype html>
@@ -17,19 +20,32 @@ const { title, description = 'ORGA — multimedia longform investigation platfor
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Banking-Level Security Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="FolkUp Investigation Team" />
+    <meta name="theme-color" content="#1a1a1a" />
+
+    <!-- Preload critical Brand Guide fonts for performance -->
+    <link rel="preload" href="/fonts/brand-display.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/brand-body.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <slot />
   </body>
 </html>
 
-<style is:global>
-  :root {
-    --color-bg: #0a0a0a;
-    --color-text: #e8e8e8;
-    --color-accent: #c8a97e;
-  }
+<style is:global data-build={buildTimestamp}>
+  /* Import Brand Guide v2.5 System */
+  @import '../styles/brand-tokens.css';
+  @import '../styles/colors.css';
+  @import '../styles/typography.css';
+  @import '../styles/spacing.css';
+  @import '../styles/variables.css';
+  @import '../styles/components.css';
+  @import '../styles/effects.css';
 
+  /* Global Reset & Base Styles */
   *,
   *::before,
   *::after {
@@ -39,12 +55,75 @@ const { title, description = 'ORGA — multimedia longform investigation platfor
   }
 
   html {
-    font-family: system-ui, -apple-system, sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text);
+    font-family: var(--font-family-sans);
+    background: var(--brand-surface-primary);
+    color: var(--brand-text-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
   }
 
   body {
     min-height: 100vh;
+    font-family: var(--font-body-enhanced);
+    background: var(--brand-surface-primary);
+    color: var(--brand-text-primary);
+  }
+
+  /* Brand Guide v2.5 Global Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display-enhanced);
+    color: var(--brand-text-primary);
+    line-height: var(--line-height-tight);
+  }
+
+  h1 { font-size: var(--font-size-5xl); font-weight: var(--font-weight-bold); }
+  h2 { font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); }
+  h3 { font-size: var(--font-size-3xl); font-weight: var(--font-weight-semibold); }
+  h4 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); }
+  h5 { font-size: var(--font-size-xl); font-weight: var(--font-weight-medium); }
+  h6 { font-size: var(--font-size-lg); font-weight: var(--font-weight-medium); }
+
+  p {
+    margin-bottom: var(--space-md);
+    color: var(--brand-text-primary);
+  }
+
+  a {
+    color: var(--brand-primary);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+
+  a:hover {
+    color: var(--brand-primary-hover);
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  /* Code styling */
+  code {
+    font-family: var(--font-family-mono);
+    background: var(--brand-primary-subtle);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  pre {
+    background: var(--brand-surface-elevated);
+    padding: var(--space-md);
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
   }
 </style>

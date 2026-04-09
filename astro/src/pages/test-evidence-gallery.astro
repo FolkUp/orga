@@ -1,0 +1,754 @@
+---
+/**
+ * Evidence Gallery Test Page
+ * Demonstrates multimedia investigation evidence presentation
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EvidenceGallery from '../components/EvidenceGallery.astro';
+
+// Sample investigation evidence
+const sampleEvidence = [
+  {
+    id: 'evidence-001',
+    type: 'image',
+    title: 'Surveillance Footage Analysis',
+    description: 'Security camera footage from March 15, 2024, showing suspicious activity at the main entrance.',
+    url: '/images/evidence/surveillance-footage.jpg',
+    thumbnail: '/images/evidence/surveillance-footage-thumb.jpg',
+    metadata: {
+      source: 'City Security System',
+      date: '2024-03-15 14:23:07',
+      location: 'Main Building Entrance',
+      significance: 'high',
+      verification: 'verified'
+    },
+    annotations: [
+      {
+        id: 'annotation-001',
+        x: 25,
+        y: 35,
+        title: 'Suspicious Individual',
+        description: 'Person wearing dark clothing, avoiding camera angles',
+        category: 'person'
+      },
+      {
+        id: 'annotation-002',
+        x: 65,
+        y: 80,
+        title: 'Timestamp Anomaly',
+        description: 'Digital clock shows different time than metadata',
+        category: 'anomaly'
+      }
+    ],
+    tags: ['surveillance', 'security', 'march-incident']
+  },
+  {
+    id: 'evidence-002',
+    type: 'document',
+    title: 'Internal Memorandum #2024-047',
+    description: 'Confidential memo discussing policy changes related to the investigation.',
+    url: '/documents/evidence/memo-2024-047.pdf',
+    metadata: {
+      source: 'Executive Office',
+      date: '2024-03-12',
+      location: 'Corporate Headquarters',
+      significance: 'high',
+      verification: 'verified'
+    },
+    tags: ['memo', 'policy', 'executive']
+  },
+  {
+    id: 'evidence-003',
+    type: 'audio',
+    title: 'Whistleblower Interview',
+    description: 'Recorded interview with former employee providing key testimony about internal practices.',
+    url: '/audio/evidence/whistleblower-interview.mp3',
+    metadata: {
+      source: 'Anonymous Source',
+      date: '2024-03-20',
+      location: 'Undisclosed',
+      significance: 'high',
+      verification: 'partial'
+    },
+    tags: ['interview', 'whistleblower', 'testimony']
+  },
+  {
+    id: 'evidence-004',
+    type: 'image',
+    title: 'Financial Records Screenshot',
+    description: 'Screenshot of financial database showing discrepancies in quarterly reports.',
+    url: '/images/evidence/financial-records.png',
+    thumbnail: '/images/evidence/financial-records-thumb.png',
+    metadata: {
+      source: 'Internal Database',
+      date: '2024-03-10',
+      location: 'Finance Department',
+      significance: 'medium',
+      verification: 'verified'
+    },
+    annotations: [
+      {
+        id: 'annotation-003',
+        x: 45,
+        y: 60,
+        title: 'Discrepancy Highlighted',
+        description: '$2.3M difference between reported and actual figures',
+        category: 'text'
+      }
+    ],
+    tags: ['financial', 'records', 'discrepancy']
+  },
+  {
+    id: 'evidence-005',
+    type: 'data',
+    title: 'Email Metadata Analysis',
+    description: 'CSV file containing metadata analysis of executive email communications.',
+    url: '/data/evidence/email-metadata.csv',
+    metadata: {
+      source: 'IT Forensics',
+      date: '2024-03-18',
+      location: 'Digital Evidence Lab',
+      significance: 'medium',
+      verification: 'verified'
+    },
+    tags: ['email', 'metadata', 'forensics']
+  },
+  {
+    id: 'evidence-006',
+    type: 'video',
+    title: 'Board Meeting Recording',
+    description: 'Recording of emergency board meeting discussing the incident response.',
+    url: '/video/evidence/board-meeting-excerpt.mp4',
+    metadata: {
+      source: 'Board Secretary',
+      date: '2024-03-22',
+      location: 'Conference Room A',
+      significance: 'high',
+      verification: 'partial'
+    },
+    tags: ['meeting', 'board', 'response']
+  },
+  {
+    id: 'evidence-007',
+    type: 'image',
+    title: 'Building Layout Diagram',
+    description: 'Architectural diagram showing access points and security zones.',
+    url: '/images/evidence/building-layout.jpg',
+    thumbnail: '/images/evidence/building-layout-thumb.jpg',
+    metadata: {
+      source: 'Facilities Management',
+      date: '2024-01-15',
+      location: 'Facility Records',
+      significance: 'low',
+      verification: 'verified'
+    },
+    annotations: [
+      {
+        id: 'annotation-004',
+        x: 30,
+        y: 45,
+        title: 'Main Entrance',
+        description: 'Primary access point with security checkpoint',
+        category: 'location'
+      },
+      {
+        id: 'annotation-005',
+        x: 70,
+        y: 25,
+        title: 'Emergency Exit',
+        description: 'Side exit, normally locked after hours',
+        category: 'location'
+      }
+    ],
+    tags: ['building', 'layout', 'security']
+  },
+  {
+    id: 'evidence-008',
+    type: 'document',
+    title: 'Employee Access Logs',
+    description: 'Security access logs for the week of the incident.',
+    url: '/documents/evidence/access-logs-march.pdf',
+    metadata: {
+      source: 'Security Department',
+      date: '2024-03-15',
+      location: 'Security Office',
+      significance: 'medium',
+      verification: 'disputed'
+    },
+    tags: ['access', 'logs', 'security']
+  }
+];
+---
+
+<BaseLayout title="Evidence Gallery — ORGA Investigation Platform">
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <header class="page-header">
+        <h1>Interactive Evidence Gallery</h1>
+        <p class="page-subtitle">
+          Professional evidence presentation for multimedia investigations with interactive annotations, filtering, and verification tracking.
+        </p>
+      </header>
+
+      <!-- Evidence Gallery Component -->
+      <section class="gallery-section">
+        <EvidenceGallery
+          title="Investigation Evidence Collection"
+          description="This gallery contains verified evidence related to the ongoing investigation. Each piece of evidence has been categorized, verified, and annotated by our investigation team."
+          evidence={sampleEvidence}
+          layout="masonry"
+          allowAnnotations={true}
+          showMetadata={true}
+        />
+      </section>
+
+      <!-- Features Overview -->
+      <section class="features-overview">
+        <h2>Evidence Gallery Features</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <h3>Interactive Annotations</h3>
+            <p>Click on annotation markers to reveal detailed analysis of specific elements within evidence pieces.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">✅</div>
+            <h3>Verification Status</h3>
+            <p>Each piece of evidence displays its verification status: Verified, Partially Verified, Unverified, or Disputed.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <h3>Multiple Layout Views</h3>
+            <p>Switch between Grid, Timeline, and Masonry layouts to explore evidence in different organizational structures.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🏷️</div>
+            <h3>Advanced Filtering</h3>
+            <p>Filter evidence by type, verification status, significance level, and custom tags for focused analysis.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <h3>Rich Metadata</h3>
+            <p>Complete metadata tracking including source, date, location, significance level, and chain of custody information.</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <h3>Professional Security</h3>
+            <p>Banking-level security implementation with controlled access and evidence integrity verification.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Evidence Types -->
+      <section class="evidence-types">
+        <h2>Supported Evidence Types</h2>
+
+        <div class="types-grid">
+          <div class="type-card">
+            <div class="type-icon">🖼️</div>
+            <h4>Images & Photos</h4>
+            <p>Photographs, screenshots, diagrams with interactive annotation support</p>
+            <ul>
+              <li>Annotation markers for key elements</li>
+              <li>High-resolution zoom capabilities</li>
+              <li>Metadata preservation</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <div class="type-icon">📄</div>
+            <h4>Documents</h4>
+            <p>PDFs, reports, memos, legal documents with preview and download</p>
+            <ul>
+              <li>Document preview interface</li>
+              <li>Search within documents</li>
+              <li>Version control tracking</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <div class="type-icon">🎵</div>
+            <h4>Audio Files</h4>
+            <p>Interviews, recordings, calls with transcript integration</p>
+            <ul>
+              <li>Integrated audio player</li>
+              <li>Transcript synchronization</li>
+              <li>Chapter markers</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <div class="type-icon">🎥</div>
+            <h4>Video Content</h4>
+            <p>Surveillance footage, interviews, presentations</p>
+            <ul>
+              <li>Professional video player</li>
+              <li>Frame-by-frame analysis</li>
+              <li>Annotation timeline</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <div class="type-icon">📊</div>
+            <h4>Data Files</h4>
+            <p>Spreadsheets, databases, analytics with visualization</p>
+            <ul>
+              <li>Data table preview</li>
+              <li>Chart generation</li>
+              <li>Export capabilities</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Verification Levels -->
+      <section class="verification-levels">
+        <h2>Evidence Verification Standards</h2>
+
+        <div class="verification-grid">
+          <div class="verification-card verified">
+            <div class="verification-badge">✅ Verified</div>
+            <h4>Independently Confirmed</h4>
+            <p>Evidence has been corroborated through multiple independent sources and meets our highest verification standards.</p>
+            <ul>
+              <li>Multiple source confirmation</li>
+              <li>Chain of custody verified</li>
+              <li>Technical authentication passed</li>
+            </ul>
+          </div>
+
+          <div class="verification-card partial">
+            <div class="verification-badge">⚠️ Partially Verified</div>
+            <h4>Some Corroboration</h4>
+            <p>Evidence has partial corroboration but requires additional verification before reaching full confirmation status.</p>
+            <ul>
+              <li>Single source confirmation</li>
+              <li>Basic authenticity checks</li>
+              <li>Additional verification pending</li>
+            </ul>
+          </div>
+
+          <div class="verification-card unverified">
+            <div class="verification-badge">❓ Unverified</div>
+            <h4>Awaiting Verification</h4>
+            <p>Evidence is under review and has not yet undergone our verification process.</p>
+            <ul>
+              <li>Recently submitted</li>
+              <li>Verification in progress</li>
+              <li>Source assessment pending</li>
+            </ul>
+          </div>
+
+          <div class="verification-card disputed">
+            <div class="verification-badge">⚡ Disputed</div>
+            <h4>Conflicting Information</h4>
+            <p>Evidence has conflicting information or has been challenged by other sources requiring careful analysis.</p>
+            <ul>
+              <li>Conflicting source claims</li>
+              <li>Technical discrepancies found</li>
+              <li>Expert review required</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Instructions -->
+      <section class="usage-instructions">
+        <h2>How to Use the Evidence Gallery</h2>
+
+        <div class="instructions-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Browse Evidence</h4>
+              <p>Use the layout controls to switch between Grid, Timeline, and Masonry views. Each layout provides a different perspective on the evidence collection.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Filter and Search</h4>
+              <p>Use the filter controls to narrow down evidence by type, verification status, or significance level. This helps focus on specific aspects of the investigation.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Examine Details</h4>
+              <p>Click "View" on any evidence item to open the detailed modal with full metadata, annotations, and interactive features.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Explore Annotations</h4>
+              <p>For images, click on annotation markers to see detailed analysis of specific elements. Each annotation is categorized and includes expert commentary.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4>Download Evidence</h4>
+              <p>Use the download button to access original files for offline analysis. All downloads maintain complete metadata and chain of custody information.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+  }
+
+  /* Page Header */
+  .page-header {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    margin-bottom: var(--space-2xl);
+    background: linear-gradient(
+      135deg,
+      var(--brand-surface-primary) 0%,
+      var(--brand-surface-elevated) 100%
+    );
+    border-radius: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--font-family-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-text-primary);
+    margin: 0 0 1rem 0;
+  }
+
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--brand-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Gallery Section */
+  .gallery-section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  /* Features Overview */
+  .features-overview {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .features-overview h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .feature-item {
+    background: var(--brand-surface-elevated);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    padding: var(--space-xl);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-primary);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .feature-item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--brand-text-primary);
+  }
+
+  .feature-item p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Evidence Types */
+  .evidence-types {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .evidence-types h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .type-card {
+    background: var(--brand-surface-elevated);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    padding: var(--space-xl);
+  }
+
+  .type-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .type-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--brand-text-primary);
+  }
+
+  .type-card p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .type-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .type-card li {
+    color: var(--brand-text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .type-card li::before {
+    content: '•';
+    color: var(--brand-primary);
+    position: absolute;
+    left: 0;
+  }
+
+  /* Verification Levels */
+  .verification-levels {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .verification-levels h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .verification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .verification-card {
+    background: var(--brand-surface-elevated);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    padding: var(--space-xl);
+    position: relative;
+  }
+
+  .verification-card.verified { border-left: 4px solid var(--folkup-sage-fresh); }
+  .verification-card.partial { border-left: 4px solid var(--folkup-amber-warm); }
+  .verification-card.unverified { border-left: 4px solid var(--folkup-neutral-sophisticated); }
+  .verification-card.disputed { border-left: 4px solid var(--folkup-coral-vibrant); }
+
+  .verification-badge {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    display: inline-block;
+  }
+
+  .verification-card.verified .verification-badge {
+    background: var(--folkup-sage-fresh);
+    color: white;
+  }
+
+  .verification-card.partial .verification-badge {
+    background: var(--folkup-amber-warm);
+    color: white;
+  }
+
+  .verification-card.unverified .verification-badge {
+    background: var(--folkup-neutral-sophisticated);
+    color: white;
+  }
+
+  .verification-card.disputed .verification-badge {
+    background: var(--folkup-coral-vibrant);
+    color: white;
+  }
+
+  .verification-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--brand-text-primary);
+  }
+
+  .verification-card p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .verification-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .verification-card li {
+    color: var(--brand-text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .verification-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+  }
+
+  .verification-card.verified li::before { color: var(--folkup-sage-fresh); }
+  .verification-card.partial li::before { color: var(--folkup-amber-warm); }
+  .verification-card.unverified li::before { color: var(--folkup-neutral-sophisticated); }
+  .verification-card.disputed li::before { color: var(--folkup-coral-vibrant); }
+
+  /* Usage Instructions */
+  .usage-instructions h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .instructions-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+
+  .step-number {
+    width: 3rem;
+    height: 3rem;
+    background: var(--brand-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-content h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--brand-text-primary);
+  }
+
+  .step-content p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: var(--space-md);
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .page-header {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .features-grid,
+    .types-grid,
+    .verification-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .step {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-md);
+    }
+
+    .step-number {
+      align-self: center;
+    }
+  }
+</style>

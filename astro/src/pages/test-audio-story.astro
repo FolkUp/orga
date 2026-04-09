@@ -1,0 +1,570 @@
+---
+/**
+ * Enhanced Audio Storytelling Test Page
+ * Demonstrates multimedia investigation journalism capabilities
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AudioStoryPlayer from '../components/AudioStoryPlayer.astro';
+
+// Sample investigative story data
+const sampleStory = {
+  title: "The Missing Files: A Digital Investigation",
+  duration: "15:47",
+  audioSrc: "/audio/sample-investigation.mp3", // Note: Sample file for demo
+  chapters: [
+    {
+      title: "Discovery",
+      timestamp: 0,
+      description: "Initial evidence uncovered through routine document review"
+    },
+    {
+      title: "Digital Trail",
+      timestamp: 185,
+      description: "Following the metadata through multiple systems"
+    },
+    {
+      title: "The Pattern",
+      timestamp: 420,
+      description: "Connecting the dots across three separate incidents"
+    },
+    {
+      title: "Verification",
+      timestamp: 650,
+      description: "Cross-referencing with independent sources"
+    },
+    {
+      title: "Conclusion",
+      timestamp: 820,
+      description: "What the evidence reveals about systemic issues"
+    }
+  ],
+  transcript: [
+    {
+      start: 0,
+      end: 23,
+      speaker: "Narrator",
+      text: "In March 2024, a routine FOIA request revealed something unexpected. Among thousands of pages of government documents, a pattern emerged—files that should have existed were systematically missing.",
+      chapter: "Discovery"
+    },
+    {
+      start: 24,
+      end: 45,
+      speaker: "Narrator",
+      text: "This is not a story about a single missing document. This is about a coordinated effort to hide information from the public.",
+      evidence: [
+        {
+          type: "document",
+          title: "FOIA Request #2024-0847",
+          url: "/evidence/foia-request-2024-0847.pdf",
+          description: "Original Freedom of Information Act request that uncovered the pattern"
+        },
+        {
+          type: "document",
+          title: "Agency Response Letter",
+          url: "/evidence/agency-response-march-2024.pdf",
+          description: "Official response acknowledging 'gaps in file retention'"
+        }
+      ]
+    },
+    {
+      start: 46,
+      end: 68,
+      speaker: "Former Employee",
+      text: "I worked in that department for eight years. We had strict protocols for document retention. Files don't just disappear by accident."
+    },
+    {
+      start: 69,
+      end: 92,
+      speaker: "Narrator",
+      text: "That former employee, who spoke on condition of anonymity, worked in the agency's records management division until 2023.",
+      evidence: [
+        {
+          type: "document",
+          title: "Document Retention Policy",
+          url: "/evidence/retention-policy-2019-2023.pdf",
+          description: "Official policy requiring 10-year retention for all correspondence"
+        }
+      ]
+    },
+    {
+      start: 185,
+      end: 210,
+      speaker: "Narrator",
+      text: "Digital forensics revealed that the missing files shared common metadata patterns. All were last modified within a three-week window in late 2023.",
+      chapter: "Digital Trail"
+    },
+    {
+      start: 211,
+      end: 235,
+      speaker: "Digital Forensics Expert",
+      text: "When you see deletions clustered like this, with similar timestamps and user permissions, it indicates coordinated action rather than routine maintenance."
+    },
+    {
+      start: 236,
+      end: 260,
+      speaker: "Narrator",
+      text: "The expert analyzed metadata from over 2,000 files. The deletion pattern was consistent across multiple departments.",
+      evidence: [
+        {
+          type: "document",
+          title: "Metadata Analysis Report",
+          url: "/evidence/metadata-analysis-2024.pdf",
+          description: "Technical analysis showing systematic deletion patterns"
+        },
+        {
+          type: "image",
+          title: "Timeline Visualization",
+          url: "/evidence/deletion-timeline.png",
+          description: "Visual representation of deletion patterns across departments"
+        }
+      ]
+    },
+    {
+      start: 420,
+      end: 445,
+      speaker: "Narrator",
+      text: "Cross-referencing with other agencies revealed this wasn't an isolated incident. Similar patterns emerged in three separate government departments.",
+      chapter: "The Pattern"
+    },
+    {
+      start: 446,
+      end: 468,
+      speaker: "Narrator",
+      text: "Each department cited different reasons: budget constraints, system upgrades, routine maintenance. But the timing was remarkably consistent."
+    },
+    {
+      start: 469,
+      end: 490,
+      speaker: "Government Accountability Expert",
+      text: "This level of coordination across agencies suggests a policy directive from higher up. Departments don't synchronize their document destruction by coincidence."
+    },
+    {
+      start: 650,
+      end: 675,
+      speaker: "Narrator",
+      text: "Independent verification came from three sources: former employees, digital forensics, and official correspondence obtained through additional FOIA requests.",
+      chapter: "Verification"
+    },
+    {
+      start: 676,
+      end: 700,
+      speaker: "Narrator",
+      text: "Each source corroborated the timeline and scope of the deletions, building a comprehensive picture of systematic information removal.",
+      evidence: [
+        {
+          type: "document",
+          title: "Additional FOIA Responses",
+          url: "/evidence/additional-foia-2024.pdf",
+          description: "Responses from three separate agencies showing similar patterns"
+        },
+        {
+          type: "document",
+          title: "Employee Testimonies",
+          url: "/evidence/employee-testimonies.pdf",
+          description: "Anonymized accounts from former employees across multiple departments"
+        }
+      ]
+    },
+    {
+      start: 820,
+      end: 845,
+      speaker: "Narrator",
+      text: "The missing files reveal more than just administrative inefficiency. They point to a systematic effort to limit public access to information.",
+      chapter: "Conclusion"
+    },
+    {
+      start: 846,
+      end: 867,
+      speaker: "Narrator",
+      text: "This investigation continues. We are pursuing additional FOIA requests and working with whistleblowers to uncover the full scope of this story."
+    },
+    {
+      start: 868,
+      end: 887,
+      speaker: "Narrator",
+      text: "Government transparency depends on citizens having access to records. When those records systematically disappear, democracy itself is weakened."
+    }
+  ]
+};
+---
+
+<BaseLayout title="Enhanced Audio Storytelling — ORGA Multimedia">
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <header class="page-header">
+        <h1>Multimedia Investigation Storytelling</h1>
+        <p class="page-subtitle">
+          Experience the future of investigative journalism with synchronized audio, interactive transcripts, and integrated evidence.
+        </p>
+      </header>
+
+      <!-- Audio Story Player -->
+      <section class="story-section">
+        <AudioStoryPlayer
+          title={sampleStory.title}
+          duration={sampleStory.duration}
+          audioSrc={sampleStory.audioSrc}
+          transcript={sampleStory.transcript}
+          chapters={sampleStory.chapters}
+        />
+      </section>
+
+      <!-- Features Showcase -->
+      <section class="features-showcase">
+        <h2>Enhanced Storytelling Features</h2>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎧</div>
+            <h3>Synchronized Audio</h3>
+            <p>Audio playback synchronized with interactive transcript highlighting for immersive storytelling experience.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📑</div>
+            <h3>Interactive Transcript</h3>
+            <p>Click any line to jump directly to that moment. Perfect for fact-checking and reference.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🏷️</div>
+            <h3>Chapter Navigation</h3>
+            <p>Navigate between story segments with visual chapter markers and descriptive tooltips.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📂</div>
+            <h3>Integrated Evidence</h3>
+            <p>Access supporting documents and evidence directly from relevant transcript segments.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">♿</div>
+            <h3>Accessibility First</h3>
+            <p>Full screen reader support, keyboard navigation, and WCAG 2.1 AA compliance.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎛️</div>
+            <h3>Professional Controls</h3>
+            <p>Variable speed playback, chapter jumping, and distraction-free listening modes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Implementation -->
+      <section class="technical-section">
+        <h2>Technical Implementation</h2>
+
+        <div class="tech-details">
+          <div class="tech-card">
+            <h4>Frontend Architecture</h4>
+            <ul>
+              <li>Astro component with Island Architecture</li>
+              <li>Vanilla JavaScript for audio synchronization</li>
+              <li>CSS Grid and Flexbox for responsive layout</li>
+              <li>Progressive enhancement principles</li>
+            </ul>
+          </div>
+
+          <div class="tech-card">
+            <h4>Accessibility Features</h4>
+            <ul>
+              <li>ARIA labels and semantic HTML structure</li>
+              <li>Keyboard navigation (Space, Arrow keys, T)</li>
+              <li>Screen reader optimized transcript</li>
+              <li>High contrast mode support</li>
+            </ul>
+          </div>
+
+          <div class="tech-card">
+            <h4>Audio Technology</h4>
+            <ul>
+              <li>HTML5 audio with multiple format support</li>
+              <li>Precise timestamp synchronization</li>
+              <li>Variable playback speed control</li>
+              <li>Chapter marker integration</li>
+            </ul>
+          </div>
+
+          <div class="tech-card">
+            <h4>Brand Integration</h4>
+            <ul>
+              <li>FolkUp Brand Guide v2.5 compliant</li>
+              <li>Maritime deep and amber warm accents</li>
+              <li>Playfair Display and Inter typography</li>
+              <li>Banking-level visual consistency</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Instructions -->
+      <section class="instructions-section">
+        <h2>How to Use</h2>
+
+        <div class="instructions-grid">
+          <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Play & Listen</h4>
+              <p>Click the play button to start the investigation. Audio automatically synchronizes with the transcript below.</p>
+            </div>
+          </div>
+
+          <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Navigate by Chapter</h4>
+              <p>Use chapter markers on the progress bar to jump between story segments. Hover for descriptions.</p>
+            </div>
+          </div>
+
+          <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Explore Evidence</h4>
+              <p>Click evidence buttons in the transcript to access supporting documents and verification materials.</p>
+            </div>
+          </div>
+
+          <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Interact with Transcript</h4>
+              <p>Click any line in the transcript to jump directly to that audio moment. Perfect for fact-checking.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+  }
+
+  /* Page Header */
+  .page-header {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    margin-bottom: var(--space-2xl);
+    background: linear-gradient(
+      135deg,
+      var(--brand-surface-primary) 0%,
+      var(--brand-surface-elevated) 100%
+    );
+    border-radius: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--font-family-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-text-primary);
+    margin: 0 0 1rem 0;
+  }
+
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--brand-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Story Section */
+  .story-section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  /* Features Showcase */
+  .features-showcase {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .features-showcase h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .feature-card {
+    background: var(--brand-surface-elevated);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    padding: var(--space-xl);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-primary);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--brand-text-primary);
+  }
+
+  .feature-card p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Technical Section */
+  .technical-section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .technical-section h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .tech-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .tech-card {
+    background: var(--brand-surface-elevated);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    padding: var(--space-xl);
+  }
+
+  .tech-card h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--brand-primary);
+  }
+
+  .tech-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .tech-card li {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .tech-card li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Instructions Section */
+  .instructions-section h2 {
+    font-family: var(--font-family-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--brand-text-primary);
+  }
+
+  .instructions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .instruction-step {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+
+  .step-number {
+    width: 3rem;
+    height: 3rem;
+    background: var(--brand-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-content h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--brand-text-primary);
+  }
+
+  .step-content p {
+    color: var(--brand-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: var(--space-md);
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .page-header {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .features-grid,
+    .tech-details,
+    .instructions-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .instruction-step {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-md);
+    }
+
+    .step-number {
+      align-self: center;
+    }
+  }
+</style>
