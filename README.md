@@ -1,6 +1,7 @@
 # Orga — Культурная сейсмография
 
 [![Hugo](https://img.shields.io/badge/Hugo-Extended-0052CC?style=flat&logo=hugo)](https://gohugo.io/)
+[![Astro](https://img.shields.io/badge/Astro-Migration-orange?style=flat&logo=astro)](https://astro.build/)
 [![Blowfish](https://img.shields.io/badge/Theme-Blowfish-blueviolet)](https://github.com/nunocoracao/blowfish)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-green.svg)](LICENSE-CONTENT)
@@ -20,10 +21,17 @@
 
 ## 🏗️ Технологии
 
+**Production (main branch):**
 - [Hugo](https://gohugo.io/) с расширенной сборкой
 - Тема [Blowfish](https://github.com/nunocoracao/blowfish)
 - Мультиязычная архитектура (i18n)
 - Интерактивные компоненты и визуализации
+
+**Next-gen Development (astro-rebuild-safe branch):**
+- [Astro 5.18.1](https://astro.build/) с Island Architecture
+- Multimedia storytelling components (AudioStoryPlayer, EvidenceGallery)
+- Enhanced interactive capabilities для investigative journalism
+- **Status**: Migration in progress, 3 critical runtime failures being resolved
 
 ## 🚀 Запуск
 
@@ -31,6 +39,15 @@
 # Клонирование
 git clone https://github.com/FolkUp/orga.git
 cd orga
+
+# Hugo Production (stable)
+hugo server -D
+
+# Astro Development (next-gen multimedia)
+git checkout astro-rebuild-safe
+cd astro
+npm install
+npm run dev
 
 # Локальный сервер разработки
 hugo server -D

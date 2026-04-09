@@ -45,12 +45,22 @@ type SupportedLang = typeof SUPPORTED_LANGS[number];
 /**
  * Load and parse i18n YAML file
  * Compatible with Hugo's i18n YAML structure
+ * SAFETY: Only works during SSR build time - client-side calls return empty data
  */
 function loadI18nData(lang: string): I18nData {
   const cacheKey = lang;
 
   if (i18nCache.has(cacheKey)) {
     return i18nCache.get(cacheKey)!;
+  }
+
+  // CRITICAL FIX: Guard against client-side execution
+  // readFileSync() only works in Node.js server environment
+  if (typeof window !== 'undefined' || typeof process === 'undefined') {
+    console.warn(`i18n system called in browser context - returning empty data for "${lang}"`);
+    const emptyData: I18nData = {};
+    i18nCache.set(cacheKey, emptyData);
+    return emptyData;
   }
 
   try {

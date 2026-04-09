@@ -23,15 +23,15 @@
      LINE HEIGHT SEMANTIC MAPPING
      Direct pass-through from typography.css
      ========================================================================== */
-  --line-height-base:       var(--line-height-normal);      /* 1.5 */
-  --line-height-relaxed:    var(--line-height-relaxed);     /* 1.6 */
+  --line-height-base:       1.5;                           /* Normal line height */
+  --line-height-relaxed:    1.6;                           /* Relaxed line height */
 
   /* ==========================================================================
      FONT WEIGHT SEMANTIC MAPPING
      Direct pass-through from typography.css
      ========================================================================== */
-  --font-weight-medium:     var(--font-weight-medium);      /* 500 */
-  --font-weight-semibold:   var(--font-weight-semibold);    /* 600 */
+  --font-weight-medium:     500;                           /* Medium weight */
+  --font-weight-semibold:   600;                           /* Semibold weight */
 
   /* ==========================================================================
      COLOR SEMANTIC MAPPING — BRAND GUIDE v2.5 INTEGRATION
@@ -120,6 +120,23 @@
    COMPONENT COMPATIBILITY LAYER
    Additional variables for specific component requirements
    ========================================================================== */
+
+/* Design System Color Bridge — Maps colors.css tokens to semantic names */
+:root {
+  /* Primary color scale mapping for compatibility */
+  --color-primary-400:            var(--color-primary-400);        /* 96, 165, 250 */
+  --color-primary-500:            var(--color-primary-500);        /* 59, 130, 246 - Base blue */
+  --color-primary-600:            var(--color-primary-600);        /* 37, 99, 235 */
+  --color-primary-700:            var(--color-primary-700);        /* 29, 78, 216 */
+
+  /* Neutral color scale mapping */
+  --color-neutral-50:             var(--color-neutral-50);         /* 248, 250, 252 */
+  --color-neutral-100:            var(--color-neutral-100);        /* 241, 245, 249 */
+  --color-neutral-400:            var(--color-neutral-400);        /* 148, 163, 184 */
+  --color-neutral-500:            var(--color-neutral-500);        /* 100, 116, 139 */
+  --color-neutral-700:            var(--color-neutral-700);        /* 51, 65, 85 */
+  --color-neutral-900:            var(--color-neutral-900);        /* 15, 23, 42 */
+}
 
 /* Dark mode specific variants (used by PullQuote) */
 :root {
