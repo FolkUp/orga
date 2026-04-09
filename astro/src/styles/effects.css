@@ -1,0 +1,319 @@
+/* ORGA Astro Migration — Effects & Animation System Variables */
+/* Extracted from Hugo Blowfish theme + enhanced multimedia effects */
+
+:root {
+  /* ==========================================================================
+     SHADOWS — Depth hierarchy for multimedia components
+     ========================================================================== */
+  --shadow-xs:              0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm:              0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow:                 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md:              0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg:              0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl:              0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl:             0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Investigation component shadows */
+  --shadow-hero:            0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+  --shadow-card:            0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-audio-player:    0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-timeline-marker: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-evidence-card:   0 6px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+
+  /* ==========================================================================
+     GRADIENTS — Background effects for multimedia storytelling
+     ========================================================================== */
+  /* Hero investigation backgrounds */
+  --gradient-hero-primary:  linear-gradient(135deg,
+                              rgb(var(--color-primary-600)) 0%,
+                              rgb(var(--color-primary-700)) 100%);
+
+  --gradient-hero-dark:     linear-gradient(135deg,
+                              rgb(var(--color-neutral-800)) 0%,
+                              rgb(var(--color-neutral-900)) 100%);
+
+  /* Audio preview component gradients */
+  --gradient-audio-bg:      linear-gradient(90deg,
+                              rgba(var(--color-secondary-500), 0.05) 0%,
+                              rgba(var(--color-primary-500), 0.05) 100%);
+
+  --gradient-audio-progress: linear-gradient(90deg,
+                              rgb(var(--color-secondary-500)) 0%,
+                              rgb(var(--color-primary-500)) 100%);
+
+  /* Timeline component gradients */
+  --gradient-timeline-line: linear-gradient(180deg,
+                              rgb(var(--color-primary-500)) 0%,
+                              rgba(var(--color-primary-500), 0.3) 100%);
+
+  /* Evidence status gradients */
+  --gradient-verified:      linear-gradient(135deg,
+                              rgba(var(--color-confirmed), 0.1) 0%,
+                              rgba(var(--color-confirmed), 0.05) 100%);
+
+  --gradient-partial:       linear-gradient(135deg,
+                              rgba(var(--color-partial), 0.1) 0%,
+                              rgba(var(--color-partial), 0.05) 100%);
+
+  --gradient-unverified:    linear-gradient(135deg,
+                              rgba(var(--color-unverified), 0.1) 0%,
+                              rgba(var(--color-unverified), 0.05) 100%);
+
+  /* Cultural armor animation gradients */
+  --gradient-armor-glow:    radial-gradient(circle at 50% 50%,
+                              rgba(var(--color-secondary-400), 0.4) 0%,
+                              rgba(var(--color-secondary-400), 0.1) 50%,
+                              transparent 100%);
+
+  /* ==========================================================================
+     BLUR EFFECTS — Backdrop filters for overlay components
+     ========================================================================== */
+  --blur-sm:                blur(4px);
+  --blur:                   blur(8px);
+  --blur-md:                blur(12px);
+  --blur-lg:                blur(16px);
+  --blur-xl:                blur(24px);
+
+  /* Component-specific backdrop effects */
+  --backdrop-audio-overlay: blur(8px) saturate(120%);
+  --backdrop-modal:         blur(12px) brightness(0.8);
+  --backdrop-navigation:    blur(16px) saturate(150%);
+
+  /* ==========================================================================
+     TRANSFORMS — Hover and interaction effects
+     ========================================================================== */
+  --transform-hover-scale:  scale(1.05);
+  --transform-hover-lift:   translateY(-2px) scale(1.02);
+  --transform-button-press: scale(0.95);
+  --transform-card-hover:   translateY(-4px);
+
+  /* Cultural armor transforms */
+  --transform-armor-pulse:  scale(1.1);
+  --transform-armor-float:  translateY(-8px) rotate(2deg);
+
+  /* ==========================================================================
+     FILTERS — Visual effects for images and components
+     ========================================================================== */
+  /* Investigation image filters */
+  --filter-evidence-darken: brightness(0.8) contrast(1.1);
+  --filter-evidence-sepia:  sepia(20%) contrast(1.2);
+  --filter-evidence-cold:   hue-rotate(200deg) saturate(0.8);
+
+  /* Audio waveform visualization */
+  --filter-waveform-glow:   drop-shadow(0 0 6px rgba(var(--color-secondary-400), 0.6));
+  --filter-waveform-pulse:  brightness(1.2) saturate(1.3);
+
+  /* Timeline marker filters */
+  --filter-marker-verified: brightness(1.1) saturate(1.2);
+  --filter-marker-disputed: hue-rotate(320deg) saturate(1.1);
+
+  /* ==========================================================================
+     ANIMATION DURATIONS — Consistent timing for all components
+     ========================================================================== */
+  --duration-fast:          150ms;
+  --duration-normal:        250ms;
+  --duration-slow:          350ms;
+  --duration-slower:        500ms;
+
+  /* Component-specific durations */
+  --duration-hover:         200ms;
+  --duration-button:        150ms;
+  --duration-modal:         300ms;
+  --duration-page:          500ms;
+
+  /* Audio player durations */
+  --duration-audio-transition: 300ms;
+  --duration-progress-update:  100ms;
+
+  /* Cultural armor animation durations */
+  --duration-armor-pulse:   2000ms;
+  --duration-armor-float:   4000ms;
+
+  /* ==========================================================================
+     ANIMATION EASINGS — Refined motion curves
+     ========================================================================== */
+  --ease-out:               cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in:                cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-out:            cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-back:              cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Component-specific easings */
+  --ease-button:            cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-modal:             cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-card:              cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Audio visualization easings */
+  --ease-audio-smooth:      cubic-bezier(0.4, 0.0, 0.6, 1);
+  --ease-audio-bounce:      cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ==========================================================================
+     BORDER EFFECTS — Enhanced border styles for components
+     ========================================================================== */
+  /* Investigation card borders */
+  --border-evidence-verified:   2px solid var(--color-confirmed);
+  --border-evidence-partial:    2px solid var(--color-partial);
+  --border-evidence-unverified: 1px solid var(--color-unverified);
+
+  /* Audio player borders */
+  --border-audio-container:     1px solid rgba(var(--color-neutral-300), 0.5);
+  --border-audio-progress:      2px solid rgb(var(--color-secondary-500));
+
+  /* Timeline borders */
+  --border-timeline-vertical:   2px solid rgb(var(--color-primary-500));
+  --border-timeline-marker:     3px solid rgb(var(--color-primary-600));
+
+  /* ==========================================================================
+     COMPONENT COMPOSITE EFFECTS — Pre-built effect combinations
+     ========================================================================== */
+  /* Hero investigation composite */
+  .effect-hero-investigation {
+    background: var(--gradient-hero-primary);
+    box-shadow: var(--shadow-hero);
+    backdrop-filter: var(--backdrop-navigation);
+    transition: all var(--duration-slow) var(--ease-out);
+  }
+
+  /* Audio player composite */
+  .effect-audio-player {
+    background: var(--gradient-audio-bg);
+    border: var(--border-audio-container);
+    box-shadow: var(--shadow-audio-player);
+    backdrop-filter: var(--backdrop-audio-overlay);
+  }
+
+  /* Evidence card composite */
+  .effect-evidence-verified {
+    background: var(--gradient-verified);
+    border: var(--border-evidence-verified);
+    box-shadow: var(--shadow-evidence-card);
+    transition: transform var(--duration-hover) var(--ease-card);
+  }
+
+  .effect-evidence-verified:hover {
+    transform: var(--transform-card-hover);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .effect-evidence-partial {
+    background: var(--gradient-partial);
+    border: var(--border-evidence-partial);
+    box-shadow: var(--shadow-evidence-card);
+  }
+
+  .effect-evidence-unverified {
+    background: var(--gradient-unverified);
+    border: var(--border-evidence-unverified);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Cultural armor glow effect */
+  .effect-cultural-armor {
+    position: relative;
+    transition: all var(--duration-armor-pulse) var(--ease-audio-smooth);
+  }
+
+  .effect-cultural-armor::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--gradient-armor-glow);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
+    z-index: -1;
+  }
+
+  .effect-cultural-armor:hover::before {
+    opacity: 1;
+  }
+
+  /* Timeline marker composite */
+  .effect-timeline-marker {
+    border: var(--border-timeline-marker);
+    box-shadow: var(--shadow-timeline-marker);
+    filter: var(--filter-marker-verified);
+    transition: all var(--duration-normal) var(--ease-back);
+  }
+
+  .effect-timeline-marker:hover {
+    transform: var(--transform-hover-scale);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* ==========================================================================
+   DARK MODE EFFECT OVERRIDES
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Enhanced shadows for dark mode */
+    --shadow:                 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-md:              0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg:              0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    --shadow-hero:            0 20px 40px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.3);
+
+    /* Dark mode gradients */
+    --gradient-hero-primary:  linear-gradient(135deg,
+                                rgb(var(--color-primary-700)) 0%,
+                                rgb(var(--color-primary-800)) 100%);
+
+    --gradient-audio-bg:      linear-gradient(90deg,
+                                rgba(var(--color-secondary-600), 0.1) 0%,
+                                rgba(var(--color-primary-600), 0.1) 100%);
+
+    /* Enhanced backdrop filters for dark mode */
+    --backdrop-modal:         blur(12px) brightness(0.3);
+    --backdrop-navigation:    blur(16px) saturate(120%) brightness(0.8);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION PREFERENCES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Reduced animation durations */
+    --duration-fast:          0ms;
+    --duration-normal:        0ms;
+    --duration-slow:          0ms;
+    --duration-slower:        0ms;
+
+    /* Keep essential durations minimal */
+    --duration-hover:         50ms;
+    --duration-button:        50ms;
+    --duration-modal:         100ms;
+
+    /* Disable complex animations */
+    --duration-armor-pulse:   0ms;
+    --duration-armor-float:   0ms;
+  }
+
+  .effect-cultural-armor {
+    transition: none;
+  }
+
+  .effect-cultural-armor::before {
+    transition: opacity var(--duration-hover) var(--ease-out);
+  }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ========================================================================== */
+@media (prefers-contrast: high) {
+  :root {
+    /* Enhanced contrast filters */
+    --filter-evidence-darken: brightness(0.6) contrast(1.5);
+    --filter-evidence-sepia:  sepia(30%) contrast(1.5);
+
+    /* Stronger borders for high contrast */
+    --border-evidence-verified:   3px solid var(--color-confirmed);
+    --border-evidence-partial:    3px solid var(--color-partial);
+    --border-evidence-unverified: 2px solid var(--color-unverified);
+    --border-timeline-vertical:   3px solid rgb(var(--color-primary-500));
+    --border-timeline-marker:     4px solid rgb(var(--color-primary-600));
+  }
+}

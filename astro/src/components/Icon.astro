@@ -1,0 +1,131 @@
+---
+/**
+ * ORGA Astro Migration — Icon Component
+ *
+ * Compatibility wrapper for Hugo Blowfish icon system
+ * Provides equivalent functionality to:
+ * - Hugo partial: {{ partial "icon.html" "name" }}
+ * - Hugo shortcode: {{< icon "name" >}}
+ *
+ * Usage in Astro:
+ * - <Icon name="search" />
+ * - <Icon name="github" class="custom-class" />
+ * - <Icon name="music" inline={false} />
+ */
+
+export interface Props {
+  /** Icon name (without .svg extension) */
+  name: string;
+  /** Additional CSS classes */
+  class?: string;
+  /** Display as inline-block (true) or block (false). Default: true for compatibility with Hugo shortcode */
+  inline?: boolean;
+  /** Custom width/height */
+  size?: string;
+  /** Accessibility label for screen readers */
+  label?: string;
+}
+
+const {
+  name,
+  class: className = '',
+  inline = true,
+  size,
+  label
+} = Astro.props;
+
+// Icon path resolution - compatible with Blowfish icon structure
+const iconPath = `/icons/${name}.svg`;
+
+// Build CSS classes - maintains Hugo compatibility
+const baseClasses = inline
+  ? 'relative inline-block align-text-bottom icon'
+  : 'relative block icon';
+
+const classes = [baseClasses, className].filter(Boolean).join(' ');
+
+// Custom styles for size override
+const inlineStyles = size ? `width: ${size}; height: ${size};` : '';
+
+// For development/fallback - check if icon exists
+// In production, this would be optimized away or handled by build process
+let iconExists = true;
+try {
+  // This is a build-time check - in production, non-existent icons should fail build
+  const iconModule = await import(`../../public/icons/${name}.svg?raw`);
+  if (!iconModule) iconExists = false;
+} catch {
+  // Fallback for development or missing icons
+  iconExists = false;
+  console.warn(`Icon "${name}" not found at path: ${iconPath}`);
+}
+
+// Determine the icon content
+let iconContent: string;
+
+if (iconExists) {
+  try {
+    // Import the SVG as raw text
+    const iconModule = await import(`../../public/icons/${name}.svg?raw`);
+    iconContent = iconModule.default;
+  } catch (error) {
+    console.error(`Error loading icon "${name}":`, error);
+    iconContent = `<!-- Icon "${name}" failed to load -->`;
+  }
+} else {
+  // Fallback content for missing icons
+  iconContent = `
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 11V6h2v5H7zm0-6V3h2v2H7z"/>
+      <title>Icon "${name}" not found</title>
+    </svg>
+  `;
+}
+
+// Clean the SVG content (remove newlines like Hugo does)
+iconContent = iconContent.replace(/\n/g, '');
+---
+
+<span
+  class={classes}
+  style={inlineStyles}
+  role={label ? "img" : undefined}
+  aria-label={label}
+  data-icon={name}
+>
+  <Fragment set:html={iconContent} />
+</span>
+
+<style>
+  .icon {
+    /* Base icon styles - compatible with Blowfish */
+    vertical-align: baseline;
+  }
+
+  .icon svg {
+    /* Ensure SVG inherits text color and scales properly */
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: block;
+  }
+
+  /* Inline variant adjustments */
+  .icon.inline-block svg {
+    vertical-align: text-bottom;
+  }
+
+  /* Size variants */
+  .icon[data-size="xs"] svg { width: 0.75rem; height: 0.75rem; }
+  .icon[data-size="sm"] svg { width: 0.875rem; height: 0.875rem; }
+  .icon[data-size="lg"] svg { width: 1.25rem; height: 1.25rem; }
+  .icon[data-size="xl"] svg { width: 1.5rem; height: 1.5rem; }
+  .icon[data-size="2xl"] svg { width: 2rem; height: 2rem; }
+
+  /* Dark mode compatibility */
+  @media (prefers-color-scheme: dark) {
+    .icon svg {
+      fill: currentColor;
+    }
+  }
+</style>

@@ -1,0 +1,112 @@
+# ORGA Astro Migration — English Translations
+# Core i18n keys for investigation components
+
+global:
+  language: "EN"
+
+article:
+  date: "{{ .Date }}"
+  date_updated: "Updated: {{ .Date }}"
+  reading_time:
+    one: "{{ .Count }} min"
+    other: "{{ .Count }} mins"
+  reading_time_title: "Reading time"
+  table_of_contents: "Table of Contents"
+  related_articles: "Related"
+  part_of_series: "This article is part of a series."
+
+investigation:
+  status:
+    verified: "Verified"
+    partially_verified: "Partially Verified"
+    unverified: "Not Verified"
+    draft: "Draft"
+    stub: "Stub"
+  confidence:
+    high: "High Confidence"
+    medium: "Medium Confidence"
+    low: "Low Confidence"
+  meta:
+    sources: "Sources"
+    methodology: "Methodology"
+    last_updated: "Last Updated"
+    evidence: "Evidence"
+    timeline: "Timeline"
+  evidence:
+    type:
+      document: "Document"
+      testimony: "Testimony"
+      media: "Media"
+      technical: "Technical Analysis"
+    reliability:
+      tier1: "High Reliability"
+      tier2: "Medium Reliability"
+      tier3: "Low Reliability"
+
+audio:
+  play: "Play"
+  pause: "Pause"
+  loading: "Loading..."
+  error: "Audio could not be loaded"
+  duration: "Duration: {{ .Duration }}"
+  preview_title: "Audio Preview"
+
+timeline:
+  event: "Event"
+  date_unknown: "Date unknown"
+  ongoing: "Ongoing"
+  estimated: "Estimated"
+
+cultural:
+  armor: "Cultural Armor"
+  timeline: "Cultural Timeline"
+  seismography: "Cultural Seismography"
+
+ui:
+  expand: "Expand"
+  collapse: "Collapse"
+  show_more: "Show more"
+  show_less: "Show less"
+  copy: "Copy"
+  copied: "Copied"
+  share: "Share"
+  download: "Download"
+  external_link: "External link"
+  close: "Close"
+  menu: "Menu"
+  search: "Search"
+  loading: "Loading..."
+  error: "Error"
+
+footer:
+  all_rights_reserved: "All rights reserved"
+  powered_by: "Powered by"
+  subscribe: "Subscribe"
+
+navigation:
+  home: "Home"
+  investigations: "Investigations"
+  about: "About"
+  contact: "Contact"
+  archive: "Archive"
+  legal: "Legal"
+
+legal:
+  privacy_policy: "Privacy Policy"
+  terms_of_use: "Terms of Use"
+  cookie_policy: "Cookie Policy"
+  disclaimer: "Disclaimer"
+
+metadata:
+  published: "Published"
+  author: "Author"
+  tags: "Tags"
+  category: "Category"
+  share_on: "Share on {{ .Platform }}"
+
+accessibility:
+  skip_to_content: "Skip to content"
+  main_navigation: "Main navigation"
+  search_site: "Search site"
+  toggle_menu: "Toggle menu"
+  alt_image: "Image: {{ .Description }}"

@@ -1,0 +1,257 @@
+/* ORGA Astro Migration — Color System Variables */
+/* Extracted from Hugo Blowfish theme + custom enhancements */
+
+:root {
+  /* ==========================================================================
+     PRIMARY COLOR SCALE (Blue) — RGB Tuples for rgba() compatibility
+     ========================================================================== */
+  --color-primary-50:    239, 246, 255;
+  --color-primary-100:   219, 234, 254;
+  --color-primary-200:   191, 219, 254;
+  --color-primary-300:   147, 197, 253;
+  --color-primary-400:   96, 165, 250;
+  --color-primary-500:   59, 130, 246;     /* Base blue */
+  --color-primary-600:   37, 99, 235;
+  --color-primary-700:   29, 78, 216;      /* Used in longread hero */
+  --color-primary-800:   30, 64, 175;
+  --color-primary-900:   30, 58, 138;
+
+  /* ==========================================================================
+     NEUTRAL COLOR SCALE (Gray) — RGB Tuples
+     ========================================================================== */
+  --color-neutral:       255, 255, 255;    /* Pure white */
+  --color-neutral-50:    248, 250, 252;
+  --color-neutral-100:   241, 245, 249;
+  --color-neutral-200:   226, 232, 240;
+  --color-neutral-300:   203, 213, 225;
+  --color-neutral-400:   148, 163, 184;
+  --color-neutral-500:   100, 116, 139;
+  --color-neutral-600:   71, 85, 105;
+  --color-neutral-700:   51, 65, 85;
+  --color-neutral-800:   30, 41, 59;
+  --color-neutral-900:   15, 23, 42;       /* Dark background */
+
+  /* ==========================================================================
+     SECONDARY COLOR SCALE (Cyan) — RGB Tuples
+     ========================================================================== */
+  --color-secondary-50:   236, 254, 255;
+  --color-secondary-100:  207, 250, 254;
+  --color-secondary-200:  165, 243, 252;
+  --color-secondary-300:  103, 232, 249;
+  --color-secondary-400:  34, 211, 238;
+  --color-secondary-500:  6, 182, 212;     /* Accent cyan */
+  --color-secondary-600:  8, 145, 178;
+  --color-secondary-700:  14, 116, 144;
+  --color-secondary-800:  21, 94, 117;
+  --color-secondary-900:  22, 78, 99;
+
+  /* ==========================================================================
+     FOLKUP BRAND COLORS (Enhanced) — Hex Values
+     ========================================================================== */
+  --color-primary-enhanced:   #1D4ED8;     /* FolkUp brand primary */
+  --color-accent-enhanced:    #F59E0B;     /* FolkUp brand accent - amber */
+  --color-dark-enhanced:      #0F172A;     /* Dark background */
+  --color-slate-enhanced:     #64748B;     /* Slate gray */
+  --color-light-enhanced:     #F8FAFC;     /* Light background */
+  --color-neutral-enhanced:   #E2E8F0;     /* Neutral gray */
+
+  /* ==========================================================================
+     INVESTIGATION STATUS COLORS — Evidence & Verification
+     ========================================================================== */
+  --color-confirmed:    #22c55e;   /* Green - verified */
+  --color-partial:      #f59e0b;   /* Amber - partially verified */
+  --color-refuted:      #ef4444;   /* Red - disputed */
+  --color-unverified:   #6b7280;   /* Gray - not verified */
+
+  /* Source tier colors (for source-card component) */
+  --color-tier-1:       #22c55e;   /* High reliability - green */
+  --color-tier-2:       #3b82f6;   /* Medium reliability - blue */
+  --color-tier-3:       #6b7280;   /* Low reliability - gray */
+
+  /* ==========================================================================
+     ADMONITION TYPE COLORS (15 Types × 3 Variables)
+     Pattern: --adm-{type}-{border|bg|text}
+     ========================================================================== */
+
+  /* Note (Sky) */
+  --adm-note-border:      #0ea5e9;  /* sky.500 */
+  --adm-note-bg:          #f0f9ff;  /* sky.50 */
+  --adm-note-text:        #0c4a6e;  /* sky.900 */
+
+  /* Tip (Emerald) */
+  --adm-tip-border:       #10b981;  /* emerald.500 */
+  --adm-tip-bg:           #ecfdf5;  /* emerald.50 */
+  --adm-tip-text:         #064e3b;  /* emerald.900 */
+
+  /* Important (Purple) */
+  --adm-important-border: #8b5cf6;  /* purple.500 */
+  --adm-important-bg:     #faf5ff;  /* purple.50 */
+  --adm-important-text:   #581c87;  /* purple.900 */
+
+  /* Warning (Orange) */
+  --adm-warning-border:   #f97316;  /* orange.500 */
+  --adm-warning-bg:       #fff7ed;  /* orange.50 */
+  --adm-warning-text:     #9a3412;  /* orange.900 */
+
+  /* Caution/Danger (Red) */
+  --adm-caution-border:   #ef4444;  /* red.500 */
+  --adm-caution-bg:       #fef2f2;  /* red.50 */
+  --adm-caution-text:     #7f1d1d;  /* red.900 */
+
+  --adm-danger-border:    #ef4444;  /* red.500 */
+  --adm-danger-bg:        #fef2f2;  /* red.50 */
+  --adm-danger-text:      #7f1d1d;  /* red.900 */
+
+  /* Abstract (Cyan) */
+  --adm-abstract-border:  #06b6d4;  /* cyan.500 */
+  --adm-abstract-bg:      #ecfeff;  /* cyan.50 */
+  --adm-abstract-text:    #164e63;  /* cyan.900 */
+
+  /* Info (Blue) */
+  --adm-info-border:      #3b82f6;  /* blue.500 */
+  --adm-info-bg:          #eff6ff;  /* blue.50 */
+  --adm-info-text:        #1e3a8a;  /* blue.900 */
+
+  /* Success (Emerald) */
+  --adm-success-border:   #10b981;  /* emerald.500 */
+  --adm-success-bg:       #ecfdf5;  /* emerald.50 */
+  --adm-success-text:     #064e3b;  /* emerald.900 */
+
+  /* Question (Amber) */
+  --adm-question-border:  #f59e0b;  /* amber.500 */
+  --adm-question-bg:      #fffbeb;  /* amber.50 */
+  --adm-question-text:    #78350f;  /* amber.900 */
+
+  /* Quote (Gray) */
+  --adm-quote-border:     #6b7280;  /* gray.500 */
+  --adm-quote-bg:         #f9fafb;  /* gray.50 */
+  --adm-quote-text:       #1f2937;  /* gray.800 */
+
+  /* Example (Purple) */
+  --adm-example-border:   #7c3aed;  /* purple.600 */
+  --adm-example-bg:       #faf5ff;  /* purple.50 */
+  --adm-example-text:     #581c87;  /* purple.900 */
+
+  /* Bug/Failure (Rose/Pink) */
+  --adm-bug-border:       #f43f5e;  /* rose.500 */
+  --adm-bug-bg:           #fff1f2;  /* rose.50 */
+  --adm-bug-text:         #881337;  /* rose.900 */
+
+  --adm-failure-border:   #ec4899;  /* pink.500 */
+  --adm-failure-bg:       #fdf2f8;  /* pink.50 */
+  --adm-failure-text:     #831843;  /* pink.900 */
+
+  /* Todo (Sky) */
+  --adm-todo-border:      #0ea5e9;  /* sky.500 */
+  --adm-todo-bg:          #f0f9ff;  /* sky.50 */
+  --adm-todo-text:        #075985;  /* sky.800 */
+}
+
+/* ==========================================================================
+   DARK MODE COLOR OVERRIDES
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Invert neutral scale for dark mode */
+    --color-neutral:       15, 23, 42;      /* Dark background base */
+    --color-neutral-50:    30, 41, 59;      /* Darker shades */
+    --color-neutral-100:   51, 65, 85;
+    --color-neutral-200:   71, 85, 105;
+    --color-neutral-300:   100, 116, 139;
+    --color-neutral-400:   148, 163, 184;
+    --color-neutral-500:   203, 213, 225;
+    --color-neutral-600:   226, 232, 240;
+    --color-neutral-700:   241, 245, 249;
+    --color-neutral-800:   248, 250, 252;
+    --color-neutral-900:   255, 255, 255;   /* Light text on dark */
+
+    /* Enhanced brand colors for dark mode */
+    --color-light-enhanced:     #0F172A;    /* Becomes dark background */
+    --color-dark-enhanced:      #F8FAFC;    /* Becomes light text */
+    --color-neutral-enhanced:   #475569;    /* Darker neutral */
+
+    /* Admonition backgrounds - darker for dark mode */
+    --adm-note-bg:          color-mix(in srgb, #0ea5e9 20%, #0f172a 80%);
+    --adm-tip-bg:           color-mix(in srgb, #10b981 20%, #0f172a 80%);
+    --adm-important-bg:     color-mix(in srgb, #8b5cf6 20%, #0f172a 80%);
+    --adm-warning-bg:       color-mix(in srgb, #f97316 20%, #0f172a 80%);
+    --adm-caution-bg:       color-mix(in srgb, #ef4444 20%, #0f172a 80%);
+    --adm-danger-bg:        color-mix(in srgb, #ef4444 20%, #0f172a 80%);
+    --adm-abstract-bg:      color-mix(in srgb, #06b6d4 20%, #0f172a 80%);
+    --adm-info-bg:          color-mix(in srgb, #3b82f6 20%, #0f172a 80%);
+    --adm-success-bg:       color-mix(in srgb, #10b981 20%, #0f172a 80%);
+    --adm-question-bg:      color-mix(in srgb, #f59e0b 20%, #0f172a 80%);
+    --adm-quote-bg:         color-mix(in srgb, #6b7280 20%, #0f172a 80%);
+    --adm-example-bg:       color-mix(in srgb, #7c3aed 20%, #0f172a 80%);
+    --adm-bug-bg:           color-mix(in srgb, #f43f5e 20%, #0f172a 80%);
+    --adm-failure-bg:       color-mix(in srgb, #ec4899 20%, #0f172a 80%);
+    --adm-todo-bg:          color-mix(in srgb, #0ea5e9 20%, #0f172a 80%);
+
+    /* Text colors - lighter for dark mode */
+    --adm-note-text:        #7dd3fc;  /* sky.300 */
+    --adm-tip-text:         #6ee7b7;  /* emerald.300 */
+    --adm-important-text:   #c4b5fd;  /* purple.300 */
+    --adm-warning-text:     #fdba74;  /* orange.300 */
+    --adm-caution-text:     #fca5a5;  /* red.300 */
+    --adm-danger-text:      #fca5a5;  /* red.300 */
+    --adm-abstract-text:    #67e8f9;  /* cyan.300 */
+    --adm-info-text:        #93c5fd;  /* blue.300 */
+    --adm-success-text:     #6ee7b7;  /* emerald.300 */
+    --adm-question-text:    #fcd34d;  /* amber.300 */
+    --adm-quote-text:       #d1d5db;  /* gray.300 */
+    --adm-example-text:     #c4b5fd;  /* purple.300 */
+    --adm-bug-text:         #fda4af;  /* rose.300 */
+    --adm-failure-text:     #f9a8d4;  /* pink.300 */
+    --adm-todo-text:        #7dd3fc;  /* sky.300 */
+  }
+}
+
+/* ==========================================================================
+   UTILITY COLOR CLASSES
+   ========================================================================== */
+
+/* Primary colors */
+.text-primary-500 { color: rgb(var(--color-primary-500)); }
+.text-primary-700 { color: rgb(var(--color-primary-700)); }
+.bg-primary-500 { background-color: rgb(var(--color-primary-500)); }
+.border-primary-500 { border-color: rgb(var(--color-primary-500)); }
+
+/* Secondary colors */
+.text-secondary-500 { color: rgb(var(--color-secondary-500)); }
+.bg-secondary-500 { background-color: rgb(var(--color-secondary-500)); }
+.border-secondary-500 { border-color: rgb(var(--color-secondary-500)); }
+
+/* Neutral colors */
+.text-neutral-300 { color: rgb(var(--color-neutral-300)); }
+.text-neutral-400 { color: rgb(var(--color-neutral-400)); }
+.text-neutral-500 { color: rgb(var(--color-neutral-500)); }
+.text-neutral-600 { color: rgb(var(--color-neutral-600)); }
+.text-neutral-700 { color: rgb(var(--color-neutral-700)); }
+.text-neutral-900 { color: rgb(var(--color-neutral-900)); }
+
+.bg-neutral-50 { background-color: rgb(var(--color-neutral-50)); }
+.bg-neutral-100 { background-color: rgb(var(--color-neutral-100)); }
+.bg-neutral-800 { background-color: rgb(var(--color-neutral-800)); }
+.bg-neutral-900 { background-color: rgb(var(--color-neutral-900)); }
+
+/* Brand enhanced colors */
+.text-primary-enhanced { color: var(--color-primary-enhanced); }
+.text-accent-enhanced { color: var(--color-accent-enhanced); }
+.bg-dark-enhanced { background-color: var(--color-dark-enhanced); }
+.border-accent-enhanced { border-color: var(--color-accent-enhanced); }
+
+/* Investigation status colors */
+.text-confirmed { color: var(--color-confirmed); }
+.text-partial { color: var(--color-partial); }
+.text-refuted { color: var(--color-refuted); }
+.text-unverified { color: var(--color-unverified); }
+
+.bg-confirmed { background-color: var(--color-confirmed); }
+.bg-partial { background-color: var(--color-partial); }
+.bg-refuted { background-color: var(--color-refuted); }
+.bg-unverified { background-color: var(--color-unverified); }
+
+.border-confirmed { border-color: var(--color-confirmed); }
+.border-partial { border-color: var(--color-partial); }
+.border-refuted { border-color: var(--color-refuted); }
+.border-unverified { border-color: var(--color-unverified); }

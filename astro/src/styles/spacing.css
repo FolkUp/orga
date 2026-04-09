@@ -1,0 +1,338 @@
+/* ORGA Astro Migration — Spacing & Layout Variables */
+/* Extracted from Hugo Blowfish theme + enhanced layout patterns */
+
+:root {
+  /* ==========================================================================
+     SPACING SCALE — Enhanced system from longread components
+     ========================================================================== */
+  --space-xs-enhanced:      0.5rem;      /* 8px */
+  --space-sm-enhanced:      1rem;        /* 16px */
+  --space-md-enhanced:      1.5rem;      /* 24px */
+  --space-lg-enhanced:      2rem;        /* 32px */
+  --space-xl-enhanced:      3rem;        /* 48px */
+  --space-2xl-enhanced:     4rem;        /* 64px */
+
+  /* Standard spacing scale (compatible with Tailwind pattern) */
+  --space-0:                0;
+  --space-px:               1px;
+  --space-0-5:              0.125rem;     /* 2px */
+  --space-1:                0.25rem;      /* 4px */
+  --space-1-5:              0.375rem;     /* 6px */
+  --space-2:                0.5rem;       /* 8px */
+  --space-2-5:              0.625rem;     /* 10px */
+  --space-3:                0.75rem;      /* 12px */
+  --space-3-5:              0.875rem;     /* 14px */
+  --space-4:                1rem;         /* 16px */
+  --space-5:                1.25rem;      /* 20px */
+  --space-6:                1.5rem;       /* 24px */
+  --space-7:                1.75rem;      /* 28px */
+  --space-8:                2rem;         /* 32px */
+  --space-9:                2.25rem;      /* 36px */
+  --space-10:               2.5rem;       /* 40px */
+  --space-11:               2.75rem;      /* 44px */
+  --space-12:               3rem;         /* 48px */
+  --space-14:               3.5rem;       /* 56px */
+  --space-16:               4rem;         /* 64px */
+  --space-20:               5rem;         /* 80px */
+  --space-24:               6rem;         /* 96px */
+  --space-28:               7rem;         /* 112px */
+  --space-32:               8rem;         /* 128px */
+  --space-36:               9rem;         /* 144px */
+  --space-40:               10rem;        /* 160px */
+  --space-44:               11rem;        /* 176px */
+  --space-48:               12rem;        /* 192px */
+  --space-52:               13rem;        /* 208px */
+  --space-56:               14rem;        /* 224px */
+  --space-60:               15rem;        /* 240px */
+  --space-64:               16rem;        /* 256px */
+  --space-72:               18rem;        /* 288px */
+  --space-80:               20rem;        /* 320px */
+  --space-96:               24rem;        /* 384px */
+
+  /* ==========================================================================
+     CONTAINER & LAYOUT VARIABLES
+     ========================================================================== */
+  --container-xs:           20rem;        /* 320px */
+  --container-sm:           24rem;        /* 384px */
+  --container-md:           28rem;        /* 448px */
+  --container-lg:           32rem;        /* 512px */
+  --container-xl:           36rem;        /* 576px */
+  --container-2xl:          42rem;        /* 672px */
+  --container-3xl:          48rem;        /* 768px */
+  --container-4xl:          56rem;        /* 896px */
+  --container-5xl:          64rem;        /* 1024px */
+  --container-6xl:          72rem;        /* 1152px */
+  --container-7xl:          80rem;        /* 1280px */
+
+  /* Prose width for longread content */
+  --container-prose:        65ch;         /* Optimal reading width */
+  --container-prose-wide:   85ch;         /* Wide reading width */
+
+  /* ==========================================================================
+     BORDER RADIUS SCALE
+     ========================================================================== */
+  --radius-none:            0;
+  --radius-sm:              0.125rem;     /* 2px */
+  --radius:                 0.25rem;      /* 4px */
+  --radius-md:              0.375rem;     /* 6px */
+  --radius-lg:              0.5rem;       /* 8px */
+  --radius-xl:              0.75rem;      /* 12px */
+  --radius-2xl:             1rem;         /* 16px */
+  --radius-3xl:             1.5rem;       /* 24px */
+  --radius-full:            9999px;       /* Full circle */
+
+  /* Component-specific radius */
+  --radius-card:            var(--radius-lg);
+  --radius-button:          var(--radius-md);
+  --radius-input:           var(--radius);
+  --radius-badge:           var(--radius-full);
+
+  /* ==========================================================================
+     BORDER WIDTH SCALE
+     ========================================================================== */
+  --border-0:               0;
+  --border:                 1px;
+  --border-2:               2px;
+  --border-4:               4px;
+  --border-8:               8px;
+
+  /* ==========================================================================
+     Z-INDEX SCALE
+     ========================================================================== */
+  --z-0:                    0;
+  --z-10:                   10;
+  --z-20:                   20;
+  --z-30:                   30;
+  --z-40:                   40;
+  --z-50:                   50;
+  --z-auto:                 auto;
+
+  /* Semantic z-index values */
+  --z-dropdown:             var(--z-50);
+  --z-sticky:               var(--z-20);
+  --z-fixed:                var(--z-30);
+  --z-modal-backdrop:       var(--z-40);
+  --z-modal:                var(--z-50);
+  --z-popover:              var(--z-50);
+  --z-tooltip:              var(--z-50);
+
+  /* ==========================================================================
+     RESPONSIVE BREAKPOINTS (for media queries)
+     ========================================================================== */
+  --breakpoint-xs:          475px;
+  --breakpoint-sm:          640px;
+  --breakpoint-md:          768px;
+  --breakpoint-lg:          1024px;
+  --breakpoint-xl:          1280px;
+  --breakpoint-2xl:         1536px;
+
+  /* ==========================================================================
+     GAP & GRID VARIABLES
+     ========================================================================== */
+  --gap-xs:                 var(--space-2);
+  --gap-sm:                 var(--space-3);
+  --gap-md:                 var(--space-4);
+  --gap-lg:                 var(--space-6);
+  --gap-xl:                 var(--space-8);
+  --gap-2xl:                var(--space-12);
+
+  /* Grid template columns for common layouts */
+  --grid-cols-1:            repeat(1, minmax(0, 1fr));
+  --grid-cols-2:            repeat(2, minmax(0, 1fr));
+  --grid-cols-3:            repeat(3, minmax(0, 1fr));
+  --grid-cols-4:            repeat(4, minmax(0, 1fr));
+  --grid-cols-5:            repeat(5, minmax(0, 1fr));
+  --grid-cols-6:            repeat(6, minmax(0, 1fr));
+  --grid-cols-12:           repeat(12, minmax(0, 1fr));
+
+  /* Responsive grid patterns from components */
+  --grid-investigation-meta: minmax(10rem, 1fr);
+  --grid-audio-preview:     auto 1fr auto;
+  --grid-evidence-gallery:  repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ==========================================================================
+   SPACING UTILITY CLASSES
+   ========================================================================== */
+
+/* Margin utilities */
+.m-0 { margin: var(--space-0); }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-5 { margin: var(--space-5); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+.m-10 { margin: var(--space-10); }
+.m-12 { margin: var(--space-12); }
+.m-16 { margin: var(--space-16); }
+.m-20 { margin: var(--space-20); }
+.m-24 { margin: var(--space-24); }
+.m-auto { margin: auto; }
+
+/* Padding utilities */
+.p-0 { padding: var(--space-0); }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: var(--space-5); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.p-10 { padding: var(--space-10); }
+.p-12 { padding: var(--space-12); }
+.p-16 { padding: var(--space-16); }
+.p-20 { padding: var(--space-20); }
+.p-24 { padding: var(--space-24); }
+
+/* Horizontal margin utilities */
+.mx-0 { margin-left: var(--space-0); margin-right: var(--space-0); }
+.mx-1 { margin-left: var(--space-1); margin-right: var(--space-1); }
+.mx-2 { margin-left: var(--space-2); margin-right: var(--space-2); }
+.mx-3 { margin-left: var(--space-3); margin-right: var(--space-3); }
+.mx-4 { margin-left: var(--space-4); margin-right: var(--space-4); }
+.mx-6 { margin-left: var(--space-6); margin-right: var(--space-6); }
+.mx-8 { margin-left: var(--space-8); margin-right: var(--space-8); }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Vertical margin utilities */
+.my-0 { margin-top: var(--space-0); margin-bottom: var(--space-0); }
+.my-1 { margin-top: var(--space-1); margin-bottom: var(--space-1); }
+.my-2 { margin-top: var(--space-2); margin-bottom: var(--space-2); }
+.my-3 { margin-top: var(--space-3); margin-bottom: var(--space-3); }
+.my-4 { margin-top: var(--space-4); margin-bottom: var(--space-4); }
+.my-6 { margin-top: var(--space-6); margin-bottom: var(--space-6); }
+.my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+
+/* Horizontal padding utilities */
+.px-0 { padding-left: var(--space-0); padding-right: var(--space-0); }
+.px-1 { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+
+/* Vertical padding utilities */
+.py-0 { padding-top: var(--space-0); padding-bottom: var(--space-0); }
+.py-1 { padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+
+/* Individual margin utilities */
+.mt-0 { margin-top: var(--space-0); }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mt-16 { margin-top: var(--space-16); }
+.mt-24 { margin-top: var(--space-24); }
+
+.mb-0 { margin-bottom: var(--space-0); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+.mb-24 { margin-bottom: var(--space-24); }
+
+.ml-0 { margin-left: var(--space-0); }
+.ml-1 { margin-left: var(--space-1); }
+.ml-2 { margin-left: var(--space-2); }
+.ml-3 { margin-left: var(--space-3); }
+.ml-4 { margin-left: var(--space-4); }
+.ml-6 { margin-left: var(--space-6); }
+.ml-auto { margin-left: auto; }
+
+.mr-0 { margin-right: var(--space-0); }
+.mr-1 { margin-right: var(--space-1); }
+.mr-2 { margin-right: var(--space-2); }
+.mr-3 { margin-right: var(--space-3); }
+.mr-4 { margin-right: var(--space-4); }
+.mr-6 { margin-right: var(--space-6); }
+.mr-auto { margin-right: auto; }
+
+/* Individual padding utilities */
+.pt-0 { padding-top: var(--space-0); }
+.pt-1 { padding-top: var(--space-1); }
+.pt-2 { padding-top: var(--space-2); }
+.pt-4 { padding-top: var(--space-4); }
+.pt-6 { padding-top: var(--space-6); }
+.pt-8 { padding-top: var(--space-8); }
+.pt-12 { padding-top: var(--space-12); }
+.pt-16 { padding-top: var(--space-16); }
+.pt-24 { padding-top: var(--space-24); }
+
+.pb-0 { padding-bottom: var(--space-0); }
+.pb-1 { padding-bottom: var(--space-1); }
+.pb-2 { padding-bottom: var(--space-2); }
+.pb-4 { padding-bottom: var(--space-4); }
+.pb-6 { padding-bottom: var(--space-6); }
+.pb-8 { padding-bottom: var(--space-8); }
+.pb-12 { padding-bottom: var(--space-12); }
+.pb-16 { padding-bottom: var(--space-16); }
+.pb-24 { padding-bottom: var(--space-24); }
+
+.pl-0 { padding-left: var(--space-0); }
+.pl-1 { padding-left: var(--space-1); }
+.pl-2 { padding-left: var(--space-2); }
+.pl-3 { padding-left: var(--space-3); }
+.pl-4 { padding-left: var(--space-4); }
+.pl-6 { padding-left: var(--space-6); }
+.pl-8 { padding-left: var(--space-8); }
+
+.pr-0 { padding-right: var(--space-0); }
+.pr-1 { padding-right: var(--space-1); }
+.pr-2 { padding-right: var(--space-2); }
+.pr-3 { padding-right: var(--space-3); }
+.pr-4 { padding-right: var(--space-4); }
+.pr-6 { padding-right: var(--space-6); }
+.pr-8 { padding-right: var(--space-8); }
+
+/* ==========================================================================
+   LAYOUT UTILITY CLASSES
+   ========================================================================== */
+
+/* Container utilities */
+.container-xs { max-width: var(--container-xs); }
+.container-sm { max-width: var(--container-sm); }
+.container-md { max-width: var(--container-md); }
+.container-lg { max-width: var(--container-lg); }
+.container-xl { max-width: var(--container-xl); }
+.container-2xl { max-width: var(--container-2xl); }
+.container-prose { max-width: var(--container-prose); }
+
+/* Border radius utilities */
+.rounded-none { border-radius: var(--radius-none); }
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded { border-radius: var(--radius); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-3xl { border-radius: var(--radius-3xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Gap utilities for flexbox/grid */
+.gap-0 { gap: var(--space-0); }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+.gap-12 { gap: var(--space-12); }
+
+/* Component-specific spacing classes */
+.audio-preview-padding { padding: var(--space-lg-enhanced); }
+.investigation-meta-padding { padding: var(--space-md-enhanced); }
+.pull-quote-padding { padding: var(--space-sm-enhanced) var(--space-lg-enhanced); }
+.timeline-padding { padding: var(--space-4) var(--space-6); }

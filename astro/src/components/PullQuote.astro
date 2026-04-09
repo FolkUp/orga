@@ -1,0 +1,244 @@
+---
+/**
+ * ORGA Astro Migration — PullQuote Component
+ *
+ * Proof-of-concept component for infrastructure foundation validation
+ * Compatible with Hugo pull-quote shortcode:
+ * {{< pull-quote attribution="Investigation finding" align="center" >}}
+ * Quote text here
+ * {{< /pull-quote >}}
+ *
+ * Usage in Astro:
+ * <PullQuote attribution="Investigation finding" align="center">
+ *   Quote text here
+ * </PullQuote>
+ */
+
+export interface Props {
+  /** Attribution text (optional) */
+  attribution?: string;
+  /** Alignment: left, center, or right. Default: center */
+  align?: 'left' | 'center' | 'right';
+  /** Enhanced styling for dramatic effect */
+  enhanced?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  attribution,
+  align = 'center',
+  enhanced = true,
+  class: className = ''
+} = Astro.props;
+
+// Build CSS classes - maintains Hugo compatibility
+const baseClasses = 'pull-quote';
+const alignClass = `pull-quote--${align}`;
+const enhancedClass = enhanced ? 'enhanced-pullquote' : '';
+
+const classes = [baseClasses, alignClass, enhancedClass, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<figure class={classes} role="figure">
+  <blockquote class="pull-quote__text">
+    <slot />
+  </blockquote>
+  {attribution && (
+    <figcaption class="pull-quote__attribution">— {attribution}</figcaption>
+  )}
+</figure>
+
+<style>
+  /* Base pull-quote styles - Hugo compatibility layer */
+  .pull-quote {
+    margin: var(--space-lg) auto;
+    max-width: 85%;
+    position: relative;
+    border: none;
+    padding: 0;
+  }
+
+  .pull-quote--center {
+    text-align: center;
+  }
+
+  .pull-quote--left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .pull-quote--right {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .pull-quote__text {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-serif);
+    margin: 0;
+    padding: var(--space-md) 0;
+    position: relative;
+  }
+
+  .pull-quote__text::before {
+    content: '"';
+    font-size: var(--font-size-4xl);
+    line-height: 1;
+    color: var(--color-accent-primary);
+    font-family: var(--font-family-serif);
+    position: absolute;
+    left: var(--space-sm-negative);
+    top: var(--space-xs);
+    opacity: 0.8;
+  }
+
+  .pull-quote__attribution {
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-sm);
+    font-family: var(--font-family-sans);
+  }
+
+  /* Enhanced pullquote styling for dramatic effect */
+  .enhanced-pullquote {
+    background: linear-gradient(
+      135deg,
+      var(--color-surface-elevated),
+      var(--color-surface-elevated-hover)
+    );
+    border-left: var(--space-xs) solid var(--color-accent-primary);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-md);
+    position: relative;
+    backdrop-filter: blur(1px);
+  }
+
+  .enhanced-pullquote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      transparent,
+      var(--color-accent-primary-translucent)
+    );
+    border-radius: var(--border-radius-md);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .enhanced-pullquote .pull-quote__text {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .enhanced-pullquote .pull-quote__text::before {
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-5xl);
+    opacity: 0.6;
+    left: var(--space-md-negative);
+  }
+
+  .enhanced-pullquote .pull-quote__attribution {
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .pull-quote {
+      max-width: 95%;
+      margin: var(--space-md) auto;
+    }
+
+    .pull-quote__text {
+      font-size: var(--font-size-md);
+    }
+
+    .enhanced-pullquote {
+      padding: var(--space-md);
+    }
+
+    .enhanced-pullquote .pull-quote__text {
+      font-size: var(--font-size-lg);
+    }
+
+    .pull-quote__text::before {
+      font-size: var(--font-size-3xl);
+    }
+
+    .enhanced-pullquote .pull-quote__text::before {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .enhanced-pullquote {
+      background: linear-gradient(
+        135deg,
+        var(--color-surface-elevated-dark),
+        var(--color-surface-elevated-hover-dark)
+      );
+      border-left-color: var(--color-accent-primary-dark);
+    }
+
+    .pull-quote__text {
+      color: var(--color-text-primary-dark);
+    }
+
+    .pull-quote__text::before {
+      color: var(--color-accent-primary-dark);
+    }
+
+    .pull-quote__attribution {
+      color: var(--color-text-secondary-dark);
+    }
+
+    .enhanced-pullquote .pull-quote__attribution {
+      color: var(--color-text-muted-dark);
+      border-top-color: var(--color-border-subtle-dark);
+    }
+  }
+
+  /* Accessibility enhancements */
+  @media (prefers-reduced-motion: reduce) {
+    .enhanced-pullquote {
+      backdrop-filter: none;
+    }
+
+    .enhanced-pullquote::before {
+      opacity: 0.1;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .pull-quote__text::before {
+      opacity: 1;
+    }
+
+    .enhanced-pullquote {
+      border-left-width: var(--space-sm);
+    }
+
+    .enhanced-pullquote::before {
+      display: none;
+    }
+  }
+</style>

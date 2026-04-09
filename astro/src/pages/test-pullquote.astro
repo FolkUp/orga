@@ -1,0 +1,210 @@
+---
+/**
+ * ORGA Astro Migration — PullQuote Test Page
+ *
+ * Proof-of-concept validation page for infrastructure foundation
+ * Tests: MDX integration, CSS scoping, slot handling, build output
+ */
+
+import PullQuote from '../components/PullQuote.astro';
+import Icon from '../components/Icon.astro';
+import { i18n, getCurrentLang } from '../lib/i18n';
+
+const lang = getCurrentLang(Astro.url);
+const pageTitle = 'PullQuote Component Test — ORGA Astro Migration';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content="Test page for PullQuote component infrastructure validation" />
+
+  <!-- Load our CSS variable system -->
+  <link rel="stylesheet" href="/src/styles/variables.css" />
+  <link rel="stylesheet" href="/src/styles/colors.css" />
+  <link rel="stylesheet" href="/src/styles/typography.css" />
+  <link rel="stylesheet" href="/src/styles/spacing.css" />
+  <link rel="stylesheet" href="/src/styles/effects.css" />
+
+  <style>
+    body {
+      font-family: var(--font-family-sans);
+      line-height: var(--line-height-base);
+      color: var(--color-text-primary);
+      background: var(--color-surface-primary);
+      margin: 0;
+      padding: var(--space-lg);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    h1 {
+      color: var(--color-accent-primary);
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    h2 {
+      color: var(--color-text-primary);
+      font-size: var(--font-size-xl);
+      margin: var(--space-xl) 0 var(--space-md) 0;
+      border-bottom: 2px solid var(--color-border-subtle);
+      padding-bottom: var(--space-xs);
+    }
+
+    .test-section {
+      margin: var(--space-lg) 0;
+      padding: var(--space-md);
+      background: var(--color-surface-elevated);
+      border-radius: var(--border-radius-md);
+      border-left: var(--space-xs) solid var(--color-status-info);
+    }
+
+    .test-description {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      font-style: italic;
+      margin-bottom: var(--space-md);
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-status-success);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>
+      <Icon name="search" size="32px" inline={true} />
+      ORGA Astro Migration — PullQuote Test
+    </h1>
+    <div class="status-indicator">
+      <Icon name="check" />
+      Infrastructure Foundation Pipeline Active
+    </div>
+  </header>
+
+  <main>
+    <section class="test-section">
+      <h2>Test 1: Basic PullQuote (Center Aligned)</h2>
+      <p class="test-description">
+        Testing basic PullQuote component with center alignment and attribution.
+        Validates: slot handling, CSS scoping, Hugo compatibility.
+      </p>
+
+      <PullQuote attribution="ORGA Investigation Team" align="center">
+        The digital transformation of investigative journalism requires
+        new technical infrastructure that maintains editorial integrity
+        while embracing multimedia storytelling capabilities.
+      </PullQuote>
+    </section>
+
+    <section class="test-section">
+      <h2>Test 2: Enhanced PullQuote (Left Aligned)</h2>
+      <p class="test-description">
+        Testing enhanced styling with left alignment.
+        Validates: CSS variable system, responsive design, accessibility.
+      </p>
+
+      <PullQuote attribution="Technical Architecture Review" align="left" enhanced={true}>
+        Infrastructure foundation must achieve pixel-perfect parity
+        between Hugo shortcode output and Astro component rendering
+        before proceeding to full migration pipeline.
+      </PullQuote>
+    </section>
+
+    <section class="test-section">
+      <h2>Test 3: Right-Aligned PullQuote</h2>
+      <p class="test-description">
+        Testing right alignment without attribution.
+        Validates: conditional rendering, alignment system.
+      </p>
+
+      <PullQuote align="right" enhanced={false}>
+        Genre-changing multimedia journalism worthy of leading
+        music journal reviews requires foundational excellence
+        in every technical component.
+      </PullQuote>
+    </section>
+
+    <section class="test-section">
+      <h2>Test 4: i18n Integration Test</h2>
+      <p class="test-description">
+        Testing internationalization system integration.
+        Current language: <strong>{lang}</strong>
+      </p>
+
+      <PullQuote attribution={i18n(lang, 'investigation.meta.evidence')} align="center">
+        {i18n(lang, 'ui.loading')}: {i18n(lang, 'investigation.status.verified')}
+      </PullQuote>
+
+      <p><strong>i18n Function Tests:</strong></p>
+      <ul>
+        <li>UI Copy: "{i18n(lang, 'ui.copy')}" | "{i18n(lang, 'ui.loading')}"</li>
+        <li>Investigation: "{i18n(lang, 'investigation.confidence.high')}"</li>
+        <li>Audio: "{i18n(lang, 'audio.play')}" | "{i18n(lang, 'audio.pause')}"</li>
+      </ul>
+    </section>
+
+    <section class="test-section">
+      <h2>Test 5: CSS Variable System Validation</h2>
+      <p class="test-description">
+        Validating CSS variable system integration across components.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-top: var(--space-md);">
+        <div style="padding: var(--space-sm); background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-sm);">
+          Primary Accent Color
+        </div>
+        <div style="padding: var(--space-sm); background: var(--color-accent-secondary); color: white; border-radius: var(--border-radius-sm);">
+          Secondary Accent Color
+        </div>
+        <div style="padding: var(--space-sm); background: var(--color-status-success); color: white; border-radius: var(--border-radius-sm);">
+          Success Status Color
+        </div>
+        <div style="padding: var(--space-sm); background: var(--color-status-warning); color: white; border-radius: var(--border-radius-sm);">
+          Warning Status Color
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Test 6: Icon System Integration</h2>
+      <p class="test-description">
+        Testing icon component integration with Hugo Blowfish compatibility.
+      </p>
+
+      <div style="display: flex; align-items: center; gap: var(--space-md); margin-top: var(--space-md);">
+        <Icon name="search" label="Search icon" />
+        <Icon name="check" label="Check icon" />
+        <Icon name="music" label="Music icon" />
+        <Icon name="github" label="GitHub icon" />
+
+        <PullQuote align="center" enhanced={false}>
+          <Icon name="quote-left" size="24px" inline={true} />
+          Icon integration within PullQuote content validation.
+        </PullQuote>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-border-subtle); text-align: center; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+    <p>ORGA Astro Migration — Infrastructure Foundation Validation</p>
+    <p>Testing: CSS Variables | PullQuote Component | Icon System | i18n Bridge</p>
+    <div style="margin-top: var(--space-sm);">
+      <Icon name="check" size="16px" inline={true} />
+      Pipeline Ready for Validation
+    </div>
+  </footer>
+</body>
+</html>
