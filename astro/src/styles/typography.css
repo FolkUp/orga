@@ -1,18 +1,22 @@
-/* ORGA Astro Migration — Typography System Variables */
-/* Extracted from Hugo Blowfish theme + enhanced longread styling */
+/* ORGA Astro Migration — Underground Academia Typography System */
+/* Soviet Constructivist + Hip-hop + Academic Authority */
+
+/* Import Underground Academia fonts */
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* ==========================================================================
-     FONT FAMILIES
+     UNDERGROUND ACADEMIA FONT FAMILIES
      ========================================================================== */
-  --font-display-enhanced:  'Playfair Display', Georgia, serif;
-  --font-body-enhanced:     'Inter', system-ui, sans-serif;
-  --font-mono:              'Source Code Pro', 'Fira Code', monospace;
+  /* Display/Headers - Soviet Constructivist Authority */
+  --font-display-enhanced:  'Staatliches', 'Arial Black', 'Impact', sans-serif;
+  --font-body-enhanced:     'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:              'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
 
   /* Base fonts (fallback compatibility) */
-  --font-primary:           'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-secondary:         'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-code:              'Source Code Pro', 'Menlo', 'Monaco', 'Consolas', monospace;
+  --font-primary:           'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary:         'Staatliches', 'Arial Black', 'Impact', sans-serif;
+  --font-code:              'JetBrains Mono', 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
 
   /* ==========================================================================
      FONT SIZE SCALE — Based on extracted usage patterns

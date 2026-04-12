@@ -1,45 +1,916 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import AudioStoryPlayer from '@components/AudioStoryPlayer.astro';
+import EvidenceGallery from '@components/EvidenceGallery.astro';
+import Icon from '@components/Icon.astro';
+import PullQuote from '@components/PullQuote.astro';
 ---
 
-<BaseLayout title="ORGA — Phase 0 Foundation">
-  <main>
-    <h1>ORGA Astro Foundation</h1>
-    <p>Phase 0: Foundation setup verified.</p>
-    <ul>
-      <li>Astro v6 with Island Architecture</li>
-      <li>MDX integration for rich content</li>
-      <li>Svelte for interactive islands</li>
-      <li>Strict TypeScript configuration</li>
-    </ul>
-  </main>
+<BaseLayout title="ORGA — Underground Academia Research Institute">
+  <!-- HERO SECTION: Cultural Seismography -->
+  <section class="hero-seismography">
+    <div class="hero-grid">
+      <div class="manifesto-block">
+        <div class="institution-mark">
+          <span class="designation">ОРГА</span>
+          <span class="subtitle">RESEARCH INSTITUTE</span>
+        </div>
+
+        <h1 class="seismic-title">
+          CULTURAL
+          <span class="emphasis-fracture">SEISMOGRAPHY</span>
+        </h1>
+
+        <div class="methodology-statement">
+          <p class="approach-description">
+            Monitoring tectonic shifts in social structures through
+            <strong>multimedia investigation techniques</strong>.
+            Detecting fault lines beneath official narratives.
+          </p>
+
+          <div class="research-credentials">
+            <span class="credential-item">PEER-REVIEWED METHODOLOGY</span>
+            <span class="credential-item">OPEN-SOURCE INTELLIGENCE</span>
+            <span class="credential-item">UNDERGROUND VERIFICATION</span>
+          </div>
+        </div>
+
+        <div class="investigation-status">
+          <div class="status-metric">
+            <span class="metric-number">47</span>
+            <span class="metric-label">Active Investigations</span>
+          </div>
+          <div class="status-metric">
+            <span class="metric-number">2,394</span>
+            <span class="metric-label">Evidence Points</span>
+          </div>
+          <div class="status-metric">
+            <span class="metric-number">156</span>
+            <span class="metric-label">Source Confirmations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="seismic-visualization">
+        <div class="waveform-container">
+          <div class="frequency-lines">
+            <div class="freq-line" style="--amplitude: 0.3; --delay: 0s;"></div>
+            <div class="freq-line" style="--amplitude: 0.8; --delay: 0.1s;"></div>
+            <div class="freq-line" style="--amplitude: 0.6; --delay: 0.2s;"></div>
+            <div class="freq-line" style="--amplitude: 0.9; --delay: 0.3s;"></div>
+            <div class="freq-line" style="--amplitude: 0.4; --delay: 0.4s;"></div>
+            <div class="freq-line" style="--amplitude: 0.7; --delay: 0.5s;"></div>
+          </div>
+          <div class="amplitude-label">SOCIAL DISRUPTION INDEX</div>
+        </div>
+
+        <div class="grid-overlay"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHAEOLOGICAL LAYERS: Evidence Gallery Integration -->
+  <section class="archaeological-layers">
+    <div class="section-header">
+      <h2 class="layers-title">ARCHAEOLOGICAL LAYERS</h2>
+      <p class="layers-description">
+        Evidence stratification through temporal and contextual analysis.
+        Each layer represents a depth of investigation into social substrates.
+      </p>
+    </div>
+
+    <div class="stratigraphy-container">
+      <div class="layer-depth-markers">
+        <div class="depth-marker">
+          <span class="depth-level">SURFACE</span>
+          <span class="depth-description">Public narratives</span>
+        </div>
+        <div class="depth-marker">
+          <span class="depth-level">SUBSURFACE</span>
+          <span class="depth-description">Media analysis</span>
+        </div>
+        <div class="depth-marker">
+          <span class="depth-level">BEDROCK</span>
+          <span class="depth-description">Primary sources</span>
+        </div>
+      </div>
+
+      <EvidenceGallery
+        title="Investigation Evidence Layers"
+        description="Stratified evidence collection from surface-level observations to bedrock documentation"
+        evidence={[
+          {
+            id: "ev-001",
+            type: "image",
+            title: "Surface Narrative Analysis",
+            description: "Media coverage patterns analysis",
+            url: "/evidence/surface-media-analysis.jpg",
+            metadata: {
+              source: "Media Monitoring Team",
+              date: "2024-04-10",
+              significance: "medium",
+              verification: "verified"
+            },
+            tags: ["media", "analysis", "surface"]
+          },
+          {
+            id: "ev-002",
+            type: "document",
+            title: "Underground Source Documentation",
+            description: "Primary source materials from underground networks",
+            url: "/evidence/underground-docs.pdf",
+            metadata: {
+              source: "Anonymous Network",
+              date: "2024-04-08",
+              significance: "high",
+              verification: "partial"
+            },
+            tags: ["primary-source", "underground", "documentation"]
+          },
+          {
+            id: "ev-003",
+            type: "data",
+            title: "Cultural Seismic Measurements",
+            description: "Quantitative analysis of social disruption patterns",
+            url: "/evidence/seismic-data.json",
+            metadata: {
+              source: "ORGA Analytics",
+              date: "2024-04-12",
+              significance: "high",
+              verification: "verified"
+            },
+            tags: ["quantitative", "seismic", "analytics"]
+          }
+        ]}
+        layout="masonry"
+        allowAnnotations={true}
+        showMetadata={true}
+        class="evidence-stratigraphy"
+      />
+    </div>
+  </section>
+
+  <!-- UNDERGROUND RADIO: Audio Investigation Integration -->
+  <section class="underground-radio">
+    <div class="radio-header">
+      <div class="broadcast-indicator">
+        <div class="signal-strength">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar active"></div>
+        </div>
+        <span class="frequency">108.4 FM</span>
+      </div>
+
+      <h2 class="radio-title">UNDERGROUND BROADCAST</h2>
+      <p class="radio-description">
+        Investigative narratives transmitted through encrypted channels.
+        Audio documentation of social seismic activity.
+      </p>
+    </div>
+
+    <AudioStoryPlayer
+      title="Cultural Analysis: Oxymiron Case Study"
+      duration="42:16"
+      audioSrc="/audio/investigations/oxymiron-cultural-analysis.mp3"
+      transcript={[
+        {
+          start: 0,
+          end: 30,
+          speaker: "Researcher Alpha",
+          text: "Welcome to Underground Academia. Today we examine the cultural seismographic patterns observed in contemporary hip-hop movements.",
+          chapter: "Introduction"
+        },
+        {
+          start: 30,
+          end: 120,
+          speaker: "Researcher Beta",
+          text: "The Oxymiron phenomenon represents a convergence of academic discourse with underground authenticity, creating new paradigms for cultural investigation.",
+          chapter: "Methodology",
+          evidence: [
+            {
+              type: "document",
+              title: "Lyrical Analysis Framework",
+              url: "/evidence/lyrical-analysis.pdf",
+              description: "Quantitative analysis of semantic density"
+            }
+          ]
+        },
+        {
+          start: 120,
+          end: 240,
+          speaker: "Field Correspondent",
+          text: "Direct observations from Moscow underground scenes reveal significant sociocultural stratification patterns that mirror academic theoretical frameworks.",
+          chapter: "Field Research"
+        }
+      ]}
+      chapters={[
+        {
+          title: "Introduction",
+          timestamp: 0,
+          description: "Underground Academia methodology overview"
+        },
+        {
+          title: "Theoretical Framework",
+          timestamp: 30,
+          description: "Academic foundations for cultural seismography"
+        },
+        {
+          title: "Field Research",
+          timestamp: 120,
+          description: "Direct observations and data collection"
+        },
+        {
+          title: "Analysis & Conclusions",
+          timestamp: 240,
+          description: "Synthesis of underground and academic findings"
+        }
+      ]}
+      class="underground-player"
+    />
+
+    <div class="transmission-metadata">
+      <div class="metadata-grid">
+        <div class="meta-item">
+          <span class="meta-label">BROADCAST DATE</span>
+          <span class="meta-value">2024.04.12</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">ENCRYPTION</span>
+          <span class="meta-value">AES-256</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">VERIFICATION</span>
+          <span class="meta-value">PEER-REVIEWED</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">CLEARANCE</span>
+          <span class="meta-value">UNCLASSIFIED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH METHODOLOGY DISCLOSURE -->
+  <section class="methodology-disclosure">
+    <PullQuote
+      text="Every investigation begins with the assumption that official narratives are incomplete. Our methodology combines academic rigor with underground verification to construct more complete pictures of social reality."
+      attribution="ORGA Research Ethics Statement"
+      class="methodology-quote"
+    />
+
+    <div class="disclosure-grid">
+      <div class="disclosure-panel">
+        <h3 class="panel-title">DATA SOURCES</h3>
+        <ul class="source-list">
+          <li>Open-source intelligence (OSINT)</li>
+          <li>Peer-reviewed academic publications</li>
+          <li>Underground network verification</li>
+          <li>Primary source documentation</li>
+        </ul>
+      </div>
+
+      <div class="disclosure-panel">
+        <h3 class="panel-title">VERIFICATION PROTOCOL</h3>
+        <ul class="protocol-list">
+          <li>Multi-source triangulation</li>
+          <li>Independent fact-checking</li>
+          <li>Community validation</li>
+          <li>Transparency documentation</li>
+        </ul>
+      </div>
+
+      <div class="disclosure-panel">
+        <h3 class="panel-title">ETHICAL FRAMEWORK</h3>
+        <ul class="ethics-list">
+          <li>Harm reduction protocols</li>
+          <li>Source protection standards</li>
+          <li>Privacy preservation</li>
+          <li>Academic integrity compliance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNDERGROUND MANIFESTO FOOTER -->
+  <footer class="manifesto-footer">
+    <div class="manifesto-text">
+      <div class="manifesto-statement">
+        "In the space between academic towers and street-level reality,
+        we conduct research that serves truth rather than power."
+      </div>
+      <div class="signature">— ORGA Research Collective</div>
+    </div>
+
+    <div class="institutional-codes">
+      <span class="code-item">REG. №2024-UA-001</span>
+      <span class="code-item">ISO 27001:2022</span>
+      <span class="code-item">GDPR COMPLIANT</span>
+    </div>
+  </footer>
 </BaseLayout>
 
 <style>
-  main {
-    max-width: 72ch;
-    margin: 4rem auto;
-    padding: 0 1.5rem;
+  /* UNDERGROUND ACADEMIA GLOBAL STYLES */
+  :root {
+    /* Underground Academia color palette */
+    --ua-maritime-deep: #0a1728;
+    --ua-maritime-medium: #1a365d;
+    --ua-amber-warm: #d69e2e;
+    --ua-amber-bright: #f6e05e;
+    --ua-red-signal: #e53e3e;
+    --ua-grey-concrete: #718096;
+    --ua-white-paper: #f7fafc;
+    --ua-black-ink: #1a202c;
+
+    /* Typography scales */
+    --ua-text-xs: 0.75rem;
+    --ua-text-sm: 0.875rem;
+    --ua-text-base: 1rem;
+    --ua-text-lg: 1.125rem;
+    --ua-text-xl: 1.25rem;
+    --ua-text-2xl: 1.5rem;
+    --ua-text-3xl: 1.875rem;
+    --ua-text-4xl: 2.25rem;
+    --ua-text-hero: clamp(2.5rem, 6vw, 4rem);
+
+    /* Spacing system */
+    --ua-space-xs: 0.5rem;
+    --ua-space-sm: 1rem;
+    --ua-space-md: 1.5rem;
+    --ua-space-lg: 2rem;
+    --ua-space-xl: 3rem;
+    --ua-space-2xl: 4rem;
+
+    /* Industrial effects */
+    --ua-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    --ua-grid-pattern: linear-gradient(rgba(215, 158, 46, 0.1) 1px, transparent 1px),
+                       linear-gradient(90deg, rgba(215, 158, 46, 0.1) 1px, transparent 1px);
   }
 
-  h1 {
-    font-size: 2.5rem;
-    color: var(--color-accent);
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    list-style: none;
+  /* RESET AND BASE STYLES */
+  * {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
-  li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  body {
+    background: var(--ua-maritime-deep);
+    color: var(--ua-white-paper);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  li::before {
-    content: 'ok ';
-    color: var(--color-accent);
+  /* HERO SECTION: Cultural Seismography */
+  .hero-seismography {
+    min-height: 100vh;
+    background:
+      var(--ua-noise),
+      linear-gradient(135deg, var(--ua-maritime-deep) 0%, var(--ua-maritime-medium) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--ua-space-2xl);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--ua-space-2xl);
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .manifesto-block {
+    z-index: 2;
+    position: relative;
+  }
+
+  .institution-mark {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--ua-space-lg);
+    border-left: 4px solid var(--ua-amber-warm);
+    padding-left: var(--ua-space-md);
+  }
+
+  .designation {
+    font-family: 'Staatliches', 'Arial Black', sans-serif;
+    font-size: var(--ua-text-3xl);
+    color: var(--ua-amber-warm);
+    line-height: 0.9;
+    letter-spacing: 0.05em;
+  }
+
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-sm);
+    color: var(--ua-grey-concrete);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .seismic-title {
+    font-family: 'Staatliches', 'Arial Black', sans-serif;
+    font-size: var(--ua-text-hero);
+    line-height: 0.85;
+    color: var(--ua-white-paper);
+    margin-bottom: var(--ua-space-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .emphasis-fracture {
+    display: block;
+    color: var(--ua-red-signal);
+    position: relative;
+    transform: translateX(2rem) rotate(-1deg);
+    text-shadow: 2px 2px 0 var(--ua-maritime-deep);
+  }
+
+  .methodology-statement {
+    margin-bottom: var(--ua-space-xl);
+    padding: var(--ua-space-md);
+    background: rgba(26, 54, 93, 0.7);
+    border: 1px solid rgba(215, 158, 46, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .approach-description {
+    font-size: var(--ua-text-lg);
+    margin-bottom: var(--ua-space-md);
+    line-height: 1.7;
+  }
+
+  .research-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ua-space-sm);
+  }
+
+  .credential-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-amber-warm);
+    background: rgba(215, 158, 46, 0.1);
+    padding: 0.25rem 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--ua-amber-warm);
+  }
+
+  .investigation-status {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--ua-space-md);
+  }
+
+  .status-metric {
+    text-align: center;
+    padding: var(--ua-space-sm);
+    border: 2px solid rgba(215, 158, 46, 0.3);
+    background: rgba(10, 23, 40, 0.8);
+  }
+
+  .metric-number {
+    display: block;
+    font-family: 'Staatliches', sans-serif;
+    font-size: var(--ua-text-2xl);
+    color: var(--ua-amber-warm);
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-grey-concrete);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* SEISMIC VISUALIZATION */
+  .seismic-visualization {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .waveform-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: rgba(10, 23, 40, 0.9);
+    border: 2px solid var(--ua-amber-warm);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--ua-space-md);
+  }
+
+  .frequency-lines {
+    display: flex;
+    align-items: end;
+    gap: 3px;
+    height: 200px;
+  }
+
+  .freq-line {
+    width: 6px;
+    height: calc(var(--amplitude) * 100%);
+    background: linear-gradient(to top, var(--ua-red-signal), var(--ua-amber-warm));
+    animation: seismic-pulse 2s ease-in-out infinite var(--delay);
+    border-radius: 1px;
+  }
+
+  @keyframes seismic-pulse {
+    0%, 100% {
+      height: calc(var(--amplitude) * 100%);
+      opacity: 0.7;
+    }
+    50% {
+      height: calc(var(--amplitude) * 120%);
+      opacity: 1;
+    }
+  }
+
+  .amplitude-label {
+    position: absolute;
+    bottom: var(--ua-space-sm);
+    left: var(--ua-space-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-amber-warm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--ua-grid-pattern);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* ARCHAEOLOGICAL LAYERS SECTION */
+  .archaeological-layers {
+    padding: var(--ua-space-2xl);
+    background: var(--ua-maritime-medium);
+    position: relative;
+  }
+
+  .section-header {
+    max-width: 1200px;
+    margin: 0 auto var(--ua-space-xl);
+    text-align: center;
+  }
+
+  .layers-title {
+    font-family: 'Staatliches', sans-serif;
+    font-size: var(--ua-text-4xl);
+    color: var(--ua-amber-warm);
+    margin-bottom: var(--ua-space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .layers-description {
+    font-size: var(--ua-text-lg);
+    color: var(--ua-grey-concrete);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .stratigraphy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--ua-space-xl);
+    align-items: start;
+  }
+
+  .layer-depth-markers {
+    position: sticky;
+    top: var(--ua-space-xl);
+  }
+
+  .depth-marker {
+    display: flex;
+    flex-direction: column;
+    padding: var(--ua-space-md);
+    border-left: 3px solid var(--ua-amber-warm);
+    margin-bottom: var(--ua-space-lg);
+    background: rgba(10, 23, 40, 0.8);
+  }
+
+  .depth-level {
+    font-family: 'Staatliches', sans-serif;
+    font-size: var(--ua-text-sm);
+    color: var(--ua-amber-warm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .depth-description {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-grey-concrete);
+    margin-top: 0.25rem;
+  }
+
+  .evidence-stratigraphy {
+    background: rgba(10, 23, 40, 0.5);
+    border: 1px solid rgba(215, 158, 46, 0.3);
+    border-radius: 0;
+  }
+
+  /* UNDERGROUND RADIO SECTION */
+  .underground-radio {
+    padding: var(--ua-space-2xl);
+    background:
+      var(--ua-noise),
+      linear-gradient(45deg, var(--ua-black-ink) 0%, var(--ua-maritime-deep) 100%);
+  }
+
+  .radio-header {
+    max-width: 1200px;
+    margin: 0 auto var(--ua-space-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--ua-space-lg);
+  }
+
+  .broadcast-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--ua-space-sm);
+    padding: var(--ua-space-sm);
+    background: rgba(215, 158, 46, 0.1);
+    border: 1px solid var(--ua-amber-warm);
+  }
+
+  .signal-strength {
+    display: flex;
+    gap: 2px;
+    align-items: end;
+  }
+
+  .signal-bar {
+    width: 4px;
+    height: 8px;
+    background: rgba(215, 158, 46, 0.3);
+    border-radius: 1px;
+  }
+
+  .signal-bar:nth-child(2) { height: 12px; }
+  .signal-bar:nth-child(3) { height: 16px; }
+  .signal-bar:nth-child(4) { height: 20px; }
+
+  .signal-bar.active {
+    background: var(--ua-amber-warm);
+    animation: signal-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes signal-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .frequency {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ua-amber-warm);
+    font-size: var(--ua-text-sm);
+    font-weight: 500;
+  }
+
+  .radio-title {
+    font-family: 'Staatliches', sans-serif;
+    font-size: var(--ua-text-3xl);
+    color: var(--ua-white-paper);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .radio-description {
+    color: var(--ua-grey-concrete);
+    font-size: var(--ua-text-base);
+    flex: 1;
+  }
+
+  .underground-player {
+    max-width: 1200px;
+    margin: 0 auto var(--ua-space-lg);
+    border: 2px solid var(--ua-amber-warm);
+    background: rgba(10, 23, 40, 0.9);
+  }
+
+  .transmission-metadata {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--ua-space-md);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--ua-space-sm);
+    background: rgba(26, 54, 93, 0.7);
+    border: 1px solid rgba(215, 158, 46, 0.3);
+  }
+
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-amber-warm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-value {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--ua-text-sm);
+    color: var(--ua-white-paper);
+    font-weight: 500;
+  }
+
+  /* METHODOLOGY DISCLOSURE SECTION */
+  .methodology-disclosure {
+    padding: var(--ua-space-2xl);
+    background: rgba(26, 54, 93, 0.3);
+  }
+
+  .methodology-quote {
+    max-width: 1000px;
+    margin: 0 auto var(--ua-space-xl);
+    text-align: center;
+    background: rgba(10, 23, 40, 0.8);
+    border: 2px solid var(--ua-amber-warm);
+    border-left: 8px solid var(--ua-red-signal);
+  }
+
+  .disclosure-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--ua-space-lg);
+  }
+
+  .disclosure-panel {
+    background: rgba(10, 23, 40, 0.9);
+    border: 1px solid rgba(215, 158, 46, 0.3);
+    padding: var(--ua-space-lg);
+  }
+
+  .panel-title {
+    font-family: 'Staatliches', sans-serif;
+    font-size: var(--ua-text-xl);
+    color: var(--ua-amber-warm);
+    margin-bottom: var(--ua-space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .source-list,
+  .protocol-list,
+  .ethics-list {
+    list-style: none;
+  }
+
+  .source-list li,
+  .protocol-list li,
+  .ethics-list li {
+    padding: var(--ua-space-xs) 0;
+    color: var(--ua-grey-concrete);
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .source-list li::before,
+  .protocol-list li::before,
+  .ethics-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ua-amber-warm);
+    font-weight: bold;
+  }
+
+  /* MANIFESTO FOOTER */
+  .manifesto-footer {
+    padding: var(--ua-space-xl);
+    background: var(--ua-black-ink);
+    border-top: 4px solid var(--ua-amber-warm);
+    text-align: center;
+  }
+
+  .manifesto-text {
+    max-width: 800px;
+    margin: 0 auto var(--ua-space-lg);
+  }
+
+  .manifesto-statement {
+    font-size: var(--ua-text-xl);
+    color: var(--ua-white-paper);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: var(--ua-space-md);
+  }
+
+  .signature {
+    font-family: 'Staatliches', sans-serif;
+    color: var(--ua-amber-warm);
+    font-size: var(--ua-text-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .institutional-codes {
+    display: flex;
+    justify-content: center;
+    gap: var(--ua-space-md);
+    flex-wrap: wrap;
+  }
+
+  .code-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--ua-text-xs);
+    color: var(--ua-grey-concrete);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(113, 128, 150, 0.5);
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      padding: var(--ua-space-md);
+    }
+
+    .stratigraphy-container {
+      grid-template-columns: 1fr;
+    }
+
+    .radio-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--ua-space-sm);
+    }
+
+    .investigation-status {
+      grid-template-columns: 1fr;
+    }
+
+    .disclosure-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ACCESSIBILITY ENHANCEMENTS */
+  @media (prefers-reduced-motion: reduce) {
+    .freq-line,
+    .signal-bar.active {
+      animation: none;
+    }
+
+    .emphasis-fracture {
+      transform: none;
+    }
+  }
+
+  /* HIGH CONTRAST MODE */
+  @media (prefers-contrast: high) {
+    :root {
+      --ua-grey-concrete: #ffffff;
+      --ua-amber-warm: #ffff00;
+    }
+
+    .methodology-statement,
+    .disclosure-panel,
+    .meta-item {
+      border-width: 2px;
+    }
   }
 </style>

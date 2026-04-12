@@ -1,0 +1,66 @@
+---
+// Test page for Underground Academia Icon system
+import Icon from '../components/Icon.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon System Test - Underground Academia</title>
+</head>
+<body>
+    <h1>Underground Academia Icon System Test</h1>
+
+    <h2>Basic Icons</h2>
+    <p>
+        Basic search icon: <Icon name="search" />
+        Communication icon: <Icon name="phone" classification="communication" />
+        Verified tools icon: <Icon name="wrench" classification="tools" verified={true} />
+    </p>
+
+    <h2>Priority Levels</h2>
+    <p>
+        Standard: <Icon name="info" />
+        High priority: <Icon name="alert" priority="high" />
+        Critical priority: <Icon name="warning" priority="critical" />
+    </p>
+
+    <h2>Classification Types</h2>
+    <p>
+        Analysis: <Icon name="microscope" classification="analysis" />
+        Tools: <Icon name="tool" classification="tools" />
+        Communication: <Icon name="radio" classification="communication" />
+        Navigation: <Icon name="compass" classification="navigation" />
+        Security: <Icon name="shield" classification="security" />
+    </p>
+
+    <h2>Various Sizes</h2>
+    <p>
+        Small: <Icon name="search" size="16px" />
+        Medium: <Icon name="search" size="24px" />
+        Large: <Icon name="search" size="32px" />
+    </p>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        padding: 2rem;
+        background: #0f1b25;
+        color: #e8f0f7;
+    }
+
+    h1, h2 {
+        color: #d4752a;
+    }
+
+    p {
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+</style>

@@ -1,7 +1,7 @@
 ---
 /**
- * Enhanced Audio Storytelling Component
- * Multimedia investigation journalism with synchronized transcript
+ * Underground Academia Audio Investigation Player
+ * Soviet Constructivist + Hip-hop + Academic Authority aesthetic
  */
 
 interface Props {
@@ -31,67 +31,136 @@ interface Props {
 const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.props;
 ---
 
-<div class="audio-story-player" data-audio-src={audioSrc}>
-  <!-- Header Section -->
-  <header class="player-header">
-    <div class="story-meta">
-      <h2 class="story-title">{title}</h2>
-      <div class="story-info">
-        <span class="duration">{duration}</span>
-        <span class="format">Investigative Audio</span>
+<div class="audio-story-player underground-radio-station" data-audio-src={audioSrc}>
+  <!-- Underground Radio Header Section -->
+  <header class="radio-station-header">
+    <!-- Broadcast Identification -->
+    <div class="station-identification">
+      <div class="frequency-display">
+        <span class="frequency-number">108.4</span>
+        <span class="frequency-unit">FM</span>
       </div>
-    </div>
-  </header>
-
-  <!-- Audio Controls Section -->
-  <section class="audio-controls-section">
-    <div class="primary-controls">
-      <button class="play-pause-btn" aria-label="Play/Pause">
-        <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="5,3 19,12 5,21 5,3"></polygon>
-        </svg>
-        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="6" y="4" width="4" height="16"></rect>
-          <rect x="14" y="4" width="4" height="16"></rect>
-        </svg>
-      </button>
-
-      <div class="time-display">
-        <span class="current-time">00:00</span>
-        <span class="separator">/</span>
-        <span class="total-time">{duration}</span>
+      <div class="station-callsign">
+        <span class="underground-designation">UNDERGROUND</span>
+        <span class="radio-designation">RESEARCH RADIO</span>
+      </div>
+      <div class="transmission-status">
+        <div class="signal-strength-indicator">
+          <div class="signal-bar signal-1 active"></div>
+          <div class="signal-bar signal-2 active"></div>
+          <div class="signal-bar signal-3 active"></div>
+          <div class="signal-bar signal-4 active"></div>
+          <div class="signal-bar signal-5"></div>
+        </div>
+        <span class="broadcast-status">ON AIR</span>
       </div>
     </div>
 
-    <!-- Progress and Chapters -->
-    <div class="progress-container">
-      <div class="progress-track">
-        <div class="progress-fill"></div>
-        <div class="progress-handle"></div>
-
-        <!-- Chapter Markers -->
-        <div class="chapter-markers">
-          {chapters.map((chapter, index) => (
-            <button
-              class="chapter-marker"
-              data-timestamp={chapter.timestamp}
-              aria-label={`Jump to ${chapter.title}`}
-            >
-              <span class="marker-dot"></span>
-              <div class="chapter-tooltip">
-                <strong>{chapter.title}</strong>
-                {chapter.description && <p>{chapter.description}</p>}
-              </div>
-            </button>
-          ))}
+    <!-- Investigation Metadata -->
+    <div class="investigation-meta">
+      <h2 class="investigation-title">{title}</h2>
+      <div class="broadcast-metadata">
+        <div class="metadata-item">
+          <span class="meta-label">DURATION</span>
+          <span class="meta-value duration-display">{duration}</span>
+        </div>
+        <div class="metadata-item">
+          <span class="meta-label">CLASSIFICATION</span>
+          <span class="meta-value classification">INVESTIGATIVE AUDIO</span>
+        </div>
+        <div class="metadata-item">
+          <span class="meta-label">VERIFICATION</span>
+          <span class="meta-value verification-status">PEER REVIEWED</span>
         </div>
       </div>
     </div>
 
-    <!-- Secondary Controls -->
-    <div class="secondary-controls">
-      <button class="speed-control" aria-label="Playback speed">1×</button>
-      <button class="transcript-toggle active" aria-label="Toggle transcript">
+    <!-- Academic Credentials -->
+    <div class="academic-credentials">
+      <div class="credential-badge">
+        <span class="credential-text">ОРГА RESEARCH INSTITUTE</span>
+        <span class="credential-code">REG-2024-UA-001</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Underground Control Panel -->
+  <section class="underground-control-panel">
+    <div class="primary-broadcast-controls">
+      <button class="power-control-btn play-pause-btn" aria-label="Power On/Off">
+        <div class="control-face">
+          <svg class="power-on-icon play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5,3 19,12 5,21 5,3"></polygon>
+          </svg>
+          <svg class="power-off-icon pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </div>
+        <div class="control-label">POWER</div>
+      </button>
+
+      <div class="transmission-timer">
+        <div class="timer-display">
+          <span class="current-time">00:00</span>
+          <span class="time-separator">:</span>
+          <span class="total-time">{duration}</span>
+        </div>
+        <div class="timer-labels">
+          <span class="label-current">ELAPSED</span>
+          <span class="label-total">TOTAL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Industrial Progress System -->
+    <div class="industrial-progress-system">
+      <div class="progress-frame">
+        <div class="progress-industrial-track">
+          <div class="progress-fill-angular"></div>
+          <div class="progress-handle-geometric"></div>
+
+          <!-- Investigation Chapter Markers -->
+          <div class="investigation-markers">
+            {chapters.map((chapter, index) => (
+              <button
+                class="chapter-investigation-marker"
+                data-timestamp={chapter.timestamp}
+                aria-label={`Jump to ${chapter.title}`}
+              >
+                <div class="marker-geometric-indicator"></div>
+                <div class="investigation-chapter-tooltip">
+                  <div class="tooltip-header">
+                    <strong class="chapter-designation">{chapter.title}</strong>
+                  </div>
+                  {chapter.description && (
+                    <div class="chapter-methodology">
+                      <p>{chapter.description}</p>
+                    </div>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Grid Overlay -->
+      <div class="constructivist-grid-overlay">
+        <div class="grid-line vertical"></div>
+        <div class="grid-line vertical"></div>
+        <div class="grid-line horizontal"></div>
+      </div>
+    </div>
+
+    <!-- Research Control Panel -->
+    <div class="research-control-panel">
+      <button class="research-control-btn speed-control" aria-label="Analysis Speed">
+        <span class="control-value">1×</span>
+        <span class="control-designation">SPEED</span>
+      </button>
+
+      <button class="research-control-btn transcript-toggle active" aria-label="Research Transcript">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
           <polyline points="14,2 14,8 20,8"></polyline>
@@ -99,62 +168,89 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10,9 9,9 8,9"></polyline>
         </svg>
+        <span class="control-designation">TRANSCRIPT</span>
       </button>
-      <button class="volume-control" aria-label="Volume">
+
+      <button class="research-control-btn volume-control" aria-label="Audio Level">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
         </svg>
+        <span class="control-designation">LEVEL</span>
       </button>
     </div>
   </section>
 
-  <!-- Transcript Section -->
-  <section class="transcript-section">
-    <div class="transcript-container">
-      <div class="transcript-header">
-        <h3>Interactive Transcript</h3>
-        <p>Click any line to jump to that moment</p>
+  <!-- Research Documentation Section -->
+  <section class="research-documentation-section">
+    <div class="documentation-container">
+      <div class="documentation-header">
+        <div class="section-designation">
+          <h3 class="section-title">INVESTIGATION TRANSCRIPT</h3>
+          <span class="section-subtitle">Interactive Research Documentation</span>
+        </div>
+        <div class="documentation-instructions">
+          <p>CLICK ANY SEGMENT TO JUMP TO THAT MOMENT IN THE INVESTIGATION</p>
+        </div>
       </div>
 
-      <div class="transcript-content">
+      <div class="research-transcript-content">
         {transcript.map((segment, index) => (
           <div
-            class="transcript-segment"
+            class="research-segment"
             data-start={segment.start}
             data-end={segment.end}
             data-segment={index}
           >
             {segment.chapter && (
-              <div class="chapter-break">
-                <h4 class="chapter-title">{segment.chapter}</h4>
+              <div class="chapter-investigation-break">
+                <div class="chapter-designation-header">
+                  <h4 class="investigation-chapter-title">{segment.chapter}</h4>
+                  <div class="chapter-separator-line"></div>
+                </div>
               </div>
             )}
 
-            <div class="segment-content">
+            <div class="segment-documentation">
               {segment.speaker && (
-                <span class="speaker-label">{segment.speaker}</span>
+                <div class="researcher-identification">
+                  <span class="researcher-callsign">{segment.speaker}</span>
+                </div>
               )}
-              <p class="segment-text">{segment.text}</p>
+
+              <div class="research-statement">
+                <p class="statement-text">{segment.text}</p>
+              </div>
 
               {segment.evidence && segment.evidence.length > 0 && (
-                <div class="evidence-refs">
-                  <button class="evidence-toggle" aria-label="Show evidence">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/>
-                    </svg>
-                    <span>{segment.evidence.length} evidence</span>
+                <div class="evidence-documentation">
+                  <button class="evidence-access-control" aria-label="Access Evidence Files">
+                    <div class="evidence-indicator">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/>
+                      </svg>
+                      <span class="evidence-count">{segment.evidence.length}</span>
+                    </div>
+                    <span class="evidence-designation">EVIDENCE FILES</span>
                   </button>
 
-                  <div class="evidence-panel">
+                  <div class="evidence-archive-panel">
                     {segment.evidence.map((evidence, evidenceIndex) => (
-                      <div class="evidence-item">
-                        <div class="evidence-type">{evidence.type}</div>
-                        <a href={evidence.url} class="evidence-link" target="_blank" rel="noopener noreferrer">
-                          <h5>{evidence.title}</h5>
-                          {evidence.description && <p>{evidence.description}</p>}
-                        </a>
+                      <div class="evidence-file-entry">
+                        <div class="file-classification-label">
+                          <span class="classification-badge">{evidence.type.toUpperCase()}</span>
+                        </div>
+                        <div class="file-access-info">
+                          <a href={evidence.url} class="evidence-file-link" target="_blank" rel="noopener noreferrer">
+                            <div class="file-designation">
+                              <h5 class="file-title">{evidence.title}</h5>
+                              {evidence.description && (
+                                <p class="file-description">{evidence.description}</p>
+                              )}
+                            </div>
+                          </a>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -176,191 +272,495 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
 </div>
 
 <style>
-  .audio-story-player {
-    --player-primary: var(--folkup-maritime-deep);
-    --player-accent: var(--folkup-amber-warm);
-    --player-bg-primary: #0a0a0a;
-    --player-bg-secondary: #1a1a1a;
-    --player-bg-elevated: #2a2a2a;
-    --player-text-primary: #f8fafc;
-    --player-text-secondary: #94a3b8;
-    --player-border: rgba(255, 255, 255, 0.1);
-    --player-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  /* UNDERGROUND ACADEMIA RADIO STATION STYLING */
+  .audio-story-player.underground-radio-station {
+    /* Underground Academia Color System */
+    --ua-maritime-deep: #0a1728;
+    --ua-maritime-medium: #1a365d;
+    --ua-amber-warm: #d69e2e;
+    --ua-amber-bright: #f6e05e;
+    --ua-red-signal: #e53e3e;
+    --ua-grey-concrete: #718096;
+    --ua-white-paper: #f7fafc;
+    --ua-black-ink: #1a202c;
 
-    background: var(--player-bg-primary);
-    border-radius: 24px;
-    border: 1px solid var(--player-border);
-    box-shadow: var(--player-shadow);
-    color: var(--player-text-primary);
-    font-family: var(--font-family-sans);
+    /* Industrial Design System */
+    --ua-panel-primary: var(--ua-black-ink);
+    --ua-panel-secondary: var(--ua-maritime-deep);
+    --ua-panel-elevated: var(--ua-maritime-medium);
+    --ua-border-industrial: #4a5568;
+    --ua-text-primary: var(--ua-white-paper);
+    --ua-text-secondary: var(--ua-grey-concrete);
+    --ua-accent-warm: var(--ua-amber-warm);
+    --ua-accent-signal: var(--ua-red-signal);
+
+    /* Constructivist Grid System */
+    --ua-spacing-xs: 0.5rem;
+    --ua-spacing-sm: 1rem;
+    --ua-spacing-md: 1.5rem;
+    --ua-spacing-lg: 2rem;
+    --ua-spacing-xl: 3rem;
+
+    /* Industrial Effects */
+    --ua-shadow-industrial:
+      0 0 0 1px rgba(113, 128, 150, 0.2),
+      0 4px 16px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --ua-shadow-elevated:
+      0 0 0 2px var(--ua-amber-warm),
+      0 8px 32px rgba(0, 0, 0, 0.9),
+      inset 0 2px 0 rgba(255, 255, 255, 0.1);
+
+    background: var(--ua-panel-primary);
+    border: 3px solid var(--ua-border-industrial);
+    color: var(--ua-text-primary);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
     overflow: hidden;
     max-width: 100%;
-    margin: 2rem 0;
+    margin: var(--ua-spacing-lg) 0;
+    box-shadow: var(--ua-shadow-industrial);
+    position: relative;
+
+    /* Industrial noise texture */
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(215, 158, 46, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(229, 62, 62, 0.02) 0%, transparent 50%);
   }
 
-  /* Header Section */
-  .player-header {
-    background: linear-gradient(135deg, var(--player-bg-secondary) 0%, var(--player-bg-elevated) 100%);
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid var(--player-border);
+  /* RADIO STATION HEADER */
+  .radio-station-header {
+    background:
+      linear-gradient(135deg, var(--ua-panel-secondary) 0%, var(--ua-panel-elevated) 100%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(215, 158, 46, 0.05) 10px,
+        rgba(215, 158, 46, 0.05) 20px
+      );
+    padding: var(--ua-spacing-lg);
+    border-bottom: 2px solid var(--ua-amber-warm);
+    position: relative;
+    overflow: hidden;
   }
 
-  .story-title {
-    font-family: var(--font-family-display);
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--player-text-primary);
-    margin: 0 0 0.75rem 0;
-    line-height: 1.2;
+  .radio-station-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--ua-red-signal) 0%,
+      var(--ua-amber-warm) 50%,
+      var(--ua-red-signal) 100%);
+    animation: signal-sweep 3s ease-in-out infinite;
   }
 
-  .story-info {
+  @keyframes signal-sweep {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  /* BROADCAST IDENTIFICATION */
+  .station-identification {
     display: flex;
-    gap: 1.5rem;
     align-items: center;
+    gap: var(--ua-spacing-lg);
+    margin-bottom: var(--ua-spacing-md);
+  }
+
+  .frequency-display {
+    display: flex;
+    align-items: baseline;
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-amber-warm);
+    padding: var(--ua-spacing-sm) var(--ua-spacing-md);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .frequency-number {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--ua-amber-warm);
+    line-height: 1;
+  }
+
+  .frequency-unit {
     font-size: 0.875rem;
-    color: var(--player-text-secondary);
+    color: var(--ua-text-secondary);
+    margin-left: 0.25rem;
   }
 
-  .duration {
-    font-family: var(--font-family-mono);
-    background: var(--player-primary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-weight: 600;
+  .station-callsign {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
-  .format {
+  .underground-designation {
+    font-family: 'Staatliches', 'Arial Black', sans-serif;
+    font-size: 1.25rem;
+    color: var(--ua-red-signal);
+    line-height: 0.9;
     text-transform: uppercase;
-    font-weight: 600;
     letter-spacing: 0.05em;
   }
 
-  /* Audio Controls Section */
-  .audio-controls-section {
-    padding: 2rem 2.5rem;
-    background: var(--player-bg-secondary);
-    border-bottom: 1px solid var(--player-border);
+  .radio-designation {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ua-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
   }
 
-  .primary-controls {
+  .transmission-status {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: var(--ua-spacing-xs);
   }
 
-  .play-pause-btn {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--player-primary) 0%, var(--player-accent) 100%);
-    border: none;
-    color: white;
-    cursor: pointer;
+  .signal-strength-indicator {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 25px rgba(29, 78, 216, 0.3);
-  }
-
-  .play-pause-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 35px rgba(29, 78, 216, 0.4);
-  }
-
-  .play-pause-btn:active {
-    transform: scale(0.98);
-  }
-
-  .play-pause-btn svg {
-    width: 24px;
+    gap: 2px;
+    align-items: end;
     height: 24px;
   }
 
-  .time-display {
-    font-family: var(--font-family-mono);
-    font-size: 1.125rem;
+  .signal-bar {
+    width: 4px;
+    background: rgba(113, 128, 150, 0.3);
+    transition: background-color 0.3s ease;
+  }
+
+  .signal-1 { height: 6px; }
+  .signal-2 { height: 10px; }
+  .signal-3 { height: 14px; }
+  .signal-4 { height: 18px; }
+  .signal-5 { height: 24px; }
+
+  .signal-bar.active {
+    background: var(--ua-amber-warm);
+    box-shadow: 0 0 4px var(--ua-amber-warm);
+  }
+
+  .broadcast-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--ua-red-signal);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* INVESTIGATION METADATA */
+  .investigation-meta {
+    margin-bottom: var(--ua-spacing-lg);
+  }
+
+  .investigation-title {
+    font-family: 'Staatliches', 'Arial Black', sans-serif;
+    font-size: 1.5rem;
+    color: var(--ua-text-primary);
+    margin: 0 0 var(--ua-spacing-sm) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .broadcast-metadata {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--ua-spacing-sm);
+  }
+
+  .metadata-item {
+    background: var(--ua-black-ink);
+    border: 1px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-xs) var(--ua-spacing-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--ua-amber-warm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: var(--ua-text-primary);
+    font-weight: 500;
+  }
+
+  .duration-display {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ua-amber-warm);
+    font-weight: 700;
+  }
+
+  .verification-status {
+    color: var(--ua-red-signal);
     font-weight: 600;
+  }
+
+  /* ACADEMIC CREDENTIALS */
+  .academic-credentials {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .credential-badge {
+    background: var(--ua-amber-warm);
+    color: var(--ua-black-ink);
+    padding: var(--ua-spacing-xs) var(--ua-spacing-sm);
+    border: 2px solid var(--ua-black-ink);
+    transform: rotate(-2deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .credential-text {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .credential-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    opacity: 0.8;
+    margin-top: 0.125rem;
+  }
+
+  /* UNDERGROUND CONTROL PANEL */
+  .underground-control-panel {
+    background: var(--ua-panel-secondary);
+    padding: var(--ua-spacing-lg);
+    border-bottom: 1px solid var(--ua-border-industrial);
+    position: relative;
+  }
+
+  .underground-control-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--ua-spacing-lg);
+    right: var(--ua-spacing-lg);
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--ua-amber-warm) 20%,
+      var(--ua-amber-warm) 80%,
+      transparent 100%);
+  }
+
+  /* PRIMARY BROADCAST CONTROLS */
+  .primary-broadcast-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--ua-spacing-xl);
+    margin-bottom: var(--ua-spacing-lg);
+  }
+
+  .power-control-btn {
+    width: 80px;
+    height: 80px;
+    background: var(--ua-black-ink);
+    border: 3px solid var(--ua-border-industrial);
+    color: var(--ua-text-secondary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .power-control-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--ua-amber-warm), var(--ua-red-signal), var(--ua-amber-warm));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .power-control-btn:hover,
+  .power-control-btn.playing {
+    border-color: var(--ua-amber-warm);
+    color: var(--ua-amber-warm);
+    transform: scale(1.02);
+    box-shadow:
+      0 0 20px rgba(215, 158, 46, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .power-control-btn.playing::before {
+    opacity: 1;
+  }
+
+  .control-face {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .control-face svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .control-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+
+  .transmission-timer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ua-spacing-xs);
+  }
+
+  .timer-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-sm) var(--ua-spacing-md);
   }
 
   .current-time {
-    color: var(--player-accent);
+    color: var(--ua-amber-warm);
   }
 
-  .separator {
-    color: var(--player-text-secondary);
+  .time-separator {
+    color: var(--ua-text-secondary);
   }
 
-  /* Progress Section */
-  .progress-container {
+  .total-time {
+    color: var(--ua-text-primary);
+  }
+
+  .timer-labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .label-current,
+  .label-total {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--ua-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* INDUSTRIAL PROGRESS SYSTEM */
+  .industrial-progress-system {
+    margin-bottom: var(--ua-spacing-lg);
     position: relative;
-    margin-bottom: 1.5rem;
   }
 
-  .progress-track {
-    height: 12px;
-    background: var(--player-bg-elevated);
-    border-radius: 6px;
+  .progress-frame {
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-sm);
+    position: relative;
+  }
+
+  .progress-industrial-track {
+    height: 16px;
+    background: var(--ua-panel-primary);
+    border: 1px solid var(--ua-border-industrial);
     position: relative;
     cursor: pointer;
-    border: 1px solid var(--player-border);
   }
 
-  .progress-fill {
+  .progress-fill-angular {
     height: 100%;
-    background: linear-gradient(90deg, var(--player-primary) 0%, var(--player-accent) 100%);
-    border-radius: 6px;
+    background: linear-gradient(90deg,
+      var(--ua-red-signal) 0%,
+      var(--ua-amber-warm) 50%,
+      var(--ua-amber-warm) 100%);
     width: 0%;
     transition: width 0.1s ease-out;
     position: relative;
     overflow: hidden;
   }
 
-  .progress-fill::after {
+  .progress-fill-angular::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-    animation: shimmer 2s infinite;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      rgba(255,255,255,0.1) 2px,
+      transparent 4px
+    );
+    animation: industrial-scan 2s linear infinite;
   }
 
-  @keyframes shimmer {
+  @keyframes industrial-scan {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
   }
 
-  .progress-handle {
-    width: 20px;
-    height: 20px;
-    background: var(--player-accent);
-    border: 3px solid white;
-    border-radius: 50%;
+  .progress-handle-geometric {
+    width: 24px;
+    height: 24px;
+    background: var(--ua-amber-warm);
+    border: 2px solid var(--ua-black-ink);
     position: absolute;
     top: 50%;
     left: 0%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(45deg);
     cursor: grab;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(215, 158, 46, 0.4);
   }
 
-  .progress-handle:hover,
-  .progress-handle:active {
-    transform: translate(-50%, -50%) scale(1.2);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  .progress-handle-geometric:hover,
+  .progress-handle-geometric:active {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+    box-shadow: 0 0 16px var(--ua-amber-warm);
   }
 
-  /* Chapter Markers */
-  .chapter-markers {
+  /* INVESTIGATION MARKERS */
+  .investigation-markers {
     position: absolute;
     top: 0;
     left: 0;
@@ -369,7 +769,7 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
     pointer-events: none;
   }
 
-  .chapter-marker {
+  .chapter-investigation-marker {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -381,232 +781,395 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
     display: none; /* Hidden until positioned by JavaScript */
   }
 
-  .marker-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--player-text-primary);
-    border: 2px solid var(--player-bg-primary);
-    border-radius: 50%;
-    display: block;
+  .marker-geometric-indicator {
+    width: 12px;
+    height: 12px;
+    background: var(--ua-text-primary);
+    border: 2px solid var(--ua-black-ink);
+    transform: rotate(45deg);
     transition: all 0.2s ease;
   }
 
-  .chapter-marker:hover .marker-dot {
-    background: var(--player-accent);
-    transform: scale(1.5);
+  .chapter-investigation-marker:hover .marker-geometric-indicator {
+    background: var(--ua-amber-warm);
+    transform: rotate(45deg) scale(1.3);
+    box-shadow: 0 0 8px var(--ua-amber-warm);
   }
 
-  .chapter-tooltip {
+  .investigation-chapter-tooltip {
     position: absolute;
-    bottom: 120%;
+    bottom: 150%;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--player-bg-elevated);
-    border: 1px solid var(--player-border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-amber-warm);
+    padding: var(--ua-spacing-sm);
+    font-size: 0.75rem;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     min-width: 200px;
-    text-align: left;
   }
 
-  .chapter-tooltip strong {
-    color: var(--player-accent);
-    display: block;
+  .tooltip-header {
     margin-bottom: 0.25rem;
   }
 
-  .chapter-tooltip p {
+  .chapter-designation {
+    color: var(--ua-amber-warm);
+    font-family: 'Staatliches', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+  }
+
+  .chapter-methodology p {
     margin: 0;
-    color: var(--player-text-secondary);
-    font-size: 0.8125rem;
+    color: var(--ua-text-secondary);
+    font-size: 0.75rem;
     white-space: normal;
   }
 
-  .chapter-marker:hover .chapter-tooltip {
+  .chapter-investigation-marker:hover .investigation-chapter-tooltip {
     opacity: 1;
   }
 
-  /* Secondary Controls */
-  .secondary-controls {
+  /* CONSTRUCTIVIST GRID OVERLAY */
+  .constructivist-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .grid-line {
+    position: absolute;
+    background: var(--ua-amber-warm);
+  }
+
+  .grid-line.vertical {
+    width: 1px;
+    height: 100%;
+    top: 0;
+  }
+
+  .grid-line.vertical:nth-child(1) { left: 25%; }
+  .grid-line.vertical:nth-child(2) { left: 75%; }
+
+  .grid-line.horizontal {
+    height: 1px;
+    width: 100%;
+    left: 0;
+    top: 50%;
+  }
+
+  /* RESEARCH CONTROL PANEL */
+  .research-control-panel {
     display: flex;
-    gap: 1rem;
+    gap: var(--ua-spacing-sm);
     align-items: center;
   }
 
-  .secondary-controls button {
-    background: var(--player-bg-elevated);
-    border: 1px solid var(--player-border);
-    border-radius: 8px;
-    padding: 0.75rem;
-    color: var(--player-text-secondary);
+  .research-control-btn {
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-sm);
+    color: var(--ua-text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
-    font-size: 0.875rem;
-    font-weight: 600;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
+    min-width: 64px;
   }
 
-  .secondary-controls button:hover,
-  .secondary-controls button.active {
-    background: var(--player-primary);
-    color: white;
-    border-color: var(--player-primary);
+  .research-control-btn:hover,
+  .research-control-btn.active {
+    background: var(--ua-amber-warm);
+    color: var(--ua-black-ink);
+    border-color: var(--ua-amber-warm);
+    transform: translateY(-1px);
   }
 
-  .secondary-controls button svg {
+  .research-control-btn svg {
     width: 16px;
     height: 16px;
   }
 
-  /* Transcript Section */
-  .transcript-section {
-    background: var(--player-bg-primary);
+  .control-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .control-designation {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* RESEARCH DOCUMENTATION SECTION */
+  .research-documentation-section {
+    background: var(--ua-panel-primary);
     max-height: 500px;
     overflow-y: auto;
+    border-top: 1px solid var(--ua-border-industrial);
   }
 
-  .transcript-container {
-    padding: 2rem 2.5rem;
+  .documentation-container {
+    padding: var(--ua-spacing-lg);
   }
 
-  .transcript-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--player-border);
+  .documentation-header {
+    margin-bottom: var(--ua-spacing-lg);
+    padding-bottom: var(--ua-spacing-md);
+    border-bottom: 2px solid var(--ua-amber-warm);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
-  .transcript-header h3 {
-    font-family: var(--font-family-display);
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: var(--player-text-primary);
-    margin: 0 0 0.5rem 0;
+  .section-designation {
+    flex: 1;
   }
 
-  .transcript-header p {
-    color: var(--player-text-secondary);
-    margin: 0;
-    font-size: 0.9375rem;
-  }
-
-  .transcript-content {
-    space-y: 1.5rem;
-  }
-
-  .transcript-segment {
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-    border-radius: 12px;
-    padding: 1.25rem;
-    cursor: pointer;
-    border: 1px solid transparent;
-  }
-
-  .transcript-segment:hover {
-    background: var(--player-bg-secondary);
-    border-color: var(--player-border);
-  }
-
-  .transcript-segment.active {
-    background: var(--player-bg-elevated);
-    border-color: var(--player-primary);
-    box-shadow: 0 0 0 1px var(--player-primary);
-  }
-
-  .transcript-segment.current {
-    background: linear-gradient(135deg, rgba(29, 78, 216, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-    border-color: var(--player-accent);
-  }
-
-  .chapter-break {
-    margin: 2rem 0 1.5rem 0;
-    padding: 1rem 0;
-    border-top: 2px solid var(--player-primary);
-  }
-
-  .chapter-title {
-    font-family: var(--font-family-display);
+  .section-title {
+    font-family: 'Staatliches', sans-serif;
     font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--player-accent);
-    margin: 0;
-  }
-
-  .speaker-label {
-    display: inline-block;
-    background: var(--player-primary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
+    color: var(--ua-amber-warm);
+    margin: 0 0 0.25rem 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
-  .segment-text {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--player-text-primary);
-    margin: 0;
+  .section-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ua-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  /* Evidence References */
-  .evidence-refs {
-    margin-top: 1rem;
+  .documentation-instructions {
+    flex-shrink: 0;
+    margin-left: var(--ua-spacing-lg);
+  }
+
+  .documentation-instructions p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--ua-red-signal);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    background: var(--ua-black-ink);
+    padding: var(--ua-spacing-xs) var(--ua-spacing-sm);
+    border: 1px solid var(--ua-red-signal);
+  }
+
+  /* RESEARCH TRANSCRIPT CONTENT */
+  .research-transcript-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ua-spacing-md);
+  }
+
+  .research-segment {
+    background: var(--ua-panel-secondary);
+    border: 1px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
     position: relative;
   }
 
-  .evidence-toggle {
-    background: var(--player-bg-elevated);
-    border: 1px solid var(--player-border);
-    border-radius: 8px;
-    padding: 0.625rem 1rem;
-    color: var(--player-accent);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.875rem;
-    font-weight: 600;
+  .research-segment::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--ua-border-industrial);
+    transition: all 0.3s ease;
+  }
+
+  .research-segment:hover {
+    background: var(--ua-panel-elevated);
+    border-color: var(--ua-amber-warm);
+  }
+
+  .research-segment:hover::before {
+    background: var(--ua-amber-warm);
+  }
+
+  .research-segment.active {
+    background: var(--ua-panel-elevated);
+    border-color: var(--ua-amber-warm);
+    box-shadow: 0 0 0 1px var(--ua-amber-warm);
+  }
+
+  .research-segment.active::before {
+    background: var(--ua-amber-warm);
+  }
+
+  .research-segment.current {
+    background: linear-gradient(135deg,
+      rgba(215, 158, 46, 0.1) 0%,
+      rgba(229, 62, 62, 0.05) 100%);
+    border-color: var(--ua-red-signal);
+  }
+
+  .research-segment.current::before {
+    background: var(--ua-red-signal);
+    animation: current-segment-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes current-segment-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* CHAPTER INVESTIGATION BREAKS */
+  .chapter-investigation-break {
+    margin: var(--ua-spacing-xl) 0 var(--ua-spacing-lg) 0;
+    padding: var(--ua-spacing-md) 0;
+  }
+
+  .chapter-designation-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--ua-spacing-md);
   }
 
-  .evidence-toggle:hover {
-    background: var(--player-accent);
-    color: white;
-    border-color: var(--player-accent);
+  .investigation-chapter-title {
+    font-family: 'Staatliches', sans-serif;
+    font-size: 1.125rem;
+    color: var(--ua-red-signal);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  .evidence-toggle svg {
-    width: 16px;
-    height: 16px;
+  .chapter-separator-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--ua-red-signal) 0%,
+      transparent 100%);
   }
 
-  .evidence-panel {
-    background: var(--player-bg-elevated);
-    border: 1px solid var(--player-border);
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-top: 0.75rem;
+  /* SEGMENT DOCUMENTATION */
+  .segment-documentation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ua-spacing-sm);
+  }
+
+  .researcher-identification {
+    align-self: flex-start;
+  }
+
+  .researcher-callsign {
+    display: inline-block;
+    background: var(--ua-red-signal);
+    color: var(--ua-white-paper);
+    padding: 0.25rem 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--ua-black-ink);
+  }
+
+  .research-statement {
+    flex: 1;
+  }
+
+  .statement-text {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--ua-text-primary);
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* EVIDENCE DOCUMENTATION */
+  .evidence-documentation {
+    margin-top: var(--ua-spacing-sm);
+    position: relative;
+  }
+
+  .evidence-access-control {
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-border-industrial);
+    padding: var(--ua-spacing-sm);
+    color: var(--ua-amber-warm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--ua-spacing-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .evidence-access-control:hover {
+    background: var(--ua-amber-warm);
+    color: var(--ua-black-ink);
+    border-color: var(--ua-amber-warm);
+    transform: translateX(2px);
+  }
+
+  .evidence-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .evidence-indicator svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .evidence-count {
+    background: var(--ua-red-signal);
+    color: var(--ua-white-paper);
+    padding: 0.125rem 0.375rem;
+    border-radius: 2px;
+    font-size: 0.625rem;
+    font-weight: 700;
+  }
+
+  .evidence-archive-panel {
+    background: var(--ua-black-ink);
+    border: 2px solid var(--ua-amber-warm);
+    margin-top: var(--ua-spacing-sm);
     display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
   }
 
-  .evidence-panel.show {
+  .evidence-archive-panel.show {
     display: block;
-    animation: slideDown 0.3s ease-out;
+    max-height: 500px;
+    animation: evidence-panel-open 0.3s ease-out;
   }
 
-  @keyframes slideDown {
+  @keyframes evidence-panel-open {
     from {
       opacity: 0;
       transform: translateY(-10px);
@@ -617,57 +1180,68 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
     }
   }
 
-  .evidence-item {
+  .evidence-file-entry {
     display: flex;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--player-border);
+    gap: var(--ua-spacing-sm);
+    padding: var(--ua-spacing-md);
+    border-bottom: 1px solid var(--ua-border-industrial);
+    align-items: flex-start;
   }
 
-  .evidence-item:last-child {
+  .evidence-file-entry:last-child {
     border-bottom: none;
-    padding-bottom: 0;
   }
 
-  .evidence-type {
-    background: var(--player-primary);
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    height: fit-content;
+  .file-classification-label {
     flex-shrink: 0;
   }
 
-  .evidence-link {
-    text-decoration: none;
-    color: inherit;
+  .classification-badge {
+    background: var(--ua-red-signal);
+    color: var(--ua-white-paper);
+    padding: 0.25rem 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--ua-black-ink);
+  }
+
+  .file-access-info {
     flex: 1;
   }
 
-  .evidence-link h5 {
-    color: var(--player-accent);
-    font-size: 0.9375rem;
+  .evidence-file-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .file-designation {
+    flex: 1;
+  }
+
+  .file-title {
+    color: var(--ua-amber-warm);
+    font-size: 0.875rem;
     font-weight: 600;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.25rem 0;
     transition: color 0.2s ease;
   }
 
-  .evidence-link:hover h5 {
-    color: var(--player-text-primary);
+  .evidence-file-link:hover .file-title {
+    color: var(--ua-white-paper);
   }
 
-  .evidence-link p {
-    color: var(--player-text-secondary);
-    font-size: 0.875rem;
+  .file-description {
+    color: var(--ua-text-secondary);
+    font-size: 0.75rem;
     line-height: 1.5;
     margin: 0;
   }
 
-  /* Hidden States */
+  /* HIDDEN STATES */
   .hidden {
     display: none;
   }
@@ -676,57 +1250,101 @@ const { title, duration = "00:00", audioSrc, transcript, chapters } = Astro.prop
     display: none;
   }
 
-  /* Responsive Design */
+  /* RESPONSIVE DESIGN */
   @media (max-width: 768px) {
-    .audio-story-player {
-      border-radius: 16px;
-      margin: 1rem 0;
+    .underground-radio-station {
+      margin: var(--ua-spacing-sm) 0;
     }
 
-    .player-header,
-    .audio-controls-section,
-    .transcript-container {
-      padding: 1.5rem;
+    .radio-station-header,
+    .underground-control-panel,
+    .documentation-container {
+      padding: var(--ua-spacing-md);
     }
 
-    .story-title {
-      font-size: 1.5rem;
-    }
-
-    .story-info {
+    .station-identification {
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: var(--ua-spacing-sm);
     }
 
-    .primary-controls {
+    .broadcast-metadata {
+      grid-template-columns: 1fr;
+    }
+
+    .investigation-title {
+      font-size: 1.25rem;
+    }
+
+    .primary-broadcast-controls {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      gap: var(--ua-spacing-md);
     }
 
-    .play-pause-btn {
-      width: 56px;
-      height: 56px;
+    .power-control-btn {
+      width: 72px;
+      height: 72px;
     }
 
-    .secondary-controls {
+    .research-control-panel {
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: var(--ua-spacing-xs);
     }
 
-    .transcript-section {
-      max-height: 400px;
+    .documentation-header {
+      flex-direction: column;
+      gap: var(--ua-spacing-sm);
     }
 
-    .chapter-tooltip {
+    .documentation-instructions {
+      margin-left: 0;
+    }
+
+    .investigation-chapter-tooltip {
       min-width: 150px;
+    }
+
+    .evidence-file-entry {
+      flex-direction: column;
+      gap: var(--ua-spacing-xs);
+    }
+  }
+
+  /* ACCESSIBILITY ENHANCEMENTS */
+  @media (prefers-reduced-motion: reduce) {
+    .signal-sweep,
+    .industrial-scan,
+    .current-segment-pulse {
+      animation: none;
+    }
+
+    .power-control-btn,
+    .research-control-btn,
+    .evidence-access-control {
+      transform: none;
+    }
+  }
+
+  /* HIGH CONTRAST MODE */
+  @media (prefers-contrast: high) {
+    .underground-radio-station {
+      --ua-text-secondary: #ffffff;
+      --ua-amber-warm: #ffff00;
+      --ua-red-signal: #ff0000;
+      border-width: 4px;
+    }
+
+    .radio-station-header,
+    .progress-frame,
+    .evidence-archive-panel {
+      border-width: 3px;
     }
   }
 </style>
 
 <script>
-class AudioStoryPlayer {
+class UndergroundAudioPlayer {
   constructor(container) {
     this.container = container;
     this.audio = container.querySelector('.audio-element');
@@ -734,15 +1352,15 @@ class AudioStoryPlayer {
     this.playIcon = container.querySelector('.play-icon');
     this.pauseIcon = container.querySelector('.pause-icon');
     this.currentTimeSpan = container.querySelector('.current-time');
-    this.progressFill = container.querySelector('.progress-fill');
-    this.progressHandle = container.querySelector('.progress-handle');
-    this.progressTrack = container.querySelector('.progress-track');
-    this.chapterMarkers = container.querySelectorAll('.chapter-marker');
-    this.transcriptSegments = container.querySelectorAll('.transcript-segment');
-    this.evidenceToggles = container.querySelectorAll('.evidence-toggle');
+    this.progressFill = container.querySelector('.progress-fill-angular');
+    this.progressHandle = container.querySelector('.progress-handle-geometric');
+    this.progressTrack = container.querySelector('.progress-industrial-track');
+    this.chapterMarkers = container.querySelectorAll('.chapter-investigation-marker');
+    this.transcriptSegments = container.querySelectorAll('.research-segment');
+    this.evidenceToggles = container.querySelectorAll('.evidence-access-control');
     this.speedControl = container.querySelector('.speed-control');
     this.transcriptToggle = container.querySelector('.transcript-toggle');
-    this.transcriptSection = container.querySelector('.transcript-section');
+    this.transcriptSection = container.querySelector('.research-documentation-section');
 
     this.isPlaying = false;
     this.currentSegment = null;
@@ -754,117 +1372,130 @@ class AudioStoryPlayer {
 
   init() {
     this.bindEvents();
-    this.updateTimeDisplay();
-    this.setupChapterMarkers();
+    this.initializeChapterMarkers();
+    this.initializeTranscriptSegments();
+    this.initializeEvidenceToggles();
+    this.updateProgress();
   }
 
   bindEvents() {
-    // Play/Pause
-    this.playPauseBtn?.addEventListener('click', () => this.togglePlay());
+    // Play/Pause control
+    this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
 
     // Progress tracking
-    this.audio?.addEventListener('timeupdate', () => this.updateProgress());
-    this.audio?.addEventListener('loadedmetadata', () => {
-      this.updateTimeDisplay();
-      this.updateChapterPositions();
-    });
-    this.audio?.addEventListener('ended', () => this.onAudioEnded());
-
-    // Progress interaction
-    this.progressTrack?.addEventListener('click', (e) => this.seekToPosition(e));
-
-    // Chapter markers
-    this.chapterMarkers.forEach(marker => {
-      marker.addEventListener('click', (e) => {
-        const timestamp = parseFloat(e.currentTarget.dataset.timestamp);
-        this.seekToTime(timestamp);
-      });
-    });
-
-    // Transcript interaction
-    this.transcriptSegments.forEach(segment => {
-      segment.addEventListener('click', () => {
-        const startTime = parseFloat(segment.dataset.start);
-        this.seekToTime(startTime);
-      });
-    });
-
-    // Evidence toggles
-    this.evidenceToggles.forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const panel = toggle.nextElementSibling;
-        panel.classList.toggle('show');
-      });
-    });
+    this.audio.addEventListener('timeupdate', () => this.updateProgress());
+    this.audio.addEventListener('loadedmetadata', () => this.positionChapterMarkers());
+    this.progressTrack.addEventListener('click', (e) => this.seekToPosition(e));
 
     // Speed control
-    this.speedControl?.addEventListener('click', () => this.cycleSpeed());
+    this.speedControl.addEventListener('click', () => this.cyclePlaybackSpeed());
 
     // Transcript toggle
-    this.transcriptToggle?.addEventListener('click', () => this.toggleTranscript());
+    this.transcriptToggle.addEventListener('click', () => this.toggleTranscript());
 
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+    // Handle drag
+    this.progressHandle.addEventListener('mousedown', (e) => this.startDragging(e));
+    document.addEventListener('mousemove', (e) => this.handleDragging(e));
+    document.addEventListener('mouseup', () => this.stopDragging());
+
+    this.isDragging = false;
   }
 
-  togglePlay() {
+  togglePlayPause() {
     if (this.isPlaying) {
       this.audio.pause();
+      this.playIcon.classList.remove('hidden');
+      this.pauseIcon.classList.add('hidden');
+      this.playPauseBtn.classList.remove('playing');
     } else {
       this.audio.play();
+      this.playIcon.classList.add('hidden');
+      this.pauseIcon.classList.remove('hidden');
+      this.playPauseBtn.classList.add('playing');
     }
     this.isPlaying = !this.isPlaying;
-    this.updatePlayButton();
-  }
-
-  updatePlayButton() {
-    if (this.isPlaying) {
-      this.playIcon?.classList.add('hidden');
-      this.pauseIcon?.classList.remove('hidden');
-    } else {
-      this.playIcon?.classList.remove('hidden');
-      this.pauseIcon?.classList.add('hidden');
-    }
   }
 
   updateProgress() {
-    if (!this.audio) return;
+    if (this.audio.duration && !this.isDragging) {
+      const progress = (this.audio.currentTime / this.audio.duration) * 100;
+      this.progressFill.style.width = `${progress}%`;
+      this.progressHandle.style.left = `${progress}%`;
 
-    const progress = (this.audio.currentTime / this.audio.duration) * 100;
-    this.progressFill.style.width = `${progress}%`;
-    this.progressHandle.style.left = `${progress}%`;
+      // Update current time
+      const minutes = Math.floor(this.audio.currentTime / 60);
+      const seconds = Math.floor(this.audio.currentTime % 60);
+      this.currentTimeSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-    this.updateTimeDisplay();
-    this.updateActiveSegment();
+      // Update current transcript segment
+      this.updateCurrentTranscriptSegment();
+    }
   }
 
-  updateTimeDisplay() {
-    if (!this.audio || !this.currentTimeSpan) return;
+  seekToPosition(e) {
+    const rect = this.progressTrack.getBoundingClientRect();
+    const position = (e.clientX - rect.left) / rect.width;
+    const time = position * this.audio.duration;
+    this.audio.currentTime = time;
+  }
 
-    const currentTime = this.formatTime(this.audio.currentTime || 0);
-    this.currentTimeSpan.textContent = currentTime;
+  startDragging(e) {
+    this.isDragging = true;
+    this.progressHandle.style.cursor = 'grabbing';
+  }
 
-    // Update total time display if audio duration is available
-    const totalTimeSpan = this.container.querySelector('.total-time');
-    if (totalTimeSpan && this.audio.duration && !isNaN(this.audio.duration)) {
-      const formattedDuration = this.formatTime(this.audio.duration);
-      totalTimeSpan.textContent = formattedDuration;
+  handleDragging(e) {
+    if (this.isDragging) {
+      const rect = this.progressTrack.getBoundingClientRect();
+      let position = (e.clientX - rect.left) / rect.width;
+      position = Math.max(0, Math.min(1, position));
 
-      // Also update header duration badge
-      const durationBadge = this.container.querySelector('.duration');
-      if (durationBadge) {
-        durationBadge.textContent = formattedDuration;
+      this.progressFill.style.width = `${position * 100}%`;
+      this.progressHandle.style.left = `${position * 100}%`;
+
+      if (this.audio.duration) {
+        this.audio.currentTime = position * this.audio.duration;
       }
     }
   }
 
-  updateActiveSegment() {
-    if (!this.audio) return;
+  stopDragging() {
+    this.isDragging = false;
+    this.progressHandle.style.cursor = 'grab';
+  }
 
+  initializeChapterMarkers() {
+    this.chapterMarkers.forEach((marker) => {
+      marker.addEventListener('click', () => {
+        const timestamp = parseFloat(marker.dataset.timestamp);
+        this.audio.currentTime = timestamp;
+      });
+    });
+  }
+
+  positionChapterMarkers() {
+    this.chapterMarkers.forEach((marker) => {
+      const timestamp = parseFloat(marker.dataset.timestamp);
+      const position = (timestamp / this.audio.duration) * 100;
+      marker.style.left = `${position}%`;
+      marker.style.display = 'block';
+    });
+  }
+
+  initializeTranscriptSegments() {
+    this.transcriptSegments.forEach((segment) => {
+      segment.addEventListener('click', () => {
+        const start = parseFloat(segment.dataset.start);
+        this.audio.currentTime = start;
+      });
+    });
+  }
+
+  updateCurrentTranscriptSegment() {
     const currentTime = this.audio.currentTime;
+    let currentSegment = null;
 
-    this.transcriptSegments.forEach(segment => {
+    this.transcriptSegments.forEach((segment) => {
       const start = parseFloat(segment.dataset.start);
       const end = parseFloat(segment.dataset.end);
 
@@ -872,116 +1503,40 @@ class AudioStoryPlayer {
 
       if (currentTime >= start && currentTime <= end) {
         segment.classList.add('current');
-        this.currentSegment = segment;
-
-        // Auto-scroll to current segment
-        segment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        currentSegment = segment;
       }
+    });
+
+    this.currentSegment = currentSegment;
+  }
+
+  initializeEvidenceToggles() {
+    this.evidenceToggles.forEach((toggle) => {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const panel = toggle.nextElementSibling;
+        panel.classList.toggle('show');
+      });
     });
   }
 
-  seekToPosition(e) {
-    if (!this.audio || !this.progressTrack) return;
-
-    const rect = this.progressTrack.getBoundingClientRect();
-    const percent = (e.clientX - rect.left) / rect.width;
-    const seekTime = percent * this.audio.duration;
-
-    this.seekToTime(seekTime);
-  }
-
-  seekToTime(time) {
-    if (!this.audio) return;
-
-    this.audio.currentTime = Math.max(0, Math.min(time, this.audio.duration));
-    this.updateProgress();
-  }
-
-  cycleSpeed() {
+  cyclePlaybackSpeed() {
     this.currentSpeedIndex = (this.currentSpeedIndex + 1) % this.playbackSpeeds.length;
-    const newSpeed = this.playbackSpeeds[this.currentSpeedIndex];
-
-    if (this.audio) {
-      this.audio.playbackRate = newSpeed;
-    }
-
-    if (this.speedControl) {
-      this.speedControl.textContent = `${newSpeed}×`;
-    }
+    const speed = this.playbackSpeeds[this.currentSpeedIndex];
+    this.audio.playbackRate = speed;
+    this.speedControl.querySelector('.control-value').textContent = `${speed}×`;
   }
 
   toggleTranscript() {
-    this.transcriptSection?.classList.toggle('hidden');
-    this.transcriptToggle?.classList.toggle('active');
-  }
-
-  onAudioEnded() {
-    this.isPlaying = false;
-    this.updatePlayButton();
-    this.audio.currentTime = 0;
-    this.updateProgress();
-  }
-
-  handleKeyboard(e) {
-    // Only handle if this player is in focus
-    if (!this.container.contains(document.activeElement)) return;
-
-    switch (e.code) {
-      case 'Space':
-        e.preventDefault();
-        this.togglePlay();
-        break;
-      case 'ArrowLeft':
-        e.preventDefault();
-        this.seekToTime(this.audio.currentTime - 10);
-        break;
-      case 'ArrowRight':
-        e.preventDefault();
-        this.seekToTime(this.audio.currentTime + 10);
-        break;
-      case 'KeyT':
-        e.preventDefault();
-        this.toggleTranscript();
-        break;
-    }
-  }
-
-  setupChapterMarkers() {
-    // Initial setup - will position once audio metadata loads
-    this.updateChapterPositions();
-  }
-
-  updateChapterPositions() {
-    if (!this.audio || !this.audio.duration || isNaN(this.audio.duration)) {
-      return; // Wait for metadata to load
-    }
-
-    const audioDuration = this.audio.duration;
-
-    this.chapterMarkers.forEach(marker => {
-      const timestamp = parseFloat(marker.dataset.timestamp);
-      const position = (timestamp / audioDuration) * 100;
-
-      // Only position if timestamp is valid and within duration
-      if (!isNaN(timestamp) && timestamp <= audioDuration) {
-        marker.style.left = `${Math.max(0, Math.min(100, position))}%`;
-        marker.style.display = 'block';
-      } else {
-        marker.style.display = 'none'; // Hide invalid chapters
-      }
-    });
-  }
-
-  formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    this.transcriptSection.style.display =
+      this.transcriptSection.style.display === 'none' ? 'block' : 'none';
+    this.transcriptToggle.classList.toggle('active');
   }
 }
 
-// Initialize all audio story players
+// Initialize player when DOM loads
 document.addEventListener('DOMContentLoaded', () => {
-  const players = document.querySelectorAll('.audio-story-player');
-  players.forEach(player => new AudioStoryPlayer(player));
+  const players = document.querySelectorAll('.underground-radio-station');
+  players.forEach(player => new UndergroundAudioPlayer(player));
 });
 </script>
