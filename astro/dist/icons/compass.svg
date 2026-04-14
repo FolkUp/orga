@@ -1,0 +1,43 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Navigation Research Instrument - Angular Soviet Compass -->
+  <defs>
+    <linearGradient id="compass-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A365D"/>
+      <stop offset="100%" stop-color="#2D5282"/>
+    </linearGradient>
+    <linearGradient id="compass-needle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D69E2E"/>
+      <stop offset="100%" stop-color="#F6E05E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Compass Housing - Constructivist Navigation Equipment -->
+  <polygon points="3,3 13,3 13,13 3,13" fill="url(#compass-body)" stroke="#1A365D" stroke-width="0.5"/>
+
+  <!-- Inner Navigation Ring -->
+  <polygon points="5,5 11,5 11,11 5,11" fill="#0F172A" stroke="#D69E2E" stroke-width="0.5"/>
+
+  <!-- Compass Needle - Angular Direction Indicator -->
+  <polygon points="8,6 9,8 8,10 7,8" fill="url(#compass-needle)" stroke="#D69E2E" stroke-width="0.3"/>
+
+  <!-- Geographic Grid Markings - Soviet Precision -->
+  <rect x="4" y="7.5" width="1" height="0.5" fill="#D69E2E" opacity="0.6"/>
+  <rect x="11" y="7.5" width="1" height="0.5" fill="#D69E2E" opacity="0.6"/>
+  <rect x="7.5" y="4" width="0.5" height="1" fill="#D69E2E" opacity="0.6"/>
+  <rect x="7.5" y="11" width="0.5" height="1" fill="#D69E2E" opacity="0.6"/>
+
+  <!-- Cardinal Direction Markers -->
+  <rect x="8" y="2" width="0.5" height="1" fill="#D69E2E"/>
+  <rect x="14" y="8" width="1" height="0.5" fill="#D69E2E"/>
+  <rect x="8" y="13" width="0.5" height="1" fill="#D69E2E"/>
+  <rect x="1" y="8" width="1" height="0.5" fill="#D69E2E"/>
+
+  <!-- Research Classification Corners -->
+  <rect x="2" y="2" width="1" height="1" fill="#D69E2E" opacity="0.4"/>
+  <rect x="13" y="2" width="1" height="1" fill="#D69E2E" opacity="0.4"/>
+  <rect x="2" y="13" width="1" height="1" fill="#D69E2E" opacity="0.4"/>
+  <rect x="13" y="13" width="1" height="1" fill="#D69E2E" opacity="0.4"/>
+
+  <!-- Navigation Equipment Designation -->
+  <text x="8" y="15" font-family="monospace" font-size="1" fill="#D69E2E" opacity="0.7" text-anchor="middle">НАВИГ</text>
+</svg>

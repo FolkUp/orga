@@ -1,0 +1,226 @@
+{
+  "$ref": "#/definitions/investigations",
+  "definitions": {
+    "investigations": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "date_updated": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "weight": {
+          "type": "number"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "stub",
+            "unverified",
+            "partially_verified",
+            "verified"
+          ],
+          "default": "draft"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "default": "low"
+        },
+        "sensitive": {
+          "type": "boolean",
+          "default": false
+        },
+        "category": {
+          "type": "string"
+        },
+        "pii_reviewed": {
+          "type": "boolean",
+          "default": false
+        },
+        "pii_reviewed_by": {
+          "type": "string"
+        },
+        "pii_review_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "naming_justified": {
+          "type": "boolean"
+        },
+        "legal_risk": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "legal_approved_by": {
+          "type": "string"
+        },
+        "reviewed_by": {
+          "type": "string"
+        },
+        "review_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "date_accessed": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "url",
+              "date_accessed",
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "investigation_type": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string"
+        },
+        "evidence_count": {
+          "type": "number"
+        },
+        "timeline_span": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subject": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "ru",
+            "en",
+            "pt"
+          ],
+          "default": "ru"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "date"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
