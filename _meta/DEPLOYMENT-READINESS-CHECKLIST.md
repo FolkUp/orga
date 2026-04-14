@@ -67,7 +67,7 @@ status: draft
 - [ ] Dimensions: 1920×1080 (16:9)
 - [ ] Format: WebP primary + JPG fallback
 - [ ] Size target: <150KB optimized
-- [ ] Content: Cryptographic patterns with seismographic elements
+- [ ] Content: Cryptographic patterns with research elements
 - [ ] Alt text: "Поэтическая криптография — визуальная метафора культурного сопротивления"
 
 **Creation Steps:**
@@ -85,16 +85,16 @@ status: draft
 ### Background Video (Optional but improves experience)
 
 **Specification:**
-- [ ] Source: Cultural seismography visual concept
+- [ ] Source: Investigation platform visual concept
 - [ ] Dimensions: 1920×1080 (16:9)
 - [ ] Duration: 10-30 seconds loop
 - [ ] Format: MP4 (H.264 + AAC)
 - [ ] Size target: <2MB for LCP <2.5s
 - [ ] Audio: Muted (required for autoplay)
-- [ ] Content: Seismographic patterns with cryptographic overlays
+- [ ] Content: Research patterns with cryptographic overlays
 
 **Creation Steps:**
-1. [ ] Design cultural seismography visual elements
+1. [ ] Design investigation platform visual elements
 2. [ ] Animate cryptographic pattern sequences
 3. [ ] Render video using animation software:
    ```bash
@@ -111,7 +111,7 @@ status: draft
    ffmpeg -i temp.mp4 -c:v libx264 -crf 30 -c:a aac -b:a 96k output.mp4
    ```
 5. [ ] Test file size (if >2MB, increase crf to 32-34)
-6. [ ] Place at `static/videos/cultural-seismography-loop.mp4`
+6. [ ] Place at `static/videos/cultural-investigation platform-loop.mp4`
 
 **Estimated Time:** 2-3 hours (including encoding + optimization)
 
@@ -119,8 +119,8 @@ status: draft
 
 ### Poster Alternative (Fallback)
 
-If creating custom seismography visual is complex:
-- [ ] Generate using design tools with prompt: "Underground resistance aesthetic, cryptographic patterns, cultural seismography, minimal dark palette"
+If creating custom investigation platform visual is complex:
+- [ ] Generate using design tools with prompt: "Underground resistance aesthetic, cryptographic patterns, investigation platform, minimal dark palette"
 - [ ] Use same specs as above (1920×1080, <150KB)
 - [ ] Note in article that poster represents conceptual underground resistance aesthetic
 

@@ -20,11 +20,11 @@ fingerprintAlgorithm: "sha512"
 
 # Site Metadata for Enhanced SEO
 title: "ORGA - Open Research on Global Affairs"
-description: "Multimedia investigations and cultural seismography analysis. ProPublica-level open source intelligence and evidence-based research on global affairs."
+description: "Multimedia investigation platform for open source intelligence research. ProPublica-level framework for evidence-based analysis on global affairs."
 keywords:
   - "OSINT"
   - "investigations"
-  - "cultural seismography"
+  - "investigation platform"
   - "multimedia longform"
   - "open research"
   - "global affairs"
@@ -42,7 +42,7 @@ author:
 # OpenGraph & Twitter Card Optimization
 images:
   - "img/og-orga-hero.webp"
-  - "img/og-orga-seismography.webp"
+  - "img/og-orga-platform.webp"
 
 header:
   layout: "fixed"

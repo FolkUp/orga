@@ -60,7 +60,7 @@ timeline:
 cultural:
   armor: "Культурная броня"
   timeline: "Культурная хронология"
-  seismography: "Культурная сейсмография"
+  platform: "Платформа исследований"
 
 ui:
   expand: "Развернуть"

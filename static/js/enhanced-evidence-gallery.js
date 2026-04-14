@@ -1,7 +1,7 @@
 /**
  * Enhanced Evidence Gallery System
  * Advanced evidence gallery with timeline integration, smart filtering, and multiple view modes
- * ORGA Investigation - Oxymiron Cultural Seismography
+ * ORGA Investigation Platform - Evidence Framework
  */
 
 class EnhancedEvidenceGallery {

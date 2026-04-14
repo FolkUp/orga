@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       progressBar.parentElement.setAttribute('aria-valuenow', Math.round(scrolled));
 
       // Show progress after hero section
-      const hero = document.querySelector('.cultural-seismography-hero');
+      const hero = document.querySelector('.hero-platform');
       if (hero && winScroll > hero.offsetHeight * 0.3) {
         progressContainer.classList.add('visible');
       } else if (progressContainer.classList.contains('visible')) {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateFloatingNav() {
       const scrollPosition = window.scrollTop || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
-      const hero = document.querySelector('.cultural-seismography-hero');
+      const hero = document.querySelector('.hero-platform');
 
       // Show nav after hero section
       if (hero && scrollPosition > hero.offsetHeight * 0.8) {
@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 7. Cultural Seismography Event Markers Enhancement
+  // 7. Investigation Platform Event Markers Enhancement
   function initEventMarkers() {
     const markers = document.querySelectorAll('.event-marker');
 

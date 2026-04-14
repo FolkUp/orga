@@ -128,7 +128,7 @@ event_1:
 - Event 1: Layer 1 construction (2020-2021)
 - Event 2: Layer 2 architecture (2021)
 - Event 3: Layer 3 modification (November 2021)
-- Event 4: Seismographic validation (2021-2022)
+- Event 4: Research validation (2021-2022)
 - Event 5: Combat validation (October 2022)
 - Event 6: Armor replication (2022-2026)
 

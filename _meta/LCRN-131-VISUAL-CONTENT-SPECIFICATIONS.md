@@ -31,7 +31,7 @@ DPI: 72 (web optimized)
 
 #### Visual Composition — Underground Resistance Aesthetic
 - **Central Element:** Cryptographic cipher wheels + underground network patterns + stenographic shadows
-- **Metaphor:** Поэтическая криптография + cultural seismography + underground resistance communication
+- **Metaphor:** Поэтическая криптография + investigation framework + underground resistance communication
 - **Lighting:** Deep charcoal ambience with muted gold highlights — encrypted knowledge emerging through resistance channels
 - **Framing:** Cultural investigator decoding underground messages, viewer as co-conspirator in resistance archaeology
 - **Text Overlay Space:** Clear areas for Russian headline text with resistance-coded styling + samizdat typography

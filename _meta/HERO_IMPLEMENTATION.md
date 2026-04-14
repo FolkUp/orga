@@ -19,7 +19,7 @@ draft: true
 ✅ **CSS & Templates Tested**
 ⏳ **Assets Required (0% complete):**
 - `underground-resistance-poster.webp` (1920×1080, <150KB)
-- `cultural-seismography-loop.mp4` (10-30s loop, <2MB)
+- `investigation-platform-loop.mp4` (10-30s loop, <2MB)
 ⏳ **Performance Testing Pending** (LCP <2.5s with real assets)
 ⏳ **WCAG 2.1 AA Audit Pending**
 
@@ -40,7 +40,7 @@ draft: true
 **Path:** `assets/css/hero-investigation.css`
 - Brand Guide v2.5 Palette D colors
 - Cryptographic pattern effects
-- Cultural seismography visualization
+- Investigation platform visualization
 - Responsive mobile-first design
 - WCAG 2.1 AA compliance
 - Performance optimizations
@@ -70,7 +70,7 @@ Add to `index.ru.md` after frontmatter:
 
 ```markdown
 {{< hero-investigation
-    video_url="/videos/cultural-seismography-loop.mp4"
+    video_url="/videos/investigation-platform-loop.mp4"
     poster_url="/images/investigations/oxymiron/underground-resistance-poster.webp"
     resistance_effect=true
     title="«Организация» Оксимирона"
@@ -91,12 +91,12 @@ Add to `index.ru.md` after frontmatter:
 - **Alt text:** Built-in: "Поэтическая криптография — визуальная метафора культурного сопротивления"
 
 ### 2. Background Video (OPTIONAL)
-**Path:** `static/videos/cultural-seismography-loop.mp4`
+**Path:** `static/videos/investigation-platform-loop.mp4`
 - **Dimensions:** 1920×1080 (16:9)
 - **Duration:** 10-30 seconds loop
 - **Format:** MP4 (H.264 + AAC)
 - **Size:** <2MB target for LCP <2.5s
-- **Content:** Cultural seismography patterns with cryptographic elements
+- **Content:** Investigation platform patterns with cryptographic elements
 - **Optimization:**
   - High compression for background use
   - Muted audio track (required for autoplay)
@@ -105,7 +105,7 @@ Add to `index.ru.md` after frontmatter:
 ### 3. Asset Creation Process
 
 #### Underground Resistance Visual Creation
-1. Design cryptographic patterns and seismographic elements
+1. Design cryptographic patterns and research elements
 2. Create 30-second loop focusing on cultural resistance themes
 3. Optimize for web with standard video encoding:
 
@@ -117,7 +117,7 @@ ffmpeg -i source.mp4 \
   -c:a aac -b:a 128k \
   -movflags +faststart \
   -t 30 \
-  cultural-seismography-loop.mp4
+  investigation-platform-loop.mp4
 
 # Poster creation from video
 ffmpeg -i source.mp4 \
@@ -133,13 +133,13 @@ cwebp underground-resistance-poster.jpg -q 85 -o underground-resistance-poster.w
 ## Technical Features
 
 ### Underground Resistance Effect
-- **Cryptographic Metaphor:** Patterns and seismographic overlays
+- **Cryptographic Metaphor:** Patterns and research overlays
 - **CSS Animation:** Subtle pulse effects (respects `prefers-reduced-motion`)
 - **Performance:** Pure CSS, no JavaScript required
 - **Brand Colors:** Teal (primary) + Amber (secondary) patterns
 
-### Cultural Seismography
-- **Concept Visualization:** Animated seismic lines
+### Investigation Platform
+- **Concept Visualization:** Animated research lines
 - **Brand Alignment:** Uses Lucerna color scheme
 - **Detective Narrative:** Typography hierarchy with quotes
 - **Mobile Responsive:** Scales gracefully on all devices
@@ -194,7 +194,7 @@ Or in layout template:
 
 /* Secondary: Amber (FolkUp DNA) */
 --color-secondary-300: 252, 211, 77; /* Subtitle accent */
---color-secondary-400: 251, 191, 36; /* Seismic lines */
+--color-secondary-400: 251, 191, 36; /* Research highlights */
 
 /* Neutral: Warm Stone */
 --color-neutral-800: 41, 37, 33;     /* Content backgrounds */
@@ -210,7 +210,7 @@ Or in layout template:
 ### Visual Elements
 - **Investigation Badge:** Rounded, branded colors
 - **Glass Effects:** Subtle, not overwhelming
-- **Seismography:** Data visualization aesthetic
+- **Research Platform:** Data visualization aesthetic
 - **Detective Quotes:** Literature-style formatting
 
 ## Testing Checklist

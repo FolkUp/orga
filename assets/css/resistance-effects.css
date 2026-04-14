@@ -36,43 +36,6 @@
   pointer-events: none;
 }
 
-/* Cultural Seismography Animation */
-.seismograph-traces {
-  position: relative;
-  overflow: hidden;
-}
-
-.seismograph-traces::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgb(251, 191, 36) 30%,
-    rgba(2, 132, 199, 0.8) 70%,
-    transparent 100%);
-  animation: seismic-activity 4s linear infinite;
-}
-
-@keyframes seismic-activity {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
 
 /* WCAG 2.1 AA Compliance */
 /* High Contrast Mode Support */
@@ -97,26 +60,16 @@
 /* Performance Optimization */
 /* GPU Acceleration */
 .resistance-overlay,
-.cryptographic-patterns,
-.seismograph-traces::before {
+.cryptographic-patterns {
   will-change: transform;
   backface-visibility: hidden;
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .cryptographic-patterns,
-  .seismograph-traces::before {
-    animation: none;
-  }
-
   .cryptographic-patterns {
+    animation: none;
     opacity: 0.5;
-  }
-
-  .seismograph-traces::before {
-    opacity: 0.6;
-    transform: translateX(0);
   }
 }
 
@@ -125,10 +78,6 @@
   .cryptographic-patterns {
     background-size: 15px 15px, 20px 20px;
     animation-duration: 4s; /* Slower on mobile for performance */
-  }
-
-  .seismograph-traces::before {
-    animation-duration: 5s; /* Gentler on mobile */
   }
 }
 
@@ -164,8 +113,7 @@
 /* Print Styles */
 @media print {
   .resistance-overlay,
-  .cryptographic-patterns,
-  .seismograph-traces::before {
+  .cryptographic-patterns {
     display: none !important;
   }
 }

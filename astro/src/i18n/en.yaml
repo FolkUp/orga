@@ -60,7 +60,7 @@ timeline:
 cultural:
   armor: "Cultural Armor"
   timeline: "Cultural Timeline"
-  seismography: "Cultural Seismography"
+  platform: "Investigation Platform"
 
 ui:
   expand: "Expand"

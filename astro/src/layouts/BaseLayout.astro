@@ -26,13 +26,17 @@ const buildTimestamp = Date.now().toString(36);
     <meta name="author" content="FolkUp Investigation Team" />
     <meta name="theme-color" content="#1a1a1a" />
 
-    <!-- Brand Guide v2.5 fonts - preload removed until font files are added -->
-    <!-- TODO: Add font files to public/fonts/ directory and restore preload links -->
-    <!-- <link rel="preload" href="/fonts/brand-display.woff2" as="font" type="font/woff2" crossorigin /> -->
-    <!-- <link rel="preload" href="/fonts/brand-body.woff2" as="font" type="font/woff2" crossorigin /> -->
+    <!-- Brand Guide v2.5 fonts - preload for performance -->
+    <link rel="preload" href="/fonts/source-serif-pro-bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-medium.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
-    <slot />
+    <!-- Skip Navigation for WCAG 2.4.1 compliance -->
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>
 
@@ -104,6 +108,31 @@ const buildTimestamp = Date.now().toString(36);
     outline: 2px solid var(--brand-primary);
     outline-offset: 2px;
     border-radius: 0.25rem;
+  }
+
+  /* Skip Link - WCAG 2.4.1 Compliance */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--brand-primary);
+    color: white;
+    padding: 8px;
+    z-index: 1000;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-weight: var(--font-weight-medium);
+    transition: top 0.3s ease;
+  }
+
+  .skip-link:focus-visible {
+    top: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skip-link {
+      transition: none;
+    }
   }
 
   /* Code styling */

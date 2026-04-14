@@ -1,17 +1,63 @@
 /* ORGA Astro Migration — Underground Academia Typography System */
 /* Soviet Constructivist + Hip-hop + Academic Authority */
 
-/* Import Underground Academia fonts */
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Local Underground Academia fonts - GDPR compliant */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif-pro-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif-pro-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif-pro-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   /* ==========================================================================
      UNDERGROUND ACADEMIA FONT FAMILIES
      ========================================================================== */
   /* Display/Headers - Soviet Constructivist Authority */
-  --font-display-enhanced:  'Staatliches', 'Arial Black', 'Impact', sans-serif;
+  --font-display-enhanced:  'Source Serif Pro', 'Times New Roman', serif;
   --font-body-enhanced:     'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-mono:              'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
+  --font-mono:              'Source Serif Pro', 'SF Mono', 'Monaco', 'Consolas', monospace;
 
   /* Base fonts (fallback compatibility) */
   --font-primary:           'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;

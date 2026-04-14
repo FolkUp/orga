@@ -1,7 +1,7 @@
 /**
  * Enhanced Cultural Timeline System
  * Advanced interactive timeline with evidence linking, progressive disclosure, and mobile gestures
- * ORGA Investigation - Oxymiron Cultural Seismography
+ * ORGA Investigation Platform - Timeline Framework
  */
 
 class EnhancedTimeline {
@@ -655,8 +655,8 @@ class EnhancedTimeline {
             <h5>Platform Response</h5>
             <p>Initial reception on streaming platforms was measured, but underground communities recognized the track's prescient commentary on state-society dynamics.</p>
 
-            <h5>Seismic Prediction</h5>
-            <p>The track's themes and timing suggest Oxymiron sensed cultural tensions months before they manifested in mass social and political events.</p>
+            <h5>Predictive Analysis</h5>
+            <p>The track's themes and timing suggest cultural tensions were detected months before they manifested in mass social and political events.</p>
           </div>
         `,
         evidence: `
@@ -719,8 +719,8 @@ class EnhancedTimeline {
             <h5>Underground Amplification</h5>
             <p>The events led to increased circulation of Oxymiron's earlier work through alternative channels, as audiences sought cultural artifacts that had "predicted" the crisis.</p>
 
-            <h5>Seismic Validation</h5>
-            <p>The timing and themes of "Организация" and miXXXtape III were retrospectively recognized as early cultural seismography—art sensing and expressing social tensions before they manifested politically.</p>
+            <h5>Retrospective Validation</h5>
+            <p>The timing and themes of "Организация" and miXXXtape III were retrospectively recognized as early cultural analysis—art sensing and expressing social tensions before they manifested politically.</p>
           </div>
         `,
         evidence: `
@@ -752,7 +752,7 @@ class EnhancedTimeline {
             <p>The designation ironically amplified interest in Oxymiron's work, particularly the earlier tracks that had "predicted" the current crisis.</p>
 
             <h5>Artistic Vindication</h5>
-            <p>The state's response validated the power and accuracy of Oxymiron's cultural seismography, confirming that artists can indeed sense and articulate societal tensions before they reach critical mass.</p>
+            <p>The state's response validated the power and accuracy of Oxymiron's cultural analysis, confirming that artists can indeed sense and articulate societal tensions before they reach critical mass.</p>
           </div>
         `,
         evidence: `

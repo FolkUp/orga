@@ -1,20 +1,18 @@
 ---
 title: "ORGA"
 subtitle: "Open Research on Global Affairs"
-description: "Investigative journalism and cultural analysis through multimedia storytelling"
+description: "Multimedia investigation platform for open source intelligence research"
 date: 2024-04-08T10:00:00Z
 draft: false
 
 # Hero configuration
 layout: "hero"
-heroStyle: "cultural-seismography"
+heroStyle: "investigation-platform"
 ---
 
-Welcome to **ORGA** — where investigative journalism meets multimedia storytelling.
+Welcome to **ORGA** — a multimedia investigation platform for open source intelligence research.
 
-We explore the intersection of culture, politics, and society through data-driven investigations and immersive digital experiences.
-
-{{< enhanced-cultural-seismography >}}
+We provide a framework for rigorous investigative journalism, combining traditional OSINT methods with immersive digital storytelling to reveal patterns others miss.
 
 ## Featured Investigations
 

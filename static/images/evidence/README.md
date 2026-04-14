@@ -4,7 +4,7 @@ This directory contains evidence screenshots and documentation images for ORGA i
 
 ## Current Evidence Files
 
-For the Oxymiron Cultural Seismography investigation:
+For current ORGA investigations:
 
 ### Analysis Images
 - `oxymiron-album-analysis.webp` - Album cover and tracklist analysis
