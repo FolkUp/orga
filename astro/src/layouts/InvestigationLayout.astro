@@ -1,0 +1,525 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ConfidenceBadge from '../components/ConfidenceBadge.astro';
+import InvestigationNav from '../components/InvestigationNav.astro';
+
+export interface Props {
+  /** Investigation title */
+  title: string;
+  /** Investigation description for meta tags */
+  description?: string;
+  /** Language code (ISO 639-1) */
+  lang?: string;
+  /** Investigation verification status */
+  status: 'verified' | 'partially_verified' | 'unverified' | 'draft';
+  /** Confidence level of findings */
+  confidence: 'high' | 'medium' | 'low';
+  /** Investigation type classification */
+  investigationType: 'cultural_analysis' | 'institutional' | 'biographical' | 'media';
+  /** Tag array for categorization */
+  tags?: string[];
+  /** Publication date (ISO 8601) */
+  date?: Date;
+  /** Last modification date (ISO 8601) */
+  lastmod?: Date;
+  /** Evidence items count */
+  evidenceCount?: number;
+  /** Timeline span description */
+  timelineSpan?: string;
+  /** Navigation sections for InvestigationNav */
+  navSections?: {
+    id: string;
+    title: string;
+    status: 'completed' | 'current' | 'locked' | 'available';
+    href: string;
+    description?: string;
+  }[];
+  /** Current active section ID */
+  currentSection?: string;
+}
+
+const {
+  title,
+  description = '',
+  lang = 'en',
+  status,
+  confidence,
+  investigationType,
+  tags = [],
+  date,
+  lastmod,
+  evidenceCount,
+  timelineSpan,
+  navSections,
+  currentSection
+} = Astro.props;
+
+// Investigation type labels
+const typeLabels: Record<string, string> = {
+  cultural_analysis: 'Cultural Analysis',
+  institutional: 'Institutional Investigation',
+  biographical: 'Biographical Study',
+  media: 'Media Analysis'
+};
+
+// Format date for display
+function formatDate(d: Date | undefined): string {
+  if (!d) return '';
+  return d.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title={`${title} — Underground Academia`} description={description} lang={lang}>
+  <article class="investigation" itemscope itemtype="https://schema.org/ScholarlyArticle">
+    <!-- Breadcrumb navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/investigations/" itemprop="item"><span itemprop="name">Investigations</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="breadcrumb__item breadcrumb__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">{title}</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Investigation header -->
+    <header class="investigation__header">
+      <div class="investigation__meta-bar">
+        <span class="investigation__type">{typeLabels[investigationType] || investigationType}</span>
+        <ConfidenceBadge status={status} />
+      </div>
+
+      <h1 class="investigation__title" itemprop="headline">{title}</h1>
+
+      {description && (
+        <p class="investigation__description" itemprop="abstract">{description}</p>
+      )}
+
+      <div class="investigation__metadata">
+        {date && (
+          <time class="investigation__date" datetime={date.toISOString()} itemprop="datePublished">
+            Published: {formatDate(date)}
+          </time>
+        )}
+        {lastmod && (
+          <time class="investigation__date investigation__date--updated" datetime={lastmod.toISOString()} itemprop="dateModified">
+            Updated: {formatDate(lastmod)}
+          </time>
+        )}
+        {evidenceCount !== undefined && (
+          <span class="investigation__evidence-count">
+            {evidenceCount} evidence items
+          </span>
+        )}
+        {timelineSpan && (
+          <span class="investigation__timeline">
+            Timeline: {timelineSpan}
+          </span>
+        )}
+      </div>
+
+      {tags.length > 0 && (
+        <ul class="investigation__tags" aria-label="Investigation tags">
+          {tags.map((tag) => (
+            <li class="investigation__tag">{tag}</li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <!-- Two-column layout: nav sidebar + content -->
+    <div class="investigation__body">
+      {navSections && navSections.length > 0 && (
+        <aside class="investigation__sidebar" aria-label="Investigation navigation">
+          <InvestigationNav
+            investigationTitle={title}
+            currentSection={currentSection || ''}
+            sections={navSections}
+            showProgress={true}
+            compact={false}
+          />
+        </aside>
+      )}
+
+      <div class="investigation__content" itemprop="articleBody">
+        <slot />
+      </div>
+    </div>
+
+    <!-- Investigation footer -->
+    <footer class="investigation__footer">
+      <div class="investigation__confidence-note">
+        <h2 class="confidence-note__title">Confidence Assessment</h2>
+        <p class="confidence-note__text">
+          This investigation is rated <strong>{confidence} confidence</strong> with status
+          <ConfidenceBadge status={status} />.
+          All findings are subject to ongoing verification through the Underground Academia
+          methodology of systematic evidence collection and multi-source corroboration.
+        </p>
+      </div>
+
+      <div class="investigation__disclaimer">
+        <p>
+          This research is part of the <a href="https://folkup.app" rel="external">FolkUp</a>
+          Underground Academia platform. Content is provided for educational and research purposes.
+          All sources are documented and verifiable. If you find errors or have additional evidence,
+          please <a href="/about/#contact">contact the editorial team</a>.
+        </p>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Breadcrumb */
+  .breadcrumb {
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+  }
+
+  .breadcrumb__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .breadcrumb__item:not(:last-child)::after {
+    content: "/";
+    color: rgba(45, 55, 72, 0.4);
+    margin-left: var(--space-xs);
+  }
+
+  .breadcrumb__item a {
+    color: var(--color-maritime-deep);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .breadcrumb__item a:hover,
+  .breadcrumb__item a:focus {
+    text-decoration: underline;
+    color: var(--color-amber-warm);
+  }
+
+  .breadcrumb__item--current {
+    color: rgba(45, 55, 72, 0.7);
+    font-weight: 400;
+  }
+
+  /* Investigation header */
+  .investigation__header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 2px solid var(--color-maritime-deep);
+  }
+
+  .investigation__meta-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .investigation__type {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    border-radius: var(--space-xs);
+    font-family: var(--font-body);
+  }
+
+  .investigation__title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .investigation__description {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #4A5568;
+    margin: 0 0 var(--space-lg) 0;
+    max-width: 55rem;
+  }
+
+  .investigation__metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  .investigation__date,
+  .investigation__evidence-count,
+  .investigation__timeline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .investigation__date--updated {
+    font-style: italic;
+  }
+
+  .investigation__evidence-count::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-amber-warm);
+  }
+
+  .investigation__timeline::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background-color: var(--color-maritime-deep);
+  }
+
+  .investigation__tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .investigation__tag {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-xs);
+    color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.05);
+  }
+
+  /* Two-column body layout */
+  .investigation__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 64rem) {
+    .investigation__body {
+      grid-template-columns: minmax(260px, 320px) 1fr;
+    }
+  }
+
+  .investigation__sidebar {
+    position: sticky;
+    top: var(--space-md);
+    align-self: start;
+    max-height: calc(100vh - 2 * var(--space-md));
+    overflow-y: auto;
+  }
+
+  /* Content area */
+  .investigation__content {
+    min-width: 0; /* Prevent grid blowout */
+  }
+
+  .investigation__content :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin: var(--space-2xl) 0 var(--space-md) 0;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+  }
+
+  .investigation__content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .investigation__content :global(h3) {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin: var(--space-xl) 0 var(--space-sm) 0;
+  }
+
+  .investigation__content :global(p) {
+    margin: 0 0 var(--space-md) 0;
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+  }
+
+  .investigation__content :global(ul),
+  .investigation__content :global(ol) {
+    margin: 0 0 var(--space-md) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .investigation__content :global(li) {
+    margin-bottom: var(--space-sm);
+    line-height: var(--line-height-body);
+  }
+
+  .investigation__content :global(strong) {
+    color: var(--color-maritime-deep);
+    font-weight: 700;
+  }
+
+  .investigation__content :global(blockquote) {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--color-amber-warm);
+    background-color: rgba(214, 158, 46, 0.05);
+    font-style: italic;
+    color: #4A5568;
+  }
+
+  .investigation__content :global(blockquote p) {
+    margin-bottom: 0;
+  }
+
+  /* Investigation footer */
+  .investigation__footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 2px solid var(--color-maritime-deep);
+  }
+
+  .investigation__confidence-note {
+    background-color: rgba(26, 54, 93, 0.05);
+    border: 1px solid rgba(26, 54, 93, 0.15);
+    border-radius: var(--space-sm);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .confidence-note__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .confidence-note__text {
+    font-size: 0.9375rem;
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .investigation__disclaimer {
+    font-size: 0.8125rem;
+    line-height: var(--line-height-body);
+    color: rgba(45, 55, 72, 0.7);
+    padding: var(--space-md);
+    border-radius: var(--space-xs);
+    background-color: rgba(26, 54, 93, 0.02);
+  }
+
+  .investigation__disclaimer p {
+    margin: 0;
+  }
+
+  .investigation__disclaimer a {
+    color: var(--color-maritime-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .investigation__disclaimer a:hover,
+  .investigation__disclaimer a:focus {
+    color: var(--color-amber-warm);
+  }
+
+  /* Responsive */
+  @media (max-width: 48rem) {
+    .investigation__title {
+      font-size: 1.75rem;
+    }
+
+    .investigation__description {
+      font-size: 1.0625rem;
+    }
+
+    .investigation__metadata {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .investigation__sidebar {
+      position: static;
+      max-height: none;
+      overflow-y: visible;
+    }
+
+    .investigation__content :global(h2) {
+      font-size: 1.5rem;
+    }
+
+    .investigation__content :global(h3) {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .investigation__sidebar {
+      display: none;
+    }
+
+    .investigation__body {
+      grid-template-columns: 1fr;
+    }
+
+    .breadcrumb {
+      display: none;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .investigation__sidebar {
+      position: static;
+    }
+  }
+</style>

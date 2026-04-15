@@ -1,0 +1,271 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description = "Underground Academia — Cultural Seismography Platform", lang = "en" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+
+    <!-- Google Fonts for Underground Academia -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet" />
+
+    <!-- Meta tags for Underground Academia branding -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Brand colors and theme -->
+    <meta name="theme-color" content="#1A365D" />
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <div class="nav-brand">
+            <a href="/" aria-label="Underground Academia homepage">
+              <span class="brand-title">Underground Academia</span>
+              <span class="brand-subtitle">Cultural Seismography</span>
+            </a>
+          </div>
+
+          <ul class="nav-menu">
+            <li><a href="/investigations/">Investigations</a></li>
+            <li><a href="/methodology/">Methodology</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="site-main" id="main-content">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <p class="footer-attribution">
+            Part of the <a href="https://folkup.app" rel="external">FolkUp</a> ecosystem
+          </p>
+          <p class="footer-support">
+            <a href="https://ko-fi.com/folkup" rel="external" aria-label="Support via Ko-fi">
+              Support this research
+            </a>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+  </body>
+</html>
+
+<style>
+  /* CSS Reset and base styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* CSS Custom Properties - Brand Guide v2.5 Palette D */
+  :root {
+    /* Colors - Underground Academia + Soviet Constructivist */
+    --color-maritime-deep: #1A365D;     /* Primary dark */
+    --color-sage-muted: #68D391;        /* Secondary green */
+    --color-amber-warm: #D69E2E;        /* Accent warm */
+    --color-concrete-light: #F7FAFC;    /* Background light */
+    --color-text-primary: #2D3748;      /* Text dark */
+    --color-text-inverse: #F7FAFC;      /* Text light */
+
+    /* Typography */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Source Sans 3', sans-serif;
+    --font-size-base: 1rem;
+    --line-height-body: 1.6;
+    --line-height-heading: 1.2;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Layout */
+    --container-max-width: 75rem;
+    --container-padding: var(--space-md);
+  }
+
+  /* Base typography */
+  html {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-concrete-light);
+  }
+
+  /* Layout */
+  .site-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-main {
+    flex: 1;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    width: 100%;
+  }
+
+  /* Header */
+  .site-header {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: var(--space-md) var(--container-padding);
+  }
+
+  .main-nav {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .nav-brand a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .brand-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    display: block;
+  }
+
+  .brand-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    font-weight: 400;
+    display: block;
+  }
+
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .nav-menu a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 2px solid transparent;
+  }
+
+  /* Footer */
+  .site-footer {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: var(--space-lg) var(--container-padding);
+    margin-top: var(--space-2xl);
+  }
+
+  .footer-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: 0.875rem;
+  }
+
+  .footer-content a {
+    color: var(--color-sage-muted);
+    text-decoration: none;
+  }
+
+  .footer-content a:hover,
+  .footer-content a:focus {
+    text-decoration: underline;
+  }
+
+  /* Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 1000;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Focus management */
+  :focus-visible {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+  }
+
+  /* Responsive typography */
+  @media (min-width: 48rem) {
+    .brand-title {
+      font-size: 1.75rem;
+    }
+
+    .brand-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

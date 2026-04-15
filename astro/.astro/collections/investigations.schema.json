@@ -7,12 +7,6 @@
         "title": {
           "type": "string"
         },
-        "subtitle": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
         "date": {
           "anyOf": [
             {
@@ -29,7 +23,7 @@
             }
           ]
         },
-        "date_updated": {
+        "lastmod": {
           "anyOf": [
             {
               "type": "string",
@@ -45,27 +39,27 @@
             }
           ]
         },
-        "weight": {
-          "type": "number"
+        "draft": {
+          "type": "boolean",
+          "default": false
         },
-        "priority": {
+        "investigation_type": {
           "type": "string",
           "enum": [
-            "high",
-            "medium",
-            "low"
+            "cultural_analysis",
+            "institutional",
+            "biographical",
+            "media"
           ]
         },
         "status": {
           "type": "string",
           "enum": [
-            "draft",
-            "stub",
-            "unverified",
+            "verified",
             "partially_verified",
-            "verified"
-          ],
-          "default": "draft"
+            "unverified",
+            "draft"
+          ]
         },
         "confidence": {
           "type": "string",
@@ -73,19 +67,67 @@
             "high",
             "medium",
             "low"
-          ],
-          "default": "low"
+          ]
         },
-        "sensitive": {
-          "type": "boolean",
-          "default": false
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "category": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_count": {
+          "type": "number"
+        },
+        "timeline_span": {
           "type": "string"
         },
+        "featured_image": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "date": {
+                "type": "string"
+              },
+              "archive_url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "media",
+                  "academic",
+                  "government"
+                ]
+              }
+            },
+            "required": [
+              "title"
+            ],
+            "additionalProperties": false
+          }
+        },
         "pii_reviewed": {
-          "type": "boolean",
-          "default": false
+          "type": "boolean"
         },
         "pii_reviewed_by": {
           "type": "string"
@@ -139,77 +181,20 @@
             }
           ]
         },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
-        },
-        "sources": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "url": {
-                "type": "string"
-              },
-              "date_accessed": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "title",
-              "url",
-              "date_accessed",
-              "type"
-            ],
-            "additionalProperties": false
-          },
-          "default": []
-        },
-        "related": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
-        },
-        "investigation_type": {
-          "type": "string"
-        },
-        "methodology": {
-          "type": "string"
-        },
-        "evidence_count": {
-          "type": "number"
-        },
-        "timeline_span": {
-          "type": "string"
-        },
         "languages": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "default": [
+            "en"
+          ]
         },
-        "subject": {
+        "description": {
           "type": "string"
         },
-        "language": {
-          "type": "string",
-          "enum": [
-            "ru",
-            "en",
-            "pt"
-          ],
-          "default": "ru"
+        "keywords": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"
@@ -217,7 +202,11 @@
       },
       "required": [
         "title",
-        "date"
+        "date",
+        "investigation_type",
+        "status",
+        "confidence",
+        "tags"
       ],
       "additionalProperties": false
     }
