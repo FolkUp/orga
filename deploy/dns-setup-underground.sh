@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ORGA DNS Setup Script — underground.folkup.life
-# Enhanced Alice v2.0 Level 3 Cartouche Autonome Infrastructure Deployment
+# ORGA Underground Academia DNS Configuration Script
 # Execute: ./dns-setup-underground.sh
 
 set -euo pipefail
@@ -51,7 +51,7 @@ if [[ -n "$EXISTING_RECORD" ]]; then
             "content": "'$TARGET_IP'",
             "ttl": 3600,
             "proxied": false,
-            "comment": "ORGA Underground Academia platform - Enhanced Alice v2.0 deployment"
+            "comment": "ORGA Underground Academia platform - Automated deployment"
         }')
 else
     echo "➕ Creating new DNS record..."
@@ -65,7 +65,7 @@ else
             "content": "'$TARGET_IP'",
             "ttl": 3600,
             "proxied": false,
-            "comment": "ORGA Underground Academia platform - Enhanced Alice v2.0 deployment"
+            "comment": "ORGA Underground Academia platform - Automated deployment"
         }')
 fi
 

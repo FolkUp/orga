@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ORGA Deployment Script — Underground Academia Platform
-# Enhanced Alice v2.0 Level 3 Cartouche Autonome Infrastructure Deployment
+# ORGA Underground Academia Infrastructure Deployment Script
 # Execute on server: ./deploy-orga.sh
 
 set -euo pipefail
@@ -162,7 +162,7 @@ cat > "$PROJECT_DIR/deployment.json" <<EOF
     "git_branch": "underground-deployment-ready",
     "file_count": $(find "$PROJECT_DIR/public" -type f | wc -l),
     "deployment_size": "$(du -sb "$PROJECT_DIR/public" | cut -f1)",
-    "deployed_by": "Enhanced Alice v2.0 Level 3 Cartouche Autonome"
+    "deployed_by": "ORGA Automated Deployment System"
 }
 EOF
 
