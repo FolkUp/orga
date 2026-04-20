@@ -38,8 +38,10 @@ const hreflangEntries = alternates.length > 0
     ]
   : [];
 
+// RU-primary policy: x-default points to the Russian sibling when available,
+// otherwise falls back to the current page. Decision 2026-04-20 (Андрей).
 const xDefaultHref =
-  hreflangEntries.find((h) => h.lang === 'en')?.href ?? canonicalHref;
+  hreflangEntries.find((h) => h.lang === 'ru')?.href ?? canonicalHref;
 ---
 
 <!doctype html>

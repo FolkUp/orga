@@ -2,32 +2,72 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+type Alternate = { lang: 'ru' | 'en'; href: string };
+
 export async function getStaticPaths() {
+  // Slug maps directly to the URL path:
+  //   EN "privacy-policy"    → /legal/privacy-policy/
+  //   RU "ru/privacy-policy" → /legal/ru/privacy-policy/
+  // Nested folder (legal/ru/*.md) produces the `ru/*` slug automatically.
   const entries = await getCollection('legal', ({ data }) => !data.draft);
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const bySlug = new Map(entries.map((e) => [e.slug, e]));
+
+  return entries.map((entry) => {
+    const translations = entry.data.translations ?? {};
+    const alternates: Alternate[] = Object.entries(translations)
+      .filter(([lang]) => lang !== entry.data.language)
+      .filter(([, meta]) => meta.status === 'done')
+      .filter(([, meta]) => meta.slug && bySlug.has(meta.slug))
+      .map(([lang, meta]) => ({
+        lang: lang as Alternate['lang'],
+        href: `/legal/${meta.slug}/`,
+      }));
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, alternates },
+    };
+  });
 }
 
 interface Props {
   entry: CollectionEntry<'legal'>;
+  alternates: Alternate[];
 }
 
-const { entry } = Astro.props;
+const { entry, alternates } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
+const lang = data.language;
+
+const tLabels = {
+  en: {
+    breadcrumbHome: 'Home',
+    breadcrumbLegal: 'Legal',
+    lastUpdated: 'Last updated:',
+    dateLocale: 'en-GB',
+  },
+  ru: {
+    breadcrumbHome: 'Главная',
+    breadcrumbLegal: 'Правовые документы',
+    lastUpdated: 'Обновлено:',
+    dateLocale: 'ru-RU',
+  },
+} as const;
+const L = tLabels[lang];
 ---
 
 <BaseLayout
   title={`${data.title} — Underground Academia`}
   description={data.description ?? data.title}
+  lang={lang}
+  alternates={alternates}
 >
   <article class="legal-page">
     <nav class="legal-page__breadcrumb" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">Home</a></li>
-        <li><a href="/legal/">Legal</a></li>
+        <li><a href={lang === 'ru' ? '/' : '/'}>{L.breadcrumbHome}</a></li>
+        <li><a href={lang === 'ru' ? '/legal/' : '/legal/'}>{L.breadcrumbLegal}</a></li>
         <li aria-current="page">{data.title}</li>
       </ol>
     </nav>
@@ -36,9 +76,10 @@ const data = entry.data;
       <h1>{data.title}</h1>
       {data.lastmod && (
         <p class="legal-page__meta">
-          Last updated:
+          {L.lastUpdated}
+          {' '}
           <time datetime={data.lastmod.toISOString()}>
-            {data.lastmod.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {data.lastmod.toLocaleDateString(L.dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
         </p>
       )}

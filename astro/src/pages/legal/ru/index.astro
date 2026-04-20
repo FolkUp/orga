@@ -1,25 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const entries = (await getCollection('legal', ({ data }) => !data.draft && data.language === 'en'))
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const entries = (await getCollection('legal', ({ data }) => !data.draft && data.language === 'ru'))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'));
 
-const alternates = [{ lang: 'ru' as const, href: '/legal/ru/' }];
+const alternates = [{ lang: 'en' as const, href: '/legal/' }];
 ---
 
 <BaseLayout
-  title="Legal — Underground Academia"
-  description="Privacy Policy, Terms of Use, Cookie Policy, and AI Transparency for Underground Academia."
-  lang="en"
+  title="Правовые документы — Underground Academia"
+  description="Политика конфиденциальности, Условия использования, Политика cookie и Прозрачность ИИ для Underground Academia."
+  lang="ru"
   alternates={alternates}
 >
   <section class="legal-index">
     <header>
-      <h1>Legal</h1>
-      <p>Privacy Policy, Terms of Use, Cookie Policy, and AI Transparency.</p>
+      <h1>Правовые документы</h1>
+      <p>Политика конфиденциальности, Условия использования, Политика cookie и Прозрачность ИИ.</p>
       <p class="legal-index__lang-switch">
-        <a href="/legal/ru/" hreflang="ru" lang="ru">Русская версия</a>
+        <a href="/legal/" hreflang="en" lang="en">English version</a>
       </p>
     </header>
 

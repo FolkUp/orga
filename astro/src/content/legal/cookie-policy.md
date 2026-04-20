@@ -2,8 +2,13 @@
 title: "Cookie Policy"
 description: "How Underground Academia handles cookies, local storage, and embedded third-party media."
 page_type: "cookie_policy"
+language: "en"
 lastmod: 2026-04-20
 draft: false
+translations:
+  ru:
+    status: done
+    slug: ru/cookie-policy
 ---
 
 ## Overview

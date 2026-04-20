@@ -2,8 +2,13 @@
 title: "Terms of Use"
 description: "Underground Academia Terms of Use and platform policies"
 page_type: "terms_of_use"
-lastmod: 2026-04-19
+language: "en"
+lastmod: 2026-04-20
 draft: false
+translations:
+  ru:
+    status: done
+    slug: ru/terms-of-use
 ---
 
 ## Terms of Use

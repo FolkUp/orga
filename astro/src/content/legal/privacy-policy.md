@@ -2,8 +2,13 @@
 title: "Privacy Policy"
 description: "Underground Academia Privacy Policy - GDPR compliant data protection information"
 page_type: "privacy_policy"
-lastmod: 2026-04-19
+language: "en"
+lastmod: 2026-04-20
 draft: false
+translations:
+  ru:
+    status: done
+    slug: ru/privacy-policy
 ---
 
 ## Privacy Policy

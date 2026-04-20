@@ -54,6 +54,9 @@ const investigationsCollection = defineCollection({
 });
 
 // Legal pages collection (Privacy Policy, Terms, etc.)
+// Bilingual via suffix pattern: privacy-policy.md (EN) + privacy-policy.ru.md (RU).
+// translations[lang].slug points at sibling entry's collection slug (e.g. "privacy-policy.ru"
+// for the RU sibling). Route template: /legal/<slug>/ for EN, /legal/ru/<baseSlug>/ for RU.
 const legalCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -61,7 +64,12 @@ const legalCollection = defineCollection({
     description: z.string().optional(),
     lastmod: z.date().optional(),
     draft: z.boolean().optional().default(false),
-    page_type: z.enum(['privacy_policy', 'terms_of_use', 'cookie_policy', 'disclaimer']).optional(),
+    page_type: z.enum(['privacy_policy', 'terms_of_use', 'cookie_policy', 'disclaimer', 'ai_transparency']).optional(),
+    language: z.enum(['ru', 'en']).default('en'),
+    translations: z.record(z.object({
+      status: z.enum(['pending', 'in_progress', 'done']),
+      slug: z.string().optional(),
+    })).optional(),
   })
 });
 
