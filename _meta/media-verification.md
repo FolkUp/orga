@@ -114,25 +114,33 @@ status: complete
 
 ### 4. Press-фото Oxxxymiron
 
-**Status:** PARTIALLY_FOUND — есть Wikimedia Commons категория, конкретные файлы требуют ручной проверки
+**Status:** FOUND + VERIFIED (3 файла, все ≤ D9 predicate 8.11.2021) — обновлено 2026-04-21
 
-**Wikimedia Commons category:** https://commons.wikimedia.org/wiki/Category:Oxxxymiron  
-**Известные файлы в категории:**
-- `File:Oxxxymiron_at_Afisha's_Picnic-1.jpg` — https://commons.wikimedia.org/wiki/File:Oxxxymiron_at_Afisha%27s_Picnic-1.jpg
-- `File:Oxxxymiron_photobw.jpg` — наличие подтверждено search snippets
-- Категория «Russians Against War (Oxxxymiron), 6 April 2022» — https://commons.wikimedia.org/wiki/Category:Russians_Against_War_(Oxxxymiron),_6_April_2022 (ВНИМАНИЕ: апрель 2022 > дедлайн 8.11.2021)
-- `File:Oxxxymiron._Reebok.png` — наличие подтверждено
+**Wikimedia Commons category:** https://commons.wikimedia.org/wiki/Category:Oxxxymiron
 
-**Критические ограничения:**
-- Все фото из категории «Russians Against War, April 2022» НЕДОПУСТИМЫ — они датированы ПОСЛЕ D9 predicate (8.11.2021)
-- Фото с Afisha's Picnic — Oxxxymiron выступал на Afisha Picnic в 2011 и в другие годы. Точная дата фото требует проверки на странице файла
-- `Reebok.png` — корпоративный контент, возможны ограничения
+**Verified files:**
 
-**Action required (BLOCKING):** Андрей или редактор должен вручную открыть каждый файл на Wikimedia Commons и проверить: (1) дату фото (должна быть ≤ 8.11.2021), (2) лицензию (CC BY или CC BY-SA), (3) имя фотографа для атрибуции.
+| Файл | Дата фото | Лицензия | Автор | Использование |
+|------|-----------|----------|-------|---------------|
+| `Oxxxymiron_at_Afisha's_Picnic-1.jpg` | 24.07.2012 | CC BY-SA 3.0 + GFDL | Alina Platonova | Attribution + share-alike per-image |
+| `Oxxxymiron_photobw.jpg` | 24.08.2017 | CC BY-SA 2.0 | Игорь Клепнев | Attribution + share-alike per-image |
+| **`Oxxxymiron._Reebok.png`** | **11.08.2017** | **CC0 1.0 Public Domain** | **Lado Kvataniya** | **Без ограничений (рекомендуется)** |
 
-**Licensing logic:** Файлы на Wikimedia Commons обычно под CC BY-SA или CC BY. Но без прямого чтения страницы файла — НЕ использовать.
+**Excluded (post-D9):** Категория «Russians Against War (Oxxxymiron), 6 April 2022» — все файлы датированы ПОСЛЕ 8.11.2021, не использовать.
 
-**Usage recommendation:** Акт 1 или Акт 2. ТОЛЬКО после ручной верификации лицензии. Обязательная атрибуция фотографу.
+**Licensing logic:** longform под CC BY 4.0. CC BY-SA картинки встраиваются с per-image license link (стандартная практика, не конфликт лицензий статьи). CC0 — без обязательств; рекомендуется как featured_image для минимизации legal complexity.
+
+**Attribution lines:**
+- Reebok.png: "Photo: Lado Kvataniya (CC0 1.0)" — формально не требуется, но good practice
+- Klepnev: "Photo: Igor Klepnev / Wikimedia Commons (CC BY-SA 2.0)"
+- Platonova: "Photo: Alina Platonova / Wikimedia Commons (CC BY-SA 3.0)"
+
+**Usage recommendation:**
+- **Featured image / OG:** `Reebok.png` (CC0, B&W stylistic match с Underground Academia)
+- **Акт 2 inline portrait:** `Klepnev` (B&W press-style)
+- **Акт 1 contextual:** `Platonova` (live performance, festival context)
+
+**Verification method:** WebFetch Wikimedia Commons file pages 2026-04-21 — extracted Date / License / Author fields directly from page metadata.
 
 ---
 
