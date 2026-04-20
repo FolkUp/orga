@@ -1,76 +1,134 @@
-# Orga — Культурная сейсмография
+# ORGA — Underground Academia
 
-[![Hugo](https://img.shields.io/badge/Hugo-Extended-0052CC?style=flat&logo=hugo)](https://gohugo.io/)
-[![Blowfish](https://img.shields.io/badge/Theme-Blowfish-blueviolet)](https://github.com/nunocoracao/blowfish)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-green.svg)](LICENSE-CONTENT)
+> Платформа культурной сейсмографии. Статический Astro-сайт, русский как основной язык, английский как вторичный.
+>
+> Production: **[underground.folkup.life](https://underground.folkup.life)**
 
-Мультимедийное расследование культурного феномена: как художники интуитивно улавливают культурные изменения до их массового проявления.
+[![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-green.svg)](LICENSE-CONTENT)
 
-## 🎯 Проект
+## О проекте
 
-Исследование песни Оксимирона и смены названия как примера "культурной сейсмографии" — способности художников чувствовать подземные толчки культурных сдвигов до их проявления на поверхности.
+Underground Academia — исследовательская платформа, фиксирующая подземные культурные сдвиги до того, как они проявляются на поверхности. Первый лонгрид — «Организация» Оксимирона как случай 333-дневной сейсмографической дуги (ноябрь 2021 → октябрь 2022).
 
-### Ключевые особенности
+Методология сочетает академическую строгость с независимостью от институциональных рамок: banking-level верификация фактов, прозрачный редакционный процесс, OSINT-подход к первоисточникам.
 
-- **Интерактивная временная шкала** с многоуровневым анализом
-- **Мультимедийный лонгрид** с видео, аудио и визуальными материалами
-- **Культурная аналитика** на базе OSINT-методологии
-- **Трёхъязычная поддержка** (RU/PT/EN)
+## Технологический стек
 
-## 🏗️ Технологии
+- **[Astro 5.18](https://astro.build/)** — статический сайт-генератор
+- **Content Collections (Zod)** — типизированные коллекции: `longform`, `investigations`, `legal`
+- **Svelte 5** — островная интерактивность (где нужна)
+- **@astrojs/sitemap** — sitemap с bilingual URLs
+- **@astrojs/mdx** — расширенный Markdown для контента
+- **Системные шрифты** (Georgia, system-ui) — нулевой сетевой запрос на шрифты
+- **Hosting:** Cloudflare Pages
 
-- [Hugo](https://gohugo.io/) с расширенной сборкой
-- Тема [Blowfish](https://github.com/nunocoracao/blowfish)
-- Мультиязычная архитектура (i18n)
-- Интерактивные компоненты и визуализации
-
-## 🚀 Запуск
-
-```bash
-# Клонирование
-git clone https://github.com/FolkUp/orga.git
-cd orga
-
-# Локальный сервер разработки
-hugo server -D
-
-# Сборка для продакшена
-hugo --gc --minify
-```
-
-## 📁 Структура
+## Структура репозитория
 
 ```
 orga/
-├── content/
-│   └── investigations/     # Основное расследование
-├── data/
-│   └── oxymiron_timeline.yaml  # Интерактивная временная шкала
-├── static/
-│   └── media/             # Мультимедийные ресурсы
-├── layouts/               # Кастомные шаблоны
-└── config/                # Конфигурация Hugo
+├── astro/                        # Astro-проект (основной)
+│   ├── src/
+│   │   ├── content/              # контент-коллекции
+│   │   │   ├── longform/         # премиум-лонгриды (bilingual)
+│   │   │   ├── investigations/   # расследования
+│   │   │   └── legal/            # юридические документы (RU + EN)
+│   │   │       └── ru/           # русские версии legal
+│   │   ├── layouts/              # BaseLayout, PremiumLongformLayout, InvestigationLayout
+│   │   ├── pages/                # маршруты (dynamic [...slug])
+│   │   └── components/           # Svelte + Astro-компоненты
+│   ├── public/                   # статические ассеты (_headers, robots.txt, PDF)
+│   ├── astro.config.mjs
+│   └── package.json
+├── deploy/                       # серверная инфраструктура (nginx, DNS, self-hosted fallback)
+├── scripts/                      # backup + access-management скрипты
+├── _meta/                        # внутренние заметки, экспертные ревью, аудит (не деплоится)
+├── LICENSE                       # MIT для исходного кода
+└── LICENSE-CONTENT               # CC BY 4.0 для контента
 ```
 
-## 🎨 Дизайн-система
+## Языковая политика
 
-Проект следует [Brand Guide v2.5](https://docs.folkup.app/brand/) FolkUp:
-- Палитра D (тёмная тема по умолчанию)
-- Типографика: Inter + Source Serif Pro
-- WCAG 2.1 AA compliance
+- **RU** — основной язык. URL без префикса: `/longform/organizatsiya/`, `/legal/privacy-policy/` — русская версия (где она есть).
+- **EN** — вторичный. URL с префиксом `/en/` или `/legal/en/` для синхронных переводов.
+- **hreflang x-default = RU** для SEO-сигнала.
+- Португальский и другие языки в scope проекта не входят.
 
-## 📄 Лицензия
+## Разработка
 
-- **Контент**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Код**: [MIT License](LICENSE)
+Предполагается установленный Node.js 20+.
 
-## 🔗 Связь
+```bash
+# Установка зависимостей
+cd astro
+npm install
 
-- **Сайт**: [orga.folkup.app](https://orga.folkup.app/)
-- **Экосистема**: [FolkUp](https://folkup.app/)
-- **Поддержка**: [Ko-fi](https://ko-fi.com/folkup)
+# Dev-сервер (http://localhost:4321)
+npm run dev
+
+# Продакшен-сборка (в astro/dist/)
+npm run build
+
+# Локальный просмотр собранного
+npm run preview
+
+# Типовая проверка Astro + Zod
+npm run check
+```
+
+## Деплой
+
+Production разворачивается **Cloudflare Pages** автоматически при push в ветку `main` (или настроенную deploy-branch в Cloudflare UI). Build-команда: `cd astro && npm run build`, output: `astro/dist/`.
+
+Security headers (CSP, HSTS, Permissions-Policy, Cache-Control) — в `astro/public/_headers`, обслуживаются Cloudflare Pages на HTTP-уровне.
+
+Альтернативный self-hosted вариант — в `deploy/` (nginx-конфиг, DNS-скрипт, инструкция). Используется как fallback.
+
+## Авторская разметка
+
+Frontmatter-схемы определены в `astro/src/content/config.ts`. Полный список полей — см. Zod-схему.
+
+Ключевые коллекции:
+
+- `longform/` — премиум-лонгриды в жанре personal-essay-criticism. Обязательна banking-level верификация (fact/legal/editorial/hostile reviewed).
+- `investigations/` — расследования с уровнями confidence (high/medium/low) и status (verified/partially_verified/unverified/draft).
+- `legal/` — юридические документы с `language` и `translations` (sibling-slug pointer).
+
+Переводы: suffix-паттерн (`organizatsiya.en.md`) для longform и investigations; nested-folder (`legal/ru/privacy-policy.md`) для legal — каждый путь даёт тот URL, который вы видите.
+
+## Редакционный процесс
+
+Каждый опубликованный лонгрид проходит через цепочку:
+
+1. **Fact verification** — каждая дата, цифра, атрибуция сверяется с независимыми источниками
+2. **Legal review** — PII-аудит, naming-justification (тройной тест), risk-classification
+3. **Editorial review** — стиль, согласованность, fact-checking финального текста
+4. **Hostile review** — adversarial агенты ищут слабые места и compliance-пробелы
+5. **Final editorial pass** — человек-редактор принимает или откатывает все правки
+
+Подробнее о применении автоматизированных инструментов: [/legal/ai-transparency/](https://underground.folkup.life/legal/ai-transparency/) (EU AI Act Art. 50 transparency).
+
+## Лицензии
+
+- **Исходный код:** [MIT](LICENSE)
+- **Контент** (тексты расследований, лонгриды, данные): [Creative Commons BY 4.0](LICENSE-CONTENT)
+
+Третьеcторонние зависимости — см. `astro/package.json` и их соответствующие лицензии.
+
+## Контакт
+
+- Общие вопросы: `contact@folkup.app`
+- Расследования и редакторская обратная связь: `contact@folkup.app`
+- Часть экосистемы [FolkUp](https://folkup.app)
+
+## Ссылки
+
+- [Privacy Policy](https://underground.folkup.life/legal/privacy-policy/)
+- [Terms of Use](https://underground.folkup.life/legal/terms-of-use/)
+- [Cookie Policy](https://underground.folkup.life/legal/cookie-policy/)
+- [AI Transparency](https://underground.folkup.life/legal/ai-transparency/)
 
 ---
 
-*Часть экосистемы [FolkUp](https://folkup.app/) — платформы для исследовательской журналистики и культурной аналитики.*
+*Last updated: 2026-04-20 · Commit: [`499be21`](https://github.com/FolkUp/orga/commit/499be21) · Doc version: 2.0 (post-Hugo cleanup)*
