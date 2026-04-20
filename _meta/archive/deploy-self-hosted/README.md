@@ -1,6 +1,7 @@
 ---
 title: "Archive — Self-hosted deployment artifacts"
 date_archived: 2026-04-20
+date_updated: 2026-04-20
 archive_reason: "ORGA-028 decision (Вариант A): Underground Academia stays on Cloudflare Pages. Self-hosted Hetzner infrastructure preserved here for history / potential future migration."
 status: historical
 ---
@@ -11,12 +12,25 @@ status: historical
 
 ## Что здесь
 
+### Deploy infrastructure (original ORGA-026/027 batch)
+
 | Файл | Назначение |
 |------|------------|
 | `DEPLOYMENT-GUIDE.md` | 17-страничный banking-level protocol деплоя на Hetzner CX33 (46.225.107.2) |
 | `deploy-orga.sh` | Master deployment script (nginx container + nginx-proxy auto-discovery) |
 | `dns-setup-underground.sh` | Cloudflare API-based DNS A record setup (SOPS-encrypted tokens) |
 | `nginx-orga.conf` | nginx virtualhost config с security headers + WCAG-friendly caching |
+
+### Production access scripts (added 2026-04-20, post-ORGA-028 scripts/ de-duplication)
+
+| Файл | Назначение |
+|------|------------|
+| `scripts/ACCESS_README.md` | Documentation для production SSH access controls |
+| `scripts/production-access.sh` | SSH-based production server access wrapper |
+| `scripts/setup-production-access.sh` | Initial setup of SSH keys + MFA + access policies |
+| `scripts/access-config-template.json` | Config template: prod host `production.orga.folkup.app`, staging `staging.orga.folkup.app`, SSH port 22 |
+
+**Invariant:** All 4 access scripts expect **co-location в одной директории** — `setup-production-access.sh` ожидает `$SCRIPT_DIR/access-config-template.json` и `$SCRIPT_DIR/production-access.sh`. При re-activation восстанавливать все 4 вместе в `scripts/` (не по одному).
 
 ## Контекст решения
 
@@ -49,4 +63,4 @@ Self-hosted инфраструктура была развёрнута и гот
 
 ---
 
-*Archived: 2026-04-20 · ORGA-057 · Decision ref: ORGA-028 Вариант A*
+*Archived: 2026-04-20 · Updated: 2026-04-20 (scripts de-duplication) · ORGA-057 · Decision ref: ORGA-028 Вариант A*
