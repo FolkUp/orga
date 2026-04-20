@@ -1,3 +1,11 @@
+---
+title: "ORGA Session Context — Full rollup 2026-04-20"
+date_archived: 2026-04-20
+date_updated: 2026-04-20
+archive_reason: "Sessions #5 + #6 rollup (Phase 1-5, ORGA-022/026/027, Hugo era, deploy infra, Oxymiron verification) consolidated per rules/context-consolidation.md §5 timestamp discipline. Daily SESSION_CONTEXT trimmed to ≤50 line target."
+status: historical
+---
+
 # ORGA Session Context
 
 **Current Status:** Phase 5 + ORGA-052/053/055 COMPLETE — full bilingual longform + language switcher UI + SEO hreflang cluster + Hugo legacy gone + RU legal migrated + AI Transparency page + RU-primary hreflang x-default
