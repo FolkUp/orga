@@ -1,6 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 
-// Investigation schema based on existing Hugo frontmatter
+// Investigation schema — cultural-analysis articles with source metadata
 const investigationsCollection = defineCollection({
   type: 'content',
   schema: z.object({
