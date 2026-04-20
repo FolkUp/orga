@@ -1,0 +1,233 @@
+---
+/**
+ * CookieConsent — GDPR-compliant opt-in banner.
+ *
+ * Stays hidden once the visitor has made a decision (Accept or Reject).
+ * Dispatches 'orga-consent-changed' on the window so embed components can
+ * render or un-render their iframes without a reload.
+ *
+ * Scope: single origin (orga.folkup.app). No server-side record.
+ */
+
+export interface Props {
+  lang?: 'ru' | 'en' | 'pt';
+}
+
+const { lang = 'ru' } = Astro.props;
+
+type StringBundle = {
+  title: string;
+  body: string;
+  accept: string;
+  reject: string;
+  learnMore: string;
+  learnMoreHref: string;
+};
+
+const strings: Record<'ru' | 'en' | 'pt', StringBundle> = {
+  ru: {
+    title: 'Ваше согласие на встроенный контент',
+    body: 'Мы встраиваем плееры Spotify и YouTube только после вашего явного согласия. Внешние сервисы получают IP-адрес и могут устанавливать свои cookie. Без согласия статья читается без плееров — ссылки на платформы всегда остаются доступны.',
+    accept: 'Принять',
+    reject: 'Отклонить',
+    learnMore: 'Политика cookie',
+    learnMoreHref: '/legal/cookie-policy/',
+  },
+  en: {
+    title: 'Consent for embedded media',
+    body: 'Spotify and YouTube embeds load only after you opt in. Those third parties receive your IP address and may set their own cookies. Without consent the article renders without players — platform links remain available.',
+    accept: 'Accept',
+    reject: 'Reject',
+    learnMore: 'Cookie policy',
+    learnMoreHref: '/legal/cookie-policy/',
+  },
+  pt: {
+    title: 'Consentimento para mídia incorporada',
+    body: 'Os players do Spotify e do YouTube carregam apenas após o seu consentimento. Esses serviços recebem o seu IP e podem gravar cookies próprios. Sem consentimento, o artigo é lido sem players — os links para as plataformas continuam acessíveis.',
+    accept: 'Aceitar',
+    reject: 'Recusar',
+    learnMore: 'Política de cookies',
+    learnMoreHref: '/legal/cookie-policy/',
+  },
+};
+
+const t = strings[lang];
+---
+
+<aside
+  class="consent-banner"
+  role="region"
+  aria-labelledby="consent-banner-title"
+  data-consent-banner
+  hidden
+>
+  <div class="consent-banner__inner">
+    <div class="consent-banner__text">
+      <h2 id="consent-banner-title" class="consent-banner__title">{t.title}</h2>
+      <p class="consent-banner__body">{t.body}</p>
+      <p class="consent-banner__meta">
+        <a href={t.learnMoreHref}>{t.learnMore}</a>
+      </p>
+    </div>
+    <div class="consent-banner__actions" role="group" aria-label={t.title}>
+      <button type="button" class="consent-btn consent-btn--reject" data-consent-action="reject">
+        {t.reject}
+      </button>
+      <button type="button" class="consent-btn consent-btn--accept" data-consent-action="accept">
+        {t.accept}
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  import {
+    readConsent,
+    writeConsent,
+    CONSENT_EVENT_NAME,
+  } from '../lib/consent';
+
+  const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+  if (banner) {
+    const state = readConsent();
+    if (!state) {
+      banner.hidden = false;
+    }
+
+    banner.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      const action = target?.closest<HTMLButtonElement>('[data-consent-action]');
+      if (!action) return;
+      const decision = action.dataset.consentAction;
+      if (decision === 'accept') {
+        writeConsent({ embeds: true });
+        banner.hidden = true;
+      } else if (decision === 'reject') {
+        writeConsent({ embeds: false });
+        banner.hidden = true;
+      }
+    });
+
+    // Re-show the banner if another tab clears consent (storage event) —
+    // keeps multi-tab sessions consistent.
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'orga-consent-v1' && event.newValue === null) {
+        banner.hidden = false;
+      }
+    });
+
+    // No-op listener so TypeScript keeps the import live and downstream
+    // islands always see the same event contract string.
+    window.addEventListener(CONSENT_EVENT_NAME, () => {});
+  }
+</script>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    border-top: 3px solid var(--color-amber-warm);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .consent-banner[hidden] {
+    display: none;
+  }
+
+  .consent-banner__inner {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--container-padding);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .consent-banner__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .consent-banner__body {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0 0 var(--space-sm) 0;
+    opacity: 0.95;
+  }
+
+  .consent-banner__meta {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .consent-banner__meta a {
+    color: var(--color-sage-muted);
+    text-decoration: underline;
+  }
+
+  .consent-banner__actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .consent-btn {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.65rem 1.25rem;
+    min-height: 44px;
+    min-width: 120px;
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease;
+  }
+
+  .consent-btn--accept {
+    background-color: var(--color-amber-warm);
+    color: var(--color-maritime-deep);
+    border-color: var(--color-amber-warm);
+  }
+
+  .consent-btn--accept:hover,
+  .consent-btn--accept:focus-visible {
+    background-color: var(--color-text-inverse);
+    border-color: var(--color-text-inverse);
+  }
+
+  .consent-btn--reject {
+    background-color: transparent;
+    color: var(--color-text-inverse);
+    border-color: var(--color-text-inverse);
+  }
+
+  .consent-btn--reject:hover,
+  .consent-btn--reject:focus-visible {
+    background-color: rgba(247, 250, 252, 0.12);
+  }
+
+  @media (max-width: 48rem) {
+    .consent-banner__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .consent-banner__actions {
+      justify-content: stretch;
+    }
+
+    .consent-btn {
+      flex: 1;
+    }
+  }
+</style>

@@ -1,40 +1,66 @@
 ---
 title: "Privacy Policy"
-description: "Underground Academia Privacy Policy"
+description: "Underground Academia Privacy Policy - GDPR compliant data protection information"
 page_type: "privacy_policy"
-lastmod: 2026-04-15
+lastmod: 2026-04-19
 draft: false
 ---
 
 ## Privacy Policy
 
-Underground Academia respects your privacy. This privacy policy explains how we collect, use, and protect your information.
+### Data Controller
+
+Underground Academia is operated by FolkUp. For data protection matters, contact: contact@folkup.app
 
 ### Information We Collect
 
-We collect information that you voluntarily provide to us:
-- Information from contact forms
-- Comments on investigations
-- Email communications
+We may collect information you voluntarily provide:
+- Email addresses from newsletter subscriptions
+- Comments and feedback on investigations
+- Contact form submissions
 
-### How We Use Information
+### Legal Basis
 
-We use the information we collect to:
+We process your data under GDPR Article 6(1)(a) - consent, and Article 6(1)(f) - legitimate interests for platform operation.
+
+### Data Usage
+
+We use your information to:
 - Respond to your inquiries
-- Improve our platform
-- Send you updates (if you subscribe)
+- Send requested newsletter updates
+- Improve our content and platform
 
-### Data Protection
+### No Tracking
 
-We implement appropriate security measures to protect your information from unauthorized access, disclosure, or modification.
+Underground Academia does not use tracking cookies, analytics, or advertising technologies after our font loading fix.
 
-### Your Rights
+### Data Retention
+
+- Contact form data: deleted after 1 year
+- Newsletter subscriptions: until unsubscribed
+- Comments: retained while investigation is published
+
+### Your Rights (GDPR Articles 15-21)
 
 You have the right to:
-- Access your personal information
-- Request correction or deletion
-- Opt-out of communications
+- Access your personal data
+- Rectify inaccurate data
+- Erase your data
+- Restrict processing
+- Data portability
+- Object to processing
+- Withdraw consent
+
+### Data Security
+
+We implement appropriate technical and organizational measures to protect your data against unauthorized access, loss, or destruction.
+
+### International Transfers
+
+Data is processed within the EU. No international transfers occur without adequate safeguards.
 
 ### Contact
 
-For privacy inquiries, contact us through the FolkUp ecosystem.
+For privacy inquiries or to exercise your rights: contact@folkup.app
+
+**Last updated:** April 19, 2026

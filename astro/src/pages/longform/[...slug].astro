@@ -1,0 +1,44 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PremiumLongformLayout from '../../layouts/PremiumLongformLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('longform');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'longform'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+---
+
+<PremiumLongformLayout
+  title={data.title}
+  subtitle={data.subtitle}
+  byline={data.byline}
+  bylineNote={data.byline_note}
+  date={data.date}
+  lastmod={data.lastmod}
+  language={data.language}
+  wordCount={data.word_count}
+  subjectArtist={data.subject_artist}
+  subjectWork={data.subject_work}
+  tags={data.tags}
+  description={data.description}
+  audioEmbed={data.audio_embed && {
+    primary: data.audio_embed.primary,
+    spotifyTrackId: data.audio_embed.spotify_track_id,
+    youtubeVideoId: data.audio_embed.youtube_video_id,
+    platforms: data.audio_embed.platforms,
+    consentRequired: data.audio_embed.consent_required,
+  }}
+>
+  <Content />
+</PremiumLongformLayout>

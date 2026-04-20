@@ -1,0 +1,393 @@
+---
+/**
+ * AudioEmbedSpotify — consent-gated Spotify/YouTube player.
+ *
+ * Before consent: static prose invitation + platform links, NO iframe in DOM.
+ * After consent: lazy iframe injected client-side.
+ *
+ * Listens to 'orga-consent-changed' so toggling consent flips the render
+ * without a page reload.
+ */
+
+export interface PlatformLink {
+  name: string;
+  url: string;
+}
+
+export interface Props {
+  spotifyTrackId?: string;
+  youtubeVideoId?: string;
+  trackName: string;
+  artistName: string;
+  platforms?: PlatformLink[];
+  lang?: 'ru' | 'en' | 'pt';
+}
+
+const {
+  spotifyTrackId,
+  youtubeVideoId,
+  trackName,
+  artistName,
+  platforms = [],
+  lang = 'ru',
+} = Astro.props;
+
+const strings = {
+  ru: {
+    preHook: 'Послушать',
+    preBody:
+      'Плеер не загружается до вашего согласия на встраивание внешних сервисов.',
+    acceptButton: 'Принять и включить плеер',
+    platformsLabel: 'Открыть на платформе',
+    figcaption: `Oxxxymiron — «${trackName}»`,
+    youtubeSwitch: 'Показать YouTube вместо Spotify',
+    spotifySwitch: 'Показать Spotify вместо YouTube',
+  },
+  en: {
+    preHook: 'Listen',
+    preBody: 'The player will not load until you consent to embedded services.',
+    acceptButton: 'Accept and load player',
+    platformsLabel: 'Open on platform',
+    figcaption: `${artistName} — "${trackName}"`,
+    youtubeSwitch: 'Show YouTube instead of Spotify',
+    spotifySwitch: 'Show Spotify instead of YouTube',
+  },
+  pt: {
+    preHook: 'Ouvir',
+    preBody: 'O player só carrega após o seu consentimento para serviços incorporados.',
+    acceptButton: 'Aceitar e carregar player',
+    platformsLabel: 'Abrir na plataforma',
+    figcaption: `${artistName} — "${trackName}"`,
+    youtubeSwitch: 'Mostrar YouTube em vez de Spotify',
+    spotifySwitch: 'Mostrar Spotify em vez de YouTube',
+  },
+};
+
+const t = strings[lang];
+const hasYouTube = Boolean(youtubeVideoId);
+const hasSpotify = Boolean(spotifyTrackId);
+const defaultSource: 'spotify' | 'youtube' = hasSpotify ? 'spotify' : 'youtube';
+---
+
+<figure
+  class="audio-embed"
+  data-audio-embed
+  data-spotify-id={spotifyTrackId}
+  data-youtube-id={youtubeVideoId}
+  data-default-source={defaultSource}
+>
+  <!-- Decorative waveform wrap — aria-hidden, pure CSS pattern -->
+  <div class="audio-embed__waveform" aria-hidden="true"></div>
+
+  <!-- Pre-consent state. The iframe container stays empty until consent. -->
+  <div class="audio-embed__preconsent" data-audio-preconsent>
+    <p class="audio-embed__preconsent-title">
+      <span class="audio-embed__eyebrow">{t.preHook}</span>
+      <span class="audio-embed__track">{artistName} — {trackName}</span>
+    </p>
+    <p class="audio-embed__preconsent-body">{t.preBody}</p>
+    <button type="button" class="audio-embed__accept" data-audio-accept>
+      {t.acceptButton}
+    </button>
+  </div>
+
+  <!-- Active iframe host. Populated by the script only after consent. -->
+  <div class="audio-embed__frame" data-audio-frame hidden></div>
+
+  {
+    (hasSpotify && hasYouTube) && (
+      <div class="audio-embed__source-toggle" data-audio-toggle hidden>
+        <button type="button" data-audio-source="spotify" aria-pressed={defaultSource === 'spotify' ? 'true' : 'false'}>
+          Spotify
+        </button>
+        <button type="button" data-audio-source="youtube" aria-pressed={defaultSource === 'youtube' ? 'true' : 'false'}>
+          YouTube
+        </button>
+      </div>
+    )
+  }
+
+  {
+    platforms.length > 0 && (
+      <figcaption class="audio-embed__platforms">
+        <span class="audio-embed__platforms-label">{t.platformsLabel}:</span>
+        <ul>
+          {platforms.map((p) => (
+            <li>
+              <a href={p.url} rel="external noopener" target="_blank">
+                {p.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </figcaption>
+    )
+  }
+</figure>
+
+<script>
+  import { hasEmbedsConsent, writeConsent, onConsentChange } from '../lib/consent';
+
+  type Source = 'spotify' | 'youtube';
+
+  function buildIframe(source: Source, root: HTMLElement): HTMLIFrameElement | null {
+    const frame = document.createElement('iframe');
+    if (source === 'spotify') {
+      const id = root.dataset.spotifyId;
+      if (!id) return null;
+      frame.src = `https://open.spotify.com/embed/track/${id}?utm_source=generator`;
+      frame.height = '152';
+      frame.title = `Spotify: ${root.dataset.trackLabel ?? ''}`;
+    } else {
+      const id = root.dataset.youtubeId;
+      if (!id) return null;
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0`;
+      frame.height = '270';
+      frame.title = `YouTube: ${root.dataset.trackLabel ?? ''}`;
+    }
+    frame.width = '100%';
+    frame.loading = 'lazy';
+    frame.setAttribute('allow', 'encrypted-media; picture-in-picture');
+    frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    frame.style.border = '0';
+    frame.style.display = 'block';
+    return frame;
+  }
+
+  function mount(root: HTMLElement): void {
+    const pre = root.querySelector<HTMLElement>('[data-audio-preconsent]');
+    const host = root.querySelector<HTMLElement>('[data-audio-frame]');
+    const toggle = root.querySelector<HTMLElement>('[data-audio-toggle]');
+    const acceptBtn = root.querySelector<HTMLButtonElement>('[data-audio-accept]');
+    const initial = (root.dataset.defaultSource as Source) || 'spotify';
+    let current: Source = initial;
+
+    function render(source: Source): void {
+      if (!host) return;
+      host.innerHTML = '';
+      const frame = buildIframe(source, root);
+      if (frame) host.appendChild(frame);
+    }
+
+    function reveal(): void {
+      if (pre) pre.hidden = true;
+      if (host) host.hidden = false;
+      if (toggle) toggle.hidden = false;
+      render(current);
+    }
+
+    function hide(): void {
+      if (pre) pre.hidden = false;
+      if (host) {
+        host.hidden = true;
+        host.innerHTML = '';
+      }
+      if (toggle) toggle.hidden = true;
+    }
+
+    if (hasEmbedsConsent()) {
+      reveal();
+    } else {
+      hide();
+    }
+
+    acceptBtn?.addEventListener('click', () => {
+      writeConsent({ embeds: true });
+    });
+
+    toggle?.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      const btn = target?.closest<HTMLButtonElement>('[data-audio-source]');
+      if (!btn) return;
+      const next = btn.dataset.audioSource as Source;
+      if (!next || next === current) return;
+      current = next;
+      toggle.querySelectorAll<HTMLButtonElement>('[data-audio-source]').forEach((b) => {
+        b.setAttribute('aria-pressed', b.dataset.audioSource === next ? 'true' : 'false');
+      });
+      render(current);
+    });
+
+    onConsentChange((state) => {
+      if (state.embeds) {
+        reveal();
+      } else {
+        hide();
+      }
+    });
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-audio-embed]')
+    .forEach((element) => mount(element));
+</script>
+
+<style>
+  .audio-embed {
+    margin: 0 0 var(--space-xl) 0;
+    padding: var(--space-lg);
+    background-color: var(--color-concrete-light);
+    border: 1px solid rgba(26, 54, 93, 0.12);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .audio-embed__waveform {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 35%;
+    pointer-events: none;
+    opacity: 0.28;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-maritime-deep) 0,
+      var(--color-maritime-deep) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 100%);
+  }
+
+  .audio-embed__preconsent {
+    position: relative;
+    z-index: 1;
+  }
+
+  .audio-embed__preconsent[hidden] {
+    display: none;
+  }
+
+  .audio-embed__preconsent-title {
+    margin: 0 0 var(--space-sm) 0;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+
+  .audio-embed__eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    color: var(--color-amber-warm);
+    margin-right: var(--space-sm);
+    font-weight: 700;
+  }
+
+  .audio-embed__track {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+  }
+
+  .audio-embed__preconsent-body {
+    margin: 0 0 var(--space-md) 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--color-text-primary);
+    max-width: 42rem;
+  }
+
+  .audio-embed__accept {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.6rem 1.1rem;
+    min-height: 44px;
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    border: 2px solid var(--color-maritime-deep);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+  }
+
+  .audio-embed__accept:hover,
+  .audio-embed__accept:focus-visible {
+    background-color: #142645;
+  }
+
+  .audio-embed__frame {
+    position: relative;
+    z-index: 1;
+  }
+
+  .audio-embed__frame[hidden] {
+    display: none;
+  }
+
+  .audio-embed__frame iframe {
+    width: 100%;
+    display: block;
+    border: 0;
+    border-radius: 4px;
+  }
+
+  .audio-embed__source-toggle {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--space-sm);
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .audio-embed__source-toggle[hidden] {
+    display: none;
+  }
+
+  .audio-embed__source-toggle button {
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.35rem 0.7rem;
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid rgba(26, 54, 93, 0.3);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .audio-embed__source-toggle button[aria-pressed='true'] {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .audio-embed__platforms {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    font-size: 0.82rem;
+    color: var(--color-text-primary);
+  }
+
+  .audio-embed__platforms-label {
+    display: inline-block;
+    margin-right: var(--space-sm);
+    opacity: 0.85;
+  }
+
+  .audio-embed__platforms ul {
+    list-style: none;
+    display: inline-flex;
+    gap: var(--space-md);
+    padding: 0;
+    margin: 0;
+  }
+
+  .audio-embed__platforms a {
+    color: var(--color-maritime-deep);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .audio-embed__platforms a:hover,
+  .audio-embed__platforms a:focus-visible {
+    color: var(--color-amber-warm);
+  }
+</style>

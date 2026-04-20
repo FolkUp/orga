@@ -1,0 +1,160 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = await getCollection('longform');
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function readingMinutes(words?: number): number | undefined {
+  if (!words) return undefined;
+  return Math.ceil(words / 180);
+}
+---
+
+<BaseLayout
+  title="Longform — Underground Academia"
+  description="Premium music and culture criticism — personal essays and long-form investigations."
+  lang="ru"
+>
+  <section class="longform-index">
+    <header class="longform-index__header">
+      <h1>Лонгформ</h1>
+      <p>Премиум-разборы о музыке, культуре и языке — персональные эссе в формате longread.</p>
+    </header>
+
+    <ul class="longform-index__list">
+      {
+        entries.map((entry) => {
+          const reading = readingMinutes(entry.data.word_count);
+          return (
+            <li class="longform-card">
+              <a href={`/longform/${entry.slug}/`} class="longform-card__link">
+                <h2 class="longform-card__title">{entry.data.title}</h2>
+                {entry.data.subtitle && (
+                  <p class="longform-card__subtitle">{entry.data.subtitle}</p>
+                )}
+                <dl class="longform-card__meta">
+                  <div>
+                    <dt class="visually-hidden">Author</dt>
+                    <dd>{entry.data.byline}</dd>
+                  </div>
+                  <div>
+                    <dt class="visually-hidden">Published</dt>
+                    <dd>
+                      <time datetime={entry.data.date.toISOString()}>
+                        {entry.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                    </dd>
+                  </div>
+                  {reading !== undefined && (
+                    <div>
+                      <dt class="visually-hidden">Reading time</dt>
+                      <dd>{reading} мин чтения</dd>
+                    </div>
+                  )}
+                </dl>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .longform-index {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .longform-index__header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.15);
+  }
+
+  .longform-index__header h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+    letter-spacing: -0.01em;
+  }
+
+  .longform-index__header p {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: rgba(45, 55, 72, 0.85);
+    margin: 0;
+    max-width: 42rem;
+  }
+
+  .longform-index__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .longform-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-lg);
+    border: 1px solid rgba(26, 54, 93, 0.12);
+    border-radius: 6px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .longform-card__link:hover,
+  .longform-card__link:focus-visible {
+    border-color: var(--color-maritime-deep);
+    box-shadow: 0 4px 18px rgba(26, 54, 93, 0.08);
+  }
+
+  .longform-card__title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.3rem, 1.5vw + 0.8rem, 1.65rem);
+    line-height: 1.25;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+    letter-spacing: -0.005em;
+  }
+
+  .longform-card__subtitle {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(45, 55, 72, 0.85);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .longform-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  .longform-card__meta dd {
+    margin: 0;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

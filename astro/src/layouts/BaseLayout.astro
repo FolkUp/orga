@@ -1,4 +1,6 @@
 ---
+import CookieConsent from '../components/CookieConsent.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -6,6 +8,9 @@ export interface Props {
 }
 
 const { title, description = "Underground Academia — Cultural Seismography Platform", lang = "en" } = Astro.props;
+
+const consentLang: 'ru' | 'en' | 'pt' =
+  lang === 'ru' || lang === 'pt' ? lang : 'en';
 ---
 
 <!doctype html>
@@ -18,11 +23,6 @@ const { title, description = "Underground Academia — Cultural Seismography Pla
 
     <title>{title}</title>
 
-    <!-- Google Fonts for Underground Academia -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet" />
-
     <!-- Meta tags for Underground Academia branding -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -31,9 +31,24 @@ const { title, description = "Underground Academia — Cultural Seismography Pla
 
     <!-- Brand colors and theme -->
     <meta name="theme-color" content="#1A365D" />
+
+    <!--
+      Baseline Content-Security-Policy. Nginx may emit a tighter policy at the
+      edge; this meta exists so the static output is safe when served without
+      additional headers (local preview, CDN fallback, etc.). style-src and
+      script-src keep 'unsafe-inline' to accommodate Astro's scoped styles and
+      the consent island's tiny inline bootstrap — hash/nonce migration tracked
+      as follow-up.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+    />
   </head>
 
   <body>
+    <!-- Skip link for accessibility — MUST be the first focusable element inside <body> -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="site-container">
       <header class="site-header">
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
@@ -66,12 +81,16 @@ const { title, description = "Underground Academia — Cultural Seismography Pla
               Support this research
             </a>
           </p>
+          <div class="footer-legal">
+            <a href="/legal/privacy-policy/">Privacy Policy</a>
+            <a href="/legal/terms-of-use/">Terms of Use</a>
+            <a href="/legal/cookie-policy/">Cookie Policy</a>
+          </div>
         </div>
       </footer>
     </div>
 
-    <!-- Skip link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <CookieConsent lang={consentLang} />
   </body>
 </html>
 
@@ -93,9 +112,9 @@ const { title, description = "Underground Academia — Cultural Seismography Pla
     --color-text-primary: #2D3748;      /* Text dark */
     --color-text-inverse: #F7FAFC;      /* Text light */
 
-    /* Typography */
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Source Sans 3', sans-serif;
+    /* Typography - System fonts (GDPR compliant, no external loading) */
+    --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --font-size-base: 1rem;
     --line-height-body: 1.6;
     --line-height-heading: 1.2;

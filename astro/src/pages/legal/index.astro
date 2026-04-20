@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = await getCollection('legal', ({ data }) => !data.draft);
+entries.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout
+  title="Legal — Underground Academia"
+  description="Privacy Policy, Terms of Use, and Cookie Policy for Underground Academia."
+>
+  <section class="legal-index">
+    <header>
+      <h1>Legal</h1>
+      <p>Privacy Policy, Terms of Use, and Cookie Policy.</p>
+    </header>
+
+    <ul class="legal-index__list">
+      {
+        entries.map((entry) => (
+          <li>
+            <a href={`/legal/${entry.slug}/`}>
+              <span class="legal-index__item-title">{entry.data.title}</span>
+              {entry.data.description && (
+                <span class="legal-index__item-desc">{entry.data.description}</span>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-index {
+    max-width: 48rem;
+    margin: var(--space-xl) auto;
+    padding: 0 var(--space-md);
+  }
+
+  .legal-index h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .legal-index header p {
+    color: rgba(45, 55, 72, 0.8);
+    margin: 0 0 var(--space-xl) 0;
+  }
+
+  .legal-index__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .legal-index__list a {
+    display: block;
+    padding: var(--space-md);
+    border: 1px solid rgba(26, 54, 93, 0.18);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .legal-index__list a:hover,
+  .legal-index__list a:focus-visible {
+    border-color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.03);
+  }
+
+  .legal-index__item-title {
+    display: block;
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-xs);
+  }
+
+  .legal-index__item-desc {
+    display: block;
+    font-size: 0.88rem;
+    color: rgba(45, 55, 72, 0.75);
+    line-height: 1.5;
+  }
+</style>
