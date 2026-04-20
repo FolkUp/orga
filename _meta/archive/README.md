@@ -1,17 +1,15 @@
 ---
 title: "Archive — Historical _meta documents"
 date_archived: 2026-04-20
-archive_reason: "Pre-Astro migration artifacts (Hugo + Blowfish stack). Stack removed in ORGA-055 Hugo cleanup."
+archive_reason: "Pre-Astro migration artifacts (Hugo era) + self-hosted deployment infrastructure (post ORGA-028 CF decision)."
 status: historical
 ---
 
 # _meta/archive/ — Historical documents
 
-Документы ниже описывают **Hugo + Blowfish** стек, который использовался как тестовый вариант до миграции на Astro 5.18 (см. ORGA-055, commit `499be21`, 2026-04-20).
+## Hugo era (ORGA-056, 2026-04-20)
 
-Сохранены для справки — архитектурные решения, phase reports, verification logs. **Не отражают текущее состояние проекта.**
-
-## Содержимое
+Документы описывают **Hugo + Blowfish** стек, который использовался как тестовый вариант до миграции на Astro 5.18 (см. ORGA-055). **Не отражают текущее состояние проекта.**
 
 | Файл | Что это | Оригинальная дата |
 |------|---------|-------------------|
@@ -23,15 +21,24 @@ status: historical
 | `_performance-audit.md` | Core Web Vitals для Blowfish-стека | — |
 | `TECHNICAL_SPECS.md` | Hugo + Blowfish технические спецификации | 2026-03-26 |
 
+## Self-hosted deployment (ORGA-057, 2026-04-20)
+
+Артефакты self-hosted nginx deployment на Hetzner, подготовленные в ORGA-026/027. **Не используются** — решение ORGA-028 Вариант A: stay on Cloudflare Pages. Детали: `deploy-self-hosted/README.md`.
+
+| Папка | Что это |
+|-------|---------|
+| `deploy-self-hosted/` | nginx config + deployment guide + DNS script + deploy automation |
+
 ## Где искать актуальное
 
 | Тема | Актуальный источник |
 |------|---------------------|
 | Стек и архитектура | `/README.md`, `astro/astro.config.mjs` |
 | Контент-схемы | `astro/src/content/config.ts` |
-| Deploy | `/README.md` → раздел «Деплой», `deploy/` |
-| Performance | Cloudflare Pages + `astro/public/_headers` |
+| Deploy | `/README.md` → раздел «Деплой» (Cloudflare Pages) |
+| Security headers | `astro/public/_headers` |
+| Backup | `scripts/` — git-based + опциональные scripts для self-hosted scenario |
 
 ---
 
-*Archived: 2026-04-20 · ORGA-056 _meta cleanup*
+*Last updated: 2026-04-20 · ORGA-056 (Hugo) + ORGA-057 (deploy)*

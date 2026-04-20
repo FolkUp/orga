@@ -41,9 +41,9 @@ orga/
 │   ├── public/                   # статические ассеты (_headers, robots.txt, PDF)
 │   ├── astro.config.mjs
 │   └── package.json
-├── deploy/                       # серверная инфраструктура (nginx, DNS, self-hosted fallback)
 ├── scripts/                      # backup + access-management скрипты
 ├── _meta/                        # внутренние заметки, экспертные ревью, аудит (не деплоится)
+│   └── archive/                  # исторические артефакты (Hugo era, self-hosted deploy)
 ├── LICENSE                       # MIT для исходного кода
 └── LICENSE-CONTENT               # CC BY 4.0 для контента
 ```
@@ -83,7 +83,7 @@ Production разворачивается **Cloudflare Pages** автомати�
 
 Security headers (CSP, HSTS, Permissions-Policy, Cache-Control) — в `astro/public/_headers`, обслуживаются Cloudflare Pages на HTTP-уровне.
 
-Альтернативный self-hosted вариант — в `deploy/` (nginx-конфиг, DNS-скрипт, инструкция). Используется как fallback.
+Self-hosted deployment artifacts (nginx + DNS + deployment guide) — архивированы в `_meta/archive/deploy-self-hosted/` по решению ORGA-028 Вариант A (stay on CF Pages, 2026-04-20). Могут быть re-activated при необходимости migration.
 
 ## Авторская разметка
 
@@ -131,4 +131,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-04-20 · Commit: [`499be21`](https://github.com/FolkUp/orga/commit/499be21) · Doc version: 2.0 (post-Hugo cleanup)*
+*Last updated: 2026-04-20 · Doc version: 2.1 (post-ORGA-028 CF decision)*
