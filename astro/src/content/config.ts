@@ -65,7 +65,95 @@ const legalCollection = defineCollection({
   })
 });
 
+// Premium Longform collection — personal-essay music/culture criticism
+// First entry: organizatsiya.md (Command FolkUp byline, 2026-04-20)
+const longformCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    byline: z.string(),
+    byline_note: z.string().optional(),
+
+    date: z.date(),
+    lastmod: z.date().optional(),
+    language: z.enum(['ru', 'en', 'pt']).default('ru'),
+    word_count: z.number().optional(),
+
+    // Subject of criticism
+    subject_artist: z.string().optional(),
+    subject_work: z.string().optional(),
+    subject_work_release: z.date().optional(),
+    subject_album: z.string().optional(),
+    subject_album_release: z.date().optional(),
+    subject_director: z.string().optional(),
+    subject_duration: z.string().optional(),
+
+    // Classification
+    longform_type: z.enum(['personal-essay-criticism', 'reportage', 'hybrid']).default('personal-essay-criticism'),
+    genre: z.string(),
+    register: z.enum(['premium', 'standard']).default('premium'),
+    tags: z.array(z.string()),
+
+    // Banking-level verification metadata
+    fact_verified: z.boolean(),
+    fact_verified_by: z.string().optional(),
+    fact_verified_date: z.date().optional(),
+    fact_verification_reports: z.array(z.string()).optional(),
+
+    legal_reviewed: z.boolean(),
+    legal_reviewed_by: z.string().optional(),
+    legal_risk: z.enum(['low', 'medium', 'high']).default('low'),
+
+    editorial_reviewed: z.boolean(),
+    editorial_reviewed_by: z.array(z.string()).optional(),
+
+    hostile_verified: z.boolean(),
+    hostile_verified_by: z.array(z.string()).optional(),
+
+    // Compliance
+    pii_reviewed: z.boolean(),
+    pii_reviewed_by: z.string().optional(),
+    pii_review_date: z.date().optional(),
+    naming_justified: z.boolean(),
+    author_artwork_separation_predicate: z.string().optional(),
+
+    // Sources (typed, superset of investigations schema)
+    sources: z.array(z.object({
+      title: z.string(),
+      url: z.string().url().optional(),
+      file: z.string().optional(),
+      date: z.union([z.date(), z.string()]).optional(),
+      type: z.enum(['primary', 'news', 'government', 'media', 'legislation', 'academic', 'secondary']).optional()
+    })).optional(),
+
+    // Audio embed (premium longform specific)
+    audio_embed: z.object({
+      primary: z.enum(['spotify', 'youtube', 'apple']).default('spotify'),
+      spotify_track_id: z.string().optional(),
+      youtube_video_id: z.string().optional(),
+      platforms: z.array(z.object({
+        name: z.string(),
+        url: z.string().url()
+      })).optional(),
+      embed_placement_marker: z.string().optional(),
+      consent_required: z.boolean().default(true)
+    }).optional(),
+
+    // SEO
+    description: z.string().optional(),
+
+    // Translation tracking
+    translations: z.record(z.object({
+      status: z.enum(['pending', 'in_progress', 'done']),
+      priority: z.enum(['P0', 'P1', 'P2', 'P3']).optional(),
+      notes: z.string().optional()
+    })).optional()
+  })
+});
+
 export const collections = {
   'investigations': investigationsCollection,
   'legal': legalCollection,
+  'longform': longformCollection,
 };
