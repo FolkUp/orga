@@ -22,6 +22,11 @@ export interface Props {
     platforms?: { name: string; url: string }[];
     consentRequired?: boolean;
   };
+  /**
+   * Sibling-language versions of this longform. Self-language is excluded here;
+   * BaseLayout handles the self-referencing hreflang. Empty = single-locale entry.
+   */
+  alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
 }
 
 const {
@@ -38,7 +43,34 @@ const {
   tags = [],
   description = '',
   audioEmbed,
+  alternates = [],
 } = Astro.props;
+
+// Language switcher labels. Current locale shown as full endonym (signals
+// "you are reading in X" — identity, not button). Other locales shown as ISO
+// codes (compact, unmistakably clickable via dotted underline + hover state).
+// No flags: language != nation-state (ru spoken in Riga & Tbilisi, pt in Luanda).
+const langNames: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'Русский',
+  en: 'English',
+  pt: 'Português',
+};
+const langShort: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'RU',
+  en: 'EN',
+  pt: 'PT',
+};
+const langTooltip: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'По-русски',
+  en: 'In English',
+  pt: 'Em português',
+};
+const switcherLabels = {
+  ru: { nav: 'Язык статьи', current: 'текущий' },
+  en: { nav: 'Article language', current: 'current' },
+  pt: { nav: 'Idioma do artigo', current: 'atual' },
+};
+const sl = switcherLabels[language];
 
 const readingMinutes = wordCount ? Math.ceil(wordCount / 180) : undefined;
 
@@ -96,15 +128,43 @@ const hasEmbed = Boolean(
   title={`${title} — Underground Academia`}
   description={description}
   lang={language}
+  alternates={alternates}
 >
   <article class="longform" itemscope itemtype="https://schema.org/Article" lang={language}>
-    <nav class="longform__breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">{l.breadcrumbHome}</a></li>
-        <li><a href="/longform/">{l.breadcrumbLongform}</a></li>
-        <li aria-current="page">{title}</li>
-      </ol>
-    </nav>
+    <div class="longform__nav-row">
+      <nav class="longform__breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">{l.breadcrumbHome}</a></li>
+          <li><a href="/longform/">{l.breadcrumbLongform}</a></li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
+      {alternates.length > 0 && (
+        <nav class="longform__lang" aria-label={sl.nav}>
+          <ul>
+            <li>
+              <span aria-current="true" lang={language}>
+                {langNames[language]}
+                <span class="visually-hidden"> ({sl.current})</span>
+              </span>
+            </li>
+            {alternates.map((a) => (
+              <li>
+                <a
+                  href={a.href}
+                  hreflang={a.lang}
+                  lang={a.lang}
+                  aria-label={langNames[a.lang]}
+                  title={langTooltip[a.lang]}
+                >
+                  {langShort[a.lang]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
 
     <header class="longform__header">
       <h1 class="longform__title" itemprop="headline">{title}</h1>
@@ -197,10 +257,23 @@ const hasEmbed = Boolean(
     padding: 0 var(--space-md);
   }
 
+  /* Navigation row wraps breadcrumb + language switcher on the same baseline.
+     Switcher lives in its own <nav> landmark (sibling to breadcrumb nav) so the
+     BreadcrumbList schema.org items stay uncontaminated. */
+  .longform__nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    margin: var(--space-md) 0 var(--space-lg) 0;
+  }
+
   .longform__breadcrumb {
     font-size: 0.82rem;
-    margin: var(--space-md) 0 var(--space-lg) 0;
     color: rgba(45, 55, 72, 0.7);
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .longform__breadcrumb ol {
@@ -224,10 +297,85 @@ const hasEmbed = Boolean(
     border-bottom: 1px dotted rgba(45, 55, 72, 0.4);
   }
 
-  .longform__breadcrumb a:hover,
+  @media (hover: hover) {
+    .longform__breadcrumb a:hover {
+      color: var(--color-maritime-deep);
+      border-bottom-color: currentColor;
+    }
+  }
+
   .longform__breadcrumb a:focus-visible {
     color: var(--color-maritime-deep);
     border-bottom-color: currentColor;
+  }
+
+  /* Language switcher — subtle, hybrid labels (current endonym / others ISO). */
+  .longform__lang {
+    font-size: 0.82rem;
+    flex: 0 0 auto;
+  }
+
+  .longform__lang ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-xs);
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .longform__lang li + li::before {
+    content: '·';
+    margin-right: var(--space-xs);
+    color: rgba(45, 55, 72, 0.4);
+  }
+
+  .longform__lang a,
+  .longform__lang span[aria-current] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: var(--space-xs) var(--space-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 3px;
+  }
+
+  .longform__lang a {
+    color: rgba(45, 55, 72, 0.7);
+    border-bottom: 1px dotted rgba(45, 55, 72, 0.4);
+    transition: color 0.18s ease, background-color 0.18s ease, border-bottom-color 0.18s ease;
+  }
+
+  @media (hover: hover) {
+    .longform__lang a:hover {
+      color: var(--color-maritime-deep);
+      background-color: rgba(26, 54, 93, 0.05);
+      border-bottom-color: currentColor;
+    }
+  }
+
+  .longform__lang a:focus-visible {
+    color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.05);
+    border-bottom-color: currentColor;
+  }
+
+  .longform__lang span[aria-current] {
+    color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.08);
+    cursor: default;
+  }
+
+  @media (max-width: 48rem) {
+    .longform__lang {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 
   .longform__header {

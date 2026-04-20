@@ -2,19 +2,36 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PremiumLongformLayout from '../../layouts/PremiumLongformLayout.astro';
 
+type Alternate = { lang: 'ru' | 'en' | 'pt'; href: string };
+
 export async function getStaticPaths() {
   const entries = await getCollection('longform');
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const slugToEntry = new Map(entries.map((e) => [e.slug, e]));
+
+  return entries.map((entry) => {
+    const translations = entry.data.translations ?? {};
+    const alternates: Alternate[] = Object.entries(translations)
+      .filter(([lang]) => lang !== entry.data.language)
+      .filter(([, meta]) => meta.status === 'done')
+      .filter(([, meta]) => meta.slug && slugToEntry.has(meta.slug))
+      .map(([lang, meta]) => ({
+        lang: lang as Alternate['lang'],
+        href: `/longform/${meta.slug}/`,
+      }));
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, alternates },
+    };
+  });
 }
 
 interface Props {
   entry: CollectionEntry<'longform'>;
+  alternates: Alternate[];
 }
 
-const { entry } = Astro.props;
+const { entry, alternates } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
 ---
@@ -39,6 +56,7 @@ const data = entry.data;
     platforms: data.audio_embed.platforms,
     consentRequired: data.audio_embed.consent_required,
   }}
+  alternates={alternates}
 >
   <Content />
 </PremiumLongformLayout>

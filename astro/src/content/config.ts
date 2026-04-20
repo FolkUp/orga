@@ -143,10 +143,13 @@ const longformCollection = defineCollection({
     // SEO
     description: z.string().optional(),
 
-    // Translation tracking
+    // Translation tracking — `slug` points at the sibling entry's collection slug
+    // (e.g. "organizatsiya" for RU, "en/organizatsiya" for EN). Required when
+    // status === "done" for hreflang/alternates resolution; optional otherwise.
     translations: z.record(z.object({
       status: z.enum(['pending', 'in_progress', 'done']),
       priority: z.enum(['P0', 'P1', 'P2', 'P3']).optional(),
+      slug: z.string().optional(),
       notes: z.string().optional()
     })).optional()
   })

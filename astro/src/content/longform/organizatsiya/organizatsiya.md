@@ -118,6 +118,7 @@ translations:
   en:
     status: done
     priority: P1
+    slug: "en/organizatsiya"
     notes: "EN translation shipped Phase 5b 2026-04-20. Teju Cole/Abdurraqib personal-essay register. All 11 lyric fragments Цветик-locked. See organizatsiya.en.md."
 ---
 

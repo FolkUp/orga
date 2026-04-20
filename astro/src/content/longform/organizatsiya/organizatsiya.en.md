@@ -111,6 +111,7 @@ translations:
   ru:
     status: done
     priority: P0
+    slug: "organizatsiya"
     notes: "Primary language of original publication"
 ---
 

@@ -5,12 +5,41 @@ export interface Props {
   title: string;
   description?: string;
   lang?: string;
+  /**
+   * Sibling translations of the current page. Empty for single-language pages.
+   * Self is NOT included here — BaseLayout adds the self-referencing hreflang
+   * internally. Only pass entries with status === "done".
+   */
+  alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
 }
 
-const { title, description = "Underground Academia — Cultural Seismography Platform", lang = "en" } = Astro.props;
+const {
+  title,
+  description = "Underground Academia — Cultural Seismography Platform",
+  lang = "en",
+  alternates = [],
+} = Astro.props;
 
 const consentLang: 'ru' | 'en' | 'pt' =
   lang === 'ru' || lang === 'pt' ? lang : 'en';
+
+const toAbsolute = (path: string): string =>
+  Astro.site ? new URL(path, Astro.site).href : path;
+
+const canonicalHref = toAbsolute(Astro.url.pathname);
+
+// hreflang cluster: emit only when we actually have translations. Includes
+// self-referencing link (Google requires bidirectional for the cluster to be
+// recognized). x-default = English when available, otherwise current locale.
+const hreflangEntries = alternates.length > 0
+  ? [
+      ...alternates.map((a) => ({ lang: a.lang, href: toAbsolute(a.href) })),
+      { lang, href: canonicalHref },
+    ]
+  : [];
+
+const xDefaultHref =
+  hreflangEntries.find((h) => h.lang === 'en')?.href ?? canonicalHref;
 ---
 
 <!doctype html>
@@ -22,6 +51,18 @@ const consentLang: 'ru' | 'en' | 'pt' =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title}</title>
+
+    <link rel="canonical" href={canonicalHref} />
+    {
+      hreflangEntries.length > 0 && (
+        <>
+          {hreflangEntries.map((h) => (
+            <link rel="alternate" hreflang={h.lang} href={h.href} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+        </>
+      )
+    }
 
     <!-- Meta tags for Underground Academia branding -->
     <meta property="og:title" content={title} />
