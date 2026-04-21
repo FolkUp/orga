@@ -3,7 +3,13 @@ import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
 import sitemap from '@astrojs/sitemap';
 
-const SITE = 'https://underground.folkup.life';
+// Canonical URL for sitemap, canonical <link>, and OG/Twitter meta resolution.
+// Currently points at the live CF Pages default subdomain because the custom
+// domain `underground.folkup.life` has no DNS record (NXDOMAIN, never configured).
+// TODO: when Андрей sets up CNAME `underground.folkup.life` →
+// `orga-underground-academia.pages.dev` in the folkup.life DNS zone, revert this
+// to `https://underground.folkup.life` (the intended canonical per ORGA-028 memo).
+const SITE = 'https://orga-underground-academia.pages.dev';
 
 // Bilingual page pairs. Each entry produces `<xhtml:link rel="alternate">`
 // blocks inside the corresponding `<url>` in the sitemap so Google can
