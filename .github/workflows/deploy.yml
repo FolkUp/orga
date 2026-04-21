@@ -25,7 +25,10 @@ jobs:
           cache-dependency-path: astro/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        # @astrojs/svelte@6 declares peer astro@^4 but project uses astro@5
+        # (works at runtime, only npm strict resolver complains). Upgrading
+        # the svelte adapter is a separate task; --legacy-peer-deps unblocks CI.
+        run: npm ci --legacy-peer-deps
 
       - name: Build Astro site
         run: npm run build
