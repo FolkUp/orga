@@ -1,0 +1,501 @@
+---
+export interface Props {
+  title: string;
+  date: string;
+  time?: string;
+  description?: string;
+  significance: 'critical' | 'important' | 'supporting' | 'contextual';
+  status?: 'verified' | 'partially_verified' | 'unverified' | 'draft';
+  event_type: 'meeting' | 'document' | 'communication' | 'decision' | 'evidence' | 'milestone';
+  participants?: string[];
+  location?: string;
+  evidence_ids?: string[];
+  className?: string;
+}
+
+const {
+  title,
+  date,
+  time,
+  description,
+  significance,
+  status = 'unverified',
+  event_type,
+  participants,
+  location,
+  evidence_ids,
+  className = ''
+} = Astro.props;
+
+const eventTypeConfig = {
+  meeting: {
+    label: 'Meeting',
+    icon: '🤝',
+    class: 'timeline-marker--meeting'
+  },
+  document: {
+    label: 'Document',
+    icon: '📄',
+    class: 'timeline-marker--document'
+  },
+  communication: {
+    label: 'Communication',
+    icon: '💬',
+    class: 'timeline-marker--communication'
+  },
+  decision: {
+    label: 'Decision',
+    icon: '⚖️',
+    class: 'timeline-marker--decision'
+  },
+  evidence: {
+    label: 'Evidence',
+    icon: '🔍',
+    class: 'timeline-marker--evidence'
+  },
+  milestone: {
+    label: 'Milestone',
+    icon: '🏁',
+    class: 'timeline-marker--milestone'
+  }
+};
+
+const significanceConfig = {
+  critical: {
+    label: 'Critical',
+    class: 'significance--critical'
+  },
+  important: {
+    label: 'Important',
+    class: 'significance--important'
+  },
+  supporting: {
+    label: 'Supporting',
+    class: 'significance--supporting'
+  },
+  contextual: {
+    label: 'Contextual',
+    class: 'significance--contextual'
+  }
+};
+
+const eventInfo = eventTypeConfig[event_type];
+const significanceInfo = significanceConfig[significance];
+const markerClasses = `timeline-marker ${eventInfo.class} ${significanceInfo.class} ${className}`.trim();
+const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, '-').toLowerCase()}`;
+---
+
+<article class={markerClasses} role="article" aria-labelledby={dateId}>
+  <div class="timeline-marker__connector" aria-hidden="true"></div>
+
+  <div class="timeline-marker__content">
+    <header class="timeline-marker__header">
+      <div class="timeline-marker__date-row">
+        <div class="timeline-marker__date-info">
+          <time class="timeline-marker__date" datetime={date}>
+            {new Date(date).toLocaleDateString('pt-PT', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
+          </time>
+          {time && (
+            <time class="timeline-marker__time" datetime={`${date}T${time}`}>
+              {time}
+            </time>
+          )}
+        </div>
+
+        <div class="timeline-marker__meta">
+          <span class={`event-type ${eventInfo.class}`} aria-label={`Event type: ${eventInfo.label}`}>
+            <span class="event-type__icon" aria-hidden="true">{eventInfo.icon}</span>
+            {eventInfo.label}
+          </span>
+          <span class={`significance-indicator ${significanceInfo.class}`} aria-label={`Significance: ${significanceInfo.label}`}>
+            {significanceInfo.label}
+          </span>
+        </div>
+      </div>
+
+      <h3 id={dateId} class="timeline-marker__title">{title}</h3>
+
+      {status && (
+        <div class="timeline-marker__status">
+          <span class={`status-badge status-badge--${status}`} aria-label={`Status: ${status.replace('_', ' ')}`}>
+            {status.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </span>
+        </div>
+      )}
+    </header>
+
+    {description && (
+      <div class="timeline-marker__description">
+        <p>{description}</p>
+      </div>
+    )}
+
+    {(participants || location || evidence_ids) && (
+      <div class="timeline-marker__details">
+        {participants && participants.length > 0 && (
+          <div class="detail-item">
+            <strong>Participants:</strong>
+            <ul class="participants-list">
+              {participants.map(participant => (
+                <li class="participant">{participant}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {location && (
+          <div class="detail-item">
+            <strong>Location:</strong>
+            <span class="location">{location}</span>
+          </div>
+        )}
+
+        {evidence_ids && evidence_ids.length > 0 && (
+          <div class="detail-item">
+            <strong>Related Evidence:</strong>
+            <ul class="evidence-refs">
+              {evidence_ids.map(evidenceId => (
+                <li class="evidence-ref">
+                  <a href={`#evidence-${evidenceId}`} class="evidence-link">
+                    Evidence #{evidenceId}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .timeline-marker {
+    position: relative;
+    padding: var(--space-md) 0;
+    margin-left: var(--space-lg);
+    font-family: var(--font-body);
+  }
+
+  .timeline-marker__connector {
+    position: absolute;
+    left: calc(-1 * var(--space-lg));
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: rgba(26, 54, 93, 0.3);
+  }
+
+  .timeline-marker__connector::before {
+    content: '';
+    position: absolute;
+    top: var(--space-md);
+    left: -6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 3px solid var(--color-concrete-light);
+    background-color: var(--color-maritime-deep);
+  }
+
+  /* Significance-based connector styling */
+  .significance--critical .timeline-marker__connector::before {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .significance--important .timeline-marker__connector::before {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .significance--supporting .timeline-marker__connector::before {
+    background-color: rgba(214, 158, 46, 0.5);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .significance--contextual .timeline-marker__connector::before {
+    background-color: var(--color-concrete-light);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .timeline-marker__content {
+    background-color: var(--color-concrete-light);
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-sm);
+    padding: var(--space-md);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .timeline-marker__content:hover {
+    box-shadow: 0 4px 12px rgba(26, 54, 93, 0.15);
+  }
+
+  .timeline-marker__header {
+    margin-bottom: var(--space-sm);
+  }
+
+  .timeline-marker__date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .timeline-marker__date-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .timeline-marker__date {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+  }
+
+  .timeline-marker__time {
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.8);
+    font-style: italic;
+  }
+
+  .timeline-marker__meta {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .event-type,
+  .significance-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--space-xs);
+    border: 1px solid;
+  }
+
+  .event-type__icon {
+    font-size: 1rem;
+  }
+
+  /* Event type styles */
+  .timeline-marker--meeting .event-type {
+    background-color: var(--color-maritime-deep);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+  }
+
+  .timeline-marker--document .event-type {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .timeline-marker--communication .event-type,
+  .timeline-marker--evidence .event-type {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .timeline-marker--decision .event-type,
+  .timeline-marker--milestone .event-type {
+    background-color: rgba(214, 158, 46, 0.3);
+    border-color: var(--color-amber-warm);
+    color: var(--color-text-primary);
+  }
+
+  /* Significance indicator styles (same as EvidenceCard) */
+  .significance--critical .significance-indicator {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .significance--important .significance-indicator {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .significance--supporting .significance-indicator {
+    background-color: rgba(214, 158, 46, 0.3);
+    border-color: var(--color-amber-warm);
+    color: var(--color-text-primary);
+  }
+
+  .significance--contextual .significance-indicator {
+    background-color: var(--color-concrete-light);
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+
+  .timeline-marker__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .timeline-marker__status {
+    margin-bottom: var(--space-sm);
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0.25rem;
+    border: 2px solid;
+    font-family: var(--font-body);
+  }
+
+  .status-badge--verified {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .status-badge--partially_verified {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .status-badge--unverified {
+    background-color: rgba(214, 158, 46, 0.3);
+    border-color: var(--color-amber-warm);
+    color: var(--color-text-primary);
+  }
+
+  .status-badge--draft {
+    background-color: var(--color-concrete-light);
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+
+  .timeline-marker__description {
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+  }
+
+  .timeline-marker__description p {
+    margin: 0;
+  }
+
+  .timeline-marker__details {
+    padding: var(--space-sm);
+    background-color: rgba(26, 54, 93, 0.05);
+    border-radius: var(--space-xs);
+    font-size: 0.875rem;
+  }
+
+  .detail-item {
+    margin-bottom: var(--space-sm);
+  }
+
+  .detail-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .detail-item strong {
+    display: block;
+    margin-bottom: var(--space-xs);
+    color: var(--color-maritime-deep);
+    font-weight: 600;
+  }
+
+  .participants-list,
+  .evidence-refs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .participant,
+  .evidence-ref {
+    background-color: rgba(26, 54, 93, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--space-xs);
+    font-size: 0.8rem;
+  }
+
+  .evidence-link {
+    color: var(--color-maritime-deep);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .evidence-link:hover,
+  .evidence-link:focus {
+    text-decoration: underline;
+    color: var(--color-amber-warm);
+  }
+
+  .location {
+    font-style: italic;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 48rem) {
+    .timeline-marker {
+      margin-left: var(--space-md);
+    }
+
+    .timeline-marker__connector {
+      left: calc(-1 * var(--space-md));
+    }
+
+    .timeline-marker__date-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .timeline-marker__meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+
+    .participants-list,
+    .evidence-refs {
+      flex-direction: column;
+    }
+  }
+
+  /* Focus management */
+  .timeline-marker:focus-within {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+    border-radius: var(--space-sm);
+  }
+
+  /* Timeline flow adjustments */
+  .timeline-marker:last-child .timeline-marker__connector {
+    background: linear-gradient(to bottom, rgba(26, 54, 93, 0.3) 0%, rgba(26, 54, 93, 0.3) 50%, transparent 100%);
+  }
+</style>

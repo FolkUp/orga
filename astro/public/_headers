@@ -1,0 +1,55 @@
+# Security + performance headers for underground.folkup.life
+# Astro static build deployed to Cloudflare Pages.
+# CSP mirrored from BaseLayout meta tag so the HTTP header is the authoritative
+# policy and the meta tag acts as fallback when headers are stripped.
+# Last updated: 2026-04-20
+
+/*
+  Content-Security-Policy: default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# Static assets — long cache, immutable (Astro hashes filenames in _assets/)
+/_assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css; charset=utf-8
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/javascript; charset=utf-8
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+# HTML pages — short cache, allow Cloudflare revalidation
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+  Vary: Accept-Encoding, Accept-Language
+
+# Sitemap + robots — let crawlers refetch hourly
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600
+
+/sitemap-0.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# Security disclosure contact
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400

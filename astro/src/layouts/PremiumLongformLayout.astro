@@ -1,0 +1,599 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AudioEmbedSpotify from '../components/AudioEmbedSpotify.astro';
+
+export interface Props {
+  title: string;
+  subtitle?: string;
+  byline: string;
+  bylineNote?: string;
+  date: Date;
+  lastmod?: Date;
+  language?: 'ru' | 'en' | 'pt';
+  wordCount?: number;
+  subjectArtist?: string;
+  subjectWork?: string;
+  tags?: string[];
+  description?: string;
+  audioEmbed?: {
+    primary?: 'spotify' | 'youtube' | 'apple';
+    spotifyTrackId?: string;
+    youtubeVideoId?: string;
+    platforms?: { name: string; url: string }[];
+    consentRequired?: boolean;
+  };
+  /**
+   * Sibling-language versions of this longform. Self-language is excluded here;
+   * BaseLayout handles the self-referencing hreflang. Empty = single-locale entry.
+   */
+  alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
+  ogImage?: string;
+  ogImageAlt?: string;
+}
+
+const {
+  title,
+  subtitle,
+  byline,
+  bylineNote,
+  date,
+  lastmod,
+  language = 'ru',
+  wordCount,
+  subjectArtist,
+  subjectWork,
+  tags = [],
+  description = '',
+  audioEmbed,
+  alternates = [],
+  ogImage,
+  ogImageAlt,
+} = Astro.props;
+
+// Language switcher labels. Current locale shown as full endonym (signals
+// "you are reading in X" — identity, not button). Other locales shown as ISO
+// codes (compact, unmistakably clickable via dotted underline + hover state).
+// No flags: language != nation-state (ru spoken in Riga & Tbilisi, pt in Luanda).
+const langNames: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'Русский',
+  en: 'English',
+  pt: 'Português',
+};
+const langShort: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'RU',
+  en: 'EN',
+  pt: 'PT',
+};
+const langTooltip: Record<'ru' | 'en' | 'pt', string> = {
+  ru: 'По-русски',
+  en: 'In English',
+  pt: 'Em português',
+};
+const switcherLabels = {
+  ru: { nav: 'Язык статьи', current: 'текущий' },
+  en: { nav: 'Article language', current: 'current' },
+  pt: { nav: 'Idioma do artigo', current: 'atual' },
+};
+const sl = switcherLabels[language];
+
+const readingMinutes = wordCount ? Math.ceil(wordCount / 180) : undefined;
+
+const dateLocale = language === 'ru' ? 'ru-RU' : language === 'pt' ? 'pt-PT' : 'en-GB';
+
+function formatDate(d: Date | undefined): string {
+  if (!d) return '';
+  return d.toLocaleDateString(dateLocale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const labels = {
+  ru: {
+    breadcrumbHome: 'Главная',
+    breadcrumbLongform: 'Лонгформ',
+    readingTime: (n: number) => `${n} мин чтения`,
+    aiTransparencyBody:
+      'Редакционный процесс использует автоматизированные инструменты для верификации фактов и проверки стиля (EU AI Act Art. 50).',
+    aiTransparencyLink: 'Как именно',
+    tagsLabel: 'Темы',
+    subjectLabel: 'О чём',
+  },
+  en: {
+    breadcrumbHome: 'Home',
+    breadcrumbLongform: 'Longform',
+    readingTime: (n: number) => `${n} min read`,
+    aiTransparencyBody:
+      'This editorial workflow uses automated tools for fact-checking and style review (EU AI Act Art. 50).',
+    aiTransparencyLink: 'How exactly',
+    tagsLabel: 'Topics',
+    subjectLabel: 'Subject',
+  },
+  pt: {
+    breadcrumbHome: 'Início',
+    breadcrumbLongform: 'Longform',
+    readingTime: (n: number) => `${n} min de leitura`,
+    aiTransparencyBody:
+      'Este fluxo editorial usa ferramentas automatizadas para verificação e revisão de estilo (EU AI Act Art. 50).',
+    aiTransparencyLink: 'Como exactamente',
+    tagsLabel: 'Tópicos',
+    subjectLabel: 'Assunto',
+  },
+};
+const l = labels[language];
+
+const hasEmbed = Boolean(
+  audioEmbed && (audioEmbed.spotifyTrackId || audioEmbed.youtubeVideoId),
+);
+---
+
+<BaseLayout
+  title={`${title} — Underground Academia`}
+  description={description}
+  lang={language}
+  alternates={alternates}
+  image={ogImage}
+  imageAlt={ogImageAlt}
+>
+  <article class="longform" itemscope itemtype="https://schema.org/Article" lang={language}>
+    <div class="longform__nav-row">
+      <nav class="longform__breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">{l.breadcrumbHome}</a></li>
+          <li><a href="/longform/">{l.breadcrumbLongform}</a></li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
+      {alternates.length > 0 && (
+        <nav class="longform__lang" aria-label={sl.nav}>
+          <ul>
+            <li>
+              <span aria-current="true" lang={language}>
+                {langNames[language]}
+                <span class="visually-hidden"> ({sl.current})</span>
+              </span>
+            </li>
+            {alternates.map((a) => (
+              <li>
+                <a
+                  href={a.href}
+                  hreflang={a.lang}
+                  lang={a.lang}
+                  aria-label={langNames[a.lang]}
+                  title={langTooltip[a.lang]}
+                >
+                  {langShort[a.lang]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
+
+    <header class="longform__header">
+      <h1 class="longform__title" itemprop="headline">{title}</h1>
+      {subtitle && <p class="longform__subtitle" itemprop="alternativeHeadline">{subtitle}</p>}
+
+      <div class="longform__byline">
+        <span class="longform__byline-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{byline}</span>
+        </span>
+        {bylineNote && <em class="longform__byline-note">{bylineNote}</em>}
+      </div>
+
+      <dl class="longform__meta">
+        <div class="longform__meta-pair">
+          <dt class="visually-hidden">Published</dt>
+          <dd>
+            <time datetime={date.toISOString()} itemprop="datePublished">
+              {formatDate(date)}
+            </time>
+            {lastmod && lastmod > date && (
+              <meta itemprop="dateModified" content={lastmod.toISOString()} />
+            )}
+          </dd>
+        </div>
+        {readingMinutes !== undefined && (
+          <div class="longform__meta-pair">
+            <dt class="visually-hidden">Reading time</dt>
+            <dd>{l.readingTime(readingMinutes)}</dd>
+          </div>
+        )}
+        {(subjectArtist || subjectWork) && (
+          <div class="longform__meta-pair">
+            <dt>{l.subjectLabel}</dt>
+            <dd>
+              {[subjectArtist, subjectWork].filter(Boolean).join(' — ')}
+            </dd>
+          </div>
+        )}
+      </dl>
+    </header>
+
+    {
+      hasEmbed && audioEmbed && (
+        <AudioEmbedSpotify
+          spotifyTrackId={audioEmbed.spotifyTrackId}
+          youtubeVideoId={audioEmbed.youtubeVideoId}
+          trackName={subjectWork ?? title}
+          artistName={subjectArtist ?? byline}
+          platforms={audioEmbed.platforms}
+          lang={language}
+        />
+      )
+    }
+
+    <div class="longform__body" itemprop="articleBody">
+      <slot />
+    </div>
+
+    {
+      tags.length > 0 && (
+        <footer class="longform__tags" aria-label={l.tagsLabel}>
+          <span class="longform__tags-label">{l.tagsLabel}:</span>
+          <ul>
+            {tags.map((tag) => (
+              <li>
+                <a href={`/longform/?tag=${encodeURIComponent(tag)}`} rel="tag">
+                  {tag}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </footer>
+      )
+    }
+
+    <aside class="longform__ai-transparency" aria-label="AI transparency">
+      <p>
+        {l.aiTransparencyBody}
+        {' '}
+        <a href="/legal/cookie-policy/#editorial-workflow">{l.aiTransparencyLink}</a>.
+      </p>
+    </aside>
+  </article>
+</BaseLayout>
+
+<style>
+  .longform {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  /* Navigation row wraps breadcrumb + language switcher on the same baseline.
+     Switcher lives in its own <nav> landmark (sibling to breadcrumb nav) so the
+     BreadcrumbList schema.org items stay uncontaminated. */
+  .longform__nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    margin: var(--space-md) 0 var(--space-lg) 0;
+  }
+
+  .longform__breadcrumb {
+    font-size: 0.82rem;
+    color: rgba(45, 55, 72, 0.7);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .longform__breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    padding: 0;
+    margin: 0;
+  }
+
+  .longform__breadcrumb li + li::before {
+    content: '/';
+    margin-right: var(--space-xs);
+    opacity: 0.5;
+  }
+
+  .longform__breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(45, 55, 72, 0.4);
+  }
+
+  @media (hover: hover) {
+    .longform__breadcrumb a:hover {
+      color: var(--color-maritime-deep);
+      border-bottom-color: currentColor;
+    }
+  }
+
+  .longform__breadcrumb a:focus-visible {
+    color: var(--color-maritime-deep);
+    border-bottom-color: currentColor;
+  }
+
+  /* Language switcher — subtle, hybrid labels (current endonym / others ISO). */
+  .longform__lang {
+    font-size: 0.82rem;
+    flex: 0 0 auto;
+  }
+
+  .longform__lang ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-xs);
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .longform__lang li + li::before {
+    content: '·';
+    margin-right: var(--space-xs);
+    color: rgba(45, 55, 72, 0.4);
+  }
+
+  .longform__lang a,
+  .longform__lang span[aria-current] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: var(--space-xs) var(--space-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 3px;
+  }
+
+  .longform__lang a {
+    color: rgba(45, 55, 72, 0.7);
+    border-bottom: 1px dotted rgba(45, 55, 72, 0.4);
+    transition: color 0.18s ease, background-color 0.18s ease, border-bottom-color 0.18s ease;
+  }
+
+  @media (hover: hover) {
+    .longform__lang a:hover {
+      color: var(--color-maritime-deep);
+      background-color: rgba(26, 54, 93, 0.05);
+      border-bottom-color: currentColor;
+    }
+  }
+
+  .longform__lang a:focus-visible {
+    color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.05);
+    border-bottom-color: currentColor;
+  }
+
+  .longform__lang span[aria-current] {
+    color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.08);
+    cursor: default;
+  }
+
+  @media (max-width: 48rem) {
+    .longform__lang {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .longform__header {
+    margin-bottom: var(--space-2xl);
+    max-width: 48rem;
+  }
+
+  .longform__title {
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-size: clamp(1.85rem, 3.2vw + 1rem, 2.75rem);
+    line-height: 1.18;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-md) 0;
+    letter-spacing: -0.01em;
+  }
+
+  .longform__subtitle {
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.35rem);
+    line-height: 1.45;
+    color: rgba(45, 55, 72, 0.85);
+    margin: 0 0 var(--space-xl) 0;
+    font-weight: 400;
+  }
+
+  .longform__byline {
+    margin: var(--space-md) 0 var(--space-sm) 0;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+  }
+
+  .longform__byline-author {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .longform__byline-note {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: 0.82rem;
+    font-style: italic;
+    color: rgba(45, 55, 72, 0.7);
+  }
+
+  .longform__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-lg);
+    margin: var(--space-md) 0 0 0;
+    padding: var(--space-sm) 0;
+    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.12);
+    font-size: 0.85rem;
+    color: rgba(45, 55, 72, 0.85);
+  }
+
+  .longform__meta-pair {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: baseline;
+  }
+
+  .longform__meta dt {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    color: var(--color-maritime-deep);
+  }
+
+  .longform__meta dd {
+    margin: 0;
+  }
+
+  .longform__body {
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-size: 1.08rem;
+    line-height: 1.72;
+    color: var(--color-text-primary);
+    max-width: 66ch;
+  }
+
+  .longform__body :global(h2) {
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-size: clamp(1.4rem, 1.2vw + 1rem, 1.75rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin: var(--space-2xl) 0 var(--space-md) 0;
+    letter-spacing: -0.005em;
+  }
+
+  .longform__body :global(h3) {
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin: var(--space-xl) 0 var(--space-sm) 0;
+  }
+
+  .longform__body :global(p) {
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .longform__body :global(blockquote) {
+    margin: var(--space-lg) 0;
+    padding: 0 var(--space-lg);
+    border-left: 3px solid var(--color-amber-warm);
+    font-style: italic;
+    color: rgba(45, 55, 72, 0.9);
+  }
+
+  .longform__body :global(a) {
+    color: var(--color-maritime-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .longform__body :global(a:hover),
+  .longform__body :global(a:focus-visible) {
+    color: var(--color-amber-warm);
+  }
+
+  .longform__body :global(hr) {
+    border: 0;
+    margin: var(--space-2xl) auto;
+    width: 6rem;
+    height: 1px;
+    background-color: rgba(26, 54, 93, 0.4);
+  }
+
+  .longform__tags {
+    margin: var(--space-2xl) 0 var(--space-lg) 0;
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    font-size: 0.85rem;
+  }
+
+  .longform__tags-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    color: var(--color-maritime-deep);
+    margin-right: var(--space-sm);
+  }
+
+  .longform__tags ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .longform__tags a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: 3px;
+    font-size: 0.8rem;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+  }
+
+  .longform__tags a:hover,
+  .longform__tags a:focus-visible {
+    background-color: rgba(26, 54, 93, 0.05);
+    border-color: var(--color-maritime-deep);
+  }
+
+  .longform__ai-transparency {
+    margin: var(--space-2xl) 0;
+    padding: var(--space-md);
+    background-color: rgba(26, 54, 93, 0.04);
+    border-left: 3px solid var(--color-sage-muted);
+    font-size: 0.85rem;
+    color: rgba(45, 55, 72, 0.85);
+    max-width: 60rem;
+  }
+
+  .longform__ai-transparency p {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .longform__ai-transparency a {
+    color: var(--color-maritime-deep);
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .longform__body {
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+  }
+</style>

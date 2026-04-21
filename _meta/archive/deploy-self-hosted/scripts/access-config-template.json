@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "description": "ORGA Production Access Configuration Template",
+  "security": {
+    "require_mfa": true,
+    "mfa_method": "totp",
+    "session_timeout": 3600,
+    "key_rotation_interval_days": 90,
+    "audit_retention_days": 365,
+    "emergency_access_approval": ["admin", "security-lead"]
+  },
+  "servers": {
+    "prod": {
+      "description": "Production server",
+      "host": "production.orga.folkup.app",
+      "port": 22,
+      "user": "deploy",
+      "environment": "production",
+      "criticality": "high",
+      "backup_required": true,
+      "maintenance_window": "03:00-05:00 UTC"
+    },
+    "staging": {
+      "description": "Staging server",
+      "host": "staging.orga.folkup.app",
+      "port": 22,
+      "user": "deploy",
+      "environment": "staging",
+      "criticality": "medium",
+      "backup_required": false,
+      "maintenance_window": "any"
+    },
+    "backup": {
+      "description": "Backup server",
+      "host": "backup.orga.folkup.app",
+      "port": 2222,
+      "user": "backup",
+      "environment": "backup",
+      "criticality": "high",
+      "backup_required": false,
+      "maintenance_window": "any"
+    }
+  },
+  "access_policies": {
+    "production": {
+      "required_approvals": 1,
+      "emergency_bypass": true,
+      "session_recording": true,
+      "command_logging": true,
+      "restricted_commands": [
+        "rm -rf /",
+        "dd if=/dev/zero",
+        "mkfs.*",
+        "fdisk",
+        "wipefs"
+      ],
+      "allowed_hours": "06:00-22:00 UTC"
+    },
+    "staging": {
+      "required_approvals": 0,
+      "emergency_bypass": true,
+      "session_recording": false,
+      "command_logging": false,
+      "restricted_commands": [],
+      "allowed_hours": "24/7"
+    }
+  },
+  "emergency": {
+    "contacts": [
+      {
+        "name": "Primary Admin",
+        "role": "admin",
+        "phone": "+1234567890",
+        "email": "admin@folkup.app"
+      },
+      {
+        "name": "Security Lead",
+        "role": "security",
+        "phone": "+1234567891",
+        "email": "security@folkup.app"
+      }
+    ],
+    "escalation_timeout": 900,
+    "auto_approval": false,
+    "break_glass_procedure": {
+      "enabled": true,
+      "requires_justification": true,
+      "auto_revoke_after": 3600,
+      "notification_channels": ["email", "slack"]
+    }
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "alert_channels": ["email", "slack"],
+    "metrics": {
+      "failed_login_threshold": 3,
+      "session_duration_warning": 1800,
+      "concurrent_session_limit": 5
+    },
+    "health_checks": {
+      "ssh_connectivity": 300,
+      "certificate_expiry": 86400,
+      "disk_space": 3600
+    }
+  },
+  "compliance": {
+    "audit_trail": true,
+    "gdpr_compliant": true,
+    "retention_policy": "365d",
+    "encryption": {
+      "logs": "AES-256",
+      "transit": "TLS-1.3",
+      "keys": "Ed25519"
+    }
+  }
+}

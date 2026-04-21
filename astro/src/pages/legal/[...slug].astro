@@ -1,0 +1,180 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type Alternate = { lang: 'ru' | 'en'; href: string };
+
+export async function getStaticPaths() {
+  // Slug maps directly to the URL path:
+  //   EN "privacy-policy"    → /legal/privacy-policy/
+  //   RU "ru/privacy-policy" → /legal/ru/privacy-policy/
+  // Nested folder (legal/ru/*.md) produces the `ru/*` slug automatically.
+  const entries = await getCollection('legal', ({ data }) => !data.draft);
+  const bySlug = new Map(entries.map((e) => [e.slug, e]));
+
+  return entries.map((entry) => {
+    const translations = entry.data.translations ?? {};
+    const alternates: Alternate[] = Object.entries(translations)
+      .filter(([lang]) => lang !== entry.data.language)
+      .filter(([, meta]) => meta.status === 'done')
+      .filter(([, meta]) => meta.slug && bySlug.has(meta.slug))
+      .map(([lang, meta]) => ({
+        lang: lang as Alternate['lang'],
+        href: `/legal/${meta.slug}/`,
+      }));
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, alternates },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'legal'>;
+  alternates: Alternate[];
+}
+
+const { entry, alternates } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+const lang = data.language;
+
+const tLabels = {
+  en: {
+    breadcrumbHome: 'Home',
+    breadcrumbLegal: 'Legal',
+    lastUpdated: 'Last updated:',
+    dateLocale: 'en-GB',
+  },
+  ru: {
+    breadcrumbHome: 'Главная',
+    breadcrumbLegal: 'Правовые документы',
+    lastUpdated: 'Обновлено:',
+    dateLocale: 'ru-RU',
+  },
+} as const;
+const L = tLabels[lang];
+---
+
+<BaseLayout
+  title={`${data.title} — Underground Academia`}
+  description={data.description ?? data.title}
+  lang={lang}
+  alternates={alternates}
+>
+  <article class="legal-page">
+    <nav class="legal-page__breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={lang === 'ru' ? '/' : '/'}>{L.breadcrumbHome}</a></li>
+        <li><a href={lang === 'ru' ? '/legal/' : '/legal/'}>{L.breadcrumbLegal}</a></li>
+        <li aria-current="page">{data.title}</li>
+      </ol>
+    </nav>
+
+    <header class="legal-page__header">
+      <h1>{data.title}</h1>
+      {data.lastmod && (
+        <p class="legal-page__meta">
+          {L.lastUpdated}
+          {' '}
+          <time datetime={data.lastmod.toISOString()}>
+            {data.lastmod.toLocaleDateString(L.dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </p>
+      )}
+    </header>
+
+    <div class="legal-page__body">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    max-width: 58rem;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .legal-page__breadcrumb {
+    font-size: 0.82rem;
+    margin: var(--space-md) 0 var(--space-lg) 0;
+    color: rgba(45, 55, 72, 0.7);
+  }
+
+  .legal-page__breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    padding: 0;
+    margin: 0;
+  }
+
+  .legal-page__breadcrumb li + li::before {
+    content: '/';
+    margin-right: var(--space-xs);
+    opacity: 0.5;
+  }
+
+  .legal-page__breadcrumb a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .legal-page__header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.15);
+  }
+
+  .legal-page__header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+    line-height: 1.2;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .legal-page__meta {
+    font-size: 0.85rem;
+    color: rgba(45, 55, 72, 0.75);
+    margin: 0;
+  }
+
+  .legal-page__body {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 54rem;
+  }
+
+  .legal-page__body :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--color-maritime-deep);
+    margin: var(--space-xl) 0 var(--space-md) 0;
+  }
+
+  .legal-page__body :global(h3) {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--color-maritime-deep);
+    margin: var(--space-lg) 0 var(--space-sm) 0;
+  }
+
+  .legal-page__body :global(p) {
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .legal-page__body :global(ul),
+  .legal-page__body :global(ol) {
+    margin: 0 0 var(--space-md) var(--space-lg);
+  }
+
+  .legal-page__body :global(a) {
+    color: var(--color-maritime-deep);
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,586 @@
+---
+export interface Props {
+  title: string;
+  audioUrl: string;
+  duration?: string;
+  transcript?: string;
+  author?: string;
+  date?: string;
+  description?: string;
+  chapters?: Array<{
+    time: string;
+    title: string;
+    description?: string;
+  }>;
+  autoplay?: boolean;
+  className?: string;
+}
+
+const {
+  title,
+  audioUrl,
+  duration,
+  transcript,
+  author,
+  date,
+  description,
+  chapters = [],
+  autoplay = false,
+  className = ''
+} = Astro.props;
+
+const playerId = `audio-player-${title.replace(/\s+/g, '-').toLowerCase()}`;
+const transcriptId = `transcript-${playerId}`;
+const chaptersId = `chapters-${playerId}`;
+---
+
+<article class={`audio-story-player ${className}`.trim()} role="region" aria-labelledby={`title-${playerId}`}>
+  <header class="audio-player__header">
+    <h3 id={`title-${playerId}`} class="audio-player__title">
+      {title}
+    </h3>
+
+    {(author || date || duration) && (
+      <div class="audio-player__meta">
+        {author && <span class="audio-player__author">{author}</span>}
+        {date && <time class="audio-player__date" datetime={date}>{date}</time>}
+        {duration && <span class="audio-player__duration" aria-label={`Duration: ${duration}`}>⏱️ {duration}</span>}
+      </div>
+    )}
+
+    {description && (
+      <p class="audio-player__description">{description}</p>
+    )}
+  </header>
+
+  <div class="audio-player__main">
+    <div class="audio-player__controls">
+      <audio
+        id={playerId}
+        class="audio-player__element"
+        controls
+        preload="metadata"
+        aria-describedby={transcript ? transcriptId : undefined}
+        {autoplay}
+      >
+        <source src={audioUrl} type="audio/mpeg" />
+        <source src={audioUrl} type="audio/ogg" />
+        <source src={audioUrl} type="audio/wav" />
+        <p class="audio-player__fallback">
+          Your browser doesn't support audio playback.
+          <a href={audioUrl} download={title}>Download the audio file</a> instead.
+        </p>
+      </audio>
+
+      <div class="audio-player__timeline" aria-hidden="true">
+        <div class="timeline__progress" id={`progress-${playerId}`}></div>
+        <div class="timeline__buffer" id={`buffer-${playerId}`}></div>
+      </div>
+    </div>
+
+    {chapters.length > 0 && (
+      <details class="audio-player__chapters" aria-labelledby={chaptersId}>
+        <summary id={chaptersId} class="chapters__toggle">
+          Chapters ({chapters.length})
+        </summary>
+        <ol class="chapters__list">
+          {chapters.map((chapter, index) => (
+            <li class="chapter-item">
+              <button
+                type="button"
+                class="chapter-button"
+                data-time={chapter.time}
+                aria-describedby={chapter.description ? `chapter-desc-${index}` : undefined}
+              >
+                <span class="chapter-time">{chapter.time}</span>
+                <span class="chapter-title">{chapter.title}</span>
+              </button>
+              {chapter.description && (
+                <p id={`chapter-desc-${index}`} class="chapter-description">{chapter.description}</p>
+              )}
+            </li>
+          ))}
+        </ol>
+      </details>
+    )}
+  </div>
+
+  {transcript && (
+    <details class="audio-player__transcript" aria-labelledby={transcriptId}>
+      <summary id={transcriptId} class="transcript__toggle">
+        Full Transcript
+      </summary>
+      <div class="transcript__content">
+        <p>{transcript}</p>
+      </div>
+    </details>
+  )}
+</article>
+
+<style>
+  .audio-story-player {
+    background-color: var(--color-concrete-light);
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-body);
+    box-shadow: 0 2px 8px rgba(26, 54, 93, 0.08);
+  }
+
+  .audio-player__header {
+    margin-bottom: var(--space-md);
+  }
+
+  .audio-player__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .audio-player__title::before {
+    content: "🎵";
+    font-size: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .audio-player__meta {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  .audio-player__author {
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+  }
+
+  .audio-player__author::after {
+    content: "•";
+    margin-left: var(--space-sm);
+    color: rgba(45, 55, 72, 0.5);
+  }
+
+  .audio-player__date {
+    font-style: italic;
+  }
+
+  .audio-player__duration {
+    font-weight: 500;
+    color: var(--color-amber-warm);
+  }
+
+  .audio-player__description {
+    margin: 0;
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+  }
+
+  .audio-player__main {
+    background-color: rgba(26, 54, 93, 0.05);
+    border-radius: var(--space-xs);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .audio-player__controls {
+    margin-bottom: var(--space-md);
+  }
+
+  .audio-player__element {
+    width: 100%;
+    height: 54px;
+    margin-bottom: var(--space-sm);
+    background-color: var(--color-maritime-deep);
+    border-radius: var(--space-xs);
+  }
+
+  .audio-player__element:focus {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+  }
+
+  .audio-player__fallback {
+    padding: var(--space-md);
+    background-color: rgba(214, 158, 46, 0.1);
+    border-radius: var(--space-xs);
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+
+  .audio-player__fallback a {
+    color: var(--color-maritime-deep);
+    font-weight: 600;
+  }
+
+  .audio-player__timeline {
+    height: 4px;
+    background-color: rgba(26, 54, 93, 0.2);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline__progress,
+  .timeline__buffer {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    transition: width 0.2s ease;
+  }
+
+  .timeline__buffer {
+    background-color: rgba(26, 54, 93, 0.3);
+    z-index: 1;
+  }
+
+  .timeline__progress {
+    background-color: var(--color-amber-warm);
+    z-index: 2;
+    width: 0%;
+  }
+
+  .audio-player__chapters,
+  .audio-player__transcript {
+    border-top: 1px solid rgba(26, 54, 93, 0.1);
+    padding-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .audio-player__chapters:last-child,
+  .audio-player__transcript:last-child {
+    margin-bottom: 0;
+  }
+
+  .chapters__toggle,
+  .transcript__toggle {
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+    cursor: pointer;
+    padding: var(--space-xs) 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .chapters__toggle::-webkit-details-marker,
+  .transcript__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .chapters__toggle::before,
+  .transcript__toggle::before {
+    content: "▶";
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+  }
+
+  .audio-player__chapters[open] .chapters__toggle::before,
+  .audio-player__transcript[open] .transcript__toggle::before {
+    transform: rotate(90deg);
+  }
+
+  .chapters__list {
+    list-style: none;
+    padding: var(--space-sm) 0;
+    margin: 0;
+  }
+
+  .chapter-item {
+    margin-bottom: var(--space-xs);
+  }
+
+  .chapter-button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-xs);
+    padding: var(--space-sm);
+    font-family: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .chapter-button:hover,
+  .chapter-button:focus {
+    background-color: rgba(26, 54, 93, 0.05);
+    border-color: var(--color-amber-warm);
+  }
+
+  .chapter-button:focus {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+  }
+
+  .chapter-time {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--space-xs);
+    font-weight: 600;
+    font-size: 0.75rem;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .chapter-title {
+    flex: 1;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .chapter-description {
+    margin: var(--space-xs) 0 0 0;
+    padding-left: calc(60px + var(--space-sm));
+    font-size: 0.75rem;
+    color: rgba(45, 55, 72, 0.8);
+    line-height: var(--line-height-body);
+  }
+
+  .transcript__content {
+    padding: var(--space-sm) 0;
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid rgba(26, 54, 93, 0.1);
+    border-radius: var(--space-xs);
+    padding: var(--space-md);
+    background-color: var(--color-concrete-light);
+  }
+
+  .transcript__content p {
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .transcript__content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 48rem) {
+    .audio-player__meta {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .audio-player__author::after {
+      display: none;
+    }
+
+    .chapter-description {
+      padding-left: 0;
+      margin-top: var(--space-xs);
+    }
+
+    .audio-player__element {
+      height: 48px;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .audio-story-player {
+      border: 2px solid var(--color-maritime-deep);
+    }
+
+    .timeline__progress {
+      background-color: var(--color-maritime-deep);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .timeline__progress,
+    .timeline__buffer,
+    .chapters__toggle::before,
+    .transcript__toggle::before,
+    .chapter-button {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced audio player functionality
+  class AudioStoryPlayer {
+    constructor(playerElement) {
+      this.player = playerElement;
+      this.audio = playerElement.querySelector('.audio-player__element');
+      this.progressBar = playerElement.querySelector('.timeline__progress');
+      this.bufferBar = playerElement.querySelector('.timeline__buffer');
+      this.chapterButtons = playerElement.querySelectorAll('.chapter-button');
+
+      this.init();
+    }
+
+    init() {
+      if (!this.audio) return;
+
+      // Audio event listeners
+      this.audio.addEventListener('timeupdate', () => this.updateProgress());
+      this.audio.addEventListener('progress', () => this.updateBuffer());
+      this.audio.addEventListener('loadedmetadata', () => this.handleMetadata());
+      this.audio.addEventListener('error', (e) => this.handleError(e));
+
+      // Chapter navigation
+      this.chapterButtons.forEach(button => {
+        button.addEventListener('click', (e) => this.seekToChapter(e));
+      });
+
+      // Keyboard shortcuts
+      this.audio.addEventListener('keydown', (e) => this.handleKeyboard(e));
+
+      // ARIA live region for screen readers
+      this.createAriaLiveRegion();
+    }
+
+    updateProgress() {
+      if (!this.audio.duration) return;
+
+      const progress = (this.audio.currentTime / this.audio.duration) * 100;
+      if (this.progressBar) {
+        this.progressBar.style.width = `${progress}%`;
+      }
+
+      // Update ARIA live region periodically
+      if (Math.floor(this.audio.currentTime) % 10 === 0) {
+        this.updateAriaLiveRegion();
+      }
+    }
+
+    updateBuffer() {
+      if (!this.audio.duration || !this.audio.buffered.length) return;
+
+      const buffered = (this.audio.buffered.end(0) / this.audio.duration) * 100;
+      if (this.bufferBar) {
+        this.bufferBar.style.width = `${buffered}%`;
+      }
+    }
+
+    handleMetadata() {
+      this.updateAriaLiveRegion();
+    }
+
+    handleError(error) {
+      console.error('Audio playback error:', error);
+      this.updateAriaLiveRegion('Audio playback error occurred');
+    }
+
+    seekToChapter(event) {
+      const timeString = event.currentTarget.dataset.time;
+      if (!timeString) return;
+
+      // Parse time string (e.g., "1:30", "0:45", "12:34")
+      const timeParts = timeString.split(':').map(Number);
+      let seconds = 0;
+
+      if (timeParts.length === 2) {
+        seconds = timeParts[0] * 60 + timeParts[1];
+      } else if (timeParts.length === 3) {
+        seconds = timeParts[0] * 3600 + timeParts[1] * 60 + timeParts[2];
+      }
+
+      this.audio.currentTime = seconds;
+      if (this.audio.paused) {
+        this.audio.play().catch(console.error);
+      }
+
+      this.updateAriaLiveRegion(`Seeking to ${timeString}`);
+    }
+
+    handleKeyboard(event) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          this.audio.currentTime = Math.max(0, this.audio.currentTime - 10);
+          this.updateAriaLiveRegion('Rewound 10 seconds');
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          this.audio.currentTime = Math.min(this.audio.duration, this.audio.currentTime + 10);
+          this.updateAriaLiveRegion('Fast forwarded 10 seconds');
+          break;
+        case ' ':
+          event.preventDefault();
+          if (this.audio.paused) {
+            this.audio.play().catch(console.error);
+            this.updateAriaLiveRegion('Playing');
+          } else {
+            this.audio.pause();
+            this.updateAriaLiveRegion('Paused');
+          }
+          break;
+      }
+    }
+
+    createAriaLiveRegion() {
+      const liveRegion = document.createElement('div');
+      liveRegion.setAttribute('aria-live', 'polite');
+      liveRegion.setAttribute('aria-label', 'Audio player status');
+      liveRegion.className = 'sr-only';
+      liveRegion.style.position = 'absolute';
+      liveRegion.style.left = '-10000px';
+      liveRegion.style.width = '1px';
+      liveRegion.style.height = '1px';
+      liveRegion.style.overflow = 'hidden';
+
+      this.ariaLiveRegion = liveRegion;
+      this.player.appendChild(liveRegion);
+    }
+
+    updateAriaLiveRegion(message) {
+      if (!this.ariaLiveRegion) return;
+
+      if (message) {
+        this.ariaLiveRegion.textContent = message;
+      } else if (this.audio.duration) {
+        const currentTime = this.formatTime(this.audio.currentTime);
+        const duration = this.formatTime(this.audio.duration);
+        this.ariaLiveRegion.textContent = `${currentTime} of ${duration}`;
+      }
+    }
+
+    formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+  }
+
+  // Initialize audio players when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const players = document.querySelectorAll('.audio-story-player');
+    players.forEach(player => new AudioStoryPlayer(player));
+  });
+
+  // Reinitialize for dynamic content
+  if (typeof window !== 'undefined') {
+    window.initAudioStoryPlayers = () => {
+      const players = document.querySelectorAll('.audio-story-player');
+      players.forEach(player => {
+        if (!player.dataset.initialized) {
+          new AudioStoryPlayer(player);
+          player.dataset.initialized = 'true';
+        }
+      });
+    };
+  }
+</script>

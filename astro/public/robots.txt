@@ -1,0 +1,8 @@
+# Underground Academia — Cultural Seismography platform
+# Last updated: 2026-04-20
+
+User-agent: *
+Allow: /
+
+# Astro-generated sitemap index (contains RU + EN URLs)
+Sitemap: https://underground.folkup.life/sitemap-index.xml

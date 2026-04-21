@@ -1,7 +1,7 @@
-# Hugo build artifacts
-/public/
-/resources/_gen/
-.hugo_build.lock
+# Astro build artifacts
+astro/.astro/
+astro/dist/
+astro/node_modules/
 
 # IDE and editor files
 .vscode/
@@ -13,7 +13,7 @@
 .DS_Store
 Thumbs.db
 
-# Node.js (if using npm/yarn for asset processing)
+# Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -39,3 +39,5 @@ sensitive/
 
 # Development session files and private data
 .claude/
+
+# Last updated: 2026-04-20 — post-Hugo cleanup (ORGA-055)

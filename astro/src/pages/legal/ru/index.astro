@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('legal', ({ data }) => !data.draft && data.language === 'ru'))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'));
+
+const alternates = [{ lang: 'en' as const, href: '/legal/' }];
+---
+
+<BaseLayout
+  title="Правовые документы — Underground Academia"
+  description="Политика конфиденциальности, Условия использования, Политика cookie и Прозрачность ИИ для Underground Academia."
+  lang="ru"
+  alternates={alternates}
+>
+  <section class="legal-index">
+    <header>
+      <h1>Правовые документы</h1>
+      <p>Политика конфиденциальности, Условия использования, Политика cookie и Прозрачность ИИ.</p>
+      <p class="legal-index__lang-switch">
+        <a href="/legal/" hreflang="en" lang="en">English version</a>
+      </p>
+    </header>
+
+    <ul class="legal-index__list">
+      {
+        entries.map((entry) => (
+          <li>
+            <a href={`/legal/${entry.slug}/`}>
+              <span class="legal-index__item-title">{entry.data.title}</span>
+              {entry.data.description && (
+                <span class="legal-index__item-desc">{entry.data.description}</span>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-index {
+    max-width: 48rem;
+    margin: var(--space-xl) auto;
+    padding: 0 var(--space-md);
+  }
+
+  .legal-index h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .legal-index header p {
+    color: rgba(45, 55, 72, 0.8);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .legal-index__lang-switch {
+    font-size: 0.88rem;
+    margin-bottom: var(--space-xl) !important;
+  }
+
+  .legal-index__lang-switch a {
+    color: var(--color-maritime-deep);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  .legal-index__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .legal-index__list a {
+    display: block;
+    padding: var(--space-md);
+    border: 1px solid rgba(26, 54, 93, 0.18);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .legal-index__list a:hover,
+  .legal-index__list a:focus-visible {
+    border-color: var(--color-maritime-deep);
+    background-color: rgba(26, 54, 93, 0.03);
+  }
+
+  .legal-index__item-title {
+    display: block;
+    font-weight: 600;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-xs);
+  }
+
+  .legal-index__item-desc {
+    display: block;
+    font-size: 0.88rem;
+    color: rgba(45, 55, 72, 0.75);
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+const title = "Page Not Found - Underground Academia";
+const description = "The page you're looking for doesn't exist in our archives.";
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0a1218;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .error-container {
+      text-align: center;
+      max-width: 600px;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #f59e0b;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    a {
+      color: #fbbf24;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    a:hover {
+      border-bottom-color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <h1>404</h1>
+    <p>The investigation you're looking for has been archived or moved to a different location in our underground network.</p>
+    <p><a href="/">Return to Underground Academia</a></p>
+  </div>
+</body>
+</html>

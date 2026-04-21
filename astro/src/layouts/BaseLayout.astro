@@ -1,0 +1,357 @@
+---
+import CookieConsent from '../components/CookieConsent.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+  /**
+   * Sibling translations of the current page. Empty for single-language pages.
+   * Self is NOT included here — BaseLayout adds the self-referencing hreflang
+   * internally. Only pass entries with status === "done".
+   */
+  alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
+  /**
+   * Social-share image (OG / Twitter Card). /public-relative path or absolute URL.
+   * Resolved to absolute via Astro.site for scrapers. Falls back to site-wide
+   * branded default when omitted.
+   */
+  image?: string;
+  imageAlt?: string;
+}
+
+const DEFAULT_OG_IMAGE = '/og/default.jpg';
+
+const {
+  title,
+  description = "Underground Academia — Cultural Seismography Platform",
+  lang = "en",
+  alternates = [],
+  image,
+  imageAlt,
+} = Astro.props;
+
+const consentLang: 'ru' | 'en' | 'pt' =
+  lang === 'ru' || lang === 'pt' ? lang : 'en';
+
+const toAbsolute = (path: string): string =>
+  Astro.site ? new URL(path, Astro.site).href : path;
+
+const canonicalHref = toAbsolute(Astro.url.pathname);
+
+// hreflang cluster: emit only when we actually have translations. Includes
+// self-referencing link (Google requires bidirectional for the cluster to be
+// recognized). x-default = English when available, otherwise current locale.
+const hreflangEntries = alternates.length > 0
+  ? [
+      ...alternates.map((a) => ({ lang: a.lang, href: toAbsolute(a.href) })),
+      { lang, href: canonicalHref },
+    ]
+  : [];
+
+// RU-primary policy: x-default points to the Russian sibling when available,
+// otherwise falls back to the current page. Decision 2026-04-20 (Андрей).
+const xDefaultHref =
+  hreflangEntries.find((h) => h.lang === 'ru')?.href ?? canonicalHref;
+
+// OG image resolution — absolute URL needed by social scrapers (FB/Twitter/Telegram
+// won't follow relative paths). Branded default ensures twitter:card="summary_large_image"
+// declaration always has a valid image (otherwise scrapers fall back to plain link).
+const ogImageAbsolute = toAbsolute(image ?? DEFAULT_OG_IMAGE);
+const ogImageAltFinal = imageAlt ?? title;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalHref} />
+    {
+      hreflangEntries.length > 0 && (
+        <>
+          {hreflangEntries.map((h) => (
+            <link rel="alternate" hreflang={h.lang} href={h.href} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+        </>
+      )
+    }
+
+    <!-- Meta tags for Underground Academia branding -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAltFinal} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:image:alt" content={ogImageAltFinal} />
+
+    <!-- Brand colors and theme -->
+    <meta name="theme-color" content="#1A365D" />
+
+    <!--
+      Baseline Content-Security-Policy. Nginx may emit a tighter policy at the
+      edge; this meta exists so the static output is safe when served without
+      additional headers (local preview, CDN fallback, etc.). style-src and
+      script-src keep 'unsafe-inline' to accommodate Astro's scoped styles and
+      the consent island's tiny inline bootstrap — hash/nonce migration tracked
+      as follow-up.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+    />
+  </head>
+
+  <body>
+    <!-- Skip link for accessibility — MUST be the first focusable element inside <body> -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="site-container">
+      <header class="site-header">
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <div class="nav-brand">
+            <a href="/" aria-label="Underground Academia homepage">
+              <span class="brand-title">Underground Academia</span>
+              <span class="brand-subtitle">Cultural Seismography</span>
+            </a>
+          </div>
+
+          <ul class="nav-menu">
+            <li><a href="/investigations/">Investigations</a></li>
+            <li><a href="/methodology/">Methodology</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="site-main" id="main-content">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <p class="footer-attribution">
+            Part of the <a href="https://folkup.app" rel="external">FolkUp</a> ecosystem
+          </p>
+          <p class="footer-support">
+            <a href="https://ko-fi.com/folkup" rel="external" aria-label="Support via Ko-fi">
+              Support this research
+            </a>
+          </p>
+          <div class="footer-legal">
+            <a href="/legal/privacy-policy/">Privacy Policy</a>
+            <a href="/legal/terms-of-use/">Terms of Use</a>
+            <a href="/legal/cookie-policy/">Cookie Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <CookieConsent lang={consentLang} />
+  </body>
+</html>
+
+<style>
+  /* CSS Reset and base styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* CSS Custom Properties - Brand Guide v2.5 Palette D */
+  :root {
+    /* Colors - Underground Academia + Soviet Constructivist */
+    --color-maritime-deep: #1A365D;     /* Primary dark */
+    --color-sage-muted: #68D391;        /* Secondary green */
+    --color-amber-warm: #D69E2E;        /* Accent warm */
+    --color-concrete-light: #F7FAFC;    /* Background light */
+    --color-text-primary: #2D3748;      /* Text dark */
+    --color-text-inverse: #F7FAFC;      /* Text light */
+
+    /* Typography - System fonts (GDPR compliant, no external loading) */
+    --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-size-base: 1rem;
+    --line-height-body: 1.6;
+    --line-height-heading: 1.2;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Layout */
+    --container-max-width: 75rem;
+    --container-padding: var(--space-md);
+  }
+
+  /* Base typography */
+  html {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-concrete-light);
+  }
+
+  /* Layout */
+  .site-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-main {
+    flex: 1;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    width: 100%;
+  }
+
+  /* Header */
+  .site-header {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: var(--space-md) var(--container-padding);
+  }
+
+  .main-nav {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .nav-brand a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .brand-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    display: block;
+  }
+
+  .brand-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    font-weight: 400;
+    display: block;
+  }
+
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .nav-menu a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 2px solid transparent;
+  }
+
+  /* Footer */
+  .site-footer {
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: var(--space-lg) var(--container-padding);
+    margin-top: var(--space-2xl);
+  }
+
+  .footer-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: 0.875rem;
+  }
+
+  .footer-content a {
+    color: var(--color-sage-muted);
+    text-decoration: none;
+  }
+
+  .footer-content a:hover,
+  .footer-content a:focus {
+    text-decoration: underline;
+  }
+
+  /* Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 1000;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Focus management */
+  :focus-visible {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+  }
+
+  /* Responsive typography */
+  @media (min-width: 48rem) {
+    .brand-title {
+      font-size: 1.75rem;
+    }
+
+    .brand-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

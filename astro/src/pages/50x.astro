@@ -1,0 +1,57 @@
+---
+const title = "Server Error - Underground Academia";
+const description = "Our servers are experiencing technical difficulties.";
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0a1218;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .error-container {
+      text-align: center;
+      max-width: 600px;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #ef4444;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    a {
+      color: #fbbf24;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    a:hover {
+      border-bottom-color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <h1>50x</h1>
+    <p>Our underground network is experiencing technical difficulties. Our investigation team is working to restore access.</p>
+    <p>Please try again in a few minutes or <a href="/">return to the main portal</a>.</p>
+  </div>
+</body>
+</html>

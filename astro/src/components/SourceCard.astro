@@ -1,0 +1,262 @@
+---
+export interface Props {
+  title: string;
+  type: 'primary' | 'secondary' | 'archive' | 'digital';
+  reliability: 'high' | 'medium' | 'low' | 'unknown';
+  date?: string;
+  author?: string;
+  url?: string;
+  description?: string;
+  className?: string;
+}
+
+const {
+  title,
+  type,
+  reliability,
+  date,
+  author,
+  url,
+  description,
+  className = ''
+} = Astro.props;
+
+const typeConfig = {
+  primary: {
+    label: 'Primary Source',
+    class: 'source-card--primary'
+  },
+  secondary: {
+    label: 'Secondary Source',
+    class: 'source-card--secondary'
+  },
+  archive: {
+    label: 'Archive Material',
+    class: 'source-card--archive'
+  },
+  digital: {
+    label: 'Digital Resource',
+    class: 'source-card--digital'
+  }
+};
+
+const reliabilityConfig = {
+  high: {
+    label: 'High Reliability',
+    class: 'reliability--high'
+  },
+  medium: {
+    label: 'Medium Reliability',
+    class: 'reliability--medium'
+  },
+  low: {
+    label: 'Low Reliability',
+    class: 'reliability--low'
+  },
+  unknown: {
+    label: 'Unknown Reliability',
+    class: 'reliability--unknown'
+  }
+};
+
+const typeInfo = typeConfig[type];
+const reliabilityInfo = reliabilityConfig[reliability];
+const cardClasses = `source-card ${typeInfo.class} ${className}`.trim();
+---
+
+<article class={cardClasses} role="article" aria-labelledby={`source-${title.replace(/\s+/g, '-').toLowerCase()}`}>
+  <header class="source-card__header">
+    <h3 id={`source-${title.replace(/\s+/g, '-').toLowerCase()}`} class="source-card__title">
+      {url ? (
+        <a href={url} rel="external" target="_blank" class="source-card__link">
+          {title}
+        </a>
+      ) : (
+        title
+      )}
+    </h3>
+
+    <div class="source-card__meta">
+      <span class={`source-type ${typeInfo.class}`} aria-label={typeInfo.label}>
+        {typeInfo.label}
+      </span>
+      <span class={`reliability-indicator ${reliabilityInfo.class}`} aria-label={reliabilityInfo.label}>
+        {reliabilityInfo.label}
+      </span>
+    </div>
+  </header>
+
+  {(author || date) && (
+    <div class="source-card__attribution">
+      {author && <span class="source-card__author">{author}</span>}
+      {date && <time class="source-card__date" datetime={date}>{date}</time>}
+    </div>
+  )}
+
+  {description && (
+    <div class="source-card__description">
+      <p>{description}</p>
+    </div>
+  )}
+</article>
+
+<style>
+  .source-card {
+    background-color: var(--color-concrete-light);
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-body);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .source-card:hover {
+    box-shadow: 0 2px 8px rgba(26, 54, 93, 0.1);
+  }
+
+  .source-card__header {
+    margin-bottom: var(--space-sm);
+  }
+
+  .source-card__title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-xs);
+  }
+
+  .source-card__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .source-card__link:hover,
+  .source-card__link:focus {
+    text-decoration: underline;
+    color: var(--color-amber-warm);
+  }
+
+  .source-card__meta {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .source-type,
+  .reliability-indicator {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--space-xs);
+    border: 1px solid;
+  }
+
+  /* Source type styles */
+  .source-card--primary .source-type {
+    background-color: var(--color-maritime-deep);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+  }
+
+  .source-card--secondary .source-type {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .source-card--archive .source-type {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .source-card--digital .source-type {
+    background-color: rgba(214, 158, 46, 0.3);
+    border-color: var(--color-amber-warm);
+    color: var(--color-text-primary);
+  }
+
+  /* Reliability indicator styles */
+  .reliability--high {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .reliability--medium {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .reliability--low {
+    background-color: rgba(214, 158, 46, 0.3);
+    border-color: var(--color-amber-warm);
+    color: var(--color-text-primary);
+  }
+
+  .reliability--unknown {
+    background-color: var(--color-concrete-light);
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
+  }
+
+  .source-card__attribution {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  .source-card__author::after {
+    content: "•";
+    margin-left: var(--space-sm);
+    color: rgba(45, 55, 72, 0.5);
+  }
+
+  .source-card__date {
+    font-style: italic;
+  }
+
+  .source-card__description {
+    font-size: 0.875rem;
+    line-height: var(--line-height-body);
+    color: var(--color-text-primary);
+  }
+
+  .source-card__description p {
+    margin: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 48rem) {
+    .source-card__meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+
+    .source-card__attribution {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .source-card__author::after {
+      display: none;
+    }
+  }
+
+  /* Focus management */
+  .source-card:focus-within {
+    outline: 2px solid var(--color-amber-warm);
+    outline-offset: 2px;
+  }
+</style>
