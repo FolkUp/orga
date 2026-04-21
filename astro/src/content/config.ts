@@ -151,6 +151,13 @@ const longformCollection = defineCollection({
     // SEO
     description: z.string().optional(),
 
+    // Social-share / OG image (optional; falls back to site-wide default in BaseLayout).
+    // Path is /public-relative, e.g. "/og/organizatsiya.jpg". BaseLayout resolves to
+    // absolute URL via Astro.site at build time — must be JPEG/PNG ≥1200×630 for spec.
+    og_image: z.string().optional(),
+    og_image_alt: z.string().optional(),
+    og_image_credit: z.string().optional(),
+
     // Translation tracking — `slug` points at the sibling entry's collection slug
     // (e.g. "organizatsiya" for RU, "en/organizatsiya" for EN). Required when
     // status === "done" for hreflang/alternates resolution; optional otherwise.

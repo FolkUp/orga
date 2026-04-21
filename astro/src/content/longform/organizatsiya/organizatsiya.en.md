@@ -106,6 +106,13 @@ audio_embed:
 # Description for SEO/OG
 description: "Oxxxymiron's «Organizatsiya» is not a song about resistance. It is a legal performative the state ratified back to itself after 333 days. A reading of one chorus line as a founding act of cultural belonging in an age of algorithmic censorship."
 
+# Social-share image (OG / Twitter Card). Source: Oxxxymiron._Reebok.png by Lado Kvataniya
+# (CC0 1.0 Public Domain), Wikimedia Commons. Verified 2026-04-21 via WebFetch — see
+# _meta/media-verification.md §4. Cropped to 1200×630 via sharp smart-crop.
+og_image: "/og/organizatsiya.jpg"
+og_image_alt: "Black-and-white portrait of Oxxxymiron — featured image for the longform «Organizatsiya»"
+og_image_credit: "Photo: Lado Kvataniya / Wikimedia Commons (CC0 1.0)"
+
 # Translation (D32 — symmetric bidirectional linking)
 translations:
   ru:

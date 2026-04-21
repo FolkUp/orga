@@ -11,13 +11,24 @@ export interface Props {
    * internally. Only pass entries with status === "done".
    */
   alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
+  /**
+   * Social-share image (OG / Twitter Card). /public-relative path or absolute URL.
+   * Resolved to absolute via Astro.site for scrapers. Falls back to site-wide
+   * branded default when omitted.
+   */
+  image?: string;
+  imageAlt?: string;
 }
+
+const DEFAULT_OG_IMAGE = '/og/default.jpg';
 
 const {
   title,
   description = "Underground Academia — Cultural Seismography Platform",
   lang = "en",
   alternates = [],
+  image,
+  imageAlt,
 } = Astro.props;
 
 const consentLang: 'ru' | 'en' | 'pt' =
@@ -42,6 +53,12 @@ const hreflangEntries = alternates.length > 0
 // otherwise falls back to the current page. Decision 2026-04-20 (Андрей).
 const xDefaultHref =
   hreflangEntries.find((h) => h.lang === 'ru')?.href ?? canonicalHref;
+
+// OG image resolution — absolute URL needed by social scrapers (FB/Twitter/Telegram
+// won't follow relative paths). Branded default ensures twitter:card="summary_large_image"
+// declaration always has a valid image (otherwise scrapers fall back to plain link).
+const ogImageAbsolute = toAbsolute(image ?? DEFAULT_OG_IMAGE);
+const ogImageAltFinal = imageAlt ?? title;
 ---
 
 <!doctype html>
@@ -70,7 +87,14 @@ const xDefaultHref =
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAltFinal} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:image:alt" content={ogImageAltFinal} />
 
     <!-- Brand colors and theme -->
     <meta name="theme-color" content="#1A365D" />

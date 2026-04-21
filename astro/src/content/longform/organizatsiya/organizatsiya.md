@@ -113,6 +113,13 @@ audio_embed:
 # Description for SEO/OG
 description: "«Организация» Oxxxymiron — не песня о сопротивлении. Это юридический перформатив, который государство само себе подтвердило через 333 дня. Разбор одной фразы припева как founding act культурной принадлежности в эпоху алгоритмической цензуры."
 
+# Social-share image (OG / Twitter Card). Source: Oxxxymiron._Reebok.png by Lado Kvataniya
+# (CC0 1.0 Public Domain), Wikimedia Commons. Verified 2026-04-21 via WebFetch — see
+# _meta/media-verification.md §4. Cropped to 1200×630 via sharp smart-crop.
+og_image: "/og/organizatsiya.jpg"
+og_image_alt: "Чёрно-белый портрет Oxxxymiron'а — featured image для лонгрида «Организация»"
+og_image_credit: "Photo: Lado Kvataniya / Wikimedia Commons (CC0 1.0)"
+
 # Translation
 translations:
   en:

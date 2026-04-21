@@ -27,6 +27,8 @@ export interface Props {
    * BaseLayout handles the self-referencing hreflang. Empty = single-locale entry.
    */
   alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
@@ -44,6 +46,8 @@ const {
   description = '',
   audioEmbed,
   alternates = [],
+  ogImage,
+  ogImageAlt,
 } = Astro.props;
 
 // Language switcher labels. Current locale shown as full endonym (signals
@@ -129,6 +133,8 @@ const hasEmbed = Boolean(
   description={description}
   lang={language}
   alternates={alternates}
+  image={ogImage}
+  imageAlt={ogImageAlt}
 >
   <article class="longform" itemscope itemtype="https://schema.org/Article" lang={language}>
     <div class="longform__nav-row">
