@@ -21,16 +21,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
-          cache-dependency-path: astro/package-lock.json
 
-      - name: Install dependencies
-        # `npm install` instead of `npm ci`: the lockfile (generated on win32)
-        # lacks @rollup/rollup-linux-x64-gnu optional entry, which `npm ci`
-        # strictly skips on linux runners. `npm install` rebuilds platform deps.
+      - name: Install dependencies (fresh, no lockfile)
+        # The committed package-lock.json was generated on win32 and lacks
+        # @rollup/rollup-linux-x64-gnu; both `npm ci` and `npm install` honor
+        # the lockfile too strictly and fail at build. Regenerating on the
+        # linux runner picks up correct platform-specific optional deps.
         # `--legacy-peer-deps` accepts @astrojs/svelte@6 peer astro@^4 mismatch
         # (project on astro@5 — runtime fine, only resolver complains).
-        run: npm install --legacy-peer-deps
+        # Lockfile drift is tracked as a separate cleanup task.
+        run: |
+          rm -f package-lock.json
+          npm install --legacy-peer-deps
 
       - name: Build Astro site
         run: npm run build
