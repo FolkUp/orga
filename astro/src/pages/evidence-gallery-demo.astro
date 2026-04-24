@@ -1,0 +1,651 @@
+---
+/**
+ * Evidence Gallery Demo Page
+ * Demonstrates the complete ORGA evidence gallery system with WCAG 2.1 AA compliance
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EvidenceGalleryIntegration from '../components/EvidenceGalleryIntegration.astro';
+import { sampleEvidenceData } from '../lib/evidenceData.js';
+
+const pageTitle = "Evidence Gallery Demo - Underground Academia";
+const pageDescription = "Interactive evidence gallery demonstrating cultural investigation methodology with full WCAG 2.1 AA accessibility compliance.";
+
+// SEO optimization
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": pageTitle,
+  "description": pageDescription,
+  "about": {
+    "@type": "Thing",
+    "name": "Cultural Investigation Evidence Gallery",
+    "description": "Academic evidence collection and analysis platform"
+  },
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": "Cultural Evidence Collection",
+    "description": "Comprehensive evidence for cultural analysis and investigation",
+    "numberOfItems": sampleEvidenceData.length
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Evidence Gallery Demo",
+        "item": "/evidence-gallery-demo"
+      }
+    ]
+  }
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image="/og/evidence-gallery-demo.jpg"
+  imageAlt="Evidence Gallery interface showing cultural investigation evidence cards"
+>
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Evidence Gallery Demo</h1>
+      <p class="page-subtitle">
+        Interactive evidence collection for cultural investigation and analysis
+      </p>
+
+      <div class="header-stats">
+        <div class="stat-item">
+          <span class="stat-number">{sampleEvidenceData.length}</span>
+          <span class="stat-label">Evidence Items</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">
+            {sampleEvidenceData.filter(item => item.significance === 'critical').length}
+          </span>
+          <span class="stat-label">Critical Evidence</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">
+            {[...new Set(sampleEvidenceData.map(item => item.type))].length}
+          </span>
+          <span class="stat-label">Evidence Types</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Feature Highlights -->
+  <section class="features-section" aria-labelledby="features-title">
+    <div class="features-content">
+      <h2 id="features-title" class="features-title">Gallery Features</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">♿</div>
+          <h3 class="feature-title">WCAG 2.1 AA Compliant</h3>
+          <p class="feature-description">
+            Full accessibility compliance with screen reader support, keyboard navigation,
+            and focus management for inclusive access.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🔍</div>
+          <h3 class="feature-title">Advanced Search & Filtering</h3>
+          <p class="feature-description">
+            Intelligent search with special syntax, multi-criteria filtering,
+            and real-time results with suggestion system.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">📱</div>
+          <h3 class="feature-title">Mobile-Responsive Design</h3>
+          <p class="feature-description">
+            Optimized for all devices with progressive enhancement,
+            touch-friendly interactions, and adaptive layouts.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">⚖️</div>
+          <h3 class="feature-title">Legal Compliance Framework</h3>
+          <p class="feature-description">
+            Built-in EU fair dealing compliance with proper attribution,
+            quotation tracking, and copyright verification.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">🔗</div>
+          <h3 class="feature-title">Cross-Component Integration</h3>
+          <p class="feature-description">
+            Seamless navigation between evidence, timeline, and hero components
+            with synchronized state management.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" aria-hidden="true">⚡</div>
+          <h3 class="feature-title">Performance Optimized</h3>
+          <p class="feature-description">
+            Lazy loading, virtual scrolling, image optimization,
+            and efficient rendering for fast user experience.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evidence Gallery -->
+  <main class="evidence-gallery-main" id="main-content">
+    <EvidenceGalleryIntegration
+      evidenceData={sampleEvidenceData}
+      viewMode="grid"
+      enableLazyLoading={true}
+      itemsPerPage={12}
+      className="demo-evidence-gallery"
+    />
+  </main>
+
+  <!-- Technical Details -->
+  <section class="technical-details" aria-labelledby="technical-title">
+    <div class="technical-content">
+      <h2 id="technical-title" class="technical-title">Technical Implementation</h2>
+
+      <div class="technical-grid">
+        <div class="technical-section">
+          <h3>Frontend Architecture</h3>
+          <ul>
+            <li><strong>Astro 5.18+</strong> - Static site generation with islands architecture</li>
+            <li><strong>Svelte 5</strong> - Reactive component framework for client-side interactivity</li>
+            <li><strong>CSS Custom Properties</strong> - Consistent design system implementation</li>
+            <li><strong>Progressive Enhancement</strong> - Works with and without JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="technical-section">
+          <h3>Accessibility Features</h3>
+          <ul>
+            <li><strong>Screen Reader Support</strong> - Complete ARIA labeling and live regions</li>
+            <li><strong>Keyboard Navigation</strong> - Full keyboard accessibility with focus traps</li>
+            <li><strong>High Contrast Mode</strong> - Enhanced visibility for visual impairments</li>
+            <li><strong>Reduced Motion</strong> - Respects user preference for reduced animations</li>
+          </ul>
+        </div>
+
+        <div class="technical-section">
+          <h3>Performance Optimizations</h3>
+          <ul>
+            <li><strong>Lazy Loading</strong> - Images and content loaded on demand</li>
+            <li><strong>Virtual Scrolling</strong> - Efficient rendering of large datasets</li>
+            <li><strong>Image Optimization</strong> - WebP format with JPEG fallbacks</li>
+            <li><strong>Code Splitting</strong> - Modular component loading</li>
+          </ul>
+        </div>
+
+        <div class="technical-section">
+          <h3>Legal Compliance</h3>
+          <ul>
+            <li><strong>EU Fair Dealing</strong> - Automated compliance checking</li>
+            <li><strong>Attribution Tracking</strong> - Complete source documentation</li>
+            <li><strong>Quotation Limits</strong> - Volume tracking per copyright law</li>
+            <li><strong>Privacy Protection</strong> - User data anonymization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Instructions -->
+  <section class="usage-instructions" aria-labelledby="usage-title">
+    <div class="usage-content">
+      <h2 id="usage-title" class="usage-title">How to Use the Evidence Gallery</h2>
+
+      <div class="usage-steps">
+        <div class="usage-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Explore Evidence</h3>
+            <p>Browse evidence cards using grid or list view. Click any card to open the detailed modal viewer.</p>
+          </div>
+        </div>
+
+        <div class="usage-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Search & Filter</h3>
+            <p>Use the search box with special syntax like "type:media" or "significance:critical" for precise filtering.</p>
+          </div>
+        </div>
+
+        <div class="usage-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Navigate Connections</h3>
+            <p>Follow timeline and hero connections to explore related content across different investigation components.</p>
+          </div>
+        </div>
+
+        <div class="usage-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Keyboard Shortcuts</h3>
+            <p>Press "?" for keyboard shortcuts or use Ctrl/Cmd+F to focus search, arrow keys in modals, and Tab for navigation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="demo-footer">
+    <div class="footer-content">
+      <p>
+        This evidence gallery demonstrates academic cultural investigation methodology
+        with full compliance to accessibility standards and legal requirements.
+      </p>
+      <p>
+        <a href="/methodology/">Learn more about our methodology</a> |
+        <a href="/legal/privacy-policy/">Privacy Policy</a> |
+        <a href="https://ko-fi.com/folkup" target="_blank" rel="external">Support this research</a>
+      </p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-maritime-deep) 0%, var(--color-sage-muted) 100%);
+    color: var(--color-text-inverse);
+    padding: var(--space-2xl) var(--space-md);
+    text-align: center;
+  }
+
+  .header-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: var(--line-height-body);
+    margin-bottom: var(--space-xl);
+    opacity: 0.9;
+  }
+
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  /* Features Section */
+  .features-section {
+    padding: var(--space-2xl) var(--space-md);
+    background-color: var(--color-concrete-light);
+  }
+
+  .features-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .features-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .feature-card {
+    background-color: white;
+    padding: var(--space-xl);
+    border-radius: var(--space-sm);
+    border: 1px solid rgba(26, 54, 93, 0.1);
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 54, 93, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .feature-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-sm);
+  }
+
+  .feature-description {
+    color: var(--color-text-primary);
+    line-height: var(--line-height-body);
+  }
+
+  /* Evidence Gallery Main */
+  .evidence-gallery-main {
+    padding: var(--space-2xl) 0;
+    background-color: white;
+  }
+
+  .demo-evidence-gallery {
+    max-width: none; /* Allow full width */
+    padding: 0 var(--space-md);
+  }
+
+  /* Technical Details */
+  .technical-details {
+    padding: var(--space-2xl) var(--space-md);
+    background-color: rgba(26, 54, 93, 0.02);
+  }
+
+  .technical-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .technical-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .technical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .technical-section {
+    background-color: white;
+    padding: var(--space-lg);
+    border-radius: var(--space-sm);
+    border: 1px solid rgba(26, 54, 93, 0.1);
+  }
+
+  .technical-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-md);
+    border-bottom: 2px solid var(--color-amber-warm);
+    padding-bottom: var(--space-xs);
+  }
+
+  .technical-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .technical-section li {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-body);
+  }
+
+  .technical-section li:last-child {
+    border-bottom: none;
+  }
+
+  .technical-section strong {
+    color: var(--color-maritime-deep);
+    font-weight: 600;
+  }
+
+  /* Usage Instructions */
+  .usage-instructions {
+    padding: var(--space-2xl) var(--space-md);
+    background-color: white;
+  }
+
+  .usage-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .usage-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .usage-steps {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .usage-step {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+
+  .step-number {
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-sm);
+  }
+
+  .step-content p {
+    color: var(--color-text-primary);
+    line-height: var(--line-height-body);
+    margin: 0;
+  }
+
+  /* Demo Footer */
+  .demo-footer {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--color-maritime-deep);
+    color: var(--color-text-inverse);
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .footer-content p {
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-body);
+  }
+
+  .footer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer-content a {
+    color: var(--color-amber-warm);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer-content a:hover,
+  .footer-content a:focus {
+    text-decoration: underline;
+    color: var(--color-sage-muted);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 64rem) {
+    .page-title {
+      font-size: 2.5rem;
+    }
+
+    .header-stats {
+      gap: var(--space-lg);
+    }
+
+    .features-grid,
+    .technical-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .usage-step {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .page-header,
+    .features-section,
+    .technical-details,
+    .usage-instructions {
+      padding-left: var(--space-md);
+      padding-right: var(--space-md);
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .feature-card,
+    .technical-section {
+      border-width: 2px;
+    }
+
+    .step-number {
+      border: 2px solid var(--color-text-inverse);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card {
+      transition: none;
+    }
+
+    .feature-card:hover {
+      transform: none;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .page-header {
+      background: none;
+      color: #000;
+    }
+
+    .features-section,
+    .technical-details,
+    .usage-instructions {
+      break-inside: avoid;
+    }
+
+    .feature-card,
+    .technical-section {
+      border: 1pt solid #000;
+      break-inside: avoid;
+    }
+
+    .demo-footer {
+      background: none;
+      color: #000;
+    }
+  }
+</style>

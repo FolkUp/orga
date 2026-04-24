@@ -1,0 +1,507 @@
+---
+/**
+ * EvidenceGalleryIntegration.astro
+ * Astro integration component for Evidence Gallery
+ * Provides server-side data loading and client-side Svelte component hydration
+ */
+
+import { sampleEvidenceData, evidenceUtils } from '../lib/evidenceData.js';
+
+export interface Props {
+  evidenceData?: any[];
+  viewMode?: 'grid' | 'list';
+  enableLazyLoading?: boolean;
+  itemsPerPage?: number;
+  timelineConnection?: string | null;
+  heroConnection?: string | null;
+  initialFilter?: string;
+  initialSearch?: string;
+  className?: string;
+}
+
+const {
+  evidenceData = sampleEvidenceData,
+  viewMode = 'grid',
+  enableLazyLoading = true,
+  itemsPerPage = 12,
+  timelineConnection = null,
+  heroConnection = null,
+  initialFilter = 'all',
+  initialSearch = '',
+  className = ''
+} = Astro.props;
+
+// Server-side evidence processing
+const processedEvidenceData = evidenceData.map(item => {
+  // Validate evidence item
+  evidenceUtils.validateEvidenceItem(item);
+
+  // Process media URLs for Astro asset optimization
+  if (item.media && item.media.url && !item.media.url.startsWith('http')) {
+    item.media.url = new URL(item.media.url, Astro.site || Astro.url).href;
+  }
+
+  if (item.media && item.media.thumbnail && !item.media.thumbnail.startsWith('http')) {
+    item.media.thumbnail = new URL(item.media.thumbnail, Astro.site || Astro.url).href;
+  }
+
+  return item;
+});
+
+// Generate evidence statistics for performance monitoring
+const evidenceStats = evidenceUtils.getStatistics();
+const availableTypes = evidenceUtils.getAllTypes();
+
+// SEO and Open Graph metadata
+const totalEvidence = processedEvidenceData.length;
+const criticalEvidence = processedEvidenceData.filter(item => item.significance === 'critical').length;
+---
+
+<!-- Evidence Gallery Container -->
+<section
+  class={`evidence-gallery-integration ${className}`}
+  data-evidence-count={totalEvidence}
+  data-critical-count={criticalEvidence}
+  itemscope
+  itemtype="https://schema.org/Dataset"
+>
+  <!-- Structured Data for Evidence Collection -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Cultural Investigation Evidence Gallery",
+    "description": "Comprehensive evidence collection for cultural investigation and analysis",
+    "creator": {
+      "@type": "Organization",
+      "name": "Underground Academia"
+    },
+    "dateModified": new Date().toISOString(),
+    "distribution": {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json"
+    },
+    "keywords": availableTypes.join(", "),
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "numberOfItems": totalEvidence,
+    "about": {
+      "@type": "Thing",
+      "name": "Cultural Investigation",
+      "description": "Academic analysis of contemporary cultural phenomena"
+    }
+  })}></script>
+
+  <!-- Performance Hints -->
+  <link rel="preconnect" href={new URL('/', Astro.site || Astro.url).origin} />
+
+  <!-- Preload critical evidence thumbnails -->
+  {processedEvidenceData
+    .filter(item => item.significance === 'critical')
+    .slice(0, 3)
+    .map(item => item.media?.thumbnail)
+    .filter(Boolean)
+    .map(thumbnail => (
+      <link rel="preload" as="image" href={thumbnail} />
+    ))
+  }
+
+  <!-- Evidence Gallery Component -->
+  <div
+    id="evidence-gallery-root"
+    class="evidence-gallery-root"
+    data-client-component="EvidenceGallery"
+  >
+    <!-- Svelte component will be hydrated here -->
+  </div>
+
+  <!-- Fallback Content for No-JS -->
+  <noscript>
+    <div class="evidence-gallery-fallback">
+      <h2>Evidence Gallery</h2>
+      <p class="fallback-description">
+        This interactive evidence gallery requires JavaScript. Below is a simplified list of evidence items:
+      </p>
+
+      <div class="fallback-stats">
+        <p>Total Evidence: <strong>{totalEvidence}</strong> items</p>
+        <p>Critical Evidence: <strong>{criticalEvidence}</strong> items</p>
+        <p>Types: {availableTypes.join(', ')}</p>
+      </div>
+
+      <div class="evidence-list-fallback">
+        {processedEvidenceData.map((evidence) => (
+          <article class="evidence-item-fallback" key={evidence.id}>
+            <header class="evidence-header-fallback">
+              <h3>{evidence.title}</h3>
+              <div class="evidence-meta-fallback">
+                <span class="evidence-type-fallback">{evidence.type}</span>
+                <span class="evidence-significance-fallback">{evidence.significance}</span>
+                <time datetime={evidence.date}>{new Date(evidence.date).toLocaleDateString()}</time>
+              </div>
+            </header>
+
+            <div class="evidence-content-fallback">
+              <p>{evidence.description}</p>
+              <cite class="evidence-source-fallback">Source: {evidence.source}</cite>
+
+              {evidence.tags && evidence.tags.length > 0 && (
+                <div class="evidence-tags-fallback">
+                  <strong>Tags:</strong> {evidence.tags.join(', ')}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </noscript>
+
+  <!-- Client-side Data and Configuration -->
+  <script define:vars={{
+    evidenceData: processedEvidenceData,
+    evidenceStats,
+    availableTypes,
+    config: {
+      viewMode,
+      enableLazyLoading,
+      itemsPerPage,
+      timelineConnection,
+      heroConnection,
+      initialFilter,
+      initialSearch
+    }
+  }}>
+    // Store evidence data for client-side component
+    window.__EVIDENCE_DATA__ = evidenceData;
+    window.__EVIDENCE_CONFIG__ = config;
+    window.__EVIDENCE_STATS__ = evidenceStats;
+
+    // Performance monitoring
+    if (typeof performance !== 'undefined' && performance.mark) {
+      performance.mark('evidence-data-loaded');
+    }
+  </script>
+
+  <!-- Svelte Component Hydration Script -->
+  <script>
+    import EvidenceGallery from '../components/evidence/EvidenceGallery.svelte';
+
+    // Initialize Svelte component when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      const target = document.getElementById('evidence-gallery-root');
+
+      if (target && window.__EVIDENCE_DATA__) {
+        // Performance mark
+        if (typeof performance !== 'undefined' && performance.mark) {
+          performance.mark('evidence-gallery-init-start');
+        }
+
+        // Initialize Svelte component
+        const evidenceGallery = new EvidenceGallery({
+          target,
+          props: {
+            evidenceData: window.__EVIDENCE_DATA__,
+            viewMode: window.__EVIDENCE_CONFIG__.viewMode,
+            enableLazyLoading: window.__EVIDENCE_CONFIG__.enableLazyLoading,
+            itemsPerPage: window.__EVIDENCE_CONFIG__.itemsPerPage,
+            timelineConnection: window.__EVIDENCE_CONFIG__.timelineConnection,
+            heroConnection: window.__EVIDENCE_CONFIG__.heroConnection,
+            initialFilter: window.__EVIDENCE_CONFIG__.initialFilter,
+            initialSearch: window.__EVIDENCE_CONFIG__.initialSearch
+          }
+        });
+
+        // Set up cross-component communication
+        evidenceGallery.$on('navigateTimeline', (event) => {
+          const { eventId, evidenceId } = event.detail;
+
+          // Dispatch custom event for timeline integration
+          window.dispatchEvent(new CustomEvent('evidence:navigateTimeline', {
+            detail: { eventId, evidenceId }
+          }));
+
+          // Analytics tracking
+          if (typeof gtag === 'function') {
+            gtag('event', 'navigate_timeline', {
+              'event_category': 'evidence_gallery',
+              'event_label': eventId,
+              'evidence_id': evidenceId
+            });
+          }
+        });
+
+        evidenceGallery.$on('navigateHero', (event) => {
+          const { sceneId, evidenceId } = event.detail;
+
+          // Dispatch custom event for hero integration
+          window.dispatchEvent(new CustomEvent('evidence:navigateHero', {
+            detail: { sceneId, evidenceId }
+          }));
+
+          // Analytics tracking
+          if (typeof gtag === 'function') {
+            gtag('event', 'navigate_hero', {
+              'event_category': 'evidence_gallery',
+              'event_label': sceneId,
+              'evidence_id': evidenceId
+            });
+          }
+        });
+
+        // Performance monitoring
+        if (typeof performance !== 'undefined' && performance.mark) {
+          performance.mark('evidence-gallery-init-end');
+          performance.measure(
+            'evidence-gallery-init',
+            'evidence-gallery-init-start',
+            'evidence-gallery-init-end'
+          );
+        }
+
+        // Store component reference for external access
+        window.__EVIDENCE_GALLERY__ = evidenceGallery;
+      }
+    });
+  </script>
+</section>
+
+<style>
+  /* Evidence Gallery Integration Styles */
+  .evidence-gallery-integration {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    font-family: var(--font-body);
+  }
+
+  .evidence-gallery-root {
+    min-height: 400px;
+    position: relative;
+  }
+
+  /* Loading State */
+  .evidence-gallery-root::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid rgba(26, 54, 93, 0.1);
+    border-top: 3px solid var(--color-maritime-deep);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Hide loading spinner when component is loaded */
+  .evidence-gallery-root:has(> *) ::before {
+    display: none;
+  }
+
+  /* No-JS Fallback Styles */
+  .evidence-gallery-fallback {
+    padding: var(--space-lg);
+    font-family: var(--font-body);
+  }
+
+  .evidence-gallery-fallback h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .fallback-description {
+    background-color: var(--color-amber-warm);
+    color: var(--color-maritime-deep);
+    padding: var(--space-md);
+    border-radius: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .fallback-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-md);
+    background-color: rgba(26, 54, 93, 0.05);
+    border-radius: var(--space-sm);
+  }
+
+  .fallback-stats p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+  }
+
+  .fallback-stats strong {
+    color: var(--color-maritime-deep);
+    font-weight: 700;
+  }
+
+  .evidence-list-fallback {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .evidence-item-fallback {
+    background-color: var(--color-concrete-light);
+    border: 1px solid rgba(26, 54, 93, 0.2);
+    border-radius: var(--space-sm);
+    padding: var(--space-lg);
+    break-inside: avoid;
+  }
+
+  .evidence-header-fallback {
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+    padding-bottom: var(--space-md);
+  }
+
+  .evidence-header-fallback h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-maritime-deep);
+    margin: 0 0 var(--space-sm) 0;
+    line-height: var(--line-height-heading);
+  }
+
+  .evidence-meta-fallback {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .evidence-type-fallback,
+  .evidence-significance-fallback {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--space-xs);
+    border: 1px solid;
+  }
+
+  .evidence-type-fallback {
+    background-color: var(--color-amber-warm);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .evidence-significance-fallback {
+    background-color: var(--color-sage-muted);
+    border-color: var(--color-maritime-deep);
+    color: var(--color-maritime-deep);
+  }
+
+  .evidence-meta-fallback time {
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.7);
+    font-style: italic;
+  }
+
+  .evidence-content-fallback {
+    line-height: var(--line-height-body);
+  }
+
+  .evidence-content-fallback p {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-primary);
+  }
+
+  .evidence-source-fallback {
+    display: block;
+    font-style: italic;
+    color: rgba(45, 55, 72, 0.8);
+    margin-bottom: var(--space-md);
+    font-size: 0.875rem;
+  }
+
+  .evidence-tags-fallback {
+    font-size: 0.875rem;
+    color: rgba(45, 55, 72, 0.8);
+  }
+
+  .evidence-tags-fallback strong {
+    color: var(--color-maritime-deep);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 48rem) {
+    .evidence-gallery-integration {
+      padding: 0 var(--space-md);
+    }
+
+    .fallback-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .evidence-meta-fallback {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .evidence-gallery-integration {
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+
+    .evidence-gallery-fallback h2 {
+      font-size: 18pt;
+      margin-bottom: 1rem;
+    }
+
+    .evidence-item-fallback {
+      margin-bottom: 1rem;
+      border: 1pt solid #000;
+      break-inside: avoid;
+    }
+
+    .evidence-header-fallback h3 {
+      font-size: 14pt;
+    }
+
+    .evidence-meta-fallback,
+    .fallback-description {
+      display: none;
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .evidence-item-fallback {
+      border-width: 2px;
+    }
+
+    .evidence-type-fallback,
+    .evidence-significance-fallback {
+      border-width: 2px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .evidence-gallery-root::before {
+      animation: none;
+    }
+  }
+</style>
