@@ -1,0 +1,684 @@
+---
+/**
+ * Interactive Timeline - Astro Integration Component
+ * 333-Day Cultural Impact Timeline for ORGA Longform
+ *
+ * @component InteractiveTimeline
+ * @description Astro islands pattern wrapper for Svelte timeline components
+ * @author Johnny (FolkUp Frontend Expert)
+ * @version 1.0.0
+ */
+
+import { sampleTimelineData } from '../data/timelineSchema.js';
+
+// Component props with defaults
+const {
+  timelineData = sampleTimelineData,
+  evidenceGallery = null,
+  heroNarrative = null,
+  className = '',
+  id = 'cultural-timeline',
+  loadingStrategy = 'eager',
+  ...props
+} = Astro.props;
+
+// Performance optimization flags
+const isProduction = import.meta.env.PROD;
+const enableLazyLoading = timelineData?.performance?.lazyLoading?.enabled ?? true;
+
+// Pre-compute timeline statistics for SSR
+const timelineStats = {
+  totalEvents: timelineData.keyEvents?.length || 0,
+  totalDays: timelineData.timeline?.totalDays || 333,
+  dateRange: {
+    start: timelineData.timeline?.startDate || '2021-11-08',
+    end: timelineData.timeline?.endDate || '2022-10-07'
+  },
+  culturalPhases: timelineData.culturalFramework?.temporalPhases?.length || 0,
+  impactDistribution: timelineData.keyEvents?.reduce((acc, event) => {
+    acc[event.culturalImpact] = (acc[event.culturalImpact] || 0) + 1;
+    return acc;
+  }, {}) || {}
+};
+
+// SEO and accessibility metadata
+const timelineTitle = timelineData.timeline?.title || '333-Day Cultural Impact Timeline';
+const timelineDescription = timelineData.timeline?.description || 'Interactive timeline tracking cultural phenomenon evolution';
+
+// Generate structured data for search engines
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "InteractiveMedia",
+  "name": timelineTitle,
+  "description": timelineDescription,
+  "dateCreated": timelineData.timeline?.startDate,
+  "temporalCoverage": `${timelineData.timeline?.startDate}/${timelineData.timeline?.endDate}`,
+  "keywords": ["cultural timeline", "interactive visualization", "cultural analysis"],
+  "isAccessibleForFree": true,
+  "accessibilityFeature": [
+    "alternativeText",
+    "keyboardNavigation",
+    "screenReaderSupport",
+    "structuredNavigation"
+  ],
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/CommentAction",
+    "userInteractionCount": timelineStats.totalEvents
+  }
+};
+---
+
+<!-- Timeline Container with Progressive Enhancement -->
+<section
+  class={`interactive-timeline-section ${className}`}
+  id={id}
+  data-component="timeline"
+  data-total-events={timelineStats.totalEvents}
+  data-loading-strategy={loadingStrategy}
+>
+  <!-- SEO and Accessibility Metadata -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+  <!-- Timeline Header (SSR for SEO and Performance) -->
+  <header class="timeline-header" role="banner">
+    <div class="header-content">
+      <h1 class="timeline-title">{timelineTitle}</h1>
+      <p class="timeline-description">{timelineDescription}</p>
+
+      <!-- Timeline Statistics (SSR) -->
+      <div class="timeline-stats" aria-label="Timeline statistics">
+        <div class="stat-item">
+          <span class="stat-value" aria-label="Total events">{timelineStats.totalEvents}</span>
+          <span class="stat-label">Key Events</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" aria-label="Total duration">{timelineStats.totalDays}</span>
+          <span class="stat-label">Days Tracked</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" aria-label="Cultural phases">{timelineStats.culturalPhases}</span>
+          <span class="stat-label">Cultural Phases</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State (Shows before hydration) -->
+  <div class="timeline-loading" aria-hidden="true">
+    <div class="loading-container">
+      <div class="loading-spinner" aria-label="Loading timeline"></div>
+      <p class="loading-text">Loading interactive timeline...</p>
+      <div class="loading-progress">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No-JS Fallback Content -->
+  <noscript>
+    <div class="timeline-fallback">
+      <h2>Timeline Events (JavaScript Required for Full Experience)</h2>
+      <div class="fallback-notice">
+        <p>This interactive timeline requires JavaScript for the full experience. Below is a simplified list of key events:</p>
+      </div>
+
+      <ol class="fallback-event-list">
+        {timelineData.keyEvents?.map((event, index) => (
+          <li class="fallback-event" key={event.id || index}>
+            <div class="event-header">
+              <strong>Day {event.dayNumber}</strong> - {new Date(event.date).toLocaleDateString()}
+            </div>
+            <h3 class="event-title">{event.title}</h3>
+            <p class="event-description">{event.description}</p>
+            <div class="event-meta">
+              <span class="cultural-impact">Impact: {event.culturalImpact}</span>
+              <span class="significance">Significance: {event.significance}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </noscript>
+
+  <!-- Interactive Timeline Component (Svelte Island) -->
+  <div
+    class="timeline-interactive-container"
+    data-hydration-target="timeline"
+    style="display: none;"
+  >
+    <!-- Timeline will be mounted here by Svelte -->
+  </div>
+
+  <!-- Timeline Navigation Aid (SSR) -->
+  <nav class="timeline-navigation-aid" aria-label="Timeline quick navigation">
+    <h3 class="nav-title">Jump to Key Phases</h3>
+    <ul class="phase-links">
+      {timelineData.culturalFramework?.temporalPhases?.map((phase, index) => (
+        <li class="phase-link-item" key={phase.name}>
+          <button
+            class="phase-link"
+            data-phase-start={phase.period.startDay}
+            data-phase-end={phase.period.endDay}
+            aria-label={`Jump to ${phase.name} phase, days ${phase.period.startDay} to ${phase.period.endDay}`}
+          >
+            <span class="phase-name">{phase.name}</span>
+            <span class="phase-period">Days {phase.period.startDay}-{phase.period.endDay}</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</section>
+
+<!-- Critical CSS (Inlined for Performance) -->
+<style>
+  .interactive-timeline-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+  }
+
+  /* Timeline Header */
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #7D4450, #839E75);
+    border-radius: 16px;
+    color: #FEFCF6;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .timeline-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+  }
+
+  .timeline-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #E8AD4A;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  /* Loading State */
+  .timeline-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    background: #FEFCF6;
+    border: 1px solid rgba(125, 68, 80, 0.2);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .loading-container {
+    text-align: center;
+    max-width: 300px;
+  }
+
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(125, 68, 80, 0.2);
+    border-top: 4px solid #7D4450;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loading-text {
+    color: #7D4450;
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+  }
+
+  .loading-progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(125, 68, 80, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: #7D4450;
+    border-radius: 3px;
+    animation: loading-progress 2s ease-in-out infinite;
+  }
+
+  @keyframes loading-progress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+  }
+
+  /* No-JS Fallback */
+  .timeline-fallback {
+    background: #FEFCF6;
+    border: 1px solid rgba(125, 68, 80, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .fallback-notice {
+    background: rgba(232, 173, 74, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #E8AD4A;
+  }
+
+  .fallback-notice p {
+    margin: 0;
+    color: #7D4450;
+  }
+
+  .fallback-event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fallback-event {
+    padding: 1.5rem;
+    border: 1px solid rgba(125, 68, 80, 0.2);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: #FEFCF6;
+  }
+
+  .fallback-event .event-header {
+    color: #839E75;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .fallback-event .event-title {
+    color: #7D4450;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.2rem;
+  }
+
+  .fallback-event .event-description {
+    color: #7D4450;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+  }
+
+  .fallback-event .event-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #7D4450;
+    opacity: 0.7;
+  }
+
+  /* Interactive Container (Hidden until hydrated) */
+  .timeline-interactive-container {
+    width: 100%;
+  }
+
+  /* Navigation Aid */
+  .timeline-navigation-aid {
+    background: rgba(254, 252, 246, 0.8);
+    border: 1px solid rgba(125, 68, 80, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .nav-title {
+    color: #7D4450;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .phase-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .phase-link {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: #FEFCF6;
+    border: 1px solid rgba(125, 68, 80, 0.3);
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .phase-link:hover,
+  .phase-link:focus {
+    background: rgba(131, 158, 117, 0.1);
+    border-color: #839E75;
+    outline: 2px solid #839E75;
+    outline-offset: 1px;
+  }
+
+  .phase-name {
+    display: block;
+    font-weight: 600;
+    color: #7D4450;
+    margin-bottom: 0.25rem;
+  }
+
+  .phase-period {
+    display: block;
+    font-size: 0.9rem;
+    color: #7D4450;
+    opacity: 0.7;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .interactive-timeline-section {
+      padding: 1rem 0.5rem;
+    }
+
+    .timeline-header {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+    }
+
+    .timeline-stats {
+      gap: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+    }
+
+    .phase-links {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .loading-spinner,
+    .progress-bar {
+      animation: none;
+    }
+
+    .phase-link {
+      transition: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .timeline-header {
+      border: 2px solid #7D4450;
+    }
+
+    .timeline-loading,
+    .timeline-fallback,
+    .timeline-navigation-aid {
+      border-width: 2px;
+    }
+
+    .phase-link {
+      border-width: 2px;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .timeline-loading,
+    .timeline-navigation-aid {
+      display: none;
+    }
+
+    .timeline-fallback {
+      display: block;
+    }
+
+    .interactive-timeline-section {
+      background: white;
+      color: black;
+    }
+  }
+</style>
+
+<!-- Component JavaScript (Loads after hydration) -->
+<script>
+  // Progressive Enhancement and Hydration
+  import TimelineContainer from './timeline/TimelineContainer.svelte';
+
+  class InteractiveTimeline {
+    constructor(element) {
+      this.element = element;
+      this.timelineData = null;
+      this.svelteComponent = null;
+      this.isHydrated = false;
+
+      this.init();
+    }
+
+    async init() {
+      // Hide loading state
+      this.hideLoadingState();
+
+      // Load timeline data
+      await this.loadTimelineData();
+
+      // Setup phase navigation
+      this.setupPhaseNavigation();
+
+      // Hydrate Svelte component
+      await this.hydrateSvelteComponent();
+
+      // Setup intersection observer for performance
+      this.setupIntersectionObserver();
+    }
+
+    hideLoadingState() {
+      const loadingElement = this.element.querySelector('.timeline-loading');
+      const interactiveContainer = this.element.querySelector('.timeline-interactive-container');
+
+      if (loadingElement) {
+        loadingElement.style.display = 'none';
+      }
+
+      if (interactiveContainer) {
+        interactiveContainer.style.display = 'block';
+      }
+    }
+
+    async loadTimelineData() {
+      try {
+        // In a real implementation, this might fetch from an API
+        const { sampleTimelineData } = await import('../data/timelineSchema.js');
+        this.timelineData = sampleTimelineData;
+      } catch (error) {
+        console.error('Failed to load timeline data:', error);
+        this.showFallback();
+      }
+    }
+
+    setupPhaseNavigation() {
+      const phaseLinks = this.element.querySelectorAll('[data-phase-start]');
+
+      phaseLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const startDay = parseInt(link.dataset.phaseStart);
+          const endDay = parseInt(link.dataset.phaseEnd);
+
+          // Find event in that phase range
+          const eventInPhase = this.timelineData.keyEvents.find(event => {
+            const day = event.dayNumber || 0;
+            return day >= startDay && day <= endDay;
+          });
+
+          if (eventInPhase && this.svelteComponent) {
+            // Navigate to event via Svelte component
+            const eventIndex = this.timelineData.keyEvents.indexOf(eventInPhase);
+            this.svelteComponent.selectEvent(eventIndex);
+          }
+        });
+      });
+    }
+
+    async hydrateSvelteComponent() {
+      if (!this.timelineData) {
+        this.showFallback();
+        return;
+      }
+
+      const container = this.element.querySelector('.timeline-interactive-container');
+      if (!container) return;
+
+      try {
+        // Mount Svelte component
+        this.svelteComponent = new TimelineContainer({
+          target: container,
+          props: {
+            timelineData: this.timelineData,
+            evidenceGallery: this.element.dataset.evidenceGallery,
+            onEvidence: this.handleEvidenceClick.bind(this)
+          }
+        });
+
+        this.isHydrated = true;
+
+        // Announce to screen readers
+        this.announceHydration();
+
+      } catch (error) {
+        console.error('Failed to hydrate Svelte component:', error);
+        this.showFallback();
+      }
+    }
+
+    setupIntersectionObserver() {
+      if (!('IntersectionObserver' in window)) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !this.isHydrated) {
+              this.hydrateSvelteComponent();
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: '50px'
+        }
+      );
+
+      observer.observe(this.element);
+    }
+
+    handleEvidenceClick(evidenceId) {
+      // Dispatch custom event for evidence gallery integration
+      const event = new CustomEvent('timeline:evidenceRequested', {
+        detail: { evidenceId },
+        bubbles: true
+      });
+
+      this.element.dispatchEvent(event);
+    }
+
+    showFallback() {
+      const fallbackElement = this.element.querySelector('.timeline-fallback');
+      const interactiveContainer = this.element.querySelector('.timeline-interactive-container');
+
+      if (fallbackElement) {
+        fallbackElement.style.display = 'block';
+      }
+
+      if (interactiveContainer) {
+        interactiveContainer.style.display = 'none';
+      }
+    }
+
+    announceHydration() {
+      // Create live region for screen reader announcement
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.textContent = 'Interactive timeline loaded. Use tab to navigate controls and arrow keys to browse events.';
+
+      document.body.appendChild(announcement);
+
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+
+    destroy() {
+      if (this.svelteComponent) {
+        this.svelteComponent.$destroy();
+      }
+    }
+  }
+
+  // Initialize timeline when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const timelineElements = document.querySelectorAll('[data-component="timeline"]');
+
+    timelineElements.forEach(element => {
+      new InteractiveTimeline(element);
+    });
+  });
+
+  // Export for external use
+  window.InteractiveTimeline = InteractiveTimeline;
+</script>
