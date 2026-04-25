@@ -101,10 +101,8 @@
 <!-- Evidence Card -->
 <article
   bind:this={cardElement}
-  class="evidence-card"
+  class="evidence-card evidence-card--{evidence.type} significance--{evidence.significance}"
   class:evidence-card--list={viewMode === 'list'}
-  class:evidence-card--{evidence.type}
-  class:significance--{evidence.significance}
   role="button"
   tabindex="0"
   aria-labelledby="{cardId}-title"
@@ -116,12 +114,12 @@
   <!-- Card Header -->
   <header class="card-header">
     <div class="card-meta">
-      <div class="evidence-type" class:evidence-type--{evidence.type}>
+      <div class="evidence-type evidence-type--{evidence.type}">
         <span class="type-icon" aria-hidden="true">{getTypeIcon(evidence.type)}</span>
         <span class="type-label">{evidence.type}</span>
       </div>
 
-      <div class="significance-indicator" class:significance--{evidence.significance}>
+      <div class="significance-indicator significance--{evidence.significance}">
         <span class="sr-only">Significance: </span>
         {evidence.significance}
       </div>
@@ -134,7 +132,7 @@
     </div>
 
     {#if evidence.metadata?.verificationLevel}
-      <div class="verification-badge" class:verification--{evidence.metadata.verificationLevel}>
+      <div class="verification-badge verification--{evidence.metadata.verificationLevel}">
         <span class="sr-only">Verification level: </span>
         {evidence.metadata.verificationLevel.replace('-', ' ')}
       </div>
@@ -180,7 +178,7 @@
         </div>
 
       {:else if evidence.media.type === 'video' || evidence.media.type === 'audio'}
-        <div class="media-placeholder" class:media-placeholder--{evidence.media.type}>
+        <div class="media-placeholder media-placeholder--{evidence.media.type}">
           <div class="placeholder-icon" aria-hidden="true">
             {#if evidence.media.type === 'video'}📹
             {:else}🎵{/if}

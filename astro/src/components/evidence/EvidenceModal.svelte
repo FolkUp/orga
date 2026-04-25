@@ -261,7 +261,7 @@
     </div>
 
     <div class="modal-meta">
-      <div class="evidence-type-badge" class:evidence-type--{evidence.type}>
+      <div class="evidence-type-badge evidence-type--{evidence.type}">
         <span class="type-icon" aria-hidden="true">
           {#if evidence.type === 'media'}📁
           {:else if evidence.type === 'legal'}⚖️
@@ -273,7 +273,7 @@
         {evidence.type}
       </div>
 
-      <div class="significance-badge" class:significance--{evidence.significance}>
+      <div class="significance-badge significance--{evidence.significance}">
         {evidence.significance}
       </div>
 

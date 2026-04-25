@@ -129,6 +129,9 @@ translations:
     notes: "EN translation shipped Phase 5b 2026-04-20. Teju Cole/Abdurraqib personal-essay register. All 11 lyric fragments Цветик-locked. See organizatsiya.en.md."
 ---
 
+import EvidenceGalleryIsland from '../../../components/EvidenceGalleryIsland.astro';
+import InteractiveTimelineIsland from '../../../components/InteractiveTimelineIsland.astro';
+
 ## Акт 1. Как эта песня заходит в комнату
 
 Первый раз я услышал эту песню как человек, у которого в тот момент не было особых ожиданий от русского рэпа. Был длинный mixtape, тридцать шесть треков подряд, сборка старого и нового — жанр, к которому привыкли относиться как к домашнему архиву, ретроспективе, подарочному набору по случаю. «Организация» стояла тридцать пятой — предпоследней. К двадцатой секунде я понял, что остальные сегодня слушать не буду, и что последний трек, который идёт после неё, сегодня уже не услышит никто: он прозвучит в другой комнате.
@@ -161,9 +164,76 @@ Oxxxymiron делает в этом припеве другое. Он присв
 
 Если вы никогда не слышали «Организацию», или слышали один раз и отложили, — поставьте её сейчас. Не обязательно слушать полностью, первые полторы минуты покажут главное: сдержанный бас, голос, вступающий не вовремя, и первую строку, которую невозможно пропустить мимо ушей — потому что она начинается не с крика, а с тишины, в которую вставлено «всё всегда начинается с малого». Текст продолжается ниже и работает независимо от того, нажали вы на плеер или нет.
 
-<!-- EMBED PLACEMENT: Spotify / YouTube official embed, custom waveform UI wrap, GDPR consent gate. Fallback — streaming platform links already appear in footer disclaimer. -->
+{/* EMBED PLACEMENT: Spotify / YouTube official embed, custom waveform UI wrap, GDPR consent gate. Fallback — streaming platform links already appear in footer disclaimer. */}
 
 И тогда мы продолжим.
+
+<EvidenceGalleryIsland 
+  evidenceData={{
+    title: "Документальная база",
+    subtitle: "Юридические акты, медиа-источники и верификационные отчёты",
+    items: [
+      {
+        id: "foreign-agent-law",
+        type: "legislation",
+        title: "ФЗ-121 «Об иностранных агентах» (2012)",
+        description: "Правовая база для присвоения статуса иностранного агента",
+        url: "https://www.consultant.ru/document/cons_doc_LAW_132900/",
+        date: "2012-07-20",
+        significance: "foundational"
+      },
+      {
+        id: "oxxxymiron-track",
+        type: "media",
+        title: "«Организация» — официальное видео",
+        description: "Первичный источник: релиз 8 ноября 2021",
+        url: "https://www.youtube.com/watch?v=aPfd6-4F1xU",
+        date: "2021-11-08",
+        significance: "primary"
+      },
+      {
+        id: "foreign-agent-status",
+        type: "government",
+        title: "Реестр лиц-иностранных агентов",
+        description: "Oxxxymiron включён 7 октября 2022 (333 дня спустя)",
+        url: "https://minjust.gov.ru/ru/activity/directions/942/spisok-lic-vypolnyayushih-funkcii-inostrannogo-agenta/",
+        date: "2022-10-07",
+        significance: "conclusive"
+      },
+      {
+        id: "memorial-lawsuit",
+        type: "legal",
+        title: "Иск о ликвидации «Мемориала»",
+        description: "Генпрокуратура → Верховный Суд, 8 ноября 2021",
+        date: "2021-11-08",
+        significance: "contextual"
+      },
+      {
+        id: "verification-act-1",
+        type: "verification",
+        title: "Верификационный акт 1",
+        description: "Fact-checking: даты, юридические документы, временные интервалы",
+        file: "_meta/verification-act-1.md",
+        verifiedBy: "КиберГонзо",
+        significance: "verification"
+      },
+      {
+        id: "media-verification",
+        type: "verification", 
+        title: "Медиа-верификация",
+        description: "Проверка источников: YouTube, Spotify, правовые базы",
+        file: "_meta/media-verification.md",
+        verifiedBy: "КиберГонзо",
+        significance: "verification"
+      }
+    ],
+    filters: {
+      type: ["legislation", "media", "government", "legal", "verification"],
+      significance: ["foundational", "primary", "conclusive", "contextual", "verification"]
+    }
+  }}
+/>
+
 ## Акт 2. Ноябрь, две тысячи двадцать первый
 
 К тому ноябрю я уже перестал читать новости подряд. Они стали фоновым шумом, ровным и почти неразличимым. Каждые две недели кого-нибудь признавали иностранным агентом. Журналист, знакомый по публикациям. Издание, которое я читал годами. Организация, о которой никогда не слышал, но про которую теперь сообщалось, что она «осуществляет деятельность, представляющую угрозу». Реестры росли. Списки уточнялись. Двери закрывались поочерёдно, и к каждой следующей я привыкал чуть быстрее.
@@ -238,6 +308,89 @@ Meduza получила статус иностранного агента в а
 
 Государственный ответ — и его последствия — ждут в следующем акте.
 ## Акт 4. Сто восемь дней, триста тридцать три
+
+<InteractiveTimelineIsland 
+  timelineData={{
+    title: "333 дня: от декларации к ратификации",
+    subtitle: "Хронология юридического перформатива",
+    events: [
+      {
+        id: "song-release",
+        date: "2021-11-08",
+        title: "«Организация» — релиз",
+        description: "Произнесена фраза «мы — запрещённая организация»",
+        type: "cultural",
+        significance: "founding",
+        details: "Клип + сингл. Mixtape III через 4 дня. Первая декларация."
+      },
+      {
+        id: "mixtape-release", 
+        date: "2021-11-12",
+        title: "miXXXtape III",
+        description: "36 треков, «Организация» — 35-я, предпоследняя",
+        type: "cultural",
+        significance: "medium"
+      },
+      {
+        id: "memorial-lawsuit",
+        date: "2021-11-08",
+        title: "Иск против «Мемориала»",
+        description: "Генпрокуратура → Верховный Суд в тот же день",
+        type: "legal",
+        significance: "contextual",
+        details: "Параллельный процесс: ликвидация старейшего правозащитного общества"
+      },
+      {
+        id: "memorial-liquidation",
+        date: "2021-12-28",
+        title: "Ликвидация «Мемориала»",
+        description: "Верховный Суд принял решение",
+        type: "legal",
+        significance: "high"
+      },
+      {
+        id: "historical-shift",
+        date: "2022-02-24",
+        title: "108 дней: исторический сдвиг",
+        description: "События, изменившие контекст прочтения",
+        type: "historical",
+        significance: "watershed",
+        details: "После этой даты все культурные тексты читаются по-другому"
+      },
+      {
+        id: "foreign-agent-status",
+        date: "2022-10-07", 
+        title: "333 дня: юридическая ратификация",
+        description: "Oxxxymiron признан иностранным агентом",
+        type: "legal",
+        significance: "conclusive",
+        details: "Государство признало фразу из песни точным описанием положения дел"
+      }
+    ],
+    intervals: [
+      {
+        from: "2021-11-08",
+        to: "2022-02-24", 
+        title: "108 дней",
+        description: "От декларации до исторического сдвига",
+        color: "blue"
+      },
+      {
+        from: "2021-11-08",
+        to: "2022-10-07",
+        title: "333 дня",
+        description: "От произнесения до юридического признания",
+        color: "red"
+      }
+    ],
+    statistics: {
+      totalDays: 333,
+      culturalPhase: 108,
+      legalPhase: 225,
+      description: "Время между культурным актом и его государственной ратификацией"
+    }
+  }}
+/>
 
 Двадцать четвёртого февраля две тысячи двадцать второго года произошло то, после чего тот ноябрь начал читаться в другом ключе. Писать об этой дате подробно в этом тексте — лишнее; любой, кто подрос в русскоязычной культуре в последние годы, помнит её с ненужной точностью. Важно только одно: между восьмым ноября две тысячи двадцать первого и двадцать четвёртым февраля две тысячи двадцать второго прошло сто восемь дней. Песня успела прозвучать, разойтись, лечь в плейлисты, быть разобранной на цитаты, заслушаться ровно столько раз, сколько требуется треку, чтобы занять свою постоянную нишу у внимательной аудитории. А потом произошло то, что произошло, и все эти цитаты одновременно поменяли цвет.
 
