@@ -8,19 +8,29 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "lhci:autorun": "lhci autorun",
+    "lhci:collect": "lhci collect",
+    "bundle:analyze": "npx webpack-bundle-analyzer dist/_assets --port 8888",
+    "perf:baseline": "npm run build && npm run lhci:collect",
+    "perf:measure": "node scripts/measure-bundle-performance.js",
+    "release:tag": "node scripts/create-release-tag.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/svelte": "^6.0.0",
+    "@astrojs/svelte": "^7.0.0",
     "astro": "^5.18.1",
     "svelte": "^5.0.0",
     "typescript": "^5.6.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0"
+    "@lhci/cli": "^0.14.0",
+    "@types/node": "^22.0.0",
+    "terser": "^5.46.2",
+    "webpack-bundle-analyzer": "^4.9.1",
+    "zod": "^3.22.4"
   },
   "keywords": [
     "underground-academia",

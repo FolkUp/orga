@@ -1,0 +1,522 @@
+---
+/**
+ * ORGA-067: MediaLoader.astro - Universal Lazy Loading Component
+ * High-performance media loader with progressive enhancement
+ *
+ * @component MediaLoader
+ * @performance Intersection Observer, lazy loading, adaptive quality
+ * @expert Johnny (frontend performance optimization)
+ */
+
+export interface Props {
+  src: string;
+  alt: string;
+  type?: 'image' | 'video' | 'audio' | 'iframe';
+  width?: number;
+  height?: number;
+  className?: string;
+  id?: string;
+  loading?: 'eager' | 'lazy';
+  placeholder?: string;
+  quality?: 'low' | 'medium' | 'high' | 'adaptive';
+  enableWebP?: boolean;
+  enableAVIF?: boolean;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  type = 'image',
+  width,
+  height,
+  className = '',
+  id,
+  loading = 'lazy',
+  placeholder,
+  quality = 'adaptive',
+  enableWebP = true,
+  enableAVIF = true,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+} = Astro.props;
+
+// Generate responsive image sources if applicable
+const generateResponsiveSrc = (baseSrc: string, format?: string) => {
+  if (!baseSrc.startsWith('/') && !baseSrc.startsWith('http')) {
+    baseSrc = `/images/${baseSrc}`;
+  }
+
+  if (format) {
+    return baseSrc.replace(/\.(jpg|jpeg|png)$/i, `.${format}`);
+  }
+
+  return baseSrc;
+};
+
+const responsiveSrc = generateResponsiveSrc(src);
+const webpSrc = enableWebP ? generateResponsiveSrc(src, 'webp') : null;
+const avifSrc = enableAVIF ? generateResponsiveSrc(src, 'avif') : null;
+
+// Generate placeholder if not provided
+const defaultPlaceholder = placeholder || `data:image/svg+xml;base64,${btoa(`
+  <svg width="${width || 400}" height="${height || 300}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#f8f6f0"/>
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#5a5a5a" font-family="Arial, sans-serif" font-size="14">
+      ${alt.substring(0, 20)}...
+    </text>
+  </svg>
+`)}`;
+---
+
+<div
+  class={`media-loader ${className}`}
+  data-component="MediaLoader"
+  data-type={type}
+  data-quality={quality}
+  data-loading={loading}
+  {id}
+>
+  {type === 'image' && (
+    <picture class="media-loader__picture">
+      {/* Modern formats for better performance */}
+      {avifSrc && (
+        <source
+          type="image/avif"
+          data-srcset={avifSrc}
+          sizes={sizes}
+          media="(min-width: 1px)" // Always applicable
+        />
+      )}
+
+      {webpSrc && (
+        <source
+          type="image/webp"
+          data-srcset={webpSrc}
+          sizes={sizes}
+          media="(min-width: 1px)" // Always applicable
+        />
+      )}
+
+      {/* Fallback image */}
+      <img
+        src={loading === 'eager' ? responsiveSrc : defaultPlaceholder}
+        data-src={responsiveSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        class="media-loader__img"
+        loading={loading}
+        decoding="async"
+        data-loaded="false"
+        {sizes && { sizes }}
+      />
+    </picture>
+  )}
+
+  {type === 'video' && (
+    <video
+      class="media-loader__video"
+      data-src={responsiveSrc}
+      poster={placeholder}
+      width={width}
+      height={height}
+      preload="none"
+      controls
+      data-loaded="false"
+    >
+      <track kind="captions" srclang="en" label="English" />
+      <p>Your browser doesn't support HTML5 video. <a href={responsiveSrc}>Download the video</a>.</p>
+    </video>
+  )}
+
+  {type === 'audio' && (
+    <audio
+      class="media-loader__audio"
+      data-src={responsiveSrc}
+      preload="none"
+      controls
+      data-loaded="false"
+    >
+      <p>Your browser doesn't support HTML5 audio. <a href={responsiveSrc}>Download the audio</a>.</p>
+    </audio>
+  )}
+
+  {type === 'iframe' && (
+    <div class="media-loader__iframe-wrapper">
+      <iframe
+        class="media-loader__iframe"
+        data-src={responsiveSrc}
+        width={width}
+        height={height}
+        title={alt}
+        loading="lazy"
+        data-loaded="false"
+      ></iframe>
+    </div>
+  )}
+
+  <!-- Loading indicator -->
+  <div class="media-loader__loading" aria-hidden="true">
+    <div class="media-loader__spinner"></div>
+    <span class="media-loader__loading-text">Loading...</span>
+  </div>
+
+  <!-- Error fallback -->
+  <div class="media-loader__error" aria-hidden="true">
+    <span class="media-loader__error-icon">⚠️</span>
+    <p class="media-loader__error-text">Failed to load {type}: {alt}</p>
+  </div>
+</div>
+
+<script type="module">
+  // Intersection Observer for lazy loading
+  class MediaLazyLoader {
+    constructor() {
+      this.observer = null;
+      this.init();
+    }
+
+    init() {
+      if ('IntersectionObserver' in window) {
+        this.observer = new IntersectionObserver(
+          this.handleIntersection.bind(this),
+          {
+            rootMargin: '50px',
+            threshold: 0.1
+          }
+        );
+
+        // Observe all media loader elements
+        document.querySelectorAll('.media-loader').forEach(element => {
+          this.observer.observe(element);
+        });
+      } else {
+        // Fallback: load all media immediately
+        this.loadAllMedia();
+      }
+    }
+
+    async handleIntersection(entries) {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          await this.loadMedia(entry.target);
+          this.observer.unobserve(entry.target);
+        }
+      }
+    }
+
+    async loadMedia(container) {
+      const type = container.dataset.type;
+      const quality = container.dataset.quality;
+      const loading = container.dataset.loading;
+
+      // Skip if already loaded
+      const mediaElement = container.querySelector(`[data-loaded="false"]`);
+      if (!mediaElement) return;
+
+      try {
+        // Show loading state
+        container.classList.add('media-loader--loading');
+
+        // Adaptive quality based on connection
+        if (quality === 'adaptive') {
+          this.adaptQuality(mediaElement);
+        }
+
+        if (type === 'image') {
+          await this.loadImage(container, mediaElement);
+        } else if (type === 'video') {
+          await this.loadVideo(container, mediaElement);
+        } else if (type === 'audio') {
+          await this.loadAudio(container, mediaElement);
+        } else if (type === 'iframe') {
+          await this.loadIframe(container, mediaElement);
+        }
+
+        // Mark as loaded
+        mediaElement.dataset.loaded = 'true';
+        container.classList.add('media-loader--loaded');
+        container.classList.remove('media-loader--loading');
+
+        // Performance mark
+        if (performance.mark) {
+          performance.mark(`media-loaded-${type}`);
+        }
+
+      } catch (error) {
+        console.warn(`Failed to load ${type}:`, error);
+        container.classList.add('media-loader--error');
+        container.classList.remove('media-loader--loading');
+      }
+    }
+
+    async loadImage(container, img) {
+      return new Promise((resolve, reject) => {
+        // Load progressive sources
+        const picture = img.parentElement;
+        const sources = picture.querySelectorAll('source');
+
+        // Set srcset for all sources
+        sources.forEach(source => {
+          if (source.dataset.srcset) {
+            source.srcset = source.dataset.srcset;
+          }
+        });
+
+        // Set main image src
+        const actualSrc = img.dataset.src;
+        if (actualSrc) {
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = actualSrc;
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    async loadVideo(container, video) {
+      return new Promise((resolve, reject) => {
+        const actualSrc = video.dataset.src;
+        if (actualSrc) {
+          video.onloadeddata = resolve;
+          video.onerror = reject;
+          video.src = actualSrc;
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    async loadAudio(container, audio) {
+      return new Promise((resolve, reject) => {
+        const actualSrc = audio.dataset.src;
+        if (actualSrc) {
+          audio.onloadeddata = resolve;
+          audio.onerror = reject;
+          audio.src = actualSrc;
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    async loadIframe(container, iframe) {
+      return new Promise((resolve, reject) => {
+        const actualSrc = iframe.dataset.src;
+        if (actualSrc) {
+          iframe.onload = resolve;
+          iframe.onerror = reject;
+          iframe.src = actualSrc;
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    adaptQuality(mediaElement) {
+      // Adapt based on connection if available
+      if ('connection' in navigator) {
+        const connection = navigator.connection;
+        const effectiveType = connection.effectiveType;
+
+        if (effectiveType === 'slow-2g' || effectiveType === '2g') {
+          // Use lowest quality for slow connections
+          mediaElement.classList.add('media-loader--low-quality');
+        } else if (effectiveType === '3g') {
+          // Use medium quality
+          mediaElement.classList.add('media-loader--medium-quality');
+        }
+        // 4g and above use original quality
+      }
+    }
+
+    loadAllMedia() {
+      // Fallback: load all media immediately
+      document.querySelectorAll('.media-loader').forEach(container => {
+        this.loadMedia(container);
+      });
+    }
+  }
+
+  // Initialize lazy loader when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new MediaLazyLoader();
+    });
+  } else {
+    new MediaLazyLoader();
+  }
+</script>
+
+<style>
+  .media-loader {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--color-surface-secondary, #f8f6f0);
+    border-radius: 4px;
+  }
+
+  .media-loader__picture,
+  .media-loader__video,
+  .media-loader__audio,
+  .media-loader__iframe-wrapper {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  .media-loader__img,
+  .media-loader__video,
+  .media-loader__iframe {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  .media-loader__iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+  }
+
+  .media-loader__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .media-loader__audio {
+    width: 100%;
+    background: var(--color-surface-primary, #fefcf6);
+    border-radius: 4px;
+  }
+
+  /* Loading state */
+  .media-loader--loading .media-loader__loading {
+    display: flex;
+  }
+
+  .media-loader__loading {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    gap: var(--spacing-sm, 8px);
+    background: rgba(254, 252, 246, 0.9);
+    padding: var(--spacing-md, 16px);
+    border-radius: 6px;
+    color: var(--color-text-secondary, #5a5a5a);
+    font-size: var(--text-sm, 14px);
+  }
+
+  .media-loader__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-border-secondary, #e0e0e0);
+    border-top: 2px solid var(--color-accent-primary, #e8ad4a);
+    border-radius: 50%;
+    animation: mediaLoaderSpin 1s linear infinite;
+  }
+
+  @keyframes mediaLoaderSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Error state */
+  .media-loader--error .media-loader__error {
+    display: flex;
+  }
+
+  .media-loader__error {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm, 8px);
+    text-align: center;
+    background: rgba(254, 252, 246, 0.9);
+    padding: var(--spacing-md, 16px);
+    border-radius: 6px;
+    max-width: 80%;
+  }
+
+  .media-loader__error-icon {
+    font-size: var(--text-lg, 20px);
+  }
+
+  .media-loader__error-text {
+    margin: 0;
+    font-size: var(--text-sm, 14px);
+    color: var(--color-text-secondary, #5a5a5a);
+  }
+
+  /* Loaded state */
+  .media-loader--loaded .media-loader__loading,
+  .media-loader--loaded .media-loader__error {
+    display: none;
+  }
+
+  /* Quality adaptations */
+  .media-loader--low-quality img {
+    image-rendering: pixelated;
+  }
+
+  .media-loader--medium-quality img {
+    image-rendering: auto;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .media-loader__loading,
+    .media-loader__error {
+      padding: var(--spacing-sm, 8px);
+      font-size: var(--text-xs, 12px);
+    }
+
+    .media-loader__spinner {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .media-loader__spinner {
+      animation: none;
+    }
+
+    .media-loader__img,
+    .media-loader__video,
+    .media-loader__iframe {
+      transition: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .media-loader__loading,
+    .media-loader__error {
+      background: #ffffff;
+      border: 2px solid #000000;
+    }
+  }
+
+  /* Focus management for accessibility */
+  .media-loader:focus-within {
+    outline: 2px solid var(--color-primary, #7d4450);
+    outline-offset: 2px;
+  }
+</style>

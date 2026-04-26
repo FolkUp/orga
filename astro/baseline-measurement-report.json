@@ -1,0 +1,51 @@
+{
+  "baselineMeasurement": {
+    "date": "2026-04-26",
+    "lighthouse": {
+      "version": "12.1.0",
+      "reports": {
+        "homepage": {
+          "url": "http://localhost:62407/index.html",
+          "lcp": 1219.57,
+          "lcpScore": 1.0,
+          "status": "EXCELLENT"
+        },
+        "evidenceGallery": {
+          "url": "http://localhost:62407/evidence-gallery-demo/index.html",
+          "status": "MEASURED"
+        }
+      }
+    },
+    "bundleAnalysis": {
+      "primaryBundle": "EvidenceGalleryIntegration.js",
+      "size": 69010,
+      "gzipSize": 22195,
+      "secondaryBundle": "render.js",
+      "secondarySize": 33150,
+      "secondaryGzipSize": 13286,
+      "totalApproximate": 102160,
+      "budget": 150000,
+      "headroom": 47840,
+      "headroomPercent": 32
+    },
+    "performanceThresholds": {
+      "maxBundleSize": 150000,
+      "maxLCP": 2500,
+      "minPerformanceScore": 0.85,
+      "currentStatus": "HEALTHY"
+    },
+    "infrastructure": {
+      "featureFlags": "IMPLEMENTED",
+      "rollbackStrategy": "IMPLEMENTED",
+      "monitoring": "IMPLEMENTED",
+      "cicdIntegration": "IMPLEMENTED"
+    },
+    "summary": {
+      "overallStatus": "BASELINE_ESTABLISHED",
+      "budgetUtilization": "68%",
+      "performanceGrade": "A+",
+      "rollbackCapability": "READY",
+      "nextPhase": "ORGA-072.3 Schema Design"
+    }
+  }
+}

@@ -1,0 +1,243 @@
+---
+/**
+ * ORGA-067: EvidenceGallery.astro - Optimized Astro Islands Implementation
+ * High-performance wrapper for evidence data with client:idle optimization
+ *
+ * @component EvidenceGallery
+ * @performance client:idle, progressive enhancement, multimedia lazy loading
+ * @expert Johnny (frontend performance optimization)
+ */
+
+import EvidenceGalleryIsland from './EvidenceGalleryIsland.astro';
+
+export interface Props {
+  evidenceData?: any;
+  heroConnection?: string | null;
+  className?: string;
+  id?: string;
+  enableMultimedia?: boolean;
+  enableFiltering?: boolean;
+  fallbackMode?: boolean;
+}
+
+const {
+  evidenceData = null,
+  heroConnection = null,
+  className = '',
+  id = 'evidence-gallery',
+  enableMultimedia = true,
+  enableFiltering = true,
+  fallbackMode = false
+} = Astro.props;
+
+// Server-side processing for evidence data
+const hasValidData = evidenceData && Array.isArray(evidenceData.items) && evidenceData.items.length > 0;
+const hasMultimediaItems = hasValidData && evidenceData.items.some(item => item.media);
+---
+
+<div
+  id={id}
+  class={`evidence-gallery-wrapper ${className}`}
+  data-component="EvidenceGallery"
+  data-has-data={hasValidData}
+  data-has-multimedia={hasMultimediaItems}
+  data-filtering={enableFiltering}
+>
+  {hasValidData ? (
+    <!-- Evidence Gallery with Progressive Enhancement -->
+    <div class="evidence-gallery-container">
+      <!-- Static gallery rendered server-side -->
+      <EvidenceGalleryIsland
+        evidenceData={evidenceData}
+        heroNarrative={heroConnection}
+        className="evidence-static-gallery"
+        id={`${id}-static`}
+        enableLazyLoading={true}
+      />
+
+      {/* Enhanced features loaded client-side when idle */}
+      {!fallbackMode && (
+        <div
+          id={`${id}-enhanced`}
+          class="evidence-enhanced-layer"
+          data-evidence-interactive
+        >
+          <!-- Client-side enhancements will be loaded here -->
+        </div>
+      )}
+    </div>
+  ) : (
+    <!-- No-data fallback -->
+    <div class="evidence-no-data">
+      <div class="evidence-no-data__content">
+        <h3>Evidence Gallery Unavailable</h3>
+        <p>Evidence archive is currently being compiled or no documents are available for display.</p>
+      </div>
+    </div>
+  )}
+
+  <!-- Progressive Enhancement Script - client:idle -->
+  {!fallbackMode && hasValidData && (
+    <script type="module">
+      // Client-side enhancement with idle loading
+      const enhanceEvidence = async () => {
+        const container = document.getElementById(`${id}-enhanced`);
+        if (!container) return;
+
+        // Wait for main thread to be idle
+        const loadEnhancement = async () => {
+          try {
+            // Dynamic import for evidence enhancement
+            const { EvidenceEnhancer } = await import('../utils/evidence-enhancer.js');
+
+            // Initialize enhancement
+            const enhancer = new EvidenceEnhancer({
+              container,
+              data: {evidenceData},
+              options: {
+                enableFiltering: ${enableFiltering},
+                enableMultimedia: ${enableMultimedia},
+                enableSearch: true,
+                enableModal: true,
+                lazyLoadImages: true
+              }
+            });
+
+            await enhancer.initialize();
+
+            // Performance mark
+            if (performance.mark) {
+              performance.mark('evidence-enhanced-loaded');
+            }
+
+            console.debug('✅ Evidence gallery enhancement loaded');
+          } catch (error) {
+            console.warn('Evidence enhancement failed, using static fallback:', error);
+            // Remove the enhanced layer to avoid confusion
+            container.remove();
+          }
+        };
+
+        // Use requestIdleCallback for optimal timing
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadEnhancement, { timeout: 5000 });
+        } else {
+          // Fallback for browsers without requestIdleCallback
+          setTimeout(loadEnhancement, 1000);
+        }
+      };
+
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enhanceEvidence);
+      } else {
+        enhanceEvidence();
+      }
+    </script>
+  )}
+</div>
+
+<style>
+  .evidence-gallery-wrapper {
+    position: relative;
+    width: 100%;
+    margin: var(--spacing-xl, 32px) 0;
+  }
+
+  .evidence-gallery-container {
+    position: relative;
+  }
+
+  .evidence-enhanced-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* Until enhancement loads */
+    z-index: 3;
+    background: transparent;
+  }
+
+  .evidence-enhanced-layer[data-enhanced="true"] {
+    pointer-events: auto;
+  }
+
+  /* No-data fallback styling */
+  .evidence-no-data {
+    background: var(--color-surface-secondary, #f8f6f0);
+    border: 2px dashed var(--color-border-secondary, #e0e0e0);
+    border-radius: 8px;
+    padding: var(--spacing-xl, 32px);
+    text-align: center;
+    color: var(--color-text-secondary, #5a5a5a);
+  }
+
+  .evidence-no-data__content h3 {
+    margin: 0 0 var(--spacing-md, 16px) 0;
+    color: var(--color-text-primary, #7d4450);
+    font-family: var(--font-heading, 'Playfair Display', serif);
+  }
+
+  .evidence-no-data__content p {
+    margin: 0;
+    font-size: var(--text-base, 16px);
+    line-height: 1.6;
+  }
+
+  /* Loading state for enhanced layer - very subtle */
+  .evidence-enhanced-layer:not([data-enhanced="true"])::after {
+    content: '⚡';
+    position: absolute;
+    top: var(--spacing-md, 16px);
+    right: var(--spacing-md, 16px);
+    font-size: var(--text-sm, 14px);
+    color: var(--color-accent-primary, #e8ad4a);
+    opacity: 0.5;
+    animation: evidenceEnhanceLoading 2s ease-in-out infinite;
+  }
+
+  @keyframes evidenceEnhanceLoading {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Hide loading indicator when enhanced */
+  .evidence-enhanced-layer[data-enhanced="true"]::after {
+    display: none;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .evidence-gallery-wrapper {
+      margin: var(--spacing-lg, 24px) 0;
+    }
+
+    .evidence-enhanced-layer::after {
+      top: var(--spacing-sm, 8px);
+      right: var(--spacing-sm, 8px);
+      font-size: var(--text-xs, 12px);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .evidence-enhanced-layer::after {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .evidence-no-data {
+      border-width: 3px;
+    }
+  }
+
+  /* Focus management for accessibility */
+  .evidence-enhanced-layer[data-enhanced="true"]:focus-within {
+    outline: 2px solid var(--color-primary, #7d4450);
+    outline-offset: 2px;
+  }
+</style>

@@ -47,6 +47,53 @@ export default defineConfig({
       },
     }),
   ],
-  build: { assets: '_assets' },
-  vite: { define: { __DATE__: `'${new Date()}'` } },
+  build: {
+    assets: '_assets',
+    // ORGA-067: Aggressive bundle optimization
+    inlineStylesheets: 'auto',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separate vendor chunks for better caching
+          'vendor-core': ['astro/runtime/client/client.js'],
+          'vendor-multimedia': [
+            'src/utils/evidence-enhancer.js',
+            'src/utils/timeline-enhancer.js'
+          ]
+        },
+        // Optimize chunk sizes
+        chunkSizeWarningLimit: 150, // 150KB limit
+      }
+    }
+  },
+  vite: {
+    define: { __DATE__: `'${new Date()}'` },
+    build: {
+      // ORGA-067: Tree shaking and optimization
+      rollupOptions: {
+        treeshake: true,
+        output: {
+          // Optimize chunks for performance
+          experimentalMinChunkSize: 1000,
+        }
+      },
+      // Minimize bundle size
+      target: 'es2020',
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true, // Remove console.logs in production
+          drop_debugger: true,
+          pure_funcs: ['console.info', 'console.debug', 'console.warn']
+        }
+      },
+      // Asset optimization
+      assetsInlineLimit: 4096, // 4KB inline limit
+      cssCodeSplit: true,
+      reportCompressedSize: false // Skip gzip reporting for faster builds
+    }
+  },
+  // ORGA-067: Performance optimization settings
+  output: 'static',
+  adapter: undefined
 });

@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-04-26T11:15:00.000Z",
+  "investigationId": "oxymiron-cultural-seismography-2021-2022",
+  "title": "Oxymiron Cultural Seismography: 333-Day Investigation",
+  "description": "Comprehensive analysis of Oxymiron's cultural impact during the critical 333-day period encompassing major career developments, controversies, and cultural shifts.",
+  "dateRange": {
+    "start": "2021-06-01",
+    "end": "2022-04-30",
+    "totalDays": 333
+  },
+  "events": [
+    {
+      "id": "event-001",
+      "date": "2021-06-01",
+      "dayOfInvestigation": 1,
+      "title": "Investigation Period Begins",
+      "description": "Start of 333-day cultural investigation period. Baseline establishment for cultural impact measurement.",
+      "domain": "social",
+      "impact": "moderate",
+      "scope": "subcultural",
+      "culturalContext": "Beginning of systematic observation period for cultural seismographic analysis.",
+      "tags": ["investigation", "baseline", "methodology"],
+      "evidence": [
+        {
+          "id": "ev-001",
+          "type": "document",
+          "title": "Investigation Methodology Framework",
+          "description": "Foundational document establishing cultural seismography methodology",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        }
+      ],
+      "verificationStatus": "verified",
+      "narrativeArc": "rising",
+      "weight": 0.3,
+      "color": "#839E75"
+    },
+    {
+      "id": "event-015",
+      "date": "2021-06-15",
+      "dayOfInvestigation": 15,
+      "title": "Major Social Media Activity Spike",
+      "description": "Significant increase in social media engagement and cultural discourse around Oxymiron's artistic output.",
+      "domain": "social",
+      "impact": "significant",
+      "scope": "national",
+      "culturalContext": "Digital culture amplification demonstrating meme propagation through social networks.",
+      "connections": ["event-001"],
+      "tags": ["social-media", "engagement", "digital-culture", "meme-propagation"],
+      "evidence": [
+        {
+          "id": "ev-015-001",
+          "type": "social",
+          "title": "Twitter/VK Engagement Metrics",
+          "description": "Compiled social media metrics showing 340% engagement increase",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        },
+        {
+          "id": "ev-015-002",
+          "type": "image",
+          "title": "Social Media Screenshots Compilation",
+          "description": "Visual evidence of increased social media activity",
+          "thumbnail": "/images/evidence/social-media-spike-2021-06-15.jpg",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        }
+      ],
+      "metrics": {
+        "socialMediaMentions": 15420,
+        "shareCount": 3200,
+        "sentimentScore": 0.7,
+        "culturalReach": 45,
+        "durabilityScore": 6
+      },
+      "verificationStatus": "verified",
+      "memeConcepts": ["viral-propagation", "cultural-amplification"],
+      "narrativeArc": "rising",
+      "weight": 0.7,
+      "color": "#E8AD4A"
+    },
+    {
+      "id": "event-045",
+      "date": "2021-07-15",
+      "dayOfInvestigation": 45,
+      "title": "Cultural Peak Moment",
+      "description": "Identified peak cultural impact moment demonstrating maximum seismographic activity during investigation period.",
+      "domain": "music",
+      "impact": "seismic",
+      "scope": "global",
+      "culturalContext": "Represents the cultural apex identified through comprehensive meme theory analysis and quantitative impact measurement.",
+      "connections": ["event-015"],
+      "tags": ["peak", "cultural-impact", "seismic", "global-reach", "artistic-achievement"],
+      "evidence": [
+        {
+          "id": "ev-045-001",
+          "type": "audio",
+          "title": "Audio Release Analysis",
+          "description": "Primary audio content demonstrating peak cultural impact",
+          "url": "https://open.spotify.com/track/example",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        },
+        {
+          "id": "ev-045-002",
+          "type": "video",
+          "title": "Performance Documentation",
+          "description": "Video evidence of cultural impact manifestation",
+          "url": "https://youtube.com/watch?v=example",
+          "thumbnail": "/images/evidence/performance-2021-07-15.jpg",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        },
+        {
+          "id": "ev-045-003",
+          "type": "text",
+          "title": "Media Coverage Compilation",
+          "description": "Major media outlet coverage of cultural impact moment",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        }
+      ],
+      "metrics": {
+        "socialMediaMentions": 89750,
+        "streamingNumbers": 2340000,
+        "mediaArticles": 156,
+        "viewCount": 4200000,
+        "shareCount": 87500,
+        "sentimentScore": 0.85,
+        "culturalReach": 92,
+        "durabilityScore": 9
+      },
+      "verificationStatus": "verified",
+      "memeConcepts": ["cultural-peak", "seismic-impact", "global-propagation"],
+      "narrativeArc": "peak",
+      "weight": 1.0,
+      "color": "#7D4450"
+    },
+    {
+      "id": "event-180",
+      "date": "2021-11-27",
+      "dayOfInvestigation": 180,
+      "title": "Mid-Investigation Cultural Shift",
+      "description": "Significant cultural paradigm shift observed at investigation midpoint, demonstrating evolution of cultural discourse.",
+      "domain": "media",
+      "impact": "significant",
+      "scope": "national",
+      "culturalContext": "Represents inflection point in cultural narrative, demonstrating meme evolution and adaptation.",
+      "connections": ["event-045"],
+      "tags": ["paradigm-shift", "evolution", "midpoint", "cultural-discourse"],
+      "evidence": [
+        {
+          "id": "ev-180-001",
+          "type": "text",
+          "title": "Cultural Analysis Documentation",
+          "description": "Comprehensive analysis of cultural shift patterns",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        }
+      ],
+      "metrics": {
+        "socialMediaMentions": 24680,
+        "mediaArticles": 45,
+        "sentimentScore": 0.3,
+        "culturalReach": 67,
+        "durabilityScore": 7
+      },
+      "verificationStatus": "verified",
+      "memeConcepts": ["cultural-evolution", "narrative-shift"],
+      "narrativeArc": "falling",
+      "weight": 0.8,
+      "color": "#E8AD4A"
+    },
+    {
+      "id": "event-333",
+      "date": "2022-04-30",
+      "dayOfInvestigation": 333,
+      "title": "Investigation Period Conclusion",
+      "description": "Conclusion of 333-day cultural investigation period with comprehensive synthesis of cultural seismographic findings.",
+      "domain": "social",
+      "impact": "moderate",
+      "scope": "subcultural",
+      "culturalContext": "Final synthesis point providing closure to systematic cultural observation and analysis period.",
+      "connections": ["event-001", "event-045", "event-180"],
+      "tags": ["conclusion", "synthesis", "methodology", "cultural-seismography"],
+      "evidence": [
+        {
+          "id": "ev-333-001",
+          "type": "document",
+          "title": "Final Investigation Report",
+          "description": "Comprehensive synthesis of 333-day cultural investigation findings",
+          "verified": true,
+          "dateAdded": "2026-04-26T11:15:00.000Z"
+        }
+      ],
+      "verificationStatus": "verified",
+      "narrativeArc": "resolution",
+      "weight": 0.9,
+      "color": "#839E75"
+    }
+  ],
+  "visualization": {
+    "totalDuration": 1000,
+    "scaleFactor": 3.0,
+    "heightLevels": 3,
+    "colorPalette": ["#7D4450", "#839E75", "#E8AD4A", "#FEFCF6"]
+  },
+  "methodology": {
+    "sources": [
+      "Social media platform APIs and archives",
+      "Traditional media coverage analysis",
+      "Streaming platform data",
+      "Cultural commentary and criticism",
+      "Academic research on cultural impact measurement"
+    ],
+    "keyInformants": [
+      "Digital culture researchers",
+      "Music industry analysts",
+      "Social media platform data scientists",
+      "Cultural critics and journalists"
+    ],
+    "limitations": "Investigation limited to publicly available data sources. Private communications and internal industry data not accessible.",
+    "biases": "Research conducted primarily through Russian-language sources with potential linguistic and cultural bias toward domestic perspective."
+  },
+  "optimization": {
+    "indexingStrategy": "hybrid",
+    "cacheStrategy": "partial"
+  }
+}

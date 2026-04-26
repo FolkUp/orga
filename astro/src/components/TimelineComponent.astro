@@ -1,0 +1,228 @@
+---
+/**
+ * ORGA-067: TimelineComponent.astro - Optimized Astro Islands Implementation
+ * High-performance wrapper for timeline data with client:visible optimization
+ *
+ * @component TimelineComponent
+ * @performance client:visible, progressive enhancement, text fallback
+ * @expert Johnny (frontend performance optimization)
+ */
+
+import InteractiveTimelineIsland from './InteractiveTimelineIsland.astro';
+
+export interface Props {
+  timelineData?: any;
+  heroNarrative?: string | null;
+  className?: string;
+  id?: string;
+  enableInteractivity?: boolean;
+  fallbackMode?: boolean;
+}
+
+const {
+  timelineData = null,
+  heroNarrative = null,
+  className = '',
+  id = 'timeline-component',
+  enableInteractivity = true,
+  fallbackMode = false
+} = Astro.props;
+
+// Server-side processing for timeline data
+const hasValidData = timelineData && Array.isArray(timelineData.events) && timelineData.events.length > 0;
+---
+
+<div
+  id={id}
+  class={`timeline-component-wrapper ${className}`}
+  data-component="TimelineComponent"
+  data-has-data={hasValidData}
+  data-interactive={enableInteractivity}
+>
+  {hasValidData ? (
+    <!-- Interactive Timeline - client:visible for performance -->
+    <div class="timeline-interactive-container">
+      <!-- Static fallback rendered server-side -->
+      <InteractiveTimelineIsland
+        timelineData={timelineData}
+        heroNarrative={heroNarrative}
+        className="timeline-static-fallback"
+        id={`${id}-static`}
+        enableLazyLoading={false}
+      />
+
+      {/* Enhanced interactivity loaded client-side only when visible */}
+      {enableInteractivity && !fallbackMode && (
+        <div
+          id={`${id}-enhanced`}
+          class="timeline-enhanced-layer"
+          data-timeline-interactive
+        >
+          <!-- Client-side enhancement will be loaded here -->
+        </div>
+      )}
+    </div>
+  ) : (
+    <!-- No-data fallback -->
+    <div class="timeline-no-data">
+      <div class="timeline-no-data__content">
+        <h3>Timeline Data Unavailable</h3>
+        <p>Timeline information is currently being processed or no events are available for display.</p>
+      </div>
+    </div>
+  )}
+
+  <!-- Progressive Enhancement Script -->
+  {enableInteractivity && !fallbackMode && hasValidData && (
+    <script type="module">
+      // Client-side enhancement with visibility detection
+      const enhanceTimeline = async () => {
+        const container = document.getElementById(`${id}-enhanced`);
+        if (!container) return;
+
+        // Performance: Only load enhancement when component becomes visible
+        const observer = new IntersectionObserver(async (entries) => {
+          const [entry] = entries;
+          if (!entry.isIntersecting) return;
+
+          observer.disconnect();
+
+          try {
+            // Dynamic import for timeline enhancement
+            const { TimelineEnhancer } = await import('../utils/timeline-enhancer.js');
+
+            // Initialize enhancement
+            const enhancer = new TimelineEnhancer({
+              container,
+              data: {timelineData},
+              options: {
+                enableTooltips: true,
+                enableZoom: true,
+                enableFiltering: true
+              }
+            });
+
+            await enhancer.initialize();
+
+            // Performance mark
+            if (performance.mark) {
+              performance.mark('timeline-enhanced-loaded');
+            }
+
+            console.debug('✅ Timeline enhancement loaded');
+          } catch (error) {
+            console.warn('Timeline enhancement failed, using static fallback:', error);
+            // Remove the enhanced layer to avoid confusion
+            container.remove();
+          }
+        }, {
+          rootMargin: '50px' // Load slightly before coming into view
+        });
+
+        observer.observe(container);
+      };
+
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enhanceTimeline);
+      } else {
+        enhanceTimeline();
+      }
+    </script>
+  )}
+</div>
+
+<style>
+  .timeline-component-wrapper {
+    position: relative;
+    width: 100%;
+    margin: var(--spacing-xl, 32px) 0;
+  }
+
+  .timeline-interactive-container {
+    position: relative;
+  }
+
+  .timeline-enhanced-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* Until enhancement loads */
+    z-index: 2;
+  }
+
+  .timeline-enhanced-layer[data-enhanced="true"] {
+    pointer-events: auto;
+  }
+
+  /* No-data fallback styling */
+  .timeline-no-data {
+    background: var(--color-surface-secondary, #f8f6f0);
+    border: 2px dashed var(--color-border-secondary, #e0e0e0);
+    border-radius: 8px;
+    padding: var(--spacing-xl, 32px);
+    text-align: center;
+    color: var(--color-text-secondary, #5a5a5a);
+  }
+
+  .timeline-no-data__content h3 {
+    margin: 0 0 var(--spacing-md, 16px) 0;
+    color: var(--color-text-primary, #7d4450);
+    font-family: var(--font-heading, 'Playfair Display', serif);
+  }
+
+  .timeline-no-data__content p {
+    margin: 0;
+    font-size: var(--text-base, 16px);
+    line-height: 1.6;
+  }
+
+  /* Loading state for enhanced layer */
+  .timeline-enhanced-layer:not([data-enhanced="true"])::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-border-primary, #839e75);
+    border-top: 2px solid var(--color-accent-primary, #e8ad4a);
+    border-radius: 50%;
+    animation: timelineEnhanceLoading 1s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes timelineEnhanceLoading {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Hide loading spinner when enhanced */
+  .timeline-enhanced-layer[data-enhanced="true"]::before {
+    display: none;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .timeline-component-wrapper {
+      margin: var(--spacing-lg, 24px) 0;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-enhanced-layer::before {
+      animation: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .timeline-no-data {
+      border-width: 3px;
+    }
+  }
+</style>

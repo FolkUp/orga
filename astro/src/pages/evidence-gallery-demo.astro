@@ -5,7 +5,7 @@
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import EvidenceGalleryIntegration from '../components/EvidenceGalleryIntegration.astro';
+import EvidenceGallery from '../components/EvidenceGallery.astro';
 import { sampleEvidenceData } from '../lib/evidenceData.js';
 
 const pageTitle = "Evidence Gallery Demo - Underground Academia";
@@ -151,11 +151,10 @@ const structuredData = {
 
   <!-- Evidence Gallery -->
   <main class="evidence-gallery-main" id="main-content">
-    <EvidenceGalleryIntegration
-      evidenceData={sampleEvidenceData}
-      viewMode="grid"
-      enableLazyLoading={true}
-      itemsPerPage={12}
+    <EvidenceGallery
+      evidenceData={{ items: sampleEvidenceData, title: "Evidence Gallery Demo", subtitle: "Interactive Evidence Collection" }}
+      enableMultimedia={true}
+      enableFiltering={true}
       className="demo-evidence-gallery"
     />
   </main>
