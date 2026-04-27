@@ -167,7 +167,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
 <style>
   .evidence-card {
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
     border: 1px solid rgba(26, 54, 93, 0.2);
     border-radius: var(--space-sm);
     padding: var(--space-md);
@@ -182,11 +182,11 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
   /* Significance-based border styling */
   .significance--critical {
-    border-left: 4px solid var(--color-sage-muted);
+    border-left: 4px solid var(--color-sage);
   }
 
   .significance--important {
-    border-left: 4px solid var(--color-amber-warm);
+    border-left: 4px solid var(--color-amber);
   }
 
   .significance--supporting {
@@ -214,7 +214,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
     font-size: 1.125rem;
     font-weight: 700;
     line-height: var(--line-height-heading);
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin: 0;
     flex: 1;
     display: flex;
@@ -247,52 +247,52 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
   /* Category styles */
   .evidence-card--document .evidence-category {
-    background-color: var(--color-maritime-deep);
-    border-color: var(--color-maritime-deep);
+    background-color: var(--color-bordeaux);
+    border-color: var(--color-bordeaux);
     color: var(--color-text-inverse);
   }
 
   .evidence-card--testimony .evidence-category {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .evidence-card--artifact .evidence-category {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .evidence-card--media .evidence-category,
   .evidence-card--digital .evidence-category,
   .evidence-card--correspondence .evidence-category {
     background-color: rgba(214, 158, 46, 0.3);
-    border-color: var(--color-amber-warm);
+    border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
 
   /* Significance indicator styles */
   .significance--critical .significance-indicator {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .significance--important .significance-indicator {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .significance--supporting .significance-indicator {
     background-color: rgba(214, 158, 46, 0.3);
-    border-color: var(--color-amber-warm);
+    border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
 
   .significance--contextual .significance-indicator {
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
     border-color: var(--color-text-primary);
     color: var(--color-text-primary);
   }
@@ -327,7 +327,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
   }
 
   .attribution-item strong {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     font-weight: 600;
   }
 
@@ -338,7 +338,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
   .metadata-toggle {
     font-weight: 600;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     cursor: pointer;
     padding: var(--space-xs) 0;
     list-style: none;
@@ -374,7 +374,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
   .metadata-item dt {
     font-weight: 600;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
   }
 
   .metadata-item dd {
@@ -383,12 +383,12 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
   }
 
   .custody--verified {
-    color: var(--color-sage-muted);
+    color: var(--color-sage);
     font-weight: 600;
   }
 
   .custody--unverified {
-    color: var(--color-amber-warm);
+    color: var(--color-amber);
     font-weight: 600;
   }
 
@@ -417,7 +417,7 @@ const cardClasses = `evidence-card ${categoryInfo.class} ${significanceInfo.clas
 
   /* Focus management */
   .evidence-card:focus-within {
-    outline: 2px solid var(--color-amber-warm);
+    outline: 2px solid var(--color-amber);
     outline-offset: 2px;
   }
 </style>

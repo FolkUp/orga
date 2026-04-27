@@ -198,33 +198,33 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    border: 3px solid var(--color-concrete-light);
-    background-color: var(--color-maritime-deep);
+    border: 3px solid var(--color-ivory);
+    background-color: var(--color-bordeaux);
   }
 
   /* Significance-based connector styling */
   .significance--critical .timeline-marker__connector::before {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
   }
 
   .significance--important .timeline-marker__connector::before {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
   }
 
   .significance--supporting .timeline-marker__connector::before {
     background-color: rgba(214, 158, 46, 0.5);
-    border-color: var(--color-maritime-deep);
+    border-color: var(--color-bordeaux);
   }
 
   .significance--contextual .timeline-marker__connector::before {
-    background-color: var(--color-concrete-light);
-    border-color: var(--color-maritime-deep);
+    background-color: var(--color-ivory);
+    border-color: var(--color-bordeaux);
   }
 
   .timeline-marker__content {
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
     border: 1px solid rgba(26, 54, 93, 0.2);
     border-radius: var(--space-sm);
     padding: var(--space-md);
@@ -257,7 +257,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
   }
 
   .timeline-marker__time {
@@ -293,52 +293,52 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
 
   /* Event type styles */
   .timeline-marker--meeting .event-type {
-    background-color: var(--color-maritime-deep);
-    border-color: var(--color-maritime-deep);
+    background-color: var(--color-bordeaux);
+    border-color: var(--color-bordeaux);
     color: var(--color-text-inverse);
   }
 
   .timeline-marker--document .event-type {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .timeline-marker--communication .event-type,
   .timeline-marker--evidence .event-type {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .timeline-marker--decision .event-type,
   .timeline-marker--milestone .event-type {
     background-color: rgba(214, 158, 46, 0.3);
-    border-color: var(--color-amber-warm);
+    border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
 
   /* Significance indicator styles (same as EvidenceCard) */
   .significance--critical .significance-indicator {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .significance--important .significance-indicator {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .significance--supporting .significance-indicator {
     background-color: rgba(214, 158, 46, 0.3);
-    border-color: var(--color-amber-warm);
+    border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
 
   .significance--contextual .significance-indicator {
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
     border-color: var(--color-text-primary);
     color: var(--color-text-primary);
   }
@@ -348,7 +348,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
     font-size: 1.25rem;
     font-weight: 700;
     line-height: var(--line-height-heading);
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin: 0 0 var(--space-sm) 0;
   }
 
@@ -369,25 +369,25 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
   }
 
   .status-badge--verified {
-    background-color: var(--color-sage-muted);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-sage);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .status-badge--partially_verified {
-    background-color: var(--color-amber-warm);
-    border-color: var(--color-maritime-deep);
-    color: var(--color-maritime-deep);
+    background-color: var(--color-amber);
+    border-color: var(--color-bordeaux);
+    color: var(--color-bordeaux);
   }
 
   .status-badge--unverified {
     background-color: rgba(214, 158, 46, 0.3);
-    border-color: var(--color-amber-warm);
+    border-color: var(--color-amber);
     color: var(--color-text-primary);
   }
 
   .status-badge--draft {
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
     border-color: var(--color-text-primary);
     color: var(--color-text-primary);
   }
@@ -420,7 +420,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
   .detail-item strong {
     display: block;
     margin-bottom: var(--space-xs);
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     font-weight: 600;
   }
 
@@ -443,7 +443,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
   }
 
   .evidence-link {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     text-decoration: none;
     font-weight: 600;
   }
@@ -451,7 +451,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
   .evidence-link:hover,
   .evidence-link:focus {
     text-decoration: underline;
-    color: var(--color-amber-warm);
+    color: var(--color-amber);
   }
 
   .location {
@@ -489,7 +489,7 @@ const dateId = `timeline-${date.replace(/[^\w]/g, '-')}-${title.replace(/\s+/g, 
 
   /* Focus management */
   .timeline-marker:focus-within {
-    outline: 2px solid var(--color-amber-warm);
+    outline: 2px solid var(--color-amber);
     outline-offset: 2px;
     border-radius: var(--space-sm);
   }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .text { font-family: 'Pacifico', cursive; font-size: 12px; text-anchor: middle; }
+      .primary { fill: #7D4450; }
+      .accent { fill: #E8AD4A; }
+    </style>
+  </defs>
+  <circle cx="16" cy="16" r="15" fill="#FEFCF6" stroke="#7D4450" stroke-width="2"/>
+  <circle cx="16" cy="10" r="4" class="primary"/>
+  <rect x="12" y="16" width="8" height="10" class="accent" rx="2"/>
+  <text x="16" y="30" class="text primary">F</text>
+</svg>

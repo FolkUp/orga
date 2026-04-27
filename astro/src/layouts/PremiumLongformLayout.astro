@@ -305,13 +305,13 @@ const hasEmbed = Boolean(
 
   @media (hover: hover) {
     .longform__breadcrumb a:hover {
-      color: var(--color-maritime-deep);
+      color: var(--color-bordeaux);
       border-bottom-color: currentColor;
     }
   }
 
   .longform__breadcrumb a:focus-visible {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     border-bottom-color: currentColor;
   }
 
@@ -358,20 +358,20 @@ const hasEmbed = Boolean(
 
   @media (hover: hover) {
     .longform__lang a:hover {
-      color: var(--color-maritime-deep);
+      color: var(--color-bordeaux);
       background-color: rgba(26, 54, 93, 0.05);
       border-bottom-color: currentColor;
     }
   }
 
   .longform__lang a:focus-visible {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     background-color: rgba(26, 54, 93, 0.05);
     border-bottom-color: currentColor;
   }
 
   .longform__lang span[aria-current] {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     background-color: rgba(26, 54, 93, 0.08);
     cursor: default;
   }
@@ -390,17 +390,17 @@ const hasEmbed = Boolean(
   }
 
   .longform__title {
-    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-family: var(--font-display);
     font-size: clamp(1.85rem, 3.2vw + 1rem, 2.75rem);
     line-height: 1.18;
     font-weight: 700;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin: 0 0 var(--space-md) 0;
     letter-spacing: -0.01em;
   }
 
   .longform__subtitle {
-    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.35rem);
     line-height: 1.45;
@@ -451,7 +451,7 @@ const hasEmbed = Boolean(
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-size: 0.72rem;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
   }
 
   .longform__meta dd {
@@ -459,7 +459,7 @@ const hasEmbed = Boolean(
   }
 
   .longform__body {
-    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-family: var(--font-display);
     font-size: 1.08rem;
     line-height: 1.72;
     color: var(--color-text-primary);
@@ -467,20 +467,20 @@ const hasEmbed = Boolean(
   }
 
   .longform__body :global(h2) {
-    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-family: var(--font-display);
     font-size: clamp(1.4rem, 1.2vw + 1rem, 1.75rem);
     line-height: 1.25;
     font-weight: 700;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin: var(--space-2xl) 0 var(--space-md) 0;
     letter-spacing: -0.005em;
   }
 
   .longform__body :global(h3) {
-    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', 'Liberation Serif', serif;
+    font-family: var(--font-display);
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin: var(--space-xl) 0 var(--space-sm) 0;
   }
 
@@ -491,13 +491,13 @@ const hasEmbed = Boolean(
   .longform__body :global(blockquote) {
     margin: var(--space-lg) 0;
     padding: 0 var(--space-lg);
-    border-left: 3px solid var(--color-amber-warm);
+    border-left: 3px solid var(--color-amber);
     font-style: italic;
     color: rgba(45, 55, 72, 0.9);
   }
 
   .longform__body :global(a) {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -505,7 +505,7 @@ const hasEmbed = Boolean(
 
   .longform__body :global(a:hover),
   .longform__body :global(a:focus-visible) {
-    color: var(--color-amber-warm);
+    color: var(--color-amber);
   }
 
   .longform__body :global(hr) {
@@ -528,7 +528,7 @@ const hasEmbed = Boolean(
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.72rem;
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     margin-right: var(--space-sm);
   }
 
@@ -554,14 +554,14 @@ const hasEmbed = Boolean(
   .longform__tags a:hover,
   .longform__tags a:focus-visible {
     background-color: rgba(26, 54, 93, 0.05);
-    border-color: var(--color-maritime-deep);
+    border-color: var(--color-bordeaux);
   }
 
   .longform__ai-transparency {
     margin: var(--space-2xl) 0;
     padding: var(--space-md);
     background-color: rgba(26, 54, 93, 0.04);
-    border-left: 3px solid var(--color-sage-muted);
+    border-left: 3px solid var(--color-sage);
     font-size: 0.85rem;
     color: rgba(45, 55, 72, 0.85);
     max-width: 60rem;
@@ -573,7 +573,7 @@ const hasEmbed = Boolean(
   }
 
   .longform__ai-transparency a {
-    color: var(--color-maritime-deep);
+    color: var(--color-bordeaux);
     font-weight: 500;
     text-decoration: underline;
   }

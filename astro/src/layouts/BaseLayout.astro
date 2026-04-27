@@ -69,6 +69,11 @@ const ogImageAltFinal = imageAlt ?? title;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Brand Guide v2.5 Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
     <title>{title}</title>
 
     <link rel="canonical" href={canonicalHref} />
@@ -97,7 +102,7 @@ const ogImageAltFinal = imageAlt ?? title;
     <meta name="twitter:image:alt" content={ogImageAltFinal} />
 
     <!-- Brand colors and theme -->
-    <meta name="theme-color" content="#1A365D" />
+    <meta name="theme-color" content="#7D4450" />
 
     <!--
       Baseline Content-Security-Policy. Nginx may emit a tighter policy at the
@@ -120,9 +125,12 @@ const ogImageAltFinal = imageAlt ?? title;
       <header class="site-header">
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
           <div class="nav-brand">
-            <a href="/" aria-label="Underground Academia homepage">
-              <span class="brand-title">Underground Academia</span>
-              <span class="brand-subtitle">Cultural Seismography</span>
+            <a href="/" aria-label="FolkUp Underground Academia homepage" class="brand-link">
+              <img src="/folkup-logo.png" alt="FolkUp" class="folkup-logo" />
+              <div class="brand-text">
+                <span class="brand-title">Underground Academia</span>
+                <span class="brand-subtitle">Cultural Seismography</span>
+              </div>
             </a>
           </div>
 
@@ -171,17 +179,18 @@ const ogImageAltFinal = imageAlt ?? title;
 
   /* CSS Custom Properties - Brand Guide v2.5 Palette D */
   :root {
-    /* Colors - Underground Academia + Soviet Constructivist */
-    --color-maritime-deep: #1A365D;     /* Primary dark */
-    --color-sage-muted: #68D391;        /* Secondary green */
-    --color-amber-warm: #D69E2E;        /* Accent warm */
-    --color-concrete-light: #F7FAFC;    /* Background light */
+    /* Colors - FolkUp Brand Guide v2.5 Palette D */
+    --color-bordeaux: #7D4450;          /* Primary dark - Bordeaux */
+    --color-sage: #839E75;              /* Secondary green - Sage */
+    --color-amber: #E8AD4A;             /* Accent warm - Amber */
+    --color-ivory: #FEFCF6;             /* Background light - Ivory */
     --color-text-primary: #2D3748;      /* Text dark */
-    --color-text-inverse: #F7FAFC;      /* Text light */
+    --color-text-inverse: #FEFCF6;      /* Text light - Ivory */
 
-    /* Typography - System fonts (GDPR compliant, no external loading) */
-    --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', Georgia, serif;
-    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    /* Typography - Brand Guide v2.5 Font Stack */
+    --font-display: 'Playfair Display', Georgia, serif;    /* Headings */
+    --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;    /* Body text */
+    --font-logo: 'Pacifico', cursive;                      /* Logo/display */
     --font-size-base: 1rem;
     --line-height-body: 1.6;
     --line-height-heading: 1.2;
@@ -205,7 +214,7 @@ const ogImageAltFinal = imageAlt ?? title;
     font-size: var(--font-size-base);
     line-height: var(--line-height-body);
     color: var(--color-text-primary);
-    background-color: var(--color-concrete-light);
+    background-color: var(--color-ivory);
   }
 
   /* Layout */
@@ -225,7 +234,7 @@ const ogImageAltFinal = imageAlt ?? title;
 
   /* Header */
   .site-header {
-    background-color: var(--color-maritime-deep);
+    background-color: var(--color-bordeaux);
     color: var(--color-text-inverse);
     padding: var(--space-md) var(--container-padding);
   }
@@ -240,10 +249,22 @@ const ogImageAltFinal = imageAlt ?? title;
     gap: var(--space-md);
   }
 
-  .nav-brand a {
+  .brand-link {
     color: inherit;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .folkup-logo {
+    height: 32px;
+    width: auto;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
   }
 
   .brand-title {
@@ -251,14 +272,12 @@ const ogImageAltFinal = imageAlt ?? title;
     font-size: 1.5rem;
     font-weight: 700;
     line-height: var(--line-height-heading);
-    display: block;
   }
 
   .brand-subtitle {
     font-size: 0.875rem;
     opacity: 0.9;
     font-weight: 400;
-    display: block;
   }
 
   .nav-menu {
@@ -285,7 +304,7 @@ const ogImageAltFinal = imageAlt ?? title;
 
   /* Footer */
   .site-footer {
-    background-color: var(--color-maritime-deep);
+    background-color: var(--color-bordeaux);
     color: var(--color-text-inverse);
     padding: var(--space-lg) var(--container-padding);
     margin-top: var(--space-2xl);
@@ -303,7 +322,7 @@ const ogImageAltFinal = imageAlt ?? title;
   }
 
   .footer-content a {
-    color: var(--color-sage-muted);
+    color: var(--color-sage);
     text-decoration: none;
   }
 
@@ -317,7 +336,7 @@ const ogImageAltFinal = imageAlt ?? title;
     position: absolute;
     top: -40px;
     left: 6px;
-    background: var(--color-maritime-deep);
+    background: var(--color-bordeaux);
     color: var(--color-text-inverse);
     padding: 8px;
     text-decoration: none;
@@ -331,18 +350,32 @@ const ogImageAltFinal = imageAlt ?? title;
 
   /* Focus management */
   :focus-visible {
-    outline: 2px solid var(--color-amber-warm);
+    outline: 2px solid var(--color-amber);
     outline-offset: 2px;
   }
 
-  /* Responsive typography */
+  /* Responsive typography and layout */
   @media (min-width: 48rem) {
+    .folkup-logo {
+      height: 40px;
+    }
+
     .brand-title {
       font-size: 1.75rem;
     }
 
     .brand-subtitle {
       font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 47.9rem) {
+    .folkup-logo {
+      height: 24px;
+    }
+
+    .brand-link {
+      gap: var(--space-sm);
     }
   }
 
