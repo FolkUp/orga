@@ -1,5 +1,6 @@
 ---
 import CookieConsent from '../components/CookieConsent.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 export interface Props {
   title: string;
@@ -24,12 +25,28 @@ const DEFAULT_OG_IMAGE = '/og/default.jpg';
 
 const {
   title,
-  description = "Underground Academia — Cultural Seismography Platform",
-  lang = "en",
+  description = "Андерграунд Академия — Платформа культурной сейсмографии",
+  lang = "ru",
   alternates = [],
   image,
   imageAlt,
 } = Astro.props;
+
+// Навигационные элементы с переводом
+const navItems = {
+  ru: [
+    { href: "/investigations/", label: "Расследования" },
+    { href: "/methodology/", label: "Методология" },
+    { href: "/about/", label: "О проекте" },
+  ],
+  en: [
+    { href: "/en/investigations/", label: "Investigations" },
+    { href: "/en/methodology/", label: "Methodology" },
+    { href: "/en/about/", label: "About" },
+  ],
+};
+
+const currentNavItems = navItems[lang as keyof typeof navItems] || navItems.ru;
 
 const consentLang: 'ru' | 'en' | 'pt' =
   lang === 'ru' || lang === 'pt' ? lang : 'en';
@@ -125,20 +142,27 @@ const ogImageAltFinal = imageAlt ?? title;
       <header class="site-header">
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
           <div class="nav-brand">
-            <a href="/" aria-label="FolkUp Underground Academia homepage" class="brand-link">
+            <a href={lang === 'ru' ? "/" : "/en/"} aria-label={lang === 'ru' ? "FolkUp Андерграунд Академия главная" : "FolkUp Underground Academia homepage"} class="brand-link">
               <img src="/folkup-logo.png" alt="FolkUp" class="folkup-logo" />
               <div class="brand-text">
-                <span class="brand-title">Underground Academia</span>
-                <span class="brand-subtitle">Cultural Seismography</span>
+                <span class="brand-title">{lang === 'ru' ? 'Андерграунд Академия' : 'Underground Academia'}</span>
+                <span class="brand-subtitle">{lang === 'ru' ? 'Культурная сейсмография' : 'Cultural Seismography'}</span>
               </div>
             </a>
           </div>
 
-          <ul class="nav-menu">
-            <li><a href="/investigations/">Investigations</a></li>
-            <li><a href="/methodology/">Methodology</a></li>
-            <li><a href="/about/">About</a></li>
-          </ul>
+          <div class="nav-right">
+            <ul class="nav-menu">
+              {currentNavItems.map(item => (
+                <li><a href={item.href}>{item.label}</a></li>
+              ))}
+            </ul>
+            <LanguageSwitcher currentLang={lang as 'ru' | 'en'} alternates={alternates.map(alt => ({
+              lang: alt.lang,
+              href: alt.href,
+              label: alt.lang.toUpperCase()
+            }))} />
+          </div>
         </nav>
       </header>
 
@@ -247,6 +271,13 @@ const ogImageAltFinal = imageAlt ?? title;
     align-items: center;
     flex-wrap: wrap;
     gap: var(--space-md);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
   }
 
   .brand-link {
@@ -376,6 +407,14 @@ const ogImageAltFinal = imageAlt ?? title;
 
     .brand-link {
       gap: var(--space-sm);
+    }
+
+    .nav-right {
+      gap: var(--space-md);
+    }
+
+    .nav-menu {
+      gap: var(--space-md);
     }
   }
 

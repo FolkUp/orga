@@ -13,32 +13,36 @@ const sortedInvestigations = investigations.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 
-// Investigation type labels
+// Investigation type labels (Russian)
 const typeLabels: Record<string, string> = {
-  cultural_analysis: 'Cultural Analysis',
-  institutional: 'Institutional',
-  biographical: 'Biographical',
-  media: 'Media Analysis'
+  cultural_analysis: 'Культурный анализ',
+  institutional: 'Институциональное',
+  biographical: 'Биографическое',
+  media: 'Медиа-анализ'
 };
 
-// Format date
+// Format date (Russian locale)
 function formatDate(d: Date): string {
-  return d.toLocaleDateString('en-GB', {
+  return d.toLocaleDateString('ru-RU', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
 }
+
+const alternates = [
+  { lang: 'en' as const, href: '/en/investigations/' }
+];
 ---
 
-<BaseLayout title="Investigations — Underground Academia" description="Research investigations into cultural phenomena through rigorous academic methodology.">
+<BaseLayout title="Расследования — Андерграунд Академия" description="Исследовательские расследования культурных феноменов через строгую академическую методологию." lang="ru" alternates={alternates}>
   <section class="investigations-index">
     <header class="investigations-index__header">
-      <h1 class="investigations-index__title">Investigations</h1>
+      <h1 class="investigations-index__title">Расследования</h1>
       <p class="investigations-index__description">
-        Research into cultural phenomena through systematic evidence collection
-        and multi-source verification. Each investigation follows the Underground Academia
-        methodology of cultural seismography.
+        Исследования культурных феноменов через систематический сбор доказательств
+        и многоисточниковую верификацию. Каждое расследование следует методологии
+        культурной сейсмографии Андерграунд Академии.
       </p>
     </header>
 
@@ -75,7 +79,7 @@ function formatDate(d: Date): string {
 
                 {investigation.data.evidence_count !== undefined && (
                   <span class="investigation-card__evidence">
-                    {investigation.data.evidence_count} evidence items
+                    {investigation.data.evidence_count} доказательств
                   </span>
                 )}
 
@@ -93,7 +97,7 @@ function formatDate(d: Date): string {
       </ol>
     ) : (
       <div class="investigations-empty">
-        <p>No investigations published yet. Research is in progress.</p>
+        <p>Расследования ещё не опубликованы. Исследования в процессе.</p>
       </div>
     )}
   </section>

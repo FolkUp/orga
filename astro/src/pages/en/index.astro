@@ -1,55 +1,55 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ConfidenceBadge from '../components/ConfidenceBadge.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConfidenceBadge from '../../components/ConfidenceBadge.astro';
 
-const title = "Андерграунд Академия — Платформа культурной сейсмографии";
-const description = "Исследовательская платформа для культурных расследований и методологии Андерграунд Академии";
+const title = "Underground Academia — Cultural Seismography Platform";
+const description = "Research platform for cultural investigations and Underground Academia methodology";
 
 const alternates = [
-  { lang: 'en' as const, href: '/en/' }
+  { lang: 'ru' as const, href: '/' }
 ];
 ---
 
-<BaseLayout title={title} description={description} lang="ru" alternates={alternates}>
+<BaseLayout title={title} description={description} lang="en" alternates={alternates}>
   <section class="hero">
-    <h1>Андерграунд Академия</h1>
-    <p class="hero-subtitle">Платформа культурной сейсмографии</p>
+    <h1>Underground Academia</h1>
+    <p class="hero-subtitle">Cultural Seismography Platform</p>
     <p class="hero-description">
-      Исследовательская инфраструктура для изучения культурных феноменов через
-      строгую академическую методологию и систематический сбор доказательств.
+      Research infrastructure for investigating cultural phenomena through
+      rigorous academic methodology and systematic evidence collection.
     </p>
   </section>
 
   <section class="platform-status">
-    <h2>Статус платформы</h2>
+    <h2>Platform Status</h2>
     <div class="status-grid">
       <div class="status-item">
-        <h3>Инфраструктура</h3>
+        <h3>Infrastructure</h3>
         <ConfidenceBadge status="verified" />
-        <p>Продакшн-развёртывание завершено. 4-этапная безопасность функционирует.</p>
+        <p>Production deployment complete. 4-phase security remediation operational.</p>
       </div>
 
       <div class="status-item">
-        <h3>Контентная система</h3>
+        <h3>Content System</h3>
         <ConfidenceBadge status="partially_verified" />
-        <p>Миграция на Astro в процессе. Разработка компонентов ведётся.</p>
+        <p>Astro migration in progress. Component development underway.</p>
       </div>
 
       <div class="status-item">
-        <h3>Расследования</h3>
+        <h3>Investigations</h3>
         <ConfidenceBadge status="draft" />
-        <p>Исследовательская методология установлена. Миграция контента в ожидании.</p>
+        <p>Research methodology established. Content migration pending.</p>
       </div>
     </div>
   </section>
 
   <section class="research-areas">
-    <h2>Области исследований</h2>
+    <h2>Research Focus Areas</h2>
     <ul class="research-list">
-      <li>Культурная сейсмография и анализ трендов</li>
-      <li>Институциональные расследования и прозрачность</li>
-      <li>Андерграундные культурные движения</li>
-      <li>Пересечение хип-хопа и академического дискурса</li>
+      <li>Cultural seismography and trend analysis</li>
+      <li>Institutional investigation and transparency</li>
+      <li>Underground cultural movements</li>
+      <li>Hip-hop and academic discourse intersection</li>
     </ul>
   </section>
 </BaseLayout>

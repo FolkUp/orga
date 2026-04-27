@@ -1,0 +1,94 @@
+---
+export interface Props {
+  /**
+   * Текущий язык страницы
+   */
+  currentLang: 'ru' | 'en';
+  /**
+   * Альтернативные версии страницы (переводы)
+   */
+  alternates?: Array<{ lang: 'ru' | 'en'; href: string; label: string }>;
+}
+
+const { currentLang, alternates = [] } = Astro.props;
+
+// Всегда показываем оба языка с указанием активного
+const languages = [
+  { code: 'ru', label: 'RU', href: currentLang === 'en' ? '/' : Astro.url.pathname },
+  { code: 'en', label: 'EN', href: currentLang === 'ru' ? '/en' + Astro.url.pathname : Astro.url.pathname },
+];
+
+// Если есть переводы, используем точные ссылки из alternates
+if (alternates.length > 0) {
+  alternates.forEach(alt => {
+    const langEntry = languages.find(l => l.code === alt.lang);
+    if (langEntry) {
+      langEntry.href = alt.href;
+    }
+  });
+}
+---
+
+<div class="language-switcher" role="navigation" aria-label="Переключение языка">
+  <span class="switcher-label" aria-hidden="true">🌐</span>
+  <div class="language-options">
+    {languages.map(lang => (
+      currentLang === lang.code ? (
+        <span class="language-option current" aria-current="true">
+          {lang.label}
+        </span>
+      ) : (
+        <a href={lang.href} class="language-option" hreflang={lang.code}>
+          {lang.label}
+        </a>
+      )
+    ))}
+  </div>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+  }
+
+  .switcher-label {
+    font-size: 1rem;
+  }
+
+  .language-options {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .language-option {
+    padding: var(--space-xs) var(--space-sm);
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .language-option:hover,
+  .language-option:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    outline: none;
+  }
+
+  .language-option.current {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-amber);
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  /* Обеспечиваем достаточный контраст для доступности */
+  @media (max-width: 47.9rem) {
+    .language-switcher {
+      font-size: 0.8125rem;
+    }
+  }
+</style>

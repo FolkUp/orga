@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = "About — Underground Academia";
+const description = "About Underground Academia and cultural research platform";
+
+const alternates = [
+  { lang: 'ru' as const, href: '/about/' }
+];
+---
+
+<BaseLayout title={title} description={description} lang="en" alternates={alternates}>
+  <section class="page-header">
+    <h1>About</h1>
+    <p class="page-description">
+      Understanding Underground Academia and our approach to cultural research
+    </p>
+  </section>
+
+  <section class="content">
+    <div class="under-construction">
+      <h2>Under Construction</h2>
+      <p>About page content is being developed. This will include our mission, team, and approach to cultural seismography.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid #E2E8F0;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-bordeaux);
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-heading);
+  }
+
+  .page-description {
+    max-width: 35rem;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: #4A5568;
+    line-height: 1.7;
+  }
+
+  .under-construction {
+    text-align: center;
+    padding: var(--space-2xl);
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .under-construction h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-bordeaux);
+    margin-bottom: var(--space-md);
+  }
+
+  .under-construction p {
+    color: #4A5568;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+</style>

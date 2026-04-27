@@ -14,11 +14,19 @@ const SITE = 'https://underground.folkup.life';
 // longform EN rendering, new legal page pair, etc.), then rebuild and
 // inspect `dist/sitemap-0.xml`.
 const BILINGUAL_GROUPS = [
+  // Homepage
+  { ru: '/',                           en: '/en/' },
+  // Navigation pages
+  { ru: '/investigations/',            en: '/en/investigations/' },
+  { ru: '/methodology/',               en: '/en/methodology/' },
+  { ru: '/about/',                     en: '/en/about/' },
+  // Legal pages
   { ru: '/legal/ru/',                  en: '/legal/' },
   { ru: '/legal/ru/ai-transparency/',  en: '/legal/ai-transparency/' },
   { ru: '/legal/ru/cookie-policy/',    en: '/legal/cookie-policy/' },
   { ru: '/legal/ru/privacy-policy/',   en: '/legal/privacy-policy/' },
   { ru: '/legal/ru/terms-of-use/',     en: '/legal/terms-of-use/' },
+  // Longform content
   { ru: '/longform/organizatsiya/',    en: '/longform/en/organizatsiya/' },
 ];
 
