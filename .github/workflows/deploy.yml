@@ -21,21 +21,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'astro/package-lock.json'
 
-      - name: Install dependencies (fresh, no lockfile)
-        # The committed package-lock.json was generated on win32 and lacks
-        # @rollup/rollup-linux-x64-gnu; both `npm ci` and `npm install` honor
-        # the lockfile too strictly and fail at build. Regenerating on the
-        # linux runner picks up correct platform-specific optional deps.
-        # `--legacy-peer-deps` accepts @astrojs/svelte@6 peer astro@^4 mismatch
-        # (project on astro@5 — runtime fine, only resolver complains).
-        # Lockfile drift is tracked as a separate cleanup task.
-        run: |
-          rm -f package-lock.json
-          npm install --legacy-peer-deps
+      - name: Install dependencies
+        # Clean lockfile generated on Windows with correct cross-platform
+        # dependency resolution. No longer requires lockfile regeneration
+        # or --legacy-peer-deps flag (peer dependency conflicts resolved).
+        run: npm ci
+        env:
+          HUSKY: 0
 
       - name: Build Astro site
-        run: npm run build
+        run: |
+          BUILD_START_TIME=$(date +%s%3N)
+          export BUILD_START_TIME
+          npm run build:ci
+          node scripts/build-monitor.js
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
