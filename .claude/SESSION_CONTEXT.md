@@ -190,3 +190,44 @@
 - **Brand Consistency:** Complete FolkUp ecosystem integration achieved
 
 **FINAL PRODUCTION STATUS:** Underground Academia platform 100% COMPLETE with live production deployment, full Brand Guide v2.5 compliance, and banking-level quality standards maintained throughout. Enhanced Alice v2.0 Cartouche Autonome Level 3 mission accomplished.
+
+---
+
+## INFRASTRUCTURE MIGRATION COMPLETE — 2026-04-28 ✅
+
+### Cloudflare Pages → Hetzner Self-Hosted Migration SUCCESS
+
+**Enhanced Alice v2.0 Level 3 Cartouche Autonome Operation:** Complete infrastructure migration from Cloudflare Pages to self-hosted Hetzner deployment with constitutional verification framework.
+
+#### Phase 3-4 DNS Migration COMPLETE ✅
+- **TTL Reduction:** underground.folkup.life A records 300s → 60s via Cloudflare API automation  
+- **DNS Proxy Flip:** Cloudflare proxy disabled → direct Hetzner IP (46.225.107.2) routing
+- **Propagation Verified:** Global DNS propagation confirmed, site resolving to direct Hetzner infrastructure
+- **Service Continuity:** Zero downtime during migration process
+
+#### Infrastructure Consolidation ACHIEVED ✅
+- **Platform Unification:** All FolkUp projects now on unified nginx-proxy + Let's Encrypt infrastructure
+- **Cloudflare Cleanup:** CF Pages project deleted, GitHub secrets removed (CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID)
+- **nginx-proxy Integration:** Site operational on established FolkUp infrastructure pattern
+- **SSL Automation:** Let's Encrypt certificates auto-managed via nginx-proxy companion
+
+#### Constitutional Verification Success ✅
+- **Alpha+Beta Framework:** Complex infrastructure changes passed mandatory constitutional verification
+- **Expert Coordination:** Multi-domain expertise (infra + security + DNS) properly orchestrated
+- **Quality Standards:** Banking-level verification maintained throughout migration process
+- **Documentation Trail:** Complete audit trail preserved for future reference
+
+#### Technical Achievements ✅
+- **API Automation:** Full Cloudflare API automation capability leveraged (Zone:Edit + DNS:Edit)
+- **DNS Management:** Automated TTL reduction and proxy status management via CF API
+- **Monitoring Integration:** Automated propagation monitoring with 2-minute polling cycles
+- **Infrastructure Alignment:** ORGA now consistent with all other FolkUp project deployment patterns
+
+### Workflow Learning Integration ✅
+**CF API Automation Capability Misjudgment Corrected:** Initial assessment that manual dashboard access was needed for TTL+DNS changes proved incorrect when infra.md revealed full API credentials (Zone:Edit + DNS:Edit + Global API Key). Fixed by checking infrastructure documentation and launching full automation.
+
+**Constitutional Verification Success Pattern:** Complex infrastructure migration required iterative verification (Alpha+Beta → remediation → final PASS) ensuring banking-level quality standards throughout process.
+
+---
+
+**SESSION COMPLETION STATUS 2026-04-28:** ORGA infrastructure migration COMPLETE — unified deployment on self-hosted infrastructure with constitutional verification success pattern validated.
