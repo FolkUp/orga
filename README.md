@@ -131,4 +131,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-04-27 · Doc version: 3.0 (Astro 5 + Brand Guide v2.5 production)*
+*Last updated: 2026-04-28 · Doc version: 3.1 (Context integrity protocol established, consilium results integrated)*
