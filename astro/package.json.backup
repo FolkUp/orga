@@ -1,0 +1,39 @@
+{
+  "name": "orga-underground-academia",
+  "version": "1.0.0",
+  "description": "Underground Academia Cultural Seismography Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/svelte": "^6.0.0",
+    "astro": "^5.18.1",
+    "svelte": "^5.0.0",
+    "typescript": "^5.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
+  "keywords": [
+    "underground-academia",
+    "cultural-seismography",
+    "investigation-platform",
+    "astro",
+    "soviet-constructivist"
+  ],
+  "author": "FolkUp Investigation Team",
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FolkUp/orga.git"
+  },
+  "homepage": "https://underground.folkup.life"
+}
