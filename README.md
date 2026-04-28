@@ -3,6 +3,8 @@
 > Платформа культурной сейсмографии. Статический Astro-сайт, русский как основной язык, английский как вторичный.
 >
 > Production: **[underground.folkup.life](https://underground.folkup.life)**
+>
+> **Текущая фаза:** Phase 2 Complete — Expert coordination завершена, готовность к Phase 3 Technical Integration
 
 [![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
@@ -11,6 +13,16 @@
 ## О проекте
 
 Underground Academia — исследовательская платформа, фиксирующая подземные культурные сдвиги до того, как они проявляются на поверхности. Первый лонгрид — «Организация» Оксимирона как случай 333-дневной сейсмографической дуги (ноябрь 2021 → октябрь 2022).
+
+## Многомерный анализ "Организация"
+
+Проект расширения существующего лонгрида четырёхмерным анализом песни Оксимирона:
+- **🎵 Виленский** — музыкальная сейсмография, аккордовые прогрессии, культурное предсказание
+- **🎭 Цветик** — поэтическая архитектура, дольник, связь с серебряным веком
+- **⚡ КиберГонзо** — OSINT культурная сейсмография, верификация tremors 2021-2022
+- **📚 Архивариус** — исторический контекст, культурные прецеденты
+
+**Статус:** Phase 2 Complete (Expert coordination), Phase 3 Technical Integration ready
 
 Методология сочетает академическую строгость с независимостью от институциональных рамок: banking-level верификация фактов, прозрачный редакционный процесс, OSINT-подход к первоисточникам.
 
@@ -131,4 +143,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-04-28 · Doc version: 3.1 (Context integrity protocol established, consilium results integrated)*
+*Last updated: 2026-04-28 · Doc version: 3.2 (Phase 2 expert coordination complete, Phase 3 technical integration ready)*
