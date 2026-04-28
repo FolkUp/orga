@@ -1,33 +1,42 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to VPS
 
 on:
   push:
     branches: [main]
-  workflow_dispatch: {}
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 permissions:
   contents: read
-  deployments: write
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: [self-hosted, folkup-orga]
+    timeout-minutes: 15
+    env:
+      PATH: /home/deploy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     defaults:
       run:
         working-directory: astro
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+          clean: true
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
           cache-dependency-path: 'astro/package-lock.json'
 
       - name: Install dependencies
-        # Clean lockfile generated on Windows with correct cross-platform
-        # dependency resolution. No longer requires lockfile regeneration
-        # or --legacy-peer-deps flag (peer dependency conflicts resolved).
         run: npm ci
         env:
           HUSKY: 0
@@ -37,12 +46,60 @@ jobs:
           BUILD_START_TIME=$(date +%s%3N)
           export BUILD_START_TIME
           npm run build:ci
-          node scripts/build-monitor.js
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Deploy to production (atomic swap)
+        working-directory: ${{ github.workspace }}
+        run: |
+          mkdir -p ~/orga/public_staging
+          rsync -a --delete astro/dist/ ~/orga/public_staging/
+          if [ -d ~/orga/public ]; then
+            rm -rf ~/orga/public_backup
+            mv ~/orga/public ~/orga/public_backup
+          fi
+          mv ~/orga/public_staging ~/orga/public
+          mkdir -p ~/orga/public_staging
+
+      - name: Health check
+        working-directory: ${{ github.workspace }}
+        run: |
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            if docker exec orga-underground wget -S -q -O /dev/null http://127.0.0.1/ 2>&1 | grep -q "HTTP/"; then
+              echo 'Health check passed — site is live!'
+              exit 0
+            fi
+            echo "Waiting for container... attempt $i/10"
+            sleep 3
+          done
+          echo 'ERROR: Health check failed after 30s — rolling back'
+          if [ -d ~/orga/public_backup ]; then
+            rm -rf ~/orga/public_staging
+            mv ~/orga/public ~/orga/public_failed
+            mv ~/orga/public_backup ~/orga/public
+            echo 'Rollback complete'
+          fi
+          exit 1
+
+      - name: Load notification secrets
+        if: always()
+        working-directory: ${{ github.workspace }}
+        run: |
+          if [ -f /opt/folkup/secrets/ci-notify.env ]; then
+            sudo cat /opt/folkup/secrets/ci-notify.env >> $GITHUB_ENV
+          fi
+          if [ -f /opt/folkup/secrets/telegram-bot.env ]; then
+            sudo cat /opt/folkup/secrets/telegram-bot.env >> $GITHUB_ENV
+          fi
+
+      - name: Send failure email
+        if: failure() && env.MAIL_USERNAME != ''
+        uses: dawidd6/action-send-mail@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy astro/dist --project-name orga-underground-academia --branch main --commit-dirty=true
-          workingDirectory: .
+          server_address: smtp-relay.brevo.com
+          server_port: 587
+          secure: false
+          username: ${{ env.MAIL_USERNAME }}
+          password: ${{ env.MAIL_PASSWORD }}
+          subject: "Deploy FAILED — ORGA Underground"
+          to: ${{ env.NOTIFY_EMAILS }}
+          from: "ORGA Underground <updates@folkup.app>"
+          body: "Deploy failed.\n\nCommit: ${{ github.event.head_commit.message }}\nAuthor: ${{ github.actor }}\n\nAction: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
