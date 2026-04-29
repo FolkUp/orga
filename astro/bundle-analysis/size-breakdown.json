@@ -1,0 +1,130 @@
+{
+  "timestamp": "2026-04-29T15:33:11.000Z",
+  "tool": "manual-analysis",
+  "phase": "R3.2-post-optimization",
+  "previous": {
+    "timestamp": "2026-04-29T13:24:13.000Z",
+    "timelineCombined": 15029,
+    "decisionStatus": "YELLOW",
+    "note": "Pre-optimization: separate Timeline.js + TimelineSimple.js components"
+  },
+  "bundleAnalysis": {
+    "totalSize": 681300,
+    "breakdown": {
+      "javascript": {
+        "files": [
+          {
+            "path": "_assets/template.-jeRDwAh.js",
+            "size": 22796,
+            "type": "main-bundle"
+          },
+          {
+            "path": "_assets/Timeline.Z5b_0n82.js",
+            "size": 9894,
+            "gzipped": 4450,
+            "type": "component",
+            "note": "Single canonical Timeline component (TimelineSimple eliminated)"
+          },
+          {
+            "path": "_assets/client.svelte.B7frjgcP.js",
+            "size": 6898,
+            "type": "framework",
+            "note": "Shared Svelte 5 runtime"
+          },
+          {
+            "path": "_assets/AudioEmbedSpotify.astro_astro_type_script_index_0_lang.CreR7pcw.js",
+            "size": 1576,
+            "type": "component"
+          },
+          {
+            "path": "_assets/consent.DOmEuAOz.js",
+            "size": 791,
+            "type": "utility"
+          },
+          {
+            "path": "_assets/CookieConsent.astro_astro_type_script_index_0_lang.owpzxF0s.js",
+            "size": 485,
+            "type": "component"
+          }
+        ],
+        "totalSize": 42440,
+        "totalGzipped": 18900,
+        "percentage": 6.23,
+        "deltaFromPrevious": -10570,
+        "deltaPercentage": -19.94
+      },
+      "css": {
+        "files": [
+          {
+            "path": "_assets/_slug_.vXdbRQeZ.css",
+            "size": 26490,
+            "type": "main-styles"
+          },
+          {
+            "path": "_assets/_slug_.B3OTyua0.css",
+            "size": 10981,
+            "type": "page-styles"
+          },
+          {
+            "path": "_assets/_slug_.XP4eTR9y.css",
+            "size": 7203,
+            "type": "page-styles"
+          }
+        ],
+        "totalSize": 44674,
+        "percentage": 6.56,
+        "deltaFromPrevious": -4522,
+        "note": "timeline-demo.CDlR8Ti5.css (4522B) eliminated — duplicate component CSS removed"
+      },
+      "html": {
+        "totalSize": 594186,
+        "percentage": 87.21
+      }
+    },
+    "timelineComponentAnalysis": {
+      "timelineJS": 9894,
+      "timelineSimpleJS": 0,
+      "timelineCombined": 9894,
+      "gzippedActual": 4450,
+      "timelinePercentOfTotal": 1.45,
+      "comment": "Post-optimization: Both /organizatsiya/ and /timeline-demo/ now share single Timeline.svelte component. TimelineSimple.svelte tree-shaken from production bundle (no remaining import).",
+      "decisionMatrix": {
+        "bundleSize": {
+          "value": 9894,
+          "unit": "bytes",
+          "humanValue": "9.66 KB",
+          "gzipped": 4450,
+          "gzippedHuman": "4.35 KB",
+          "threshold": {
+            "green": 15000,
+            "yellow": 25000,
+            "red": ">25000",
+            "folkUpStandard": 20000
+          },
+          "status": "GREEN",
+          "marginToYellow": 5106,
+          "marginToFolkUpStandard": 10106,
+          "note": "9894 bytes = 9.66 KB. 5.1KB headroom under GREEN threshold; 10.1KB headroom under FolkUp <20KB standard."
+        }
+      }
+    }
+  },
+  "optimization": {
+    "approach": "Component consolidation",
+    "implementation": "src/pages/timeline-demo.astro: replaced TimelineSimple.svelte import with Timeline.svelte (production component)",
+    "rationale": "TimelineSimple.svelte was a development-only variant with overlapping functionality. Production Timeline.svelte accepts identical props (events, height, className) plus optional config. Single canonical component eliminates 7728B duplicate.",
+    "techDebtImpact": "Reduced — one canonical Timeline component going forward",
+    "rollbackRisk": "LOW — TimelineSimple.svelte source preserved for reference; only the import was changed",
+    "filesChanged": [
+      "src/pages/timeline-demo.astro (1 line: import path)"
+    ]
+  },
+  "methodology": {
+    "approach": "Manual file size analysis using ls + gzip",
+    "baseline": "Astro 5.18.1 + Svelte 5 build output",
+    "gzipMeasurement": "Actual gzip -c | wc -c (not estimate)",
+    "buildCommand": "npm run build:ci",
+    "buildDuration": "4.30s",
+    "pagesBuilt": 26
+  }
+}

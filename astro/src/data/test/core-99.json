@@ -1,1806 +1,1840 @@
 [
   {
-    "id": "event-core-009",
-    "title": "Cultural Event 10: Faculty Senate Decision",
-    "date": "2021-11-04",
-    "time": "21:47",
-    "description": "Generated test event 10 for performance benchmarking",
+    "id": "event-core-043",
+    "title": "Cultural Event 44: Underground Academic Meeting",
+    "date": "2021-11-02",
+    "time": "05:06",
+    "description": "Generated test event 44 for performance benchmarking",
     "significance": "contextual",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Sakharov",
-      "Dr. Brodsky"
-    ],
-    "location": "Faculty Lounge",
-    "timestamp": 1636052504897,
-    "y": 720,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-037",
-    "title": "Cultural Event 38: Underground Academic Meeting",
-    "date": "2021-11-18",
-    "time": "07:47",
-    "description": "Generated test event 38 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Maya Angelou",
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn",
-      "Dr. Petrov"
-    ],
-    "location": "Private Apartment",
-    "evidence_ids": [
-      "evidence-9hjojz05f"
-    ],
-    "timestamp": 1637266126897,
-    "y": 2960,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-080",
-    "title": "Cultural Event 81: Research Collaboration",
-    "date": "2021-11-20",
-    "description": "Generated test event 81 for performance benchmarking",
-    "significance": "supporting",
     "status": "draft",
     "event_type": "document",
     "participants": [
+      "Dr. Brodsky",
       "Prof. Solzhenitsyn",
-      "Dr. Petrov",
-      "Maya Angelou"
+      "Dr. Petrov"
     ],
-    "timestamp": 1637419915488,
-    "y": 6400,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-023",
-    "title": "Cultural Event 24: Underground Academic Meeting",
-    "date": "2021-11-20",
-    "time": "00:36",
-    "description": "Generated test event 24 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Komnenos",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "University Library",
-    "evidence_ids": [
-      "evidence-h8i2nx2db",
-      "evidence-npkdctl1g"
-    ],
-    "timestamp": 1637426179195,
-    "y": 1840,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-001",
-    "title": "Cultural Event 2: Underground Academic Meeting",
-    "date": "2021-11-29",
-    "time": "01:41",
-    "description": "Generated test event 2 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1638195659753,
-    "y": 80,
+    "location": "Underground Venue",
+    "timestamp": 1635836170397,
+    "y": 3440,
     "tier": "core"
   },
   {
     "id": "event-core-055",
-    "title": "Cultural Event 56: Policy Implementation",
-    "date": "2021-11-30",
-    "time": "19:41",
+    "title": "Cultural Event 56: Cultural Resistance Activity",
+    "date": "2021-11-02",
+    "time": "02:03",
     "description": "Generated test event 56 for performance benchmarking",
-    "significance": "important",
+    "significance": "critical",
     "status": "partially_verified",
-    "event_type": "evidence",
+    "event_type": "meeting",
     "participants": [
-      "Dr. Petrov"
+      "Maya Angelou"
     ],
-    "timestamp": 1638302164479,
+    "location": "Art Gallery",
+    "timestamp": 1635890518415,
     "y": 4400,
     "tier": "core"
   },
   {
-    "id": "event-core-073",
-    "title": "Cultural Event 74: International Conference",
-    "date": "2021-12-01",
-    "description": "Generated test event 74 for performance benchmarking",
-    "significance": "contextual",
+    "id": "event-core-049",
+    "title": "Cultural Event 50: Underground Academic Meeting",
+    "date": "2021-11-05",
+    "description": "Generated test event 50 for performance benchmarking",
+    "significance": "important",
     "status": "verified",
     "event_type": "document",
     "participants": [
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1638341816284,
-    "y": 5840,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-090",
-    "title": "Cultural Event 91: Samizdat Publication Released",
-    "date": "2021-12-09",
-    "time": "21:31",
-    "description": "Generated test event 91 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "document",
-    "participants": [
-      "Dr. Brodsky",
-      "Prof. Solzhenitsyn"
-    ],
-    "timestamp": 1639037084804,
-    "y": 7200,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-031",
-    "title": "Cultural Event 32: Manuscript Circulation",
-    "date": "2021-12-12",
-    "description": "Generated test event 32 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Sakharov"
-    ],
-    "location": "Underground Venue",
-    "timestamp": 1639287926485,
-    "y": 2480,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-010",
-    "title": "Cultural Event 11: Cultural Resistance Activity",
-    "date": "2021-12-13",
-    "description": "Generated test event 11 for performance benchmarking",
-    "significance": "important",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou",
       "Prof. Solzhenitsyn",
       "Prof. Komnenos"
     ],
-    "location": "Academic Conference",
-    "timestamp": 1639410701246,
-    "y": 800,
+    "evidence_ids": [
+      "evidence-ig1m7ix1f",
+      "evidence-xnetjwbdt"
+    ],
+    "timestamp": 1636113034749,
+    "y": 3920,
     "tier": "core"
   },
   {
     "id": "event-core-082",
-    "title": "Cultural Event 83: International Conference",
-    "date": "2021-12-15",
-    "time": "20:12",
+    "title": "Cultural Event 83: Cultural Resistance Activity",
+    "date": "2021-11-13",
     "description": "Generated test event 83 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
+    "significance": "supporting",
+    "status": "partially_verified",
     "event_type": "document",
     "participants": [
-      "Dr. Petrov"
+      "Dr. Brodsky",
+      "Prof. Solzhenitsyn",
+      "Maya Angelou"
     ],
-    "location": "Academic Conference",
-    "evidence_ids": [
-      "evidence-hrnbrbzzg"
-    ],
-    "timestamp": 1639606064142,
+    "timestamp": 1636785280429,
     "y": 6560,
     "tier": "core"
   },
   {
-    "id": "event-core-030",
-    "title": "Cultural Event 31: Research Collaboration",
-    "date": "2021-12-17",
-    "time": "12:38",
-    "description": "Generated test event 31 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "decision",
+    "id": "event-core-003",
+    "title": "Cultural Event 4: Cultural Resistance Activity",
+    "date": "2021-11-22",
+    "description": "Generated test event 4 for performance benchmarking",
+    "significance": "supporting",
+    "status": "draft",
+    "event_type": "evidence",
     "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn"
+      "Dr. Petrov",
+      "Maya Angelou"
     ],
-    "timestamp": 1639765966060,
-    "y": 2400,
+    "timestamp": 1637607415326,
+    "y": 240,
     "tier": "core"
   },
   {
-    "id": "event-core-076",
-    "title": "Cultural Event 77: Manuscript Circulation",
+    "id": "event-core-005",
+    "title": "Cultural Event 6: Policy Implementation",
+    "date": "2021-11-27",
+    "description": "Generated test event 6 for performance benchmarking",
+    "significance": "supporting",
+    "status": "draft",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1638036309408,
+    "y": 400,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-002",
+    "title": "Cultural Event 3: International Conference",
+    "date": "2021-12-02",
+    "description": "Generated test event 3 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Komnenos",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-j0tami2vv",
+      "evidence-tgpxwt1pa"
+    ],
+    "timestamp": 1638461610523,
+    "y": 160,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-087",
+    "title": "Cultural Event 88: Samizdat Publication Released",
+    "date": "2021-12-06",
+    "time": "15:03",
+    "description": "Generated test event 88 for performance benchmarking",
+    "significance": "important",
+    "status": "unverified",
+    "event_type": "communication",
+    "participants": [
+      "Maya Angelou",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1638807543638,
+    "y": 6960,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-072",
+    "title": "Cultural Event 73: Censorship Document",
+    "date": "2021-12-12",
+    "time": "12:55",
+    "description": "Generated test event 73 for performance benchmarking",
+    "significance": "contextual",
+    "status": "unverified",
+    "event_type": "evidence",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Petrov"
+    ],
+    "evidence_ids": [
+      "evidence-gcf747e2n"
+    ],
+    "timestamp": 1639338916662,
+    "y": 5760,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-058",
+    "title": "Cultural Event 59: Samizdat Publication Released",
+    "date": "2021-12-16",
+    "time": "23:45",
+    "description": "Generated test event 59 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "communication",
+    "participants": [
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1639651538196,
+    "y": 4640,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-059",
+    "title": "Cultural Event 60: Academic Freedom Protest",
+    "date": "2021-12-17",
+    "description": "Generated test event 60 for performance benchmarking",
+    "significance": "important",
+    "status": "draft",
+    "event_type": "document",
+    "participants": [
+      "Maya Angelou",
+      "Dr. Brodsky",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1639755512313,
+    "y": 4720,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-080",
+    "title": "Cultural Event 81: International Conference",
     "date": "2021-12-19",
-    "time": "17:52",
-    "description": "Generated test event 77 for performance benchmarking",
+    "time": "23:32",
+    "description": "Generated test event 81 for performance benchmarking",
     "significance": "supporting",
     "status": "unverified",
     "event_type": "decision",
     "participants": [
-      "Dr. Sakharov",
-      "Dr. Petrov"
+      "Dr. Brodsky"
     ],
     "evidence_ids": [
-      "evidence-397lyeg7i",
-      "evidence-k78ppr231",
-      "evidence-15ulvx8gr"
+      "evidence-gcvuyh5yd",
+      "evidence-alin5fc8b"
     ],
-    "timestamp": 1639922472715,
-    "y": 6080,
+    "timestamp": 1639920968226,
+    "y": 6400,
     "tier": "core"
   },
   {
-    "id": "event-core-060",
-    "title": "Cultural Event 61: Samizdat Publication Released",
-    "date": "2022-01-05",
-    "description": "Generated test event 61 for performance benchmarking",
+    "id": "event-core-094",
+    "title": "Cultural Event 95: Policy Implementation",
+    "date": "2021-12-26",
+    "time": "01:17",
+    "description": "Generated test event 95 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "meeting",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Sakharov",
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1640483665350,
+    "y": 7520,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-064",
+    "title": "Cultural Event 65: Policy Implementation",
+    "date": "2021-12-30",
+    "description": "Generated test event 65 for performance benchmarking",
     "significance": "supporting",
+    "status": "partially_verified",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Komnenos",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1640867760990,
+    "y": 5120,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-090",
+    "title": "Cultural Event 91: Manuscript Circulation",
+    "date": "2022-01-02",
+    "time": "07:48",
+    "description": "Generated test event 91 for performance benchmarking",
+    "significance": "important",
     "status": "draft",
     "event_type": "document",
     "participants": [
       "Prof. Solzhenitsyn",
-      "Dr. Sakharov",
-      "Maya Angelou"
+      "Prof. Komnenos"
     ],
-    "location": "Private Apartment",
+    "location": "Public Square",
     "evidence_ids": [
-      "evidence-7jsm16ekt"
+      "evidence-qsl4b21jg",
+      "evidence-uwwd9opg9",
+      "evidence-nivr29r6w"
     ],
-    "timestamp": 1641346330893,
-    "y": 4800,
+    "timestamp": 1641112565340,
+    "y": 7200,
     "tier": "core"
   },
   {
-    "id": "event-core-035",
-    "title": "Cultural Event 36: International Conference",
-    "date": "2022-01-05",
-    "description": "Generated test event 36 for performance benchmarking",
+    "id": "event-core-052",
+    "title": "Cultural Event 53: Cultural Resistance Activity",
+    "date": "2022-01-10",
+    "time": "20:25",
+    "description": "Generated test event 53 for performance benchmarking",
+    "significance": "supporting",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1641810897813,
+    "y": 4160,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-018",
+    "title": "Cultural Event 19: Censorship Document",
+    "date": "2022-01-10",
+    "description": "Generated test event 19 for performance benchmarking",
+    "significance": "contextual",
+    "status": "unverified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Komnenos",
+      "Maya Angelou"
+    ],
+    "evidence_ids": [
+      "evidence-78up69n6z",
+      "evidence-yng4ifvpn",
+      "evidence-8h29wxbvl"
+    ],
+    "timestamp": 1641815810984,
+    "y": 1440,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-079",
+    "title": "Cultural Event 80: Underground Academic Meeting",
+    "date": "2022-01-13",
+    "time": "08:49",
+    "description": "Generated test event 80 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky"
+    ],
+    "location": "Private Apartment",
+    "timestamp": 1642092426263,
+    "y": 6320,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-066",
+    "title": "Cultural Event 67: Cultural Resistance Activity",
+    "date": "2022-01-16",
+    "description": "Generated test event 67 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "milestone",
+    "participants": [
+      "Prof. Komnenos"
+    ],
+    "location": "Academic Conference",
+    "evidence_ids": [
+      "evidence-iibk29chf",
+      "evidence-rta60uc4k"
+    ],
+    "timestamp": 1642359963926,
+    "y": 5280,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-040",
+    "title": "Cultural Event 41: Student Movement Assembly",
+    "date": "2022-01-17",
+    "description": "Generated test event 41 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky",
+      "Dr. Petrov"
+    ],
+    "timestamp": 1642405079688,
+    "y": 3200,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-001",
+    "title": "Cultural Event 2: Research Collaboration",
+    "date": "2022-01-18",
+    "time": "11:54",
+    "description": "Generated test event 2 for performance benchmarking",
+    "significance": "contextual",
+    "status": "verified",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Komnenos",
+      "Dr. Brodsky"
+    ],
+    "location": "Faculty Lounge",
+    "timestamp": 1642475004093,
+    "y": 80,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-086",
+    "title": "Cultural Event 87: Censorship Document",
+    "date": "2022-01-22",
+    "time": "08:57",
+    "description": "Generated test event 87 for performance benchmarking",
     "significance": "important",
     "status": "unverified",
-    "event_type": "evidence",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Brodsky"
+    ],
+    "location": "Academic Conference",
+    "evidence_ids": [
+      "evidence-6f1s170pe",
+      "evidence-igprldqi2"
+    ],
+    "timestamp": 1642828298492,
+    "y": 6880,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-023",
+    "title": "Cultural Event 24: Samizdat Publication Released",
+    "date": "2022-01-23",
+    "description": "Generated test event 24 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Brodsky",
+      "Maya Angelou"
+    ],
+    "timestamp": 1642951604378,
+    "y": 1840,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-081",
+    "title": "Cultural Event 82: International Conference",
+    "date": "2022-01-24",
+    "description": "Generated test event 82 for performance benchmarking",
+    "significance": "contextual",
+    "status": "unverified",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Sakharov",
+      "Dr. Brodsky",
+      "Maya Angelou"
+    ],
+    "location": "Underground Venue",
+    "evidence_ids": [
+      "evidence-t92xkbop5"
+    ],
+    "timestamp": 1643049258932,
+    "y": 6480,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-046",
+    "title": "Cultural Event 47: Student Movement Assembly",
+    "date": "2022-01-25",
+    "description": "Generated test event 47 for performance benchmarking",
+    "significance": "important",
+    "status": "draft",
+    "event_type": "communication",
     "participants": [
       "Dr. Sakharov",
       "Prof. Solzhenitsyn"
     ],
     "location": "Academic Conference",
-    "timestamp": 1641372027187,
+    "evidence_ids": [
+      "evidence-9msk2bu9d"
+    ],
+    "timestamp": 1643122159108,
+    "y": 3680,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-025",
+    "title": "Cultural Event 26: Intellectual Gathering",
+    "date": "2022-02-09",
+    "description": "Generated test event 26 for performance benchmarking",
+    "significance": "supporting",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Petrov",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-3ccbmtqyh",
+      "evidence-ev3rsc2xr"
+    ],
+    "timestamp": 1644446545065,
+    "y": 2000,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-063",
+    "title": "Cultural Event 64: Censorship Document",
+    "date": "2022-02-10",
+    "description": "Generated test event 64 for performance benchmarking",
+    "significance": "important",
+    "status": "unverified",
+    "event_type": "milestone",
+    "participants": [
+      "Maya Angelou",
+      "Dr. Sakharov"
+    ],
+    "evidence_ids": [
+      "evidence-55vpwvd2x",
+      "evidence-pptpznu0z",
+      "evidence-p9o94elbi"
+    ],
+    "timestamp": 1644506474791,
+    "y": 5040,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-028",
+    "title": "Cultural Event 29: Underground Academic Meeting",
+    "date": "2022-02-10",
+    "description": "Generated test event 29 for performance benchmarking",
+    "significance": "critical",
+    "status": "verified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Petrov",
+      "Prof. Komnenos",
+      "Dr. Sakharov"
+    ],
+    "timestamp": 1644521630997,
+    "y": 2240,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-037",
+    "title": "Cultural Event 38: Student Movement Assembly",
+    "date": "2022-02-21",
+    "time": "22:47",
+    "description": "Generated test event 38 for performance benchmarking",
+    "significance": "supporting",
+    "status": "unverified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Sakharov",
+      "Prof. Komnenos",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1645401663142,
+    "y": 2960,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-022",
+    "title": "Cultural Event 23: Research Collaboration",
+    "date": "2022-02-22",
+    "time": "19:54",
+    "description": "Generated test event 23 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1645515526739,
+    "y": 1760,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-036",
+    "title": "Cultural Event 37: Underground Academic Meeting",
+    "date": "2022-02-25",
+    "time": "08:03",
+    "description": "Generated test event 37 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "meeting",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Petrov"
+    ],
+    "location": "Underground Venue",
+    "timestamp": 1645826753446,
+    "y": 2880,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-034",
+    "title": "Cultural Event 35: Samizdat Publication Released",
+    "date": "2022-03-06",
+    "time": "23:19",
+    "description": "Generated test event 35 for performance benchmarking",
+    "significance": "supporting",
+    "status": "partially_verified",
+    "event_type": "document",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "timestamp": 1646600528578,
+    "y": 2720,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-075",
+    "title": "Cultural Event 76: Faculty Senate Decision",
+    "date": "2022-03-14",
+    "description": "Generated test event 76 for performance benchmarking",
+    "significance": "critical",
+    "status": "draft",
+    "event_type": "meeting",
+    "participants": [
+      "Dr. Sakharov",
+      "Prof. Komnenos",
+      "Dr. Brodsky"
+    ],
+    "location": "Public Square",
+    "evidence_ids": [
+      "evidence-7wdbi8f68",
+      "evidence-8m099x9wb"
+    ],
+    "timestamp": 1647287166211,
+    "y": 6000,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-095",
+    "title": "Cultural Event 96: Policy Implementation",
+    "date": "2022-03-16",
+    "description": "Generated test event 96 for performance benchmarking",
+    "significance": "supporting",
+    "status": "draft",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Brodsky",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1647434494367,
+    "y": 7600,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-010",
+    "title": "Cultural Event 11: Underground Academic Meeting",
+    "date": "2022-03-19",
+    "time": "14:49",
+    "description": "Generated test event 11 for performance benchmarking",
+    "significance": "supporting",
+    "status": "unverified",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1647656440002,
+    "y": 800,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-096",
+    "title": "Cultural Event 97: Intellectual Gathering",
+    "date": "2022-04-03",
+    "time": "08:23",
+    "description": "Generated test event 97 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Sakharov",
+      "Maya Angelou"
+    ],
+    "location": "Coffee House",
+    "evidence_ids": [
+      "evidence-7c26d9o76"
+    ],
+    "timestamp": 1648953195026,
+    "y": 7680,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-035",
+    "title": "Cultural Event 36: Intellectual Gathering",
+    "date": "2022-04-10",
+    "time": "11:29",
+    "description": "Generated test event 36 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Sakharov",
+      "Prof. Komnenos",
+      "Prof. Solzhenitsyn"
+    ],
+    "location": "Coffee House",
+    "timestamp": 1649608411522,
     "y": 2800,
     "tier": "core"
   },
   {
-    "id": "event-core-081",
-    "title": "Cultural Event 82: Academic Freedom Protest",
-    "date": "2022-01-06",
-    "time": "02:22",
-    "description": "Generated test event 82 for performance benchmarking",
-    "significance": "contextual",
-    "status": "unverified",
+    "id": "event-core-007",
+    "title": "Cultural Event 8: Faculty Senate Decision",
+    "date": "2022-04-14",
+    "time": "20:01",
+    "description": "Generated test event 8 for performance benchmarking",
+    "significance": "critical",
+    "status": "verified",
     "event_type": "meeting",
     "participants": [
-      "Prof. Komnenos",
-      "Dr. Sakharov"
+      "Dr. Sakharov",
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky"
     ],
-    "timestamp": 1641498910237,
-    "y": 6480,
+    "location": "University Library",
+    "evidence_ids": [
+      "evidence-ocdbgihea",
+      "evidence-43tc8meqw"
+    ],
+    "timestamp": 1649896981143,
+    "y": 560,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-029",
+    "title": "Cultural Event 30: Censorship Document",
+    "date": "2022-04-17",
+    "description": "Generated test event 30 for performance benchmarking",
+    "significance": "important",
+    "status": "draft",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Komnenos",
+      "Prof. Solzhenitsyn",
+      "Maya Angelou"
+    ],
+    "location": "Academic Conference",
+    "evidence_ids": [
+      "evidence-9khh9mr91"
+    ],
+    "timestamp": 1650238532999,
+    "y": 2320,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-085",
+    "title": "Cultural Event 86: International Conference",
+    "date": "2022-04-24",
+    "description": "Generated test event 86 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "evidence",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "timestamp": 1650802816933,
+    "y": 6800,
     "tier": "core"
   },
   {
     "id": "event-core-038",
-    "title": "Cultural Event 39: International Conference",
-    "date": "2022-01-12",
+    "title": "Cultural Event 39: Student Movement Assembly",
+    "date": "2022-04-27",
     "description": "Generated test event 39 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
+    "significance": "supporting",
+    "status": "unverified",
     "event_type": "communication",
     "participants": [
-      "Maya Angelou"
+      "Prof. Solzhenitsyn"
     ],
-    "timestamp": 1641973576841,
+    "timestamp": 1651063438302,
     "y": 3040,
     "tier": "core"
   },
   {
     "id": "event-core-039",
     "title": "Cultural Event 40: Academic Freedom Protest",
-    "date": "2022-01-16",
+    "date": "2022-04-29",
     "description": "Generated test event 40 for performance benchmarking",
-    "significance": "critical",
-    "status": "unverified",
-    "event_type": "decision",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "communication",
     "participants": [
-      "Maya Angelou"
+      "Maya Angelou",
+      "Prof. Komnenos"
     ],
-    "evidence_ids": [
-      "evidence-2me6q8tzu"
-    ],
-    "timestamp": 1642320126005,
+    "location": "Underground Venue",
+    "timestamp": 1651218432550,
     "y": 3120,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-028",
-    "title": "Cultural Event 29: Manuscript Circulation",
-    "date": "2022-01-17",
-    "time": "21:09",
-    "description": "Generated test event 29 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn",
-      "Dr. Petrov"
-    ],
-    "timestamp": 1642379192513,
-    "y": 2240,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-004",
-    "title": "Cultural Event 5: Student Movement Assembly",
-    "date": "2022-01-28",
-    "description": "Generated test event 5 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Petrov",
-      "Maya Angelou",
-      "Dr. Brodsky"
-    ],
-    "location": "Private Apartment",
-    "timestamp": 1643343801993,
-    "y": 320,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-021",
-    "title": "Cultural Event 22: International Conference",
-    "date": "2022-02-01",
-    "description": "Generated test event 22 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "milestone",
-    "participants": [
-      "Maya Angelou",
-      "Dr. Petrov",
-      "Dr. Sakharov",
-      "Prof. Komnenos"
-    ],
-    "location": "University Library",
-    "timestamp": 1643698652809,
-    "y": 1680,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-027",
-    "title": "Cultural Event 28: Underground Academic Meeting",
-    "date": "2022-02-03",
-    "description": "Generated test event 28 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Sakharov"
-    ],
-    "timestamp": 1643870579773,
-    "y": 2160,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-052",
-    "title": "Cultural Event 53: Research Collaboration",
-    "date": "2022-02-03",
-    "time": "06:11",
-    "description": "Generated test event 53 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Sakharov"
-    ],
-    "timestamp": 1643880093588,
-    "y": 4160,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-032",
-    "title": "Cultural Event 33: Underground Academic Meeting",
-    "date": "2022-02-09",
-    "description": "Generated test event 33 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Petrov",
-      "Prof. Komnenos",
-      "Dr. Brodsky"
-    ],
-    "location": "Underground Venue",
-    "evidence_ids": [
-      "evidence-kz0xo0u2t"
-    ],
-    "timestamp": 1644384201709,
-    "y": 2560,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-070",
-    "title": "Cultural Event 71: Manuscript Circulation",
-    "date": "2022-02-12",
-    "description": "Generated test event 71 for performance benchmarking",
-    "significance": "contextual",
-    "status": "partially_verified",
-    "event_type": "document",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "timestamp": 1644642662088,
-    "y": 5600,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-054",
-    "title": "Cultural Event 55: Research Collaboration",
-    "date": "2022-02-13",
-    "description": "Generated test event 55 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Sakharov",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1644771273730,
-    "y": 4320,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-040",
-    "title": "Cultural Event 41: Policy Implementation",
-    "date": "2022-02-15",
-    "description": "Generated test event 41 for performance benchmarking",
-    "significance": "contextual",
-    "status": "unverified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Dr. Brodsky",
-      "Prof. Komnenos"
-    ],
-    "location": "Coffee House",
-    "timestamp": 1644884845718,
-    "y": 3200,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-074",
-    "title": "Cultural Event 75: Research Collaboration",
-    "date": "2022-02-21",
-    "description": "Generated test event 75 for performance benchmarking",
-    "significance": "supporting",
-    "status": "verified",
-    "event_type": "decision",
-    "participants": [
-      "Maya Angelou",
-      "Dr. Petrov",
-      "Prof. Solzhenitsyn"
-    ],
-    "timestamp": 1645456506082,
-    "y": 5920,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-094",
-    "title": "Cultural Event 95: Faculty Senate Decision",
-    "date": "2022-02-26",
-    "time": "11:50",
-    "description": "Generated test event 95 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "communication",
-    "participants": [
-      "Prof. Komnenos"
-    ],
-    "location": "Faculty Lounge",
-    "timestamp": 1645897178491,
-    "y": 7520,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-056",
-    "title": "Cultural Event 57: Faculty Senate Decision",
-    "date": "2022-02-26",
-    "description": "Generated test event 57 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Sakharov",
-      "Dr. Brodsky",
-      "Dr. Petrov"
-    ],
-    "evidence_ids": [
-      "evidence-t2ue08y0d"
-    ],
-    "timestamp": 1645906621054,
-    "y": 4480,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-026",
-    "title": "Cultural Event 27: Faculty Senate Decision",
-    "date": "2022-03-01",
-    "description": "Generated test event 27 for performance benchmarking",
-    "significance": "important",
-    "status": "unverified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Komnenos"
-    ],
-    "evidence_ids": [
-      "evidence-zgq3tpo2f",
-      "evidence-0lhinl46m",
-      "evidence-ygkmzoto3"
-    ],
-    "timestamp": 1646170270556,
-    "y": 2080,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-011",
-    "title": "Cultural Event 12: Policy Implementation",
-    "date": "2022-03-02",
-    "time": "06:05",
-    "description": "Generated test event 12 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "evidence",
-    "participants": [
-      "Dr. Petrov"
-    ],
-    "location": "Public Square",
-    "timestamp": 1646197028765,
-    "y": 880,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-098",
-    "title": "Cultural Event 99: Samizdat Publication Released",
-    "date": "2022-03-03",
-    "description": "Generated test event 99 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "location": "Art Gallery",
-    "evidence_ids": [
-      "evidence-192h0a35s",
-      "evidence-h2mt1cwrk"
-    ],
-    "timestamp": 1646322105104,
-    "y": 7840,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-020",
-    "title": "Cultural Event 21: Underground Academic Meeting",
-    "date": "2022-03-05",
-    "time": "09:25",
-    "description": "Generated test event 21 for performance benchmarking",
-    "significance": "critical",
-    "status": "unverified",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Komnenos",
-      "Dr. Brodsky"
-    ],
-    "location": "Public Square",
-    "timestamp": 1646517721026,
-    "y": 1600,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-044",
-    "title": "Cultural Event 45: Samizdat Publication Released",
-    "date": "2022-03-15",
-    "time": "03:11",
-    "description": "Generated test event 45 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1647338045692,
-    "y": 3520,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-025",
-    "title": "Cultural Event 26: Cultural Resistance Activity",
-    "date": "2022-03-17",
-    "description": "Generated test event 26 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Petrov"
-    ],
-    "evidence_ids": [
-      "evidence-4dag1spji"
-    ],
-    "timestamp": 1647510692352,
-    "y": 2000,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-003",
-    "title": "Cultural Event 4: Underground Academic Meeting",
-    "date": "2022-03-22",
-    "time": "01:39",
-    "description": "Generated test event 4 for performance benchmarking",
-    "significance": "critical",
-    "status": "unverified",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Sakharov",
-      "Dr. Petrov"
-    ],
-    "location": "Academic Conference",
-    "timestamp": 1647967018474,
-    "y": 240,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-002",
-    "title": "Cultural Event 3: Academic Freedom Protest",
-    "date": "2022-03-23",
-    "time": "11:56",
-    "description": "Generated test event 3 for performance benchmarking",
-    "significance": "important",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Petrov"
-    ],
-    "location": "Faculty Lounge",
-    "evidence_ids": [
-      "evidence-wedz3coez",
-      "evidence-0ho58ddoy",
-      "evidence-ojbbmhrms"
-    ],
-    "timestamp": 1648079579268,
-    "y": 160,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-048",
-    "title": "Cultural Event 49: Censorship Document",
-    "date": "2022-03-25",
-    "description": "Generated test event 49 for performance benchmarking",
-    "significance": "supporting",
-    "status": "partially_verified",
-    "event_type": "meeting",
-    "participants": [
-      "Dr. Sakharov",
-      "Maya Angelou",
-      "Dr. Petrov"
-    ],
-    "location": "University Library",
-    "timestamp": 1648180364959,
-    "y": 3840,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-050",
-    "title": "Cultural Event 51: Samizdat Publication Released",
-    "date": "2022-03-29",
-    "time": "18:49",
-    "description": "Generated test event 51 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "location": "Public Square",
-    "evidence_ids": [
-      "evidence-wxvd69ft1",
-      "evidence-zxn9pyprj",
-      "evidence-8jzpmsce3"
-    ],
-    "timestamp": 1648588355573,
-    "y": 4000,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-064",
-    "title": "Cultural Event 65: Censorship Document",
-    "date": "2022-04-02",
-    "time": "19:12",
-    "description": "Generated test event 65 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "evidence_ids": [
-      "evidence-92sq5elks",
-      "evidence-tcm8jv0ka",
-      "evidence-1cm06cp6x"
-    ],
-    "timestamp": 1648861082287,
-    "y": 5120,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-086",
-    "title": "Cultural Event 87: Intellectual Gathering",
-    "date": "2022-04-02",
-    "description": "Generated test event 87 for performance benchmarking",
-    "significance": "supporting",
-    "status": "partially_verified",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Petrov",
-      "Dr. Sakharov"
-    ],
-    "timestamp": 1648921650551,
-    "y": 6880,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-013",
-    "title": "Cultural Event 14: Intellectual Gathering",
-    "date": "2022-04-09",
-    "description": "Generated test event 14 for performance benchmarking",
-    "significance": "supporting",
-    "status": "verified",
-    "event_type": "communication",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1649490615765,
-    "y": 1040,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-061",
-    "title": "Cultural Event 62: Faculty Senate Decision",
-    "date": "2022-04-14",
-    "time": "10:10",
-    "description": "Generated test event 62 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Petrov",
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Private Apartment",
-    "timestamp": 1649928836575,
-    "y": 4880,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-062",
-    "title": "Cultural Event 63: Student Movement Assembly",
-    "date": "2022-04-16",
-    "time": "11:03",
-    "description": "Generated test event 63 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Petrov"
-    ],
-    "timestamp": 1650108465188,
-    "y": 4960,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-077",
-    "title": "Cultural Event 78: Policy Implementation",
-    "date": "2022-04-25",
-    "time": "21:08",
-    "description": "Generated test event 78 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1650851804684,
-    "y": 6160,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-068",
-    "title": "Cultural Event 69: Samizdat Publication Released",
-    "date": "2022-05-01",
-    "description": "Generated test event 69 for performance benchmarking",
-    "significance": "contextual",
-    "status": "verified",
-    "event_type": "decision",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "timestamp": 1651436643179,
-    "y": 5440,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-079",
-    "title": "Cultural Event 80: Underground Academic Meeting",
-    "date": "2022-05-09",
-    "description": "Generated test event 80 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Maya Angelou"
-    ],
-    "location": "Academic Conference",
-    "timestamp": 1652091052541,
-    "y": 6320,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-045",
-    "title": "Cultural Event 46: Faculty Senate Decision",
-    "date": "2022-05-14",
-    "time": "11:38",
-    "description": "Generated test event 46 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "document",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn",
-      "Maya Angelou"
-    ],
-    "timestamp": 1652527294741,
-    "y": 3600,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-014",
-    "title": "Cultural Event 15: Underground Academic Meeting",
-    "date": "2022-05-14",
-    "time": "20:23",
-    "description": "Generated test event 15 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "meeting",
-    "participants": [
-      "Maya Angelou",
-      "Dr. Brodsky",
-      "Prof. Solzhenitsyn",
-      "Prof. Komnenos"
-    ],
-    "location": "Underground Venue",
-    "timestamp": 1652560161483,
-    "y": 1120,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-036",
-    "title": "Cultural Event 37: Faculty Senate Decision",
-    "date": "2022-05-20",
-    "time": "05:12",
-    "description": "Generated test event 37 for performance benchmarking",
-    "significance": "contextual",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Brodsky",
-      "Prof. Komnenos"
-    ],
-    "location": "Art Gallery",
-    "evidence_ids": [
-      "evidence-fcrx2gbtx",
-      "evidence-rmpa7v6aq",
-      "evidence-5ogr699yp"
-    ],
-    "timestamp": 1653026023300,
-    "y": 2880,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-087",
-    "title": "Cultural Event 88: Faculty Senate Decision",
-    "date": "2022-05-20",
-    "description": "Generated test event 88 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "communication",
-    "participants": [
-      "Prof. Komnenos",
-      "Maya Angelou"
-    ],
-    "location": "Coffee House",
-    "evidence_ids": [
-      "evidence-xtigrl0an",
-      "evidence-3j7jghanu"
-    ],
-    "timestamp": 1653065976295,
-    "y": 6960,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-046",
-    "title": "Cultural Event 47: Student Movement Assembly",
-    "date": "2022-05-23",
-    "time": "11:36",
-    "description": "Generated test event 47 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Coffee House",
-    "timestamp": 1653304596506,
-    "y": 3680,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-007",
-    "title": "Cultural Event 8: Student Movement Assembly",
-    "date": "2022-05-24",
-    "time": "09:09",
-    "description": "Generated test event 8 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Maya Angelou",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1653376459668,
-    "y": 560,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-083",
-    "title": "Cultural Event 84: Cultural Resistance Activity",
-    "date": "2022-05-27",
-    "description": "Generated test event 84 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Public Square",
-    "timestamp": 1653624341333,
-    "y": 6640,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-059",
-    "title": "Cultural Event 60: Manuscript Circulation",
-    "date": "2022-05-29",
-    "description": "Generated test event 60 for performance benchmarking",
-    "significance": "contextual",
-    "status": "unverified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Petrov"
-    ],
-    "evidence_ids": [
-      "evidence-40t1t3yif",
-      "evidence-so5b7woe4"
-    ],
-    "timestamp": 1653862336959,
-    "y": 4720,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-088",
-    "title": "Cultural Event 89: Cultural Resistance Activity",
-    "date": "2022-06-02",
-    "time": "11:48",
-    "description": "Generated test event 89 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Petrov",
-      "Maya Angelou"
-    ],
-    "location": "Academic Conference",
-    "evidence_ids": [
-      "evidence-gk2k57fqi",
-      "evidence-u88cc3cs5"
-    ],
-    "timestamp": 1654197358357,
-    "y": 7040,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-089",
-    "title": "Cultural Event 90: Research Collaboration",
-    "date": "2022-06-06",
-    "time": "05:10",
-    "description": "Generated test event 90 for performance benchmarking",
-    "significance": "important",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn",
-      "Dr. Brodsky"
-    ],
-    "location": "Underground Venue",
-    "timestamp": 1654517769126,
-    "y": 7120,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-097",
-    "title": "Cultural Event 98: International Conference",
-    "date": "2022-06-07",
-    "description": "Generated test event 98 for performance benchmarking",
-    "significance": "important",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Dr. Petrov"
-    ],
-    "location": "Private Apartment",
-    "timestamp": 1654577353739,
-    "y": 7760,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-057",
-    "title": "Cultural Event 58: Intellectual Gathering",
-    "date": "2022-06-12",
-    "time": "05:46",
-    "description": "Generated test event 58 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1655022070224,
-    "y": 4560,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-019",
-    "title": "Cultural Event 20: Research Collaboration",
-    "date": "2022-06-17",
-    "time": "17:07",
-    "description": "Generated test event 20 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "milestone",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "timestamp": 1655509784093,
-    "y": 1520,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-016",
-    "title": "Cultural Event 17: Cultural Resistance Activity",
-    "date": "2022-06-18",
-    "description": "Generated test event 17 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Academic Conference",
-    "timestamp": 1655575067780,
-    "y": 1280,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-069",
-    "title": "Cultural Event 70: Cultural Resistance Activity",
-    "date": "2022-06-19",
-    "time": "08:42",
-    "description": "Generated test event 70 for performance benchmarking",
-    "significance": "important",
-    "status": "unverified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Brodsky",
-      "Maya Angelou"
-    ],
-    "location": "Private Apartment",
-    "evidence_ids": [
-      "evidence-jdwcwvmwe",
-      "evidence-j7stjea30"
-    ],
-    "timestamp": 1655620614667,
-    "y": 5520,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-041",
-    "title": "Cultural Event 42: Faculty Senate Decision",
-    "date": "2022-06-20",
-    "description": "Generated test event 42 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Sakharov",
-      "Dr. Brodsky"
-    ],
-    "evidence_ids": [
-      "evidence-1lhcvz99b",
-      "evidence-k8hovyx8g",
-      "evidence-evkau1ih2"
-    ],
-    "timestamp": 1655769549361,
-    "y": 3280,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-034",
-    "title": "Cultural Event 35: Cultural Resistance Activity",
-    "date": "2022-06-21",
-    "description": "Generated test event 35 for performance benchmarking",
-    "significance": "critical",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Dr. Brodsky"
-    ],
-    "location": "Private Apartment",
-    "timestamp": 1655783745428,
-    "y": 2720,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-085",
-    "title": "Cultural Event 86: International Conference",
-    "date": "2022-07-05",
-    "time": "06:47",
-    "description": "Generated test event 86 for performance benchmarking",
-    "significance": "supporting",
-    "status": "verified",
-    "event_type": "decision",
-    "participants": [
-      "Maya Angelou"
-    ],
-    "timestamp": 1657007652520,
-    "y": 6800,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-017",
-    "title": "Cultural Event 18: Cultural Resistance Activity",
-    "date": "2022-07-07",
-    "time": "13:10",
-    "description": "Generated test event 18 for performance benchmarking",
-    "significance": "critical",
-    "status": "verified",
-    "event_type": "evidence",
-    "participants": [
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1657191879146,
-    "y": 1360,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-005",
-    "title": "Cultural Event 6: Censorship Document",
-    "date": "2022-07-08",
-    "time": "21:38",
-    "description": "Generated test event 6 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "meeting",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Komnenos",
-      "Maya Angelou",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Public Square",
-    "timestamp": 1657292070643,
-    "y": 400,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-063",
-    "title": "Cultural Event 64: Research Collaboration",
-    "date": "2022-07-10",
-    "time": "16:24",
-    "description": "Generated test event 64 for performance benchmarking",
-    "significance": "contextual",
-    "status": "partially_verified",
-    "event_type": "communication",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn",
-      "Dr. Petrov"
-    ],
-    "timestamp": 1657483562379,
-    "y": 5040,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-071",
-    "title": "Cultural Event 72: Policy Implementation",
-    "date": "2022-07-14",
-    "description": "Generated test event 72 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn"
-    ],
-    "timestamp": 1657786394176,
-    "y": 5680,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-043",
-    "title": "Cultural Event 44: Samizdat Publication Released",
-    "date": "2022-07-23",
-    "time": "15:44",
-    "description": "Generated test event 44 for performance benchmarking",
-    "significance": "supporting",
-    "status": "verified",
-    "event_type": "communication",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Faculty Lounge",
-    "evidence_ids": [
-      "evidence-60t3bz5sy",
-      "evidence-avqpcs8fv",
-      "evidence-u3z6f31yo"
-    ],
-    "timestamp": 1658575928204,
-    "y": 3440,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-093",
-    "title": "Cultural Event 94: Student Movement Assembly",
-    "date": "2022-07-24",
-    "description": "Generated test event 94 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "milestone",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Dr. Petrov",
-      "Dr. Sakharov",
-      "Prof. Komnenos"
-    ],
-    "location": "Art Gallery",
-    "timestamp": 1658676488688,
-    "y": 7440,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-049",
-    "title": "Cultural Event 50: Censorship Document",
-    "date": "2022-07-24",
-    "description": "Generated test event 50 for performance benchmarking",
-    "significance": "supporting",
-    "status": "draft",
-    "event_type": "document",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Prof. Komnenos",
-      "Maya Angelou",
-      "Dr. Petrov"
-    ],
-    "timestamp": 1658698571278,
-    "y": 3920,
     "tier": "core"
   },
   {
     "id": "event-core-091",
     "title": "Cultural Event 92: Intellectual Gathering",
-    "date": "2022-07-25",
-    "time": "23:15",
+    "date": "2022-04-30",
     "description": "Generated test event 92 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "evidence",
+    "significance": "contextual",
+    "status": "verified",
+    "event_type": "decision",
     "participants": [
-      "Dr. Petrov",
-      "Maya Angelou",
-      "Prof. Solzhenitsyn"
+      "Maya Angelou"
     ],
-    "location": "Underground Venue",
-    "evidence_ids": [
-      "evidence-34pb4zbn2"
-    ],
-    "timestamp": 1658790741950,
+    "timestamp": 1651309309292,
     "y": 7280,
     "tier": "core"
   },
   {
-    "id": "event-core-029",
-    "title": "Cultural Event 30: Faculty Senate Decision",
-    "date": "2022-07-27",
-    "time": "19:01",
-    "description": "Generated test event 30 for performance benchmarking",
-    "significance": "contextual",
+    "id": "event-core-053",
+    "title": "Cultural Event 54: Samizdat Publication Released",
+    "date": "2022-05-01",
+    "description": "Generated test event 54 for performance benchmarking",
+    "significance": "important",
     "status": "unverified",
-    "event_type": "meeting",
-    "participants": [
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1658918410910,
-    "y": 2320,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-024",
-    "title": "Cultural Event 25: Manuscript Circulation",
-    "date": "2022-07-29",
-    "time": "22:22",
-    "description": "Generated test event 25 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
-    "event_type": "communication",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Komnenos",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1659063272379,
-    "y": 1920,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-015",
-    "title": "Cultural Event 16: International Conference",
-    "date": "2022-08-04",
-    "description": "Generated test event 16 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "decision",
-    "participants": [
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1659634539086,
-    "y": 1200,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-000",
-    "title": "Cultural Event 1: Academic Freedom Protest",
-    "date": "2022-08-07",
-    "time": "19:32",
-    "description": "Generated test event 1 for performance benchmarking",
-    "significance": "critical",
-    "status": "draft",
-    "event_type": "document",
-    "participants": [
-      "Dr. Sakharov",
-      "Dr. Petrov"
-    ],
-    "evidence_ids": [
-      "evidence-gu8z1uev7",
-      "evidence-qfx14gmai",
-      "evidence-hqrturt6j"
-    ],
-    "timestamp": 1659839832221,
-    "y": 0,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-095",
-    "title": "Cultural Event 96: Faculty Senate Decision",
-    "date": "2022-08-09",
-    "description": "Generated test event 96 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
-    "event_type": "decision",
-    "participants": [
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1660015289907,
-    "y": 7600,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-096",
-    "title": "Cultural Event 97: Policy Implementation",
-    "date": "2022-08-25",
-    "time": "18:36",
-    "description": "Generated test event 97 for performance benchmarking",
-    "significance": "important",
-    "status": "partially_verified",
     "event_type": "evidence",
     "participants": [
-      "Dr. Sakharov",
-      "Maya Angelou",
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1661427989043,
-    "y": 7680,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-008",
-    "title": "Cultural Event 9: Underground Academic Meeting",
-    "date": "2022-08-29",
-    "time": "00:51",
-    "description": "Generated test event 9 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "meeting",
-    "participants": [
-      "Dr. Brodsky",
+      "Prof. Komnenos",
       "Dr. Petrov",
-      "Prof. Komnenos",
+      "Maya Angelou",
       "Dr. Sakharov"
-    ],
-    "location": "University Library",
-    "timestamp": 1661805469839,
-    "y": 640,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-051",
-    "title": "Cultural Event 52: Manuscript Circulation",
-    "date": "2022-08-31",
-    "description": "Generated test event 52 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Brodsky"
-    ],
-    "timestamp": 1661918303868,
-    "y": 4080,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-058",
-    "title": "Cultural Event 59: Faculty Senate Decision",
-    "date": "2022-09-11",
-    "time": "13:18",
-    "description": "Generated test event 59 for performance benchmarking",
-    "significance": "critical",
-    "status": "partially_verified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "Underground Venue",
-    "timestamp": 1662912795991,
-    "y": 4640,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-075",
-    "title": "Cultural Event 76: Censorship Document",
-    "date": "2022-09-17",
-    "description": "Generated test event 76 for performance benchmarking",
-    "significance": "contextual",
-    "status": "unverified",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Sakharov"
-    ],
-    "evidence_ids": [
-      "evidence-knw0921qz"
-    ],
-    "timestamp": 1663382050614,
-    "y": 6000,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-022",
-    "title": "Cultural Event 23: International Conference",
-    "date": "2022-09-21",
-    "time": "20:03",
-    "description": "Generated test event 23 for performance benchmarking",
-    "significance": "important",
-    "status": "verified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Prof. Komnenos"
-    ],
-    "timestamp": 1663778164186,
-    "y": 1760,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-065",
-    "title": "Cultural Event 66: Cultural Resistance Activity",
-    "date": "2022-09-23",
-    "time": "14:01",
-    "description": "Generated test event 66 for performance benchmarking",
-    "significance": "important",
-    "status": "draft",
-    "event_type": "decision",
-    "participants": [
-      "Dr. Petrov"
     ],
     "location": "Academic Conference",
-    "timestamp": 1663913687150,
-    "y": 5200,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-092",
-    "title": "Cultural Event 93: Intellectual Gathering",
-    "date": "2022-09-30",
-    "time": "07:01",
-    "description": "Generated test event 93 for performance benchmarking",
-    "significance": "critical",
-    "status": "unverified",
-    "event_type": "milestone",
-    "participants": [
-      "Maya Angelou",
-      "Prof. Solzhenitsyn"
-    ],
-    "evidence_ids": [
-      "evidence-9z461tg66"
-    ],
-    "timestamp": 1664544596628,
-    "y": 7360,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-053",
-    "title": "Cultural Event 54: Intellectual Gathering",
-    "date": "2022-10-02",
-    "description": "Generated test event 54 for performance benchmarking",
-    "significance": "contextual",
-    "status": "partially_verified",
-    "event_type": "decision",
-    "participants": [
-      "Prof. Komnenos",
-      "Dr. Petrov"
-    ],
-    "location": "University Library",
-    "timestamp": 1664736352333,
+    "timestamp": 1651385160233,
     "y": 4240,
     "tier": "core"
   },
   {
-    "id": "event-core-012",
-    "title": "Cultural Event 13: Research Collaboration",
-    "date": "2022-10-05",
-    "description": "Generated test event 13 for performance benchmarking",
-    "significance": "supporting",
+    "id": "event-core-009",
+    "title": "Cultural Event 10: International Conference",
+    "date": "2022-05-04",
+    "time": "09:22",
+    "description": "Generated test event 10 for performance benchmarking",
+    "significance": "important",
     "status": "draft",
-    "event_type": "milestone",
+    "event_type": "document",
     "participants": [
-      "Prof. Solzhenitsyn",
-      "Prof. Komnenos"
+      "Prof. Komnenos",
+      "Dr. Sakharov",
+      "Dr. Brodsky"
     ],
-    "evidence_ids": [
-      "evidence-k7ygtm7gi",
-      "evidence-z9o8x1co5"
-    ],
-    "timestamp": 1664992159871,
-    "y": 960,
+    "location": "Underground Venue",
+    "timestamp": 1651643085640,
+    "y": 720,
     "tier": "core"
   },
   {
-    "id": "event-core-084",
-    "title": "Cultural Event 85: Faculty Senate Decision",
-    "date": "2022-10-08",
-    "time": "05:45",
-    "description": "Generated test event 85 for performance benchmarking",
+    "id": "event-core-044",
+    "title": "Cultural Event 45: Intellectual Gathering",
+    "date": "2022-05-10",
+    "description": "Generated test event 45 for performance benchmarking",
     "significance": "supporting",
-    "status": "verified",
+    "status": "partially_verified",
     "event_type": "evidence",
     "participants": [
-      "Dr. Petrov"
+      "Prof. Komnenos",
+      "Dr. Sakharov"
     ],
-    "timestamp": 1665263879393,
-    "y": 6720,
+    "location": "Public Square",
+    "timestamp": 1652219503433,
+    "y": 3520,
     "tier": "core"
   },
   {
     "id": "event-core-078",
     "title": "Cultural Event 79: Manuscript Circulation",
-    "date": "2022-10-09",
+    "date": "2022-05-12",
     "description": "Generated test event 79 for performance benchmarking",
-    "significance": "supporting",
+    "significance": "contextual",
     "status": "partially_verified",
-    "event_type": "meeting",
+    "event_type": "decision",
     "participants": [
-      "Dr. Petrov"
+      "Prof. Solzhenitsyn",
+      "Dr. Petrov",
+      "Maya Angelou"
     ],
-    "location": "Underground Venue",
-    "evidence_ids": [
-      "evidence-dv54nyf6o",
-      "evidence-mc4zv7aje",
-      "evidence-trt0q62xi"
-    ],
-    "timestamp": 1665291998853,
+    "timestamp": 1652315714441,
     "y": 6240,
     "tier": "core"
   },
   {
-    "id": "event-core-066",
-    "title": "Cultural Event 67: Faculty Senate Decision",
-    "date": "2022-10-11",
-    "description": "Generated test event 67 for performance benchmarking",
+    "id": "event-core-051",
+    "title": "Cultural Event 52: Academic Freedom Protest",
+    "date": "2022-05-12",
+    "time": "06:03",
+    "description": "Generated test event 52 for performance benchmarking",
     "significance": "contextual",
-    "status": "draft",
-    "event_type": "document",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn"
-    ],
-    "location": "University Library",
-    "evidence_ids": [
-      "evidence-s9uzn16xj"
-    ],
-    "timestamp": 1665458960594,
-    "y": 5280,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-018",
-    "title": "Cultural Event 19: International Conference",
-    "date": "2022-10-20",
-    "time": "14:22",
-    "description": "Generated test event 19 for performance benchmarking",
-    "significance": "contextual",
-    "status": "partially_verified",
-    "event_type": "evidence",
-    "participants": [
-      "Prof. Solzhenitsyn",
-      "Dr. Petrov",
-      "Dr. Sakharov"
-    ],
-    "location": "Academic Conference",
-    "evidence_ids": [
-      "evidence-p15mapbhs"
-    ],
-    "timestamp": 1666278851351,
-    "y": 1440,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-067",
-    "title": "Cultural Event 68: Policy Implementation",
-    "date": "2022-10-24",
-    "time": "10:52",
-    "description": "Generated test event 68 for performance benchmarking",
-    "significance": "supporting",
     "status": "unverified",
     "event_type": "evidence",
     "participants": [
-      "Dr. Brodsky",
-      "Prof. Solzhenitsyn",
+      "Dr. Petrov",
       "Maya Angelou"
     ],
-    "timestamp": 1666585067265,
-    "y": 5360,
+    "location": "University Library",
+    "timestamp": 1652326400476,
+    "y": 4080,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-069",
+    "title": "Cultural Event 70: Manuscript Circulation",
+    "date": "2022-05-22",
+    "description": "Generated test event 70 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Petrov",
+      "Dr. Sakharov"
+    ],
+    "evidence_ids": [
+      "evidence-1ofxrqab9",
+      "evidence-oq58f2t29",
+      "evidence-6o1ddnmmi"
+    ],
+    "timestamp": 1653181121895,
+    "y": 5520,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-062",
+    "title": "Cultural Event 63: Manuscript Circulation",
+    "date": "2022-05-28",
+    "time": "02:40",
+    "description": "Generated test event 63 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "evidence",
+    "participants": [
+      "Dr. Petrov",
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-izaausw5e"
+    ],
+    "timestamp": 1653718402347,
+    "y": 4960,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-030",
+    "title": "Cultural Event 31: Intellectual Gathering",
+    "date": "2022-06-01",
+    "time": "06:20",
+    "description": "Generated test event 31 for performance benchmarking",
+    "significance": "contextual",
+    "status": "partially_verified",
+    "event_type": "milestone",
+    "participants": [
+      "Prof. Komnenos"
+    ],
+    "evidence_ids": [
+      "evidence-1d2vzmi2d",
+      "evidence-n4855re0z",
+      "evidence-n15bee1w7"
+    ],
+    "timestamp": 1654050774519,
+    "y": 2400,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-054",
+    "title": "Cultural Event 55: Samizdat Publication Released",
+    "date": "2022-06-03",
+    "description": "Generated test event 55 for performance benchmarking",
+    "significance": "critical",
+    "status": "draft",
+    "event_type": "meeting",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-xkn0gxec2",
+      "evidence-o4krbvnpm",
+      "evidence-ycq2ajy6b"
+    ],
+    "timestamp": 1654250917361,
+    "y": 4320,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-000",
+    "title": "Cultural Event 1: Academic Freedom Protest",
+    "date": "2022-06-06",
+    "time": "23:56",
+    "description": "Generated test event 1 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "meeting",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Maya Angelou",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-xjeciem0g"
+    ],
+    "timestamp": 1654493254968,
+    "y": 0,
     "tier": "core"
   },
   {
     "id": "event-core-042",
     "title": "Cultural Event 43: Censorship Document",
-    "date": "2022-10-25",
-    "time": "04:11",
+    "date": "2022-06-11",
+    "time": "19:42",
     "description": "Generated test event 43 for performance benchmarking",
-    "significance": "supporting",
-    "status": "unverified",
-    "event_type": "communication",
+    "significance": "contextual",
+    "status": "partially_verified",
+    "event_type": "meeting",
     "participants": [
-      "Prof. Solzhenitsyn"
+      "Dr. Sakharov"
     ],
-    "location": "Private Apartment",
-    "timestamp": 1666712235742,
+    "evidence_ids": [
+      "evidence-u81ka3tgh",
+      "evidence-tb6k24ioo"
+    ],
+    "timestamp": 1654940509835,
     "y": 3360,
     "tier": "core"
   },
   {
-    "id": "event-core-033",
-    "title": "Cultural Event 34: Cultural Resistance Activity",
-    "date": "2022-10-27",
-    "description": "Generated test event 34 for performance benchmarking",
+    "id": "event-core-015",
+    "title": "Cultural Event 16: Student Movement Assembly",
+    "date": "2022-06-19",
+    "time": "19:26",
+    "description": "Generated test event 16 for performance benchmarking",
     "significance": "important",
     "status": "verified",
     "event_type": "decision",
     "participants": [
+      "Prof. Komnenos",
       "Dr. Sakharov"
     ],
-    "location": "Academic Conference",
-    "timestamp": 1666871928209,
-    "y": 2640,
-    "tier": "core"
-  },
-  {
-    "id": "event-core-006",
-    "title": "Cultural Event 7: Censorship Document",
-    "date": "2022-10-28",
-    "time": "21:26",
-    "description": "Generated test event 7 for performance benchmarking",
-    "significance": "contextual",
-    "status": "draft",
-    "event_type": "meeting",
-    "participants": [
-      "Dr. Sakharov",
-      "Prof. Solzhenitsyn",
-      "Maya Angelou"
-    ],
-    "timestamp": 1666949527012,
-    "y": 480,
+    "location": "Art Gallery",
+    "timestamp": 1655628005916,
+    "y": 1200,
     "tier": "core"
   },
   {
     "id": "event-core-047",
-    "title": "Cultural Event 48: Intellectual Gathering",
-    "date": "2022-10-28",
-    "time": "00:24",
+    "title": "Cultural Event 48: Faculty Senate Decision",
+    "date": "2022-06-19",
+    "time": "22:45",
     "description": "Generated test event 48 for performance benchmarking",
-    "significance": "contextual",
-    "status": "partially_verified",
-    "event_type": "evidence",
+    "significance": "supporting",
+    "status": "unverified",
+    "event_type": "communication",
     "participants": [
       "Prof. Solzhenitsyn",
-      "Maya Angelou"
+      "Dr. Sakharov",
+      "Prof. Komnenos"
     ],
-    "timestamp": 1666966287938,
+    "location": "Underground Venue",
+    "timestamp": 1655653095680,
     "y": 3760,
     "tier": "core"
   },
   {
-    "id": "event-core-072",
-    "title": "Cultural Event 73: Academic Freedom Protest",
-    "date": "2022-10-29",
-    "description": "Generated test event 73 for performance benchmarking",
+    "id": "event-core-061",
+    "title": "Cultural Event 62: Academic Freedom Protest",
+    "date": "2022-06-22",
+    "time": "16:31",
+    "description": "Generated test event 62 for performance benchmarking",
+    "significance": "important",
+    "status": "unverified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Komnenos",
+      "Dr. Brodsky",
+      "Dr. Petrov"
+    ],
+    "evidence_ids": [
+      "evidence-is3e226zv",
+      "evidence-n18dghvan"
+    ],
+    "timestamp": 1655927052180,
+    "y": 4880,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-027",
+    "title": "Cultural Event 28: Intellectual Gathering",
+    "date": "2022-06-24",
+    "time": "13:35",
+    "description": "Generated test event 28 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Sakharov",
+      "Maya Angelou"
+    ],
+    "location": "Faculty Lounge",
+    "timestamp": 1656049303948,
+    "y": 2160,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-012",
+    "title": "Cultural Event 13: Faculty Senate Decision",
+    "date": "2022-06-25",
+    "description": "Generated test event 13 for performance benchmarking",
     "significance": "important",
     "status": "verified",
     "event_type": "evidence",
     "participants": [
+      "Prof. Komnenos",
+      "Maya Angelou",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1656143409112,
+    "y": 960,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-076",
+    "title": "Cultural Event 77: Cultural Resistance Activity",
+    "date": "2022-06-25",
+    "description": "Generated test event 77 for performance benchmarking",
+    "significance": "important",
+    "status": "unverified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Sakharov",
+      "Dr. Brodsky"
+    ],
+    "location": "Art Gallery",
+    "evidence_ids": [
+      "evidence-2jn2rg345",
+      "evidence-isu417q1t",
+      "evidence-9haep184n"
+    ],
+    "timestamp": 1656180909509,
+    "y": 6080,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-008",
+    "title": "Cultural Event 9: International Conference",
+    "date": "2022-06-26",
+    "time": "11:15",
+    "description": "Generated test event 9 for performance benchmarking",
+    "significance": "supporting",
+    "status": "partially_verified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Brodsky",
+      "Maya Angelou"
+    ],
+    "timestamp": 1656213280793,
+    "y": 640,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-093",
+    "title": "Cultural Event 94: Policy Implementation",
+    "date": "2022-07-05",
+    "description": "Generated test event 94 for performance benchmarking",
+    "significance": "critical",
+    "status": "verified",
+    "event_type": "evidence",
+    "participants": [
+      "Maya Angelou",
+      "Dr. Sakharov"
+    ],
+    "location": "Academic Conference",
+    "evidence_ids": [
+      "evidence-5mm6fs08r",
+      "evidence-ljg9e8j8c",
+      "evidence-3dbyhglx9"
+    ],
+    "timestamp": 1656990477848,
+    "y": 7440,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-019",
+    "title": "Cultural Event 20: Intellectual Gathering",
+    "date": "2022-07-08",
+    "description": "Generated test event 20 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Sakharov",
+      "Maya Angelou"
+    ],
+    "location": "University Library",
+    "evidence_ids": [
+      "evidence-7e7n9ej8g",
+      "evidence-rbdud5uhl"
+    ],
+    "timestamp": 1657291882302,
+    "y": 1520,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-073",
+    "title": "Cultural Event 74: Intellectual Gathering",
+    "date": "2022-07-09",
+    "time": "05:23",
+    "description": "Generated test event 74 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "decision",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "evidence_ids": [
+      "evidence-t8gt07w0o",
+      "evidence-hv8jwz09u",
+      "evidence-5qxlzzfj6"
+    ],
+    "timestamp": 1657364966170,
+    "y": 5840,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-016",
+    "title": "Cultural Event 17: Policy Implementation",
+    "date": "2022-07-16",
+    "time": "11:53",
+    "description": "Generated test event 17 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Komnenos"
+    ],
+    "location": "Private Apartment",
+    "timestamp": 1657939626792,
+    "y": 1280,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-084",
+    "title": "Cultural Event 85: Faculty Senate Decision",
+    "date": "2022-07-17",
+    "time": "17:03",
+    "description": "Generated test event 85 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "evidence",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "evidence_ids": [
+      "evidence-afbjwi3h3",
+      "evidence-bzbve0ak1"
+    ],
+    "timestamp": 1658043831071,
+    "y": 6720,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-067",
+    "title": "Cultural Event 68: Policy Implementation",
+    "date": "2022-07-18",
+    "description": "Generated test event 68 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "communication",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "evidence_ids": [
+      "evidence-ofqo6jlfh",
+      "evidence-66l0y2r9o"
+    ],
+    "timestamp": 1658123832416,
+    "y": 5360,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-070",
+    "title": "Cultural Event 71: Research Collaboration",
+    "date": "2022-07-20",
+    "time": "20:51",
+    "description": "Generated test event 71 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "milestone",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Sakharov"
+    ],
+    "location": "Faculty Lounge",
+    "timestamp": 1658308168447,
+    "y": 5600,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-013",
+    "title": "Cultural Event 14: Intellectual Gathering",
+    "date": "2022-07-23",
+    "time": "12:28",
+    "description": "Generated test event 14 for performance benchmarking",
+    "significance": "contextual",
+    "status": "draft",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Petrov",
+      "Dr. Sakharov",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1658569504292,
+    "y": 1040,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-006",
+    "title": "Cultural Event 7: Intellectual Gathering",
+    "date": "2022-07-26",
+    "time": "17:24",
+    "description": "Generated test event 7 for performance benchmarking",
+    "significance": "critical",
+    "status": "draft",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Sakharov"
+    ],
+    "timestamp": 1658807125243,
+    "y": 480,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-092",
+    "title": "Cultural Event 93: Cultural Resistance Activity",
+    "date": "2022-07-29",
+    "description": "Generated test event 93 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Sakharov",
+      "Maya Angelou"
+    ],
+    "location": "Faculty Lounge",
+    "evidence_ids": [
+      "evidence-k6b1hxmat"
+    ],
+    "timestamp": 1659127236813,
+    "y": 7360,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-098",
+    "title": "Cultural Event 99: Student Movement Assembly",
+    "date": "2022-07-31",
+    "description": "Generated test event 99 for performance benchmarking",
+    "significance": "supporting",
+    "status": "verified",
+    "event_type": "communication",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "timestamp": 1659228554339,
+    "y": 7840,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-097",
+    "title": "Cultural Event 98: Academic Freedom Protest",
+    "date": "2022-08-01",
+    "time": "23:17",
+    "description": "Generated test event 98 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "communication",
+    "participants": [
+      "Maya Angelou"
+    ],
+    "timestamp": 1659386565375,
+    "y": 7760,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-031",
+    "title": "Cultural Event 32: Manuscript Circulation",
+    "date": "2022-08-07",
+    "description": "Generated test event 32 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "decision",
+    "participants": [
+      "Maya Angelou",
+      "Prof. Solzhenitsyn"
+    ],
+    "evidence_ids": [
+      "evidence-23hxgl42i",
+      "evidence-rx16ttn42"
+    ],
+    "timestamp": 1659893407127,
+    "y": 2480,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-041",
+    "title": "Cultural Event 42: Faculty Senate Decision",
+    "date": "2022-08-08",
+    "time": "19:59",
+    "description": "Generated test event 42 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Sakharov",
+      "Dr. Petrov"
+    ],
+    "location": "Private Apartment",
+    "evidence_ids": [
+      "evidence-9p2wih4jz",
+      "evidence-swapo7kqm",
+      "evidence-t518238b1"
+    ],
+    "timestamp": 1659988025611,
+    "y": 3280,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-033",
+    "title": "Cultural Event 34: Censorship Document",
+    "date": "2022-08-10",
+    "description": "Generated test event 34 for performance benchmarking",
+    "significance": "critical",
+    "status": "draft",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Brodsky",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1660099310414,
+    "y": 2640,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-068",
+    "title": "Cultural Event 69: Intellectual Gathering",
+    "date": "2022-08-11",
+    "description": "Generated test event 69 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "evidence",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Sakharov",
+      "Prof. Solzhenitsyn"
+    ],
+    "location": "Faculty Lounge",
+    "timestamp": 1660246227823,
+    "y": 5440,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-026",
+    "title": "Cultural Event 27: Student Movement Assembly",
+    "date": "2022-08-22",
+    "time": "01:09",
+    "description": "Generated test event 27 for performance benchmarking",
+    "significance": "critical",
+    "status": "verified",
+    "event_type": "communication",
+    "participants": [
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1661211026350,
+    "y": 2080,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-014",
+    "title": "Cultural Event 15: Academic Freedom Protest",
+    "date": "2022-08-24",
+    "time": "14:13",
+    "description": "Generated test event 15 for performance benchmarking",
+    "significance": "contextual",
+    "status": "unverified",
+    "event_type": "milestone",
+    "participants": [
+      "Prof. Solzhenitsyn"
+    ],
+    "evidence_ids": [
+      "evidence-7v2rbevbk",
+      "evidence-80yr9utki"
+    ],
+    "timestamp": 1661350287791,
+    "y": 1120,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-050",
+    "title": "Cultural Event 51: Underground Academic Meeting",
+    "date": "2022-08-29",
+    "description": "Generated test event 51 for performance benchmarking",
+    "significance": "contextual",
+    "status": "verified",
+    "event_type": "evidence",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Prof. Komnenos",
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1661780913748,
+    "y": 4000,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-083",
+    "title": "Cultural Event 84: Academic Freedom Protest",
+    "date": "2022-09-01",
+    "description": "Generated test event 84 for performance benchmarking",
+    "significance": "important",
+    "status": "verified",
+    "event_type": "meeting",
+    "participants": [
+      "Dr. Brodsky",
+      "Maya Angelou"
+    ],
+    "location": "Academic Conference",
+    "evidence_ids": [
+      "evidence-9latbiwcr",
+      "evidence-yyuxvr3gt"
+    ],
+    "timestamp": 1662008326727,
+    "y": 6640,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-045",
+    "title": "Cultural Event 46: International Conference",
+    "date": "2022-09-02",
+    "time": "01:02",
+    "description": "Generated test event 46 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Petrov",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1662129850124,
+    "y": 3600,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-077",
+    "title": "Cultural Event 78: Cultural Resistance Activity",
+    "date": "2022-09-04",
+    "time": "00:08",
+    "description": "Generated test event 78 for performance benchmarking",
+    "significance": "contextual",
+    "status": "unverified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Petrov"
+    ],
+    "location": "Underground Venue",
+    "timestamp": 1662260459928,
+    "y": 6160,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-011",
+    "title": "Cultural Event 12: Cultural Resistance Activity",
+    "date": "2022-09-04",
+    "time": "00:09",
+    "description": "Generated test event 12 for performance benchmarking",
+    "significance": "supporting",
+    "status": "partially_verified",
+    "event_type": "milestone",
+    "participants": [
+      "Maya Angelou",
+      "Prof. Solzhenitsyn"
+    ],
+    "evidence_ids": [
+      "evidence-ru58zjdlt",
+      "evidence-ge643g0fp"
+    ],
+    "timestamp": 1662272151548,
+    "y": 880,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-048",
+    "title": "Cultural Event 49: Underground Academic Meeting",
+    "date": "2022-09-18",
+    "description": "Generated test event 49 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Petrov",
+      "Prof. Solzhenitsyn"
+    ],
+    "evidence_ids": [
+      "evidence-fr15xk8tm",
+      "evidence-zx9tuk5um"
+    ],
+    "timestamp": 1663545593240,
+    "y": 3840,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-071",
+    "title": "Cultural Event 72: Academic Freedom Protest",
+    "date": "2022-09-19",
+    "description": "Generated test event 72 for performance benchmarking",
+    "significance": "important",
+    "status": "draft",
+    "event_type": "document",
+    "participants": [
+      "Prof. Komnenos",
+      "Dr. Petrov"
+    ],
+    "timestamp": 1663586643992,
+    "y": 5680,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-065",
+    "title": "Cultural Event 66: Samizdat Publication Released",
+    "date": "2022-09-19",
+    "description": "Generated test event 66 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "communication",
+    "participants": [
+      "Dr. Brodsky"
+    ],
+    "timestamp": 1663602962159,
+    "y": 5200,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-060",
+    "title": "Cultural Event 61: Underground Academic Meeting",
+    "date": "2022-09-21",
+    "description": "Generated test event 61 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "evidence",
+    "participants": [
+      "Dr. Petrov",
+      "Maya Angelou",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1663736666875,
+    "y": 4800,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-088",
+    "title": "Cultural Event 89: International Conference",
+    "date": "2022-09-26",
+    "description": "Generated test event 89 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "communication",
+    "participants": [
       "Prof. Solzhenitsyn",
       "Dr. Brodsky"
     ],
-    "location": "Coffee House",
-    "timestamp": 1667037245035,
-    "y": 5760,
+    "location": "University Library",
+    "timestamp": 1664232971517,
+    "y": 7040,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-074",
+    "title": "Cultural Event 75: Cultural Resistance Activity",
+    "date": "2022-09-29",
+    "time": "17:44",
+    "description": "Generated test event 75 for performance benchmarking",
+    "significance": "important",
+    "status": "partially_verified",
+    "event_type": "meeting",
+    "participants": [
+      "Maya Angelou",
+      "Prof. Solzhenitsyn"
+    ],
+    "evidence_ids": [
+      "evidence-rvbj8kymc",
+      "evidence-056sidf2g"
+    ],
+    "timestamp": 1664491696646,
+    "y": 5920,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-024",
+    "title": "Cultural Event 25: Manuscript Circulation",
+    "date": "2022-10-04",
+    "time": "11:26",
+    "description": "Generated test event 25 for performance benchmarking",
+    "significance": "important",
+    "status": "draft",
+    "event_type": "decision",
+    "participants": [
+      "Prof. Komnenos"
+    ],
+    "evidence_ids": [
+      "evidence-6dii1a8ee",
+      "evidence-t25hjgadi"
+    ],
+    "timestamp": 1664869761814,
+    "y": 1920,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-056",
+    "title": "Cultural Event 57: Student Movement Assembly",
+    "date": "2022-10-08",
+    "description": "Generated test event 57 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "decision",
+    "participants": [
+      "Dr. Sakharov",
+      "Prof. Komnenos",
+      "Prof. Solzhenitsyn"
+    ],
+    "location": "Public Square",
+    "timestamp": 1665242138129,
+    "y": 4480,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-017",
+    "title": "Cultural Event 18: Samizdat Publication Released",
+    "date": "2022-10-10",
+    "description": "Generated test event 18 for performance benchmarking",
+    "significance": "supporting",
+    "status": "verified",
+    "event_type": "decision",
+    "participants": [
+      "Maya Angelou",
+      "Prof. Komnenos",
+      "Dr. Sakharov"
+    ],
+    "timestamp": 1665362201911,
+    "y": 1360,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-057",
+    "title": "Cultural Event 58: Faculty Senate Decision",
+    "date": "2022-10-10",
+    "time": "23:07",
+    "description": "Generated test event 58 for performance benchmarking",
+    "significance": "supporting",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Dr. Brodsky"
+    ],
+    "evidence_ids": [
+      "evidence-tokpr61s7",
+      "evidence-5vnqv90lz"
+    ],
+    "timestamp": 1665400623725,
+    "y": 4560,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-020",
+    "title": "Cultural Event 21: Policy Implementation",
+    "date": "2022-10-11",
+    "time": "07:17",
+    "description": "Generated test event 21 for performance benchmarking",
+    "significance": "important",
+    "status": "unverified",
+    "event_type": "evidence",
+    "participants": [
+      "Dr. Sakharov",
+      "Prof. Solzhenitsyn"
+    ],
+    "timestamp": 1665519190513,
+    "y": 1600,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-004",
+    "title": "Cultural Event 5: Manuscript Circulation",
+    "date": "2022-10-13",
+    "time": "17:28",
+    "description": "Generated test event 5 for performance benchmarking",
+    "significance": "critical",
+    "status": "unverified",
+    "event_type": "meeting",
+    "participants": [
+      "Prof. Solzhenitsyn",
+      "Maya Angelou",
+      "Dr. Petrov",
+      "Prof. Komnenos"
+    ],
+    "timestamp": 1665643546621,
+    "y": 320,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-032",
+    "title": "Cultural Event 33: Faculty Senate Decision",
+    "date": "2022-10-22",
+    "description": "Generated test event 33 for performance benchmarking",
+    "significance": "critical",
+    "status": "draft",
+    "event_type": "milestone",
+    "participants": [
+      "Dr. Sakharov",
+      "Maya Angelou"
+    ],
+    "timestamp": 1666416600038,
+    "y": 2560,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-089",
+    "title": "Cultural Event 90: Research Collaboration",
+    "date": "2022-10-22",
+    "time": "22:01",
+    "description": "Generated test event 90 for performance benchmarking",
+    "significance": "critical",
+    "status": "partially_verified",
+    "event_type": "meeting",
+    "participants": [
+      "Dr. Brodsky",
+      "Dr. Petrov"
+    ],
+    "evidence_ids": [
+      "evidence-pb3udjbw7",
+      "evidence-vbesy83j0"
+    ],
+    "timestamp": 1666463643248,
+    "y": 7120,
+    "tier": "core"
+  },
+  {
+    "id": "event-core-021",
+    "title": "Cultural Event 22: Student Movement Assembly",
+    "date": "2022-10-28",
+    "description": "Generated test event 22 for performance benchmarking",
+    "significance": "critical",
+    "status": "verified",
+    "event_type": "document",
+    "participants": [
+      "Dr. Petrov"
+    ],
+    "location": "Faculty Lounge",
+    "timestamp": 1666925953049,
+    "y": 1680,
     "tier": "core"
   }
 ]
