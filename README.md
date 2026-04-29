@@ -4,7 +4,7 @@
 >
 > Production: **[underground.folkup.life](https://underground.folkup.life)**
 >
-> **Текущая фаза:** Phase 2 Complete — Expert coordination завершена, готовность к Phase 3 Technical Integration
+> **Текущая фаза:** R4 Integration Complete — Timeline component интегрирован, platform production ready
 
 [![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
@@ -22,7 +22,7 @@ Underground Academia — исследовательская платформа, 
 - **⚡ КиберГонзо** — OSINT культурная сейсмография, верификация tremors 2021-2022
 - **📚 Архивариус** — исторический контекст, культурные прецеденты
 
-**Статус:** Phase 2 Complete (Expert coordination), Phase 3 Technical Integration ready
+**Статус:** R4 Integration Complete — Timeline component operational with Brand Guide v2.5 compliance
 
 Методология сочетает академическую строгость с независимостью от институциональных рамок: banking-level верификация фактов, прозрачный редакционный процесс, OSINT-подход к первоисточникам.
 
@@ -91,11 +91,11 @@ npm run check
 
 ## Деплой
 
-Production разворачивается **Cloudflare Pages** автоматически при push в ветку `main` (или настроенную deploy-branch в Cloudflare UI). Build-команда: `cd astro && npm run build`, output: `astro/dist/`.
+Production разворачивается на **self-hosted infrastructure** (Hetzner VPS) с полной интеграцией в FolkUp экосистему. Build pipeline: GitHub Actions → rsync → nginx-proxy + Let's Encrypt.
 
-Security headers (CSP, HSTS, Permissions-Policy, Cache-Control) — в `astro/public/_headers`, обслуживаются Cloudflare Pages на HTTP-уровне.
+Security headers (CSP, HSTS, Permissions-Policy) — обслуживаются nginx-proxy на HTTP-уровне в рамках unified FolkUp infrastructure pattern.
 
-Self-hosted deployment artifacts (nginx + DNS + deployment guide) — архивированы в `_meta/archive/deploy-self-hosted/` по решению ORGA-028 Вариант A (stay on CF Pages, 2026-04-20). Могут быть re-activated при необходимости migration.
+Migration от Cloudflare Pages завершена 2026-04-28. CF Pages artifacts архивированы в `_meta/archive/cloudflare-pages/`. Unified infrastructure обеспечивает консистентность со всеми FolkUp проектами.
 
 ## Авторская разметка
 
@@ -143,4 +143,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-04-28 · Doc version: 3.2 (Phase 2 expert coordination complete, Phase 3 technical integration ready)*
+*Last updated: 2026-04-29 · Doc version: 4.0 (R4 Integration complete, Timeline component operational)*
