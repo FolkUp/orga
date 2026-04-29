@@ -1,0 +1,129 @@
+{
+  "chunk_id": "001",
+  "events_start": 100,
+  "events_end": 124,
+  "category": "cultural_tremors",
+  "load_priority": "high",
+  "events": [
+    {
+      "id": "ORG-100",
+      "title": "Wordle Viral Explosion",
+      "date": "2022-01-10",
+      "time": "08:00:00",
+      "description": "Word puzzle game reaches viral threshold. Social sharing paradigm via emoji grid. Community engagement through constraint.",
+      "significance": "supporting",
+      "status": "verified",
+      "event_type": "milestone",
+      "participants": ["Josh Wardle", "Twitter users", "NYTimes"],
+      "location": "Global - Online",
+      "evidence_ids": ["NYT-20220131", "VIRAL-METRICS"],
+      "timestamp": 1641801600000,
+      "y": 2000,
+      "tier": "extended",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "tremor_magnitude": 4,
+        "cultural_impact": "Constraint-based virality, community ritual formation"
+      }
+    },
+    {
+      "id": "ORG-101",
+      "title": "Netflix Subscriber Loss Q1",
+      "date": "2022-04-19",
+      "time": "16:00:00",
+      "description": "200K subscriber loss, first in decade. Streaming market saturation signal. Password sharing crackdown discourse.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": ["Netflix", "Shareholders", "Streaming competitors"],
+      "location": "Global - Corporate",
+      "evidence_ids": ["NFLX-Q1-2022", "WSJ-20220419"],
+      "timestamp": 1650384000000,
+      "y": 2080,
+      "tier": "extended",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "media",
+        "tremor_magnitude": 6,
+        "cultural_impact": "Platform economy maturation, content abundance paradox"
+      }
+    },
+    {
+      "id": "ORG-102",
+      "title": "Discord Server Migration Wave",
+      "date": "2022-03-15",
+      "time": "14:30:00",
+      "description": "Mass migration from gaming servers to topical communities. Platform genre evolution. Community ownership discourse.",
+      "significance": "supporting",
+      "status": "partially_verified",
+      "event_type": "evidence",
+      "participants": ["Discord users", "Server administrators", "Community moderators"],
+      "location": "Global - Online",
+      "evidence_ids": ["DISCORD-ANALYTICS", "USER-SURVEYS"],
+      "timestamp": 1647352200000,
+      "y": 2160,
+      "tier": "extended",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "tremor_magnitude": 3,
+        "cultural_impact": "Community platform evolution, distributed governance models"
+      }
+    },
+    {
+      "id": "ORG-103",
+      "title": "Bored Ape NFT Market Peak",
+      "date": "2022-02-12",
+      "time": "11:45:00",
+      "description": "BAYC floor price reaches 100 ETH. Digital ownership discourse culmination. Celebrity adoption acceleration.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "milestone",
+      "participants": ["Yuga Labs", "Celebrity adopters", "Crypto community"],
+      "location": "Global - Blockchain",
+      "evidence_ids": ["OPENSEA-DATA", "ETH-PRICING"],
+      "timestamp": 1644667500000,
+      "y": 2240,
+      "tier": "extended",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "tremor_magnitude": 7,
+        "cultural_impact": "Digital ownership mythology, speculation culture normalization"
+      }
+    },
+    {
+      "id": "ORG-104",
+      "title": "TikTok Algorithm Transparency Pressure",
+      "date": "2022-06-15",
+      "time": "13:20:00",
+      "description": "Congressional hearing on recommendation algorithms. Black box discourse intensifies. Platform accountability demands.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": ["House Committee", "TikTok executives", "Algorithm researchers"],
+      "location": "Washington DC - Capitol",
+      "evidence_ids": ["HOUSE-HEARING-062022", "CSPAN-ARCHIVE"],
+      "timestamp": 1655294400000,
+      "y": 2320,
+      "tier": "extended",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "tremor_magnitude": 5,
+        "political_correlation": {
+          "event_id": "ORG-011",
+          "correlation_strength": 0.4,
+          "note": "Platform governance discourse convergence"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "loaded": false,
+    "load_trigger": "scroll_proximity",
+    "estimated_size": "2.1KB",
+    "created": "2026-04-29"
+  }
+}

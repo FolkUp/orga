@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol 3: SVG Browser Performance Benchmark</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .benchmark-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        button {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e9ecef;
+        }
+        button.primary {
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .timeline-container {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 400px;
+            overflow-y: auto;
+            background: white;
+        }
+        .timeline-svg {
+            width: 100%;
+            min-height: 400px;
+        }
+        .timeline-event {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .timeline-event:hover {
+            opacity: 0.8;
+        }
+        .timeline-event circle {
+            transition: r 0.2s ease;
+        }
+        .timeline-event:hover circle {
+            r: 12;
+        }
+        .performance-info {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e7f3ff;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="benchmark-container">
+        <h1>🧪 Protocol 3: SVG Rendering Performance</h1>
+        <p>Browser-based SVG timeline performance testing with real DOM measurements.</p>
+
+        <div class="controls">
+            <button id="run83" class="primary">Test 83 Events</button>
+            <button id="run167" class="primary">Test 167 Events</button>
+            <button id="run333" class="primary">Test 333 Events</button>
+            <button id="runAll">Run All Tests</button>
+            <button id="clearResults">Clear Results</button>
+            <span class="status" id="status">Ready</span>
+        </div>
+
+        <div class="performance-info">
+            <strong>Performance Thresholds:</strong>
+            🟢 Green: ≤50ms | 🟡 Yellow: 50-150ms | 🔴 Red: >150ms<br>
+            <strong>Browser:</strong> <span id="browserInfo"></span> |
+            <strong>Device Memory:</strong> <span id="deviceMemory">Unknown</span>
+        </div>
+
+        <div id="results" class="results">Test results will appear here...</div>
+
+        <div class="timeline-container">
+            <svg id="timelineSvg" class="timeline-svg">
+                <!-- Timeline events will be rendered here -->
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        class SVGBrowserBenchmark {
+            constructor() {
+                this.results = {};
+                this.currentDataset = [];
+                this.init();
+            }
+
+            init() {
+                // Display browser info
+                document.getElementById('browserInfo').textContent = navigator.userAgent.split(' ').slice(-2).join(' ');
+
+                // Display device memory if available
+                if (navigator.deviceMemory) {
+                    document.getElementById('deviceMemory').textContent = `${navigator.deviceMemory}GB`;
+                }
+
+                // Bind event handlers
+                document.getElementById('run83').onclick = () => this.runTest(83);
+                document.getElementById('run167').onclick = () => this.runTest(167);
+                document.getElementById('run333').onclick = () => this.runTest(333);
+                document.getElementById('runAll').onclick = () => this.runAllTests();
+                document.getElementById('clearResults').onclick = () => this.clearResults();
+
+                this.updateStatus('Ready');
+            }
+
+            generateTimelineEvents(count) {
+                const events = [];
+                const eventTypes = ['meeting', 'document', 'communication', 'decision', 'evidence', 'milestone'];
+                const significanceLevels = ['critical', 'important', 'supporting', 'contextual'];
+                const statuses = ['verified', 'partially_verified', 'unverified', 'draft'];
+                const titles = [
+                    'Underground Academic Meeting',
+                    'Samizdat Publication Released',
+                    'Faculty Senate Decision',
+                    'Student Movement Assembly',
+                    'Censorship Document',
+                    'Academic Freedom Protest',
+                    'Research Collaboration',
+                    'International Conference',
+                    'Manuscript Circulation',
+                    'Policy Implementation'
+                ];
+
+                // Date range: Nov 2021 to Oct 2022
+                const startDate = new Date('2021-11-01').getTime();
+                const endDate = new Date('2022-10-31').getTime();
+                const dateRange = endDate - startDate;
+
+                for (let i = 0; i < count; i++) {
+                    const randomOffset = Math.random() * dateRange;
+                    const eventDate = new Date(startDate + randomOffset);
+
+                    events.push({
+                        id: `event-${count}-${i.toString().padStart(3, '0')}`,
+                        title: `${titles[Math.floor(Math.random() * titles.length)]} ${i + 1}`,
+                        date: eventDate.toISOString().split('T')[0],
+                        timestamp: eventDate.getTime(),
+                        significance: significanceLevels[Math.floor(Math.random() * significanceLevels.length)],
+                        status: statuses[Math.floor(Math.random() * statuses.length)],
+                        event_type: eventTypes[Math.floor(Math.random() * eventTypes.length)]
+                    });
+                }
+
+                return events.sort((a, b) => a.timestamp - b.timestamp);
+            }
+
+            async runTest(eventCount) {
+                this.updateStatus(`Testing ${eventCount} events...`);
+
+                try {
+                    const events = this.generateTimelineEvents(eventCount);
+                    const testResults = await this.benchmarkSVGRendering(events);
+
+                    this.results[`${eventCount}_events`] = testResults;
+                    this.displayResults();
+                    this.updateStatus(`Completed ${eventCount} events`);
+                } catch (error) {
+                    console.error('Test failed:', error);
+                    this.updateStatus(`Failed: ${error.message}`);
+                }
+            }
+
+            async runAllTests() {
+                this.updateStatus('Running all tests...');
+                this.clearResults();
+
+                for (const count of [83, 167, 333]) {
+                    await this.runTest(count);
+                    // Small delay between tests
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+
+                this.generateFinalReport();
+                this.updateStatus('All tests completed');
+            }
+
+            async benchmarkSVGRendering(events) {
+                const svg = document.getElementById('timelineSvg');
+                const results = {};
+
+                // Clear previous content
+                svg.innerHTML = '';
+
+                // 1. DOM Creation Test
+                const domCreationTimes = [];
+                for (let iteration = 0; iteration < 3; iteration++) {
+                    const start = performance.now();
+                    const elements = this.createSVGElements(events);
+                    const end = performance.now();
+                    domCreationTimes.push(end - start);
+                }
+                results.domCreation = this.calculateStats(domCreationTimes);
+
+                // 2. SVG Render Test (actual DOM append)
+                const renderTimes = [];
+                for (let iteration = 0; iteration < 3; iteration++) {
+                    svg.innerHTML = ''; // Clear
+
+                    const start = performance.now();
+                    const elements = this.createSVGElements(events);
+
+                    // Create DocumentFragment for efficient append
+                    const fragment = document.createDocumentFragment();
+                    elements.forEach(el => fragment.appendChild(el));
+                    svg.appendChild(fragment);
+
+                    // Force layout/paint
+                    svg.getBoundingClientRect();
+                    const end = performance.now();
+
+                    renderTimes.push(end - start);
+                }
+                results.svgRendering = this.calculateStats(renderTimes);
+
+                // 3. Interaction Response Test
+                const interactionTimes = [];
+                for (let iteration = 0; iteration < 3; iteration++) {
+                    const start = performance.now();
+
+                    // Simulate click interactions on random events
+                    const eventElements = svg.querySelectorAll('.timeline-event');
+                    const testEvents = Math.min(10, eventElements.length);
+
+                    for (let i = 0; i < testEvents; i++) {
+                        const randomIndex = Math.floor(Math.random() * eventElements.length);
+                        const element = eventElements[randomIndex];
+
+                        // Simulate click handler execution
+                        const eventId = element.getAttribute('data-event-id');
+                        const event = events.find(e => e.id === eventId);
+
+                        // Simulate tooltip generation
+                        const tooltip = {
+                            title: event.title,
+                            date: event.date,
+                            status: event.status,
+                            significance: event.significance
+                        };
+
+                        // Force a style recalculation
+                        element.style.opacity = '0.8';
+                        element.offsetHeight; // Force reflow
+                        element.style.opacity = '';
+                    }
+
+                    const end = performance.now();
+                    interactionTimes.push(end - start);
+                }
+                results.interaction = this.calculateStats(interactionTimes);
+
+                // Store dataset for visualization
+                this.currentDataset = events;
+
+                return results;
+            }
+
+            createSVGElements(events) {
+                return events.map((event, index) => {
+                    const y = index * 80 + 40;
+                    const statusColor = this.getStatusColor(event.status);
+                    const significanceSize = this.getSignificanceSize(event.significance);
+
+                    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    g.setAttribute('class', 'timeline-event');
+                    g.setAttribute('data-event-id', event.id);
+                    g.setAttribute('transform', `translate(0, ${y})`);
+
+                    // Circle
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', '100');
+                    circle.setAttribute('cy', '0');
+                    circle.setAttribute('r', significanceSize.toString());
+                    circle.setAttribute('fill', statusColor);
+                    g.appendChild(circle);
+
+                    // Background rect
+                    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                    rect.setAttribute('x', '120');
+                    rect.setAttribute('y', '-20');
+                    rect.setAttribute('width', '280');
+                    rect.setAttribute('height', '40');
+                    rect.setAttribute('rx', '4');
+                    rect.setAttribute('fill', 'rgba(255,255,255,0.95)');
+                    rect.setAttribute('stroke', statusColor);
+                    rect.setAttribute('stroke-width', '1');
+                    g.appendChild(rect);
+
+                    // Title text
+                    const titleText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    titleText.setAttribute('x', '128');
+                    titleText.setAttribute('y', '-5');
+                    titleText.setAttribute('font-size', '12');
+                    titleText.setAttribute('font-family', 'sans-serif');
+                    titleText.textContent = event.title.length > 35 ?
+                        event.title.substring(0, 35) + '...' : event.title;
+                    g.appendChild(titleText);
+
+                    // Date text
+                    const dateText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    dateText.setAttribute('x', '128');
+                    dateText.setAttribute('y', '10');
+                    dateText.setAttribute('font-size', '10');
+                    dateText.setAttribute('fill', '#666');
+                    dateText.textContent = event.date;
+                    g.appendChild(dateText);
+
+                    return g;
+                });
+            }
+
+            calculateStats(times) {
+                const sorted = [...times].sort((a, b) => a - b);
+                const median = sorted[Math.floor(sorted.length / 2)];
+                const avg = times.reduce((a, b) => a + b, 0) / times.length;
+                const stdev = Math.sqrt(times.reduce((sum, time) => sum + Math.pow(time - avg, 2), 0) / times.length);
+
+                return {
+                    median: median,
+                    avg: avg,
+                    min: Math.min(...times),
+                    max: Math.max(...times),
+                    stdev: stdev,
+                    times: times
+                };
+            }
+
+            getStatusColor(status) {
+                const colors = {
+                    'verified': '#2E7D32',
+                    'partially_verified': '#F57C00',
+                    'unverified': '#D32F2F',
+                    'draft': '#757575'
+                };
+                return colors[status] || colors.unverified;
+            }
+
+            getSignificanceSize(significance) {
+                const sizes = {
+                    'critical': 12,
+                    'important': 10,
+                    'supporting': 8,
+                    'contextual': 6
+                };
+                return sizes[significance] || 8;
+            }
+
+            displayResults() {
+                const resultsDiv = document.getElementById('results');
+                let output = 'PROTOCOL 3: SVG RENDERING PERFORMANCE RESULTS\n';
+                output += '='.repeat(60) + '\n\n';
+
+                for (const [dataset, results] of Object.entries(this.results)) {
+                    output += `📊 ${dataset.toUpperCase()}\n`;
+                    output += `  DOM Creation: ${results.domCreation.median.toFixed(2)}ms ±${results.domCreation.stdev.toFixed(2)}ms\n`;
+                    output += `  SVG Rendering: ${results.svgRendering.median.toFixed(2)}ms ±${results.svgRendering.stdev.toFixed(2)}ms\n`;
+                    output += `  Interaction: ${results.interaction.median.toFixed(2)}ms ±${results.interaction.stdev.toFixed(2)}ms\n`;
+
+                    // Decision framework
+                    const worstCase = Math.max(results.domCreation.max, results.svgRendering.max, results.interaction.max);
+                    const status = worstCase <= 50 ? '🟢 GREEN' : worstCase <= 150 ? '🟡 YELLOW' : '🔴 RED';
+                    output += `  Decision: ${status} (worst: ${worstCase.toFixed(2)}ms)\n\n`;
+                }
+
+                resultsDiv.textContent = output;
+            }
+
+            generateFinalReport() {
+                if (Object.keys(this.results).length < 3) return;
+
+                const resultsDiv = document.getElementById('results');
+                let output = resultsDiv.textContent;
+
+                output += '\n' + '='.repeat(60) + '\n';
+                output += 'FINAL PROTOCOL 3 ASSESSMENT\n';
+                output += '='.repeat(60) + '\n\n';
+
+                // Performance scaling analysis
+                const eventCounts = [83, 167, 333];
+                const renderTimes = eventCounts.map(count => {
+                    const key = `${count}_events`;
+                    return this.results[key]?.svgRendering?.median || 0;
+                });
+
+                output += '📈 PERFORMANCE SCALING:\n';
+                eventCounts.forEach((count, i) => {
+                    const time = renderTimes[i];
+                    const perEvent = time / count;
+                    output += `  ${count} events: ${time.toFixed(2)}ms (${perEvent.toFixed(3)}ms/event)\n`;
+                });
+
+                // Decision framework for 333 events
+                const result333 = this.results['333_events'];
+                if (result333) {
+                    const maxTime = Math.max(
+                        result333.domCreation.max,
+                        result333.svgRendering.max,
+                        result333.interaction.max
+                    );
+
+                    output += '\n🎯 DECISION FRAMEWORK (333 Events):\n';
+                    if (maxTime <= 50) {
+                        output += '  Status: 🟢 GREEN - Excellent performance\n';
+                    } else if (maxTime <= 150) {
+                        output += '  Status: 🟡 YELLOW - Acceptable performance\n';
+                    } else {
+                        output += '  Status: 🔴 RED - Performance concerns\n';
+                    }
+                    output += `  Max render time: ${maxTime.toFixed(2)}ms\n`;
+
+                    // Virtual scrolling impact
+                    const virtualTime = (maxTime / 333) * 25; // ~25 visible events
+                    const improvement = ((maxTime - virtualTime) / maxTime * 100);
+                    output += `  Virtual scrolling benefit: ${improvement.toFixed(1)}% improvement\n`;
+                    output += `  (${virtualTime.toFixed(2)}ms vs ${maxTime.toFixed(2)}ms)\n`;
+                }
+
+                output += '\n🌐 Browser Environment:\n';
+                output += `  User Agent: ${navigator.userAgent}\n`;
+                output += `  Device Memory: ${navigator.deviceMemory || 'Unknown'}GB\n`;
+                output += `  Hardware Concurrency: ${navigator.hardwareConcurrency || 'Unknown'} cores\n`;
+                output += `  Connection: ${navigator.connection?.effectiveType || 'Unknown'}\n`;
+
+                resultsDiv.textContent = output;
+            }
+
+            updateStatus(message) {
+                document.getElementById('status').textContent = message;
+            }
+
+            clearResults() {
+                this.results = {};
+                document.getElementById('results').textContent = 'Test results will appear here...';
+                document.getElementById('timelineSvg').innerHTML = '';
+                this.updateStatus('Cleared');
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            window.benchmark = new SVGBrowserBenchmark();
+        });
+    </script>
+</body>
+</html>

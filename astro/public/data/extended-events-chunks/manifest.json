@@ -1,0 +1,111 @@
+{
+  "version": "1.0.0",
+  "total_chunks": 10,
+  "total_extended_events": 234,
+  "loading_strategy": "progressive",
+  "chunk_size": 25,
+  "chunks": [
+    {
+      "id": "chunk-001",
+      "file": "/data/extended-events-chunks/chunk-001.json",
+      "category": "cultural_tremors",
+      "events_range": [100, 124],
+      "priority": "high",
+      "estimated_size": "2.1KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-002",
+      "file": "/data/extended-events-chunks/chunk-002.json",
+      "category": "social_undercurrents",
+      "events_range": [125, 149],
+      "priority": "high",
+      "estimated_size": "2.3KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-003",
+      "file": "/data/extended-events-chunks/chunk-003.json",
+      "category": "tech_paradigm_shifts",
+      "events_range": [150, 174],
+      "priority": "medium",
+      "estimated_size": "2.0KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-004",
+      "file": "/data/extended-events-chunks/chunk-004.json",
+      "category": "correlation_events",
+      "events_range": [175, 199],
+      "priority": "medium",
+      "estimated_size": "1.9KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-005",
+      "file": "/data/extended-events-chunks/chunk-005.json",
+      "category": "cultural_tremors",
+      "events_range": [200, 224],
+      "priority": "low",
+      "estimated_size": "2.2KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-006",
+      "file": "/data/extended-events-chunks/chunk-006.json",
+      "category": "social_undercurrents",
+      "events_range": [225, 249],
+      "priority": "low",
+      "estimated_size": "2.1KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-007",
+      "file": "/data/extended-events-chunks/chunk-007.json",
+      "category": "tech_paradigm_shifts",
+      "events_range": [250, 274],
+      "priority": "low",
+      "estimated_size": "1.8KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-008",
+      "file": "/data/extended-events-chunks/chunk-008.json",
+      "category": "correlation_events",
+      "events_range": [275, 299],
+      "priority": "low",
+      "estimated_size": "2.0KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-009",
+      "file": "/data/extended-events-chunks/chunk-009.json",
+      "category": "cultural_tremors",
+      "events_range": [300, 324],
+      "priority": "very_low",
+      "estimated_size": "1.7KB",
+      "loaded": false
+    },
+    {
+      "id": "chunk-010",
+      "file": "/data/extended-events-chunks/chunk-010.json",
+      "category": "final_events",
+      "events_range": [325, 333],
+      "priority": "very_low",
+      "estimated_size": "1.1KB",
+      "loaded": false
+    }
+  ],
+  "performance_metrics": {
+    "core_dataset_size": "6.2KB",
+    "total_extended_size": "19.2KB",
+    "target_initial_load": "<100ms",
+    "progressive_chunk_load": "<50ms per chunk"
+  },
+  "osint_methodology": {
+    "source_verification": "minimum_dual_source",
+    "archive_strategy": "web_archive_snapshots",
+    "bias_prevention": "non_correlating_events_included",
+    "update_protocol": "version_controlled_timestamp_metadata"
+  }
+}

@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.svelte';
+
+const title = 'Organizatsiya Timeline';
+const description = 'Cultural seismography dataset visualization: Nov 2021 → Oct 2022';
+
+// Load core timeline data
+const timelineData = await fetch('/data/organizatsiya-timeline.json')
+  .then(res => res.json())
+  .catch(() => ({ core_events: [], metadata: {} }));
+
+const events = timelineData.core_events || [];
+---
+
+<Layout title={title} description={description}>
+  <main class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
+    <!-- Header -->
+    <header class="py-8 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+          Organizatsiya Timeline
+        </h1>
+        <p class="text-xl text-gray-300 max-w-3xl">
+          Cultural seismography analysis: Nov 2021 → Oct 2022.
+          Tracking political tremors and cultural undercurrents during a period of significant societal fragmentation.
+        </p>
+        <div class="mt-4 flex gap-4 text-sm text-gray-400">
+          <span>📊 {timelineData.metadata.total_events || 333} total events</span>
+          <span>🔥 {timelineData.metadata.core_events || 99} core events</span>
+          <span>📈 234 extended events (progressive loading)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Methodology Notice -->
+    <div class="px-6 pb-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4">
+          <p class="text-amber-200 text-sm">
+            <strong>Methodology:</strong> {timelineData.metadata.disclaimer || 'Correlation ≠ causation. Cultural tremors identified through pattern analysis, not predictive modeling.'}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Visualization -->
+    <section class="px-6 pb-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-gray-800/50 rounded-lg border border-gray-700 overflow-hidden">
+          <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-4">Interactive Timeline</h2>
+            <p class="text-gray-400 mb-6">
+              Virtual scrolling enabled. Core events load immediately, extended dataset loads progressively.
+            </p>
+
+            <!-- Timeline Component -->
+            <Timeline
+              client:load
+              events={events}
+              height="600px"
+              className="timeline-organizatsiya"
+              config={{
+                itemHeight: 80,
+                buffer: 5,
+                chunkSize: 25,
+                animationFrame: true
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legend & Controls -->
+    <section class="px-6 pb-12">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+        <!-- Event Significance Legend -->
+        <div class="bg-gray-800/50 rounded-lg border border-gray-700 p-6">
+          <h3 class="text-xl font-semibold mb-4">Event Significance</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+              <span class="text-gray-300">Critical (Tremor Magnitude 8-10)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+              <span class="text-gray-300">Important (Tremor Magnitude 5-7)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+              <span class="text-gray-300">Supporting (Tremor Magnitude 1-4)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Categories -->
+        <div class="bg-gray-800/50 rounded-lg border border-gray-700 p-6">
+          <h3 class="text-xl font-semibold mb-4">Event Categories</h3>
+          <div class="space-y-2 text-sm text-gray-300">
+            <div><span class="text-purple-400">Political:</span> Policy decisions, legal events, institutional actions</div>
+            <div><span class="text-green-400">Cultural:</span> Music, media, social movements, platform changes</div>
+            <div><span class="text-cyan-400">Correlation:</span> Events with notable temporal proximity patterns</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Information -->
+    <footer class="px-6 pb-8">
+      <div class="max-w-6xl mx-auto text-center text-sm text-gray-500">
+        <p>
+          Dataset v{timelineData.metadata.version || '1.0.0'} |
+          Created: {timelineData.metadata.created || '2026-04-29'} |
+          OSINT Methodology |
+          <span class="text-gray-400">CC BY 4.0</span>
+        </p>
+        <p class="mt-2">
+          Performance: Core dataset ~6KB, virtual scrolling for 333+ events, progressive loading
+        </p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .timeline-organizatsiya {
+    background: rgba(17, 24, 39, 0.8);
+    border-radius: 0.5rem;
+  }
+
+  /* Timeline custom styling */
+  :global(.timeline-organizatsiya .timeline-event) {
+    border-left: 3px solid theme('colors.blue.500');
+    background: rgba(31, 41, 55, 0.9);
+    backdrop-filter: blur(8px);
+  }
+
+  :global(.timeline-organizatsiya .timeline-event.critical) {
+    border-left-color: theme('colors.red.500');
+  }
+
+  :global(.timeline-organizatsiya .timeline-event.important) {
+    border-left-color: theme('colors.orange.500');
+  }
+
+  :global(.timeline-organizatsiya .timeline-event.supporting) {
+    border-left-color: theme('colors.blue.500');
+  }
+</style>

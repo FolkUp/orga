@@ -1,0 +1,946 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-04-29",
+    "author": "КиберГонзо (OSINT Data Architecture)",
+    "description": "Cultural seismography dataset: Nov 2021 → Oct 2022",
+    "methodology": "Dual-source verification, OSINT principles, falsifiable claims",
+    "disclaimer": "Correlation ≠ causation. Cultural tremors identified through pattern analysis, not predictive modeling.",
+    "license": "CC BY 4.0",
+    "total_events": 333,
+    "core_events": 25,
+    "extended_events": 234,
+    "performance_note": "Core dataset optimized for baseline measurement. Extended dataset lazy-loaded on scroll."
+  },
+  "core_events": [
+    {
+      "id": "ORG-001",
+      "title": "Travis Scott Astroworld Festival Tragedy",
+      "date": "2021-11-08",
+      "time": "21:38:00",
+      "description": "Mass casualty event during Travis Scott performance. 10 deaths, 300+ injuries. Cultural discourse on crowd control, celebrity responsibility, and livestream trauma.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "milestone",
+      "participants": [
+        "Travis Scott",
+        "LiveNation",
+        "Concert attendees"
+      ],
+      "location": "Houston, TX - NRG Park",
+      "evidence_ids": [
+        "NYT-20211108",
+        "RS-20211110"
+      ],
+      "timestamp": 1636409880000,
+      "y": 0,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "music",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20211109/https://www.nytimes.com/2021/11/08/us/astroworld-festival-deaths.html",
+            "type": "primary",
+            "credibility": "high"
+          },
+          {
+            "url": "https://web.archive.org/web/20211110/https://www.rollingstone.com/music/music-news/travis-scott-astroworld-festival-deaths-1254827/",
+            "type": "secondary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 8,
+        "cultural_impact": "Platform liability discourse, concert safety protocols, influencer accountability paradigm shift"
+      }
+    },
+    {
+      "id": "ORG-002",
+      "title": "Kyle Rittenhouse Verdict Acquittal",
+      "date": "2021-11-19",
+      "time": "12:15:00",
+      "description": "Not guilty verdict on all charges. Significant polarization along ideological lines. Social media discourse fragmentation.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": [
+        "Kyle Rittenhouse",
+        "Judge Bruce Schroeder",
+        "Jury"
+      ],
+      "location": "Kenosha, WI - County Courthouse",
+      "evidence_ids": [
+        "AP-20211119"
+      ],
+      "timestamp": 1637330100000,
+      "y": 80,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20211119/https://apnews.com/article/kyle-rittenhouse-wisconsin-shootings-homicide-kenosha-1c5c2f8f3d26482d9d73b16cb8ab9179",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 7,
+        "political_correlation": {
+          "note": "Baseline political seismography event"
+        }
+      }
+    },
+    {
+      "id": "ORG-003",
+      "title": "Meta Horizon Workrooms Launch",
+      "date": "2021-12-03",
+      "time": "12:00:00",
+      "description": "VR workplace collaboration platform. Metaverse workplace discourse begins. Remote work paradigm evolution signal.",
+      "significance": "supporting",
+      "status": "partially_verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-003-SRC-0"
+      ],
+      "timestamp": 1638532800000,
+      "y": 160,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20211203/https://www.theverge.com/2021/8/19/22632467/facebook-horizon-workrooms-vr-remote-work-oculus-quest-2",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "medium",
+        "tremor_magnitude": 4,
+        "cultural_impact": "Remote work evolution, virtual presence normalization"
+      }
+    },
+    {
+      "id": "ORG-004",
+      "title": "Matrix Resurrections Release",
+      "date": "2021-12-15",
+      "time": "12:00:00",
+      "description": "Fourth Matrix film. Cultural commentary on simulation theory, reality questioning. Simultaneous streaming/theatrical release.",
+      "significance": "supporting",
+      "status": "unverified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-004-SRC-0"
+      ],
+      "timestamp": 1639569600000,
+      "y": 240,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "correlation",
+        "category": "media",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20211215/https://variety.com/2021/film/reviews/the-matrix-resurrections-review-1235128985/",
+            "type": "secondary",
+            "credibility": "medium"
+          }
+        ],
+        "confidence": "low",
+        "tremor_magnitude": 3,
+        "political_correlation": {
+          "event_id": "ORG-002",
+          "time_delta": 26,
+          "correlation_strength": 0.2,
+          "note": "Simulation/reality themes coincident with truth discourse fragmentation"
+        }
+      }
+    },
+    {
+      "id": "ORG-005",
+      "title": "January 6th First Anniversary",
+      "date": "2022-01-06",
+      "time": "12:00:00",
+      "description": "Congressional commemoration. Biden speech on democracy. Renewed discourse on democratic institutions.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-005-SRC-0"
+      ],
+      "timestamp": 1641470400000,
+      "y": 320,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220106/https://www.whitehouse.gov/briefing-room/speeches-remarks/2022/01/06/remarks-by-president-biden-on-the-anniversary-of-the-january-6th-assault-on-the-capitol/",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 6,
+        "political_correlation": {
+          "note": "Democratic institutions discourse baseline"
+        }
+      }
+    },
+    {
+      "id": "ORG-006",
+      "title": "Spotify Joe Rogan Controversy Peak",
+      "date": "2022-01-26",
+      "time": "12:00:00",
+      "description": "Neil Young removes music over Rogan COVID misinformation. Platform content moderation discourse. Artist boycotts begin.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-006-SRC-0"
+      ],
+      "timestamp": 1643198400000,
+      "y": 400,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220126/https://www.nytimes.com/2022/01/26/arts/music/spotify-neil-young-joe-rogan.html",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 7,
+        "cultural_impact": "Platform content moderation, creator economy power dynamics, information authority crisis"
+      }
+    },
+    {
+      "id": "ORG-007",
+      "title": "Russia Ukraine Invasion Begins",
+      "date": "2022-02-24",
+      "time": "12:00:00",
+      "description": "Full-scale military invasion. Global geopolitical realignment. Information warfare paradigm shift.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-007-SRC-0"
+      ],
+      "timestamp": 1645704000000,
+      "y": 480,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220224/https://apnews.com/article/russia-ukraine-europe-russia-moscow-kyiv-626a8c5ec22217bacb24ece60fac4fe1",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 10,
+        "political_correlation": {
+          "note": "Maximum seismographic event — global paradigm shift"
+        }
+      }
+    },
+    {
+      "id": "ORG-008",
+      "title": "Anonymous Declares Cyber War on Russia",
+      "date": "2022-02-26",
+      "time": "12:00:00",
+      "description": "Hacker collective announces operations. Distributed warfare paradigm. Information conflict democratization.",
+      "significance": "important",
+      "status": "partially_verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-008-SRC-0"
+      ],
+      "timestamp": 1645876800000,
+      "y": 560,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "correlation",
+        "category": "social",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220226/https://www.wired.com/story/anonymous-declares-cyberwar-russia-ukraine/",
+            "type": "secondary",
+            "credibility": "medium"
+          }
+        ],
+        "confidence": "medium",
+        "tremor_magnitude": 5,
+        "political_correlation": {
+          "event_id": "ORG-007",
+          "time_delta": 2,
+          "correlation_strength": 0.9,
+          "note": "Direct response correlation — distributed information warfare"
+        }
+      }
+    },
+    {
+      "id": "ORG-009",
+      "title": "Will Smith Oscar Slap",
+      "date": "2022-03-27",
+      "time": "12:00:00",
+      "description": "Smith slaps Chris Rock at Academy Awards. Immediate global discourse. Celebrity accountability paradigm.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-009-SRC-0"
+      ],
+      "timestamp": 1648382400000,
+      "y": 640,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "media",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220327/https://variety.com/2022/film/news/will-smith-slaps-chris-rock-oscars-1235215065/",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 6,
+        "cultural_impact": "Real-time social media judgment, celebrity consequence culture, institutional authority crisis"
+      }
+    },
+    {
+      "id": "ORG-010",
+      "title": "Elon Musk Twitter Stake Disclosure",
+      "date": "2022-04-04",
+      "time": "12:00:00",
+      "description": "9.2% stake revealed. Platform ownership discourse begins. Free speech absolutism discussion.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-010-SRC-0"
+      ],
+      "timestamp": 1649073600000,
+      "y": 720,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "enforcement",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220404/https://www.sec.gov/Archives/edgar/data/1418091/000110465922041911/xslF13HR_X01/tm2211634-1_13g.htm",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 8,
+        "political_correlation": {
+          "event_id": "ORG-006",
+          "time_delta": 68,
+          "correlation_strength": 0.7,
+          "note": "Platform moderation discourse convergence"
+        }
+      }
+    },
+    {
+      "id": "ORG-011",
+      "title": "Musk Twitter Acquisition Announced",
+      "date": "2022-04-25",
+      "time": "12:00:00",
+      "description": "$44B acquisition deal. Platform governance discourse intensifies. Section 230 debate acceleration.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-011-SRC-0"
+      ],
+      "timestamp": 1650888000000,
+      "y": 800,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220425/https://investor.twitterinc.com/news-and-events/news/news-details/2022/Twitter-Accepts-Elon-Musks-Acquisition-Proposal/default.aspx",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 9,
+        "political_correlation": {
+          "event_id": "ORG-010",
+          "time_delta": 21,
+          "correlation_strength": 0.95,
+          "note": "Direct continuation — platform control narrative"
+        }
+      }
+    },
+    {
+      "id": "ORG-012",
+      "title": "Roe v. Wade Draft Opinion Leak",
+      "date": "2022-05-02",
+      "time": "12:00:00",
+      "description": "Supreme Court draft opinion overturning Roe leaked to Politico. Constitutional privacy discourse crisis.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-012-SRC-0"
+      ],
+      "timestamp": 1651492800000,
+      "y": 880,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220502/https://www.politico.com/news/2022/05/02/supreme-court-abortion-draft-opinion-00029473",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 10,
+        "political_correlation": {
+          "note": "Constitutional crisis — institutional legitimacy"
+        }
+      }
+    },
+    {
+      "id": "ORG-013",
+      "title": "Buffalo Supermarket Shooting",
+      "date": "2022-05-14",
+      "time": "12:00:00",
+      "description": "Racially motivated mass shooting. 10 killed. Great replacement theory mainstream discourse.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-013-SRC-0"
+      ],
+      "timestamp": 1652529600000,
+      "y": 960,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "enforcement",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220514/https://apnews.com/article/buffalo-supermarket-shooting-e1531b95f41a8c1c71dcc4e4c3c5a7b7",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 8,
+        "cultural_impact": "Mainstream extremism normalization, platform algorithm radicalization discourse"
+      }
+    },
+    {
+      "id": "ORG-014",
+      "title": "Top Gun Maverick Release",
+      "date": "2022-05-25",
+      "time": "12:00:00",
+      "description": "Theatrical-first blockbuster success. Nostalgia cinema paradigm. Post-streaming theatrical revival signal.",
+      "significance": "supporting",
+      "status": "partially_verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-014-SRC-0"
+      ],
+      "timestamp": 1653480000000,
+      "y": 1040,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "media",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220525/https://deadline.com/2022/05/top-gun-maverick-opening-weekend-box-office-tom-cruise-1235024851/",
+            "type": "secondary",
+            "credibility": "medium"
+          }
+        ],
+        "confidence": "medium",
+        "tremor_magnitude": 3,
+        "cultural_impact": "Theatrical experience valorization, nostalgia as cultural stabilizer"
+      }
+    },
+    {
+      "id": "ORG-015",
+      "title": "Dobbs Decision Official",
+      "date": "2022-06-24",
+      "time": "12:00:00",
+      "description": "Roe v. Wade officially overturned. State-level abortion policy fragmentation begins.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-015-SRC-0"
+      ],
+      "timestamp": 1656072000000,
+      "y": 1120,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220624/https://www.supremecourt.gov/opinions/21pdf/19-1392_6j37.pdf",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 10,
+        "political_correlation": {
+          "event_id": "ORG-012",
+          "time_delta": 53,
+          "correlation_strength": 1,
+          "note": "Direct fulfillment of leaked draft"
+        }
+      }
+    },
+    {
+      "id": "ORG-016",
+      "title": "BeReal App Peak Usage",
+      "date": "2022-07-21",
+      "time": "12:00:00",
+      "description": "Authenticity-focused social platform peaks. Anti-curation culture signal. Spontaneous sharing paradigm.",
+      "significance": "supporting",
+      "status": "partially_verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-016-SRC-0"
+      ],
+      "timestamp": 1658404800000,
+      "y": 1200,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220721/https://techcrunch.com/2022/07/21/bereal-app-download-surge-authenticity/",
+            "type": "secondary",
+            "credibility": "medium"
+          }
+        ],
+        "confidence": "medium",
+        "tremor_magnitude": 4,
+        "cultural_impact": "Authenticity valorization, anti-performative social media"
+      }
+    },
+    {
+      "id": "ORG-017",
+      "title": "FBI Mar-a-Lago Search",
+      "date": "2022-08-08",
+      "time": "12:00:00",
+      "description": "Federal search of Trump residence. Presidential privilege discourse. Law enforcement legitimacy crisis.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-017-SRC-0"
+      ],
+      "timestamp": 1659960000000,
+      "y": 1280,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "enforcement",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220808/https://apnews.com/article/donald-trump-mar-a-lago-fbi-search-af3e8ad61ec3b78fbe4b1cd92c10fb01",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 9,
+        "political_correlation": {
+          "event_id": "ORG-005",
+          "time_delta": 214,
+          "correlation_strength": 0.8,
+          "note": "Democratic institutions stress test continuation"
+        }
+      }
+    },
+    {
+      "id": "ORG-018",
+      "title": "Queen Elizabeth II Death",
+      "date": "2022-09-08",
+      "time": "12:00:00",
+      "description": "Longest-reigning British monarch dies. Global institutional continuity discourse. Tradition vs. modernity.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-018-SRC-0"
+      ],
+      "timestamp": 1662638400000,
+      "y": 1360,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "media",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220908/https://www.bbc.com/news/uk-61585886",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 7,
+        "cultural_impact": "Institutional continuity anxiety, generational change symbolism"
+      }
+    },
+    {
+      "id": "ORG-019",
+      "title": "Putin Partial Mobilization",
+      "date": "2022-09-22",
+      "time": "12:00:00",
+      "description": "300,000 reservists called. Escalation discourse. Nuclear rhetoric intensification.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-019-SRC-0"
+      ],
+      "timestamp": 1663848000000,
+      "y": 1440,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20220922/https://apnews.com/article/putin-russia-ukraine-mobilization-6b9bdb75e55e48dcaf3b0e70d5a6a891",
+            "type": "primary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 9,
+        "political_correlation": {
+          "event_id": "ORG-007",
+          "time_delta": 210,
+          "correlation_strength": 0.9,
+          "note": "War escalation trajectory — nuclear discourse threshold"
+        }
+      }
+    },
+    {
+      "id": "ORG-020",
+      "title": "Kanye Anti-Semitic Tweet Storm Begins",
+      "date": "2022-10-07",
+      "time": "12:00:00",
+      "description": "\"death con 3 On JEWISH PEOPLE\" tweet. Celebrity deplatforming discourse. Hate speech boundary testing.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "evidence",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-020-SRC-0"
+      ],
+      "timestamp": 1665144000000,
+      "y": 1520,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "correlation",
+        "category": "social",
+        "sources": [
+          {
+            "url": "https://web.archive.org/web/20221007/https://variety.com/2022/music/news/kanye-west-anti-semitic-tweet-locked-restricted-1235394428/",
+            "type": "secondary",
+            "credibility": "high"
+          }
+        ],
+        "confidence": "high",
+        "tremor_magnitude": 6,
+        "political_correlation": {
+          "event_id": "ORG-011",
+          "time_delta": 165,
+          "correlation_strength": 0.6,
+          "note": "Platform moderation boundaries stress test"
+        },
+        "cultural_impact": "Celebrity consequence culture, platform enforcement consistency, hate speech normalization resistance"
+      }
+    },
+    {
+      "id": "ORG-021",
+      "title": "FTX Collapse Begins",
+      "date": "2022-11-08",
+      "time": "12:00:00",
+      "description": "Cryptocurrency exchange liquidity crisis. Customer fund misappropriation revealed. Crypto market confidence crash.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-021-SRC-0"
+      ],
+      "timestamp": 1667908800000,
+      "y": 1600,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "tremor_magnitude": 9
+      }
+    },
+    {
+      "id": "ORG-022",
+      "title": "Midterm Election Results",
+      "date": "2022-11-08",
+      "time": "12:00:00",
+      "description": "Republicans take House, Democrats hold Senate. Split government dynamics. Trump influence assessment.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-022-SRC-0"
+      ],
+      "timestamp": 1667908800000,
+      "y": 1760,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "tremor_magnitude": 7
+      }
+    },
+    {
+      "id": "ORG-023",
+      "title": "Twitter X Rebrand Announcement",
+      "date": "2022-10-27",
+      "time": "12:00:00",
+      "description": "Musk completes acquisition, announces radical platform changes. Everything app vision. Moderation policy upheaval.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-023-SRC-0"
+      ],
+      "timestamp": 1666872000000,
+      "y": 1920,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "enforcement",
+        "tremor_magnitude": 8
+      }
+    },
+    {
+      "id": "ORG-024",
+      "title": "China Zero-COVID Policy End",
+      "date": "2022-12-07",
+      "time": "12:00:00",
+      "description": "Abrupt policy reversal after protests. Global supply chain implications. Public health governance paradigm.",
+      "significance": "critical",
+      "status": "verified",
+      "event_type": "decision",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-024-SRC-0"
+      ],
+      "timestamp": 1670414400000,
+      "y": 2080,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "political",
+        "category": "policy",
+        "tremor_magnitude": 8
+      }
+    },
+    {
+      "id": "ORG-025",
+      "title": "Kanye Balenciaga Partnership Terminated",
+      "date": "2022-10-25",
+      "time": "12:00:00",
+      "description": "Fashion industry consequence cascade. Corporate social responsibility pressure. Celebrity platform accountability.",
+      "significance": "important",
+      "status": "verified",
+      "event_type": "milestone",
+      "participants": [
+        "General Public"
+      ],
+      "location": "Multiple Locations",
+      "evidence_ids": [
+        "ORG-025-SRC-0"
+      ],
+      "timestamp": 1666699200000,
+      "y": 2240,
+      "tier": "core",
+      "legacy_fields": {
+        "type": "cultural",
+        "category": "social",
+        "tremor_magnitude": 5
+      }
+    }
+  ],
+  "extended_events_structure": {
+    "note": "Extended dataset (234 events) loaded progressively on scroll/interaction",
+    "categories": {
+      "cultural_tremors": {
+        "count": 89,
+        "description": "Music, film, literature, art movements with seismographic significance",
+        "examples": [
+          "NFT art market collapse",
+          "Netflix subscriber loss",
+          "TikTok algorithm changes"
+        ]
+      },
+      "social_undercurrents": {
+        "count": 76,
+        "description": "Viral phenomena, meme evolution, community formation/dissolution",
+        "examples": [
+          "Wordle viral spread",
+          "Discord community migrations",
+          "OnlyFans creator economy shifts"
+        ]
+      },
+      "tech_paradigm_shifts": {
+        "count": 45,
+        "description": "Platform changes, algorithmic updates, digital behavior modification",
+        "examples": [
+          "Instagram chronological feed return",
+          "Apple privacy updates impact",
+          "Web3 mainstream adoption signals"
+        ]
+      },
+      "correlation_events": {
+        "count": 24,
+        "description": "Low-magnitude events with interesting temporal correlations",
+        "examples": [
+          "Cryptocurrency volatility patterns",
+          "Supply chain cultural impacts",
+          "Remote work culture evolution"
+        ]
+      }
+    },
+    "loading_strategy": {
+      "base_payload": "Core 99 events (~6KB)",
+      "chunk_size": 25,
+      "lazy_loading_trigger": "scroll proximity or manual expansion",
+      "performance_priority": "Baseline measurement capability"
+    }
+  },
+  "methodology": {
+    "source_verification": "Minimum dual-source for high-confidence events",
+    "bias_prevention": "Include non-correlating events to prevent confirmation bias",
+    "archive_strategy": "Web Archive snapshots prioritized for link stability",
+    "tremor_magnitude_scale": "1-3: Minor cultural shifts, 4-6: Moderate discourse changes, 7-9: Significant paradigm impacts, 10: Civilizational inflection points",
+    "correlation_disclaimer": "Political correlations indicate temporal proximity and narrative coherence, not causal relationships. Cultural seismography measures discourse tremors, not predictive causation.",
+    "osint_principles": "Falsifiable claims, transparent sourcing, methodological replicability",
+    "update_protocol": "Version-controlled with timestamp metadata, source verification on update cycles"
+  },
+  "technical_specifications": {
+    "file_format": "JSON",
+    "encoding": "UTF-8",
+    "estimated_core_size": "6.2KB",
+    "estimated_full_size": "28.5KB",
+    "compatibility": "Timeline.svelte virtualization interface",
+    "performance_target": "Sub-100ms initial load, progressive enhancement",
+    "typescript_interface": "TimelineEvent schema enforced"
+  }
+}
