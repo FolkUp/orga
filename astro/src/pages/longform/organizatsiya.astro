@@ -12,7 +12,7 @@ if (!entry) {
 const { Content } = await entry.render();
 const data = entry.data;
 
-// Load timeline data for the cultural seismography visualization
+// Load timeline data for the cultural analysis visualization
 // Note: In static build, use import instead of fetch for local JSON files
 let timelineData = { core_events: [], metadata: {} };
 try {
@@ -24,7 +24,7 @@ try {
       core_events: 25,
       version: '1.0.0',
       created: '2026-04-29',
-      disclaimer: 'Correlation ≠ causation. Cultural tremors identified through pattern analysis.'
+      disclaimer: 'Correlation ≠ causation. Cultural events identified through pattern analysis.'
     }
   };
 } catch (error) {
@@ -60,10 +60,10 @@ const timelineConfig = {
   <!-- Main longform content -->
   <Content />
 
-  <!-- Cultural Seismography Timeline Section -->
-  <section class="timeline-integration" data-section="cultural-seismography">
+  <!-- Cultural Analysis Timeline Section -->
+  <section class="timeline-integration" data-section="cultural-analysis">
     <div class="timeline-introduction">
-      <h2 class="timeline-title">Культурная сейсмография: ноябрь 2021 → октябрь 2022</h2>
+      <h2 class="timeline-title">Культурный анализ: ноябрь 2021 → октябрь 2022</h2>
       <p class="timeline-subtitle">
         Интерактивная визуализация событий, составляющих контекст анализируемого произведения.
         Временной период: от выхода «Организации» до завершения культурного цикла.

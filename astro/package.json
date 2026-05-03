@@ -1,7 +1,7 @@
 {
   "name": "orga-underground-academia",
   "version": "1.0.0",
-  "description": "Underground Academia Cultural Seismography Platform",
+  "description": "Underground Academia — Underground Culture Research",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

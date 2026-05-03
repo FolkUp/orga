@@ -48,59 +48,57 @@ languages:
 
 ## Abstract
 
-This investigation examines Oxymiron (Miron Fyodorov) as a cultural seismograph — an artist whose work registers and amplifies tectonic shifts in post-Soviet cultural identity. Through systematic analysis of lyrical content, audience reception, and cultural impact, we trace how battle rap transcended entertainment to become a legitimate form of cultural discourse in Russia and the broader post-Soviet space.
+Исследование Oxymiron (Мирон Фёдоров) как феномена постсоветского хип-хопа — артиста, чья работа отражает и формирует культурные изменения в постсоветском пространстве. Через анализ текстов, реакций аудитории и культурного влияния мы прослеживаем, как баттл-рэп вышел за рамки развлечения и стал формой культурного диалога в России и постсоветском пространстве.
 
-## Section 1: The Seismograph Hypothesis
+## Раздел 1: Культурный феномен
 
-Cultural seismography posits that certain artists function as sensitive instruments, registering cultural tremors before they become visible to mainstream observation. Oxymiron's trajectory — from underground battle rapper to cultural phenomenon drawing 10+ million viewers — provides a compelling case study.
+Oxymiron представляет уникальный случай артиста, чье творчество отмечает важные культурные изменения. Путь от андерграундного рэпера до культурного явления с аудиторией 10+ миллионов зрителей показывает:
 
-The hypothesis rests on three pillars:
+1. **Лингвистические инновации** — введение литературных и философских отсылок в формат баттл-рэпа
+2. **Расширение аудитории** — превращение нишевой андерграундной культуры в массовое культурное событие  
+3. **Переговоры идентичности** — баланс между западными хип-хоп традициями и постсоветской культурной идентичностью
 
-1. **Linguistic innovation** — the systematic introduction of literary and philosophical references into battle rap format
-2. **Audience amplification** — the transformation of niche underground culture into mass cultural event
-3. **Identity negotiation** — the navigation between Western hip-hop traditions and post-Soviet cultural identity
+## Раздел 2: Горгород как культурный артефакт
 
-## Section 2: Gorgorod as Cultural Artifact
+Концептуальный альбом "Горгород" (2015) стал поворотным моментом. В отличие от обычного русского рэпа того времени, альбом создал дистопический нарратив, который работал одновременно как развлечение и социальный комментарий.
 
-The concept album "Gorgorod" (2015) represents a critical evidence point. Unlike conventional Russian rap of the period, the album constructed a dystopian narrative that functioned simultaneously as entertainment and social commentary.
+Ключевые особенности:
 
-Key evidence markers:
+- **Нарративная сложность**: 14-трековый концепт-альбом с взаимосвязанной сюжетной линией
+- **Литературные отсылки**: Достоевский, Булгаков, Оруэлл — не как декор, а как структурные элементы
+- **Продакшн**: западные стандарты производства с постсоветской тематикой
+- **Путь к признанию**: андерграундный релиз → массовое культурное событие → предмет академического анализа
 
-- **Narrative complexity**: 14-track concept album with interconnected storyline
-- **Literary references**: Dostoevsky, Bulgakov, Orwell — deployed not as name-dropping but as structural elements
-- **Production values**: Western-standard production combined with distinctly post-Soviet thematic content
-- **Reception trajectory**: Underground release → mainstream cultural event → academic analysis subject
+## Раздел 3: Баттл как культурный ритуал
 
-## Section 3: The Battle as Cultural Ritual
+Формат Versus Battle, особенно международное событие Oxymiron vs. Dizaster (2017), показал, как баттл-рэп функционирует как культурный ритуал, а не просто соревнование.
 
-The Versus Battle format, particularly the Oxymiron vs. Dizaster international event (2017), demonstrated how battle rap functions as a cultural ritual rather than mere competition.
+Анализ показывает:
 
-Evidence analysis reveals:
+- **Масштаб аудитории**: 10+ миллионов просмотров за дни — беспрецедентно для русскоязычного культурного контента
+- **Кросс-демографическое проникновение**: аудитория всех возрастов, классов и образовательных уровней
+- **Реакция медиа**: освещение в mainstream прессе (The Guardian, Forbes Россия), показывающее пересечение культурных границ
+- **Исполнение идентичности**: переключение между английским и русским как культурная позиция
 
-- **Viewership scale**: 10+ million views within days — unprecedented for Russian-language cultural content
-- **Cross-demographic penetration**: audiences spanning age, class, and educational backgrounds
-- **Media ecosystem response**: coverage in mainstream press (The Guardian, Forbes Russia) indicating cultural boundary crossing
-- **Identity performance**: code-switching between English and Russian as cultural negotiation
+## Раздел 4: Картография постсоветской идентичности
 
-## Section 4: Post-Soviet Identity Cartography
+Исследование показывает, как работа Oxymiron отражает постсоветскую культурную идентичность через:
 
-The investigation maps how Oxymiron's work charts post-Soviet cultural identity through:
+- **Языковую политику**: двуязычное исполнение как заявление идентичности
+- **Культурное позиционирование**: одновременное принятие и критика западных культурных форм
+- **Поколенческий голос**: артикуляция постсоветского миллениального опыта, отсутствующего в официальном культурном дискурсе
+- **Андерграундная легитимность**: поддержание субкультурного авторитета при достижении mainstream признания
 
-- **Language politics**: bilingual performance as identity statement
-- **Cultural positioning**: simultaneous embrace and critique of Western cultural forms
-- **Generational voice**: articulation of post-Soviet millennial experience absent from official cultural discourse
-- **Underground legitimacy**: maintaining subcultural credibility while achieving mainstream recognition
+## Методологическая заметка
 
-## Methodology Note
+Это исследование следует методологии Underground Academia — систематическому наблюдению и документированию культурных феноменов через строгий сбор фактов и многоисточниковую верификацию. Все утверждения оценены по уровню достоверности и подтверждены документированными источниками.
 
-This investigation follows the Underground Academia methodology of cultural seismography — systematic observation and documentation of cultural phenomena through rigorous evidence collection and multi-source verification. All claims are graded by confidence level and supported by documented sources.
+## Предварительные выводы
 
-## Preliminary Conclusions
+Факты подтверждают гипотезу: художественная траектория Oxymiron отражает подлинную культурную активность в постсоветском пространстве. Феномен выходит за рамки индивидуального художественного достижения и раскрывает:
 
-The evidence supports the seismograph hypothesis: Oxymiron's artistic trajectory registers genuine cultural tectonic activity in post-Soviet space. The phenomenon transcends individual artistic achievement to reveal:
-
-1. A structural shift in how post-Soviet culture processes Western influences
-2. The emergence of hip-hop as a legitimate vehicle for intellectual discourse in Russian
-3. The collapse of traditional high/low culture boundaries in post-Soviet context
+1. Структурные изменения в том, как постсоветская культура обрабатывает западные влияния
+2. Появление хип-хопа как легитимного средства интеллектуального дискурса на русском языке
+3. Крах традиционных границ между высокой и низкой культурой в постсоветском контексте
 
 **Status**: Investigation ongoing. Additional evidence collection and expert review in progress.

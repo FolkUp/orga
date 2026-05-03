@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const title = "About — Underground Academia";
-const description = "About Underground Academia and cultural research platform";
+const description = "About Underground Academia and approaches to underground culture research";
 
 const alternates = [
   { lang: 'ru' as const, href: '/about/' }
@@ -13,14 +13,31 @@ const alternates = [
   <section class="page-header">
     <h1>About</h1>
     <p class="page-description">
-      Understanding Underground Academia and our approach to cultural research
+      Underground Academia — research on contemporary underground culture
     </p>
   </section>
 
   <section class="content">
-    <div class="under-construction">
-      <h2>Under Construction</h2>
-      <p>About page content is being developed. This will include our mission, team, and approach to cultural seismography.</p>
+    <div class="section-block">
+      <h2>What We Do</h2>
+      <p>Underground Academia researches contemporary underground culture — from hip-hop to independent art. We conduct investigations, collect facts, analyze trends.</p>
+      <p>Our approach is systematic collection and verification of information about cultural phenomena that shape modern Russian culture.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Methodology</h2>
+      <p>Our work is based on investigative journalism principles applied to cultural research:</p>
+      <ul>
+        <li><strong>Source verification</strong> — every fact is confirmed by multiple independent sources</li>
+        <li><strong>Process transparency</strong> — all sources and information collection methods are open</li>
+        <li><strong>Reliability gradation</strong> — every claim has a verification level marker</li>
+        <li><strong>Information updates</strong> — facts are regularly rechecked and updated</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <h2>Why It Matters</h2>
+      <p>Underground culture often remains invisible to mainstream media, but it's where trends that later shape general culture are born. We document these processes in real time.</p>
     </div>
   </section>
 </BaseLayout>
@@ -50,25 +67,42 @@ const alternates = [
     line-height: 1.7;
   }
 
-  .under-construction {
-    text-align: center;
-    padding: var(--space-2xl);
+  .section-block {
+    max-width: 45rem;
+    margin: 0 auto var(--space-2xl) auto;
+    padding: var(--space-lg);
     background: white;
     border-radius: 8px;
     border: 1px solid #E2E8F0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .under-construction h2 {
+  .section-block h2 {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: var(--color-bordeaux);
     margin-bottom: var(--space-md);
   }
 
-  .under-construction p {
+  .section-block p {
     color: #4A5568;
     font-size: 1rem;
     line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-block ul {
+    color: #4A5568;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding-left: var(--space-lg);
+  }
+
+  .section-block li {
+    margin-bottom: var(--space-sm);
   }
 </style>

@@ -430,9 +430,9 @@ interface ArchivariusAnalysis {
     };
     
     oxymiron_2021: {
-      method: 'musical_cultural_seismography';
+      method: 'musical_cultural_analysis';
       state_response: 'investigation_and_pressure';
-      cultural_impact: 'mainstream_cultural_shift';
+      cultural_impact: 'mainstream_cultural_impact';
       historical_validation: '400_year_pattern_confirmation';
     };
   };

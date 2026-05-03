@@ -3,7 +3,7 @@ import Layout from '../layouts/BaseLayout.astro';
 import Timeline from '../components/Timeline.svelte';
 
 const title = 'Organizatsiya Timeline';
-const description = 'Cultural seismography dataset visualization: Nov 2021 → Oct 2022';
+const description = 'Cultural analysis dataset visualization: Nov 2021 → Oct 2022';
 
 // Load core timeline data
 const timelineData = await fetch('/data/organizatsiya-timeline.json')
@@ -22,8 +22,8 @@ const events = timelineData.core_events || [];
           Organizatsiya Timeline
         </h1>
         <p class="text-xl text-gray-300 max-w-3xl">
-          Cultural seismography analysis: Nov 2021 → Oct 2022.
-          Tracking political tremors and cultural undercurrents during a period of significant societal fragmentation.
+          Cultural analysis analysis: Nov 2021 → Oct 2022.
+          Tracking political events and cultural undercurrents during a period of significant societal fragmentation.
         </p>
         <div class="mt-4 flex gap-4 text-sm text-gray-400">
           <span>📊 {timelineData.metadata.total_events || 333} total events</span>
@@ -38,7 +38,7 @@ const events = timelineData.core_events || [];
       <div class="max-w-6xl mx-auto">
         <div class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4">
           <p class="text-amber-200 text-sm">
-            <strong>Methodology:</strong> {timelineData.metadata.disclaimer || 'Correlation ≠ causation. Cultural tremors identified through pattern analysis, not predictive modeling.'}
+            <strong>Methodology:</strong> {timelineData.metadata.disclaimer || 'Correlation ≠ causation. Cultural events identified through pattern analysis, not predictive modeling.'}
           </p>
         </div>
       </div>
@@ -81,15 +81,15 @@ const events = timelineData.core_events || [];
           <div class="space-y-3">
             <div class="flex items-center gap-3">
               <div class="w-4 h-4 bg-red-500 rounded-full"></div>
-              <span class="text-gray-300">Critical (Tremor Magnitude 8-10)</span>
+              <span class="text-gray-300">Critical (Event Magnitude 8-10)</span>
             </div>
             <div class="flex items-center gap-3">
               <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
-              <span class="text-gray-300">Important (Tremor Magnitude 5-7)</span>
+              <span class="text-gray-300">Important (Event Magnitude 5-7)</span>
             </div>
             <div class="flex items-center gap-3">
               <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
-              <span class="text-gray-300">Supporting (Tremor Magnitude 1-4)</span>
+              <span class="text-gray-300">Supporting (Event Magnitude 1-4)</span>
             </div>
           </div>
         </div>
