@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ConfidenceBadge from '../components/ConfidenceBadge.astro';
 
-const title = "Андерграунд Академия — Платформа культурной сейсмографии";
-const description = "Исследовательская платформа для культурных расследований и методологии Андерграунд Академии";
+const title = "Андерграунд Академия — Исследования андерграундной культуры";
+const description = "Исследования современной андерграундной культуры, расследования и анализ культурных феноменов";
 
 const alternates = [
   { lang: 'en' as const, href: '/en/' }
@@ -13,43 +12,20 @@ const alternates = [
 <BaseLayout title={title} description={description} lang="ru" alternates={alternates}>
   <section class="hero">
     <h1>Андерграунд Академия</h1>
-    <p class="hero-subtitle">Платформа культурной сейсмографии</p>
+    <p class="hero-subtitle">Исследования андерграундной культуры</p>
     <p class="hero-description">
-      Исследовательская инфраструктура для изучения культурных феноменов через
-      строгую академическую методологию и систематический сбор доказательств.
+      Изучаем современную андерграундную культуру — от хип-хопа до независимого искусства.
+      Ведём расследования, собираем факты, анализируем тенденции.
     </p>
   </section>
 
-  <section class="platform-status">
-    <h2>Статус платформы</h2>
-    <div class="status-grid">
-      <div class="status-item">
-        <h3>Инфраструктура</h3>
-        <ConfidenceBadge status="verified" />
-        <p>Продакшн-развёртывание завершено. 4-этапная безопасность функционирует.</p>
-      </div>
-
-      <div class="status-item">
-        <h3>Контентная система</h3>
-        <ConfidenceBadge status="partially_verified" />
-        <p>Миграция на Astro в процессе. Разработка компонентов ведётся.</p>
-      </div>
-
-      <div class="status-item">
-        <h3>Расследования</h3>
-        <ConfidenceBadge status="draft" />
-        <p>Исследовательская методология установлена. Миграция контента в ожидании.</p>
-      </div>
-    </div>
-  </section>
-
   <section class="research-areas">
-    <h2>Области исследований</h2>
+    <h2>Что мы исследуем</h2>
     <ul class="research-list">
-      <li>Культурная сейсмография и анализ трендов</li>
-      <li>Институциональные расследования и прозрачность</li>
-      <li>Андерграундные культурные движения</li>
-      <li>Пересечение хип-хопа и академического дискурса</li>
+      <li>Современный российский хип-хоп и рэп-культура</li>
+      <li>Независимые художники и музыканты</li>
+      <li>Культурные феномены в соцсетях</li>
+      <li>История и развитие андерграундных движений</li>
     </ul>
   </section>
 </BaseLayout>
@@ -86,46 +62,6 @@ const alternates = [
     line-height: 1.7;
   }
 
-  .platform-status {
-    margin-bottom: var(--space-2xl);
-  }
-
-  .platform-status h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    color: var(--color-bordeaux);
-    margin-bottom: var(--space-lg);
-    text-align: center;
-  }
-
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
-  }
-
-  .status-item {
-    background: white;
-    padding: var(--space-lg);
-    border-radius: 8px;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .status-item h3 {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--color-bordeaux);
-    margin-bottom: var(--space-sm);
-  }
-
-  .status-item p {
-    margin-top: var(--space-sm);
-    color: #4A5568;
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
 
   .research-areas h2 {
     font-family: var(--font-display);
@@ -166,10 +102,6 @@ const alternates = [
 
     .hero-description {
       font-size: 1rem;
-    }
-
-    .status-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>

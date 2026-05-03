@@ -177,4 +177,45 @@ const L = tLabels[lang];
     color: var(--color-bordeaux);
     text-decoration: underline;
   }
+
+  /* Enhanced responsive tables for legal content */
+  .legal-page__body :global(table) {
+    margin: var(--space-lg) 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .legal-page__body :global(table th) {
+    background-color: var(--color-bordeaux);
+    color: var(--color-text-inverse);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+  }
+
+  .legal-page__body :global(table td) {
+    background-color: var(--color-ivory);
+    vertical-align: top;
+  }
+
+  .legal-page__body :global(table tr:nth-child(even) td) {
+    background-color: rgba(125, 68, 80, 0.02);
+  }
+
+  /* Mobile table wrapper for extra safety */
+  @media (max-width: 47.9rem) {
+    .legal-page__body :global(table) {
+      min-width: 500px; /* Force horizontal scroll instead of cramping */
+    }
+
+    .legal-page__body :global(table th),
+    .legal-page__body :global(table td) {
+      white-space: nowrap;
+    }
+
+    .legal-page__body :global(table td:last-child) {
+      white-space: normal; /* Allow wrapping in last column (usually content) */
+      max-width: 200px;
+    }
+  }
 </style>

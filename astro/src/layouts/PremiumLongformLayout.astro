@@ -126,6 +126,43 @@ const l = labels[language];
 const hasEmbed = Boolean(
   audioEmbed && (audioEmbed.spotifyTrackId || audioEmbed.youtubeVideoId),
 );
+
+// Generate Article schema.org JSON-LD for enhanced search discovery
+const currentUrl = new URL(Astro.url.pathname, Astro.site);
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  ...(subtitle && { "alternativeHeadline": subtitle }),
+  "author": {
+    "@type": "Person",
+    "name": byline,
+    ...(bylineNote && { "description": bylineNote })
+  },
+  "datePublished": date.toISOString(),
+  ...(lastmod && { "dateModified": lastmod.toISOString() }),
+  "publisher": {
+    "@type": "Organization",
+    "name": "FolkUp Underground Academia",
+    "url": "https://underground.folkup.life"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl.href
+  },
+  "inLanguage": language,
+  ...(wordCount && { "wordCount": wordCount }),
+  ...(subjectArtist && subjectWork && {
+    "about": {
+      "@type": "MusicRecording",
+      "byArtist": { "@type": "Person", "name": subjectArtist },
+      "name": subjectWork
+    }
+  }),
+  ...(tags.length > 0 && { "keywords": tags.join(", ") }),
+  "genre": "Cultural Criticism",
+  "articleSection": "Longform"
+};
 ---
 
 <BaseLayout
@@ -136,6 +173,7 @@ const hasEmbed = Boolean(
   image={ogImage}
   imageAlt={ogImageAlt}
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)}></script>
   <article class="longform" itemscope itemtype="https://schema.org/Article" lang={language}>
     <div class="longform__nav-row">
       <nav class="longform__breadcrumb" aria-label="Breadcrumb">

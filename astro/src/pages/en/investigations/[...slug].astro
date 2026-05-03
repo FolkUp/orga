@@ -1,0 +1,196 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import InvestigationLayout from '../../../layouts/InvestigationLayout.astro';
+import SourceCard from '../../../components/SourceCard.astro';
+import EvidenceCard from '../../../components/EvidenceCard.astro';
+
+// Static path generation for build-time optimization
+export async function getStaticPaths() {
+  const investigations = await getCollection('investigations', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  return investigations.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+// TypeScript type for route params
+interface Props {
+  entry: CollectionEntry<'investigations'>;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+
+// Map headings to InvestigationNav sections
+const navSections = headings
+  .filter((h) => h.depth === 2)
+  .map((h, index) => ({
+    id: h.slug,
+    title: h.text,
+    status: 'available' as const,
+    href: `#${h.slug}`,
+    description: undefined
+  }));
+
+// Determine current section (first section by default)
+const currentSection = navSections.length > 0 ? navSections[0].id : '';
+
+// Map source types from content schema to SourceCard types
+type SourceCardType = 'primary' | 'secondary' | 'archive' | 'digital';
+
+function mapSourceType(schemaType: string | undefined): SourceCardType {
+  const typeMap: Record<string, SourceCardType> = {
+    primary: 'primary',
+    secondary: 'secondary',
+    academic: 'archive',
+    government: 'archive',
+    media: 'digital'
+  };
+  return typeMap[schemaType || ''] || 'secondary';
+}
+
+// Source reliability heuristic based on type
+function inferReliability(type: string | undefined): 'high' | 'medium' | 'low' | 'unknown' {
+  const reliabilityMap: Record<string, 'high' | 'medium' | 'low' | 'unknown'> = {
+    primary: 'high',
+    government: 'high',
+    academic: 'high',
+    secondary: 'medium',
+    media: 'medium'
+  };
+  return reliabilityMap[type || ''] || 'unknown';
+}
+
+// Alternate language links
+const alternates = [
+  { lang: 'ru' as const, href: `/investigations/${entry.slug}/` }
+];
+---
+
+<InvestigationLayout
+  title={entry.data.title}
+  description={entry.data.description || ''}
+  status={entry.data.status}
+  confidence={entry.data.confidence}
+  investigationType={entry.data.investigation_type}
+  tags={entry.data.tags}
+  date={entry.data.date}
+  lastmod={entry.data.lastmod}
+  evidenceCount={entry.data.evidence_count}
+  timelineSpan={entry.data.timeline_span}
+  navSections={navSections}
+  currentSection={currentSection}
+  lang="en"
+  alternates={alternates}
+>
+  <!-- Rendered markdown content -->
+  <div class="content-body">
+    <Content />
+  </div>
+
+  <!-- Evidence Summary Section (English labels) -->
+  {entry.data.evidence_count && entry.data.evidence_count > 0 && (
+    <section class="evidence-summary" aria-labelledby="evidence-heading">
+      <h2 id="evidence-heading" class="evidence-summary__title">Evidence Overview</h2>
+      <div class="evidence-summary__meta">
+        <p class="evidence-count">
+          This investigation references <strong>{entry.data.evidence_count}</strong> distinct evidence artifacts spanning {entry.data.timeline_span || 'multiple periods'}.
+        </p>
+        <EvidenceCard
+          title="Evidence Classification"
+          category="document"
+          status={entry.data.status}
+          significance="critical"
+          content={`This investigation employs evidence classification across primary documents, secondary analysis, testimony records, and digital artifacts. All evidence items have undergone verification review with ${entry.data.confidence} confidence level.`}
+        />
+      </div>
+    </section>
+  )}
+
+  <!-- Sources section (English labels) -->
+  {entry.data.sources && entry.data.sources.length > 0 && (
+    <section class="sources-section" aria-labelledby="sources-heading">
+      <h2 id="sources-heading" class="sources-section__title">Sources</h2>
+      <div class="sources-grid">
+        {entry.data.sources.map((source) => (
+          <SourceCard
+            title={source.title}
+            type={mapSourceType(source.type)}
+            reliability={inferReliability(source.type)}
+            date={source.date}
+            url={source.url}
+            description={source.archive_url ? `Archived: ${source.archive_url}` : undefined}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</InvestigationLayout>
+
+<style>
+  .content-body {
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* Evidence summary section */
+  .evidence-summary {
+    margin: var(--space-2xl) 0;
+    padding: var(--space-lg);
+    background-color: rgba(26, 54, 93, 0.02);
+    border: 1px solid rgba(26, 54, 93, 0.1);
+    border-radius: var(--space-sm);
+  }
+
+  .evidence-summary__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-bordeaux);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .evidence-summary__meta {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .evidence-count {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  /* Sources section */
+  .sources-section {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(26, 54, 93, 0.15);
+  }
+
+  .sources-section__title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-bordeaux);
+    margin: 0 0 var(--space-lg) 0;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+  }
+
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 48rem) {
+    .sources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

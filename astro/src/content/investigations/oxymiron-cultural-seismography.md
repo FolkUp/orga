@@ -1,5 +1,5 @@
 ---
-title: "Oxymiron: Cultural Seismography of Post-Soviet Hip-Hop"
+title: "Oxymiron: Феномен постсоветского хип-хопа"
 date: 2026-04-15
 lastmod: 2026-04-15
 draft: false
@@ -13,11 +13,11 @@ tags:
   - oxymiron
   - battle-rap
 categories:
-  - cultural-seismography
+  - hip-hop
   - music
 evidence_count: 12
 timeline_span: "2010-2026"
-description: "Investigation into Oxymiron's role as a cultural seismograph — how battle rap reflects and amplifies tectonic shifts in post-Soviet cultural identity."
+description: "Исследование роли Oxymiron в современной культуре — как баттл-рэп отражает и формирует постсоветскую культурную идентичность."
 keywords: "oxymiron, hip-hop, cultural analysis, post-soviet, battle rap, underground academia"
 sources:
   - title: "Versus Battle: Oxymiron vs Dizaster (2017)"

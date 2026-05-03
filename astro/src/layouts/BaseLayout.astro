@@ -36,12 +36,10 @@ const {
 const navItems = {
   ru: [
     { href: "/investigations/", label: "Расследования" },
-    { href: "/methodology/", label: "Методология" },
     { href: "/about/", label: "О проекте" },
   ],
   en: [
     { href: "/en/investigations/", label: "Investigations" },
-    { href: "/en/methodology/", label: "Methodology" },
     { href: "/en/about/", label: "About" },
   ],
 };
@@ -415,6 +413,45 @@ const ogImageAltFinal = imageAlt ?? title;
 
     .nav-menu {
       gap: var(--space-md);
+    }
+  }
+
+  /* Responsive Tables - ECOSYSTEM pattern from retro-tech */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+  }
+
+  table th,
+  table td {
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    border: 1px solid rgba(45, 55, 72, 0.2);
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  table th {
+    background-color: rgba(125, 68, 80, 0.05);
+    font-weight: 600;
+    color: var(--color-bordeaux);
+  }
+
+  /* Mobile table optimizations */
+  @media (max-width: 47.9rem) {
+    table {
+      font-size: 0.875rem;
+    }
+
+    table th,
+    table td {
+      padding: var(--space-xs) var(--space-sm);
+      min-width: 120px; /* Prevents columns from becoming too narrow */
     }
   }
 
