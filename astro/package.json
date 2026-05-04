@@ -8,9 +8,19 @@
     "start": "astro dev",
     "build": "astro build && node scripts/build-monitor.js",
     "build:ci": "astro build",
+    "build:editorial": "node scripts/build-integration.js && astro build",
+    "build:editorial:strict": "node scripts/build-integration.js STRICT && astro build",
+    "build:editorial:moderate": "node scripts/build-integration.js MODERATE && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "monitor": "node scripts/build-monitor.js"
+    "monitor": "node scripts/build-monitor.js",
+    "editorial:audit": "node scripts/editorial-automation.js",
+    "editorial:report": "node scripts/editorial-automation.js --report",
+    "editorial:validate": "node scripts/build-integration.js",
+    "content:lifecycle": "node scripts/content-lifecycle.js",
+    "content:transition": "node scripts/content-lifecycle.js transition",
+    "content:status": "node scripts/content-lifecycle.js status",
+    "quality:check": "npm run editorial:audit && npm run content:status"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
