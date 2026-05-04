@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ConfidenceBadge from '../../components/ConfidenceBadge.astro';
 
-const title = "Underground Academia — Cultural Seismography Platform";
-const description = "Research platform for cultural investigations and Underground Academia methodology";
+const title = "Underground Academia — Underground Culture Research";
+const description = "Research on contemporary underground culture, investigations and analysis of cultural phenomena";
 
 const alternates = [
   { lang: 'ru' as const, href: '/' }
@@ -13,43 +12,20 @@ const alternates = [
 <BaseLayout title={title} description={description} lang="en" alternates={alternates}>
   <section class="hero">
     <h1>Underground Academia</h1>
-    <p class="hero-subtitle">Cultural Seismography Platform</p>
+    <p class="hero-subtitle">Underground Culture Research</p>
     <p class="hero-description">
-      Research infrastructure for investigating cultural phenomena through
-      rigorous academic methodology and systematic evidence collection.
+      We study contemporary underground culture — from hip-hop to independent art.
+      We conduct investigations, collect facts, analyze trends.
     </p>
   </section>
 
-  <section class="platform-status">
-    <h2>Platform Status</h2>
-    <div class="status-grid">
-      <div class="status-item">
-        <h3>Infrastructure</h3>
-        <ConfidenceBadge status="verified" />
-        <p>Production deployment complete. 4-phase security remediation operational.</p>
-      </div>
-
-      <div class="status-item">
-        <h3>Content System</h3>
-        <ConfidenceBadge status="partially_verified" />
-        <p>Astro migration in progress. Component development underway.</p>
-      </div>
-
-      <div class="status-item">
-        <h3>Investigations</h3>
-        <ConfidenceBadge status="draft" />
-        <p>Research methodology established. Content migration pending.</p>
-      </div>
-    </div>
-  </section>
-
   <section class="research-areas">
-    <h2>Research Focus Areas</h2>
+    <h2>What We Research</h2>
     <ul class="research-list">
-      <li>Cultural seismography and trend analysis</li>
-      <li>Institutional investigation and transparency</li>
-      <li>Underground cultural movements</li>
-      <li>Hip-hop and academic discourse intersection</li>
+      <li>Contemporary Russian hip-hop and rap culture</li>
+      <li>Independent artists and musicians</li>
+      <li>Cultural phenomena in social media</li>
+      <li>History and development of underground movements</li>
     </ul>
   </section>
 </BaseLayout>
@@ -86,46 +62,6 @@ const alternates = [
     line-height: 1.7;
   }
 
-  .platform-status {
-    margin-bottom: var(--space-2xl);
-  }
-
-  .platform-status h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    color: var(--color-bordeaux);
-    margin-bottom: var(--space-lg);
-    text-align: center;
-  }
-
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
-  }
-
-  .status-item {
-    background: white;
-    padding: var(--space-lg);
-    border-radius: 8px;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .status-item h3 {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--color-bordeaux);
-    margin-bottom: var(--space-sm);
-  }
-
-  .status-item p {
-    margin-top: var(--space-sm);
-    color: #4A5568;
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
 
   .research-areas h2 {
     font-family: var(--font-display);
@@ -166,10 +102,6 @@ const alternates = [
 
     .hero-description {
       font-size: 1rem;
-    }
-
-    .status-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>

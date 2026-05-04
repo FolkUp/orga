@@ -15,7 +15,7 @@ translations:
 
 ### Platform Purpose
 
-Underground Academia is a cultural seismography platform providing investigative research and analysis of cultural phenomena.
+Underground Academia provides investigative research and analysis of underground cultural phenomena.
 
 ### Acceptable Use
 

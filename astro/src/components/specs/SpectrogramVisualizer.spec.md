@@ -13,7 +13,7 @@ Visual-only spectrogram and waveform analyzer for Oxymiron "Организаци
 
 ### Purpose
 - Visual representation of harmonic structure
-- Cultural seismography through musical pattern analysis  
+- Cultural analysis through musical pattern analysis  
 - Interactive exploration of musical elements without copyright infringement
 
 ### Component Type
@@ -79,7 +79,7 @@ interface ComponentState {
 ### Layout Structure
 ```
 ┌─────────────────────────────────────────────┐
-│ 🎵 МУЗЫКАЛЬНАЯ СЕЙСМОГРАФИЯ                 │
+│ 🎵 МУЗЫКАЛЬНЫЙ АНАЛИЗ                      │
 ├─────────────────────────────────────────────┤
 │ [Harmonic] [Cultural] [Waveform] Mode Toggle│
 ├─────────────────────────────────────────────┤

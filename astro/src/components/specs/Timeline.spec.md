@@ -3,19 +3,19 @@
 **Version:** 1.0  
 **Date:** 2026-04-29  
 **Status:** Specification Phase  
-**Expert:** КиберГонзо (OSINT Cultural Seismography)
+**Expert:** КиберГонзо (OSINT Cultural Analysis)
 
 ---
 
 ## Component Overview
 
-Interactive timeline visualization of cultural tremors and political correlations during the 333-day arc (Nov 8, 2021 → Oct 7, 2022), implementing falsifiable OSINT methodology for cultural seismography analysis.
+Interactive timeline visualization of cultural events and political correlations during the 333-day arc (Nov 8, 2021 → Oct 7, 2022), implementing falsifiable OSINT methodology for cultural pattern analysis.
 
 ### Purpose
 - Document verified cultural events and political correlations
 - Provide transparent source verification for all claims
 - Enable temporal pattern analysis with confidence ratings
-- Demonstrate cultural seismography methodology with academic rigor
+- Demonstrate cultural analysis methodology with academic rigor
 
 ### Component Type
 - **Framework:** Svelte 5
@@ -33,7 +33,7 @@ interface TimelineProps {
   events: Array<{
     id: string;
     date: string;                       // ISO 8601 format
-    type: 'cultural' | 'political' | 'correlation' | 'tremor';
+    type: 'cultural' | 'political' | 'correlation' | 'event';
     category: 'music' | 'social' | 'media' | 'policy' | 'enforcement';
     title: string;
     description: string;
@@ -51,8 +51,8 @@ interface TimelineProps {
     confidence: 'high' | 'medium' | 'low';
     verification_status: 'verified' | 'partially_verified' | 'unverified';
     
-    // Cultural Seismography
-    tremor_magnitude?: number;          // 1-10 scale
+    // Cultural Analysis
+    event_magnitude?: number;          // 1-10 scale
     political_correlation?: {
       event_id: string;                 // Related political event
       time_delta: number;               // Days between events
@@ -149,7 +149,7 @@ interface FalsifiableClaim {
 ### Timeline Layout
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ ⚡ КУЛЬТУРНАЯ СЕЙСМОГРАФИЯ: 333-дневная дуга                  │
+│ ⚡ КУЛЬТУРНЫЙ АНАЛИЗ: 333-дневная дуга                        │
 ├─────────────────────────────────────────────────────────────┤
 │ [All] [Cultural] [Political] [High Confidence] Filters      │
 ├─────────────────────────────────────────────────────────────┤
@@ -159,7 +159,7 @@ interface FalsifiableClaim {
 │             ╱│╲               │   Coverage     │   Response  │
 │            ╱ │ ╲              │        │       │      │      │
 │           ╱  │  ╲             │        ▼       │      ▼      │
-│          Cultural Tremor ─────┴────Correlation─┴──Response   │
+│          Cultural Event ─────┴────Correlation─┴──Response   │
 ├─────────────────────────────────────────────────────────────┤
 │ Selected: "Организация" Release (2021-11-08)               │
 │ Sources: [Official Release] [Social Media] [Archive.org]    │
@@ -456,7 +456,7 @@ const timelineEvents = await getTimelineData('organizatsiya-333-arc');
 ```typescript
 // Expert analysis integration
 interface CyberGonzoAnalysis {
-  tremor_detection: {
+  event_detection: {
     methodology: string;
     criteria: string[];
     bias_prevention: string[];

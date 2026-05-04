@@ -13,7 +13,7 @@ translations:
 
 ## About this page
 
-Underground Academia is a cultural-seismography research platform. This page explains how automated tools are used in our editorial workflow, in keeping with the transparency principle of **EU AI Act, Article 50**.
+Underground Academia researches underground culture. This page explains how automated tools are used in our editorial workflow, in keeping with the transparency principle of **EU AI Act, Article 50**.
 
 ## Where automated tools are used
 
