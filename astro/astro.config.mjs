@@ -45,6 +45,7 @@ for (const pair of BILINGUAL_GROUPS) {
 
 export default defineConfig({
   site: SITE,
+  output: 'static', // Phase 3B: Static build with API routes
   integrations: [
     mdx(),
     svelte(),
@@ -56,5 +57,15 @@ export default defineConfig({
     }),
   ],
   build: { assets: '_assets' },
-  vite: { define: { __DATE__: `'${new Date()}'` } },
+  vite: {
+    define: {
+      __DATE__: `'${new Date()}'`,
+      __PHASE__: `'3B'`,
+      __ECOSYSTEM_VERSION__: `'3B.0.0'`
+    }
+  },
+  // Phase 3B: Enhanced security configuration
+  security: {
+    checkOrigin: true
+  }
 });

@@ -8,9 +8,21 @@
     "start": "astro dev",
     "build": "astro build && node scripts/build-monitor.js",
     "build:ci": "astro build",
+    "build:editorial": "node scripts/build-integration.js && astro build",
+    "build:editorial:strict": "node scripts/build-integration.js STRICT && astro build",
+    "build:editorial:moderate": "node scripts/build-integration.js MODERATE && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "monitor": "node scripts/build-monitor.js"
+    "monitor": "node scripts/build-monitor.js",
+    "editorial:audit": "node scripts/editorial-automation.js",
+    "editorial:report": "node scripts/editorial-automation.js --report",
+    "editorial:validate": "node scripts/build-integration.js",
+    "content:lifecycle": "node scripts/content-lifecycle.js",
+    "content:transition": "node scripts/content-lifecycle.js transition",
+    "content:status": "node scripts/content-lifecycle.js status",
+    "quality:check": "npm run editorial:audit && npm run content:status",
+    "security:test": "node scripts/security-test-phase3b.js",
+    "phase3b:validate": "npm run security:test && npm run check && npm run build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
@@ -19,10 +31,12 @@
     "@astrojs/svelte": "^7.0.0",
     "astro": "^5.18.1",
     "svelte": "^5.0.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/jsonwebtoken": "^9.0.0",
     "playwright": "^1.59.1",
     "tinybench": "^6.0.0",
     "vite-bundle-visualizer": "^1.2.1"
