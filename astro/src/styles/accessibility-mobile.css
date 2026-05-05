@@ -1,0 +1,287 @@
+/**
+ * Phase 3B Mobile Accessibility Remediation
+ * WCAG 2.1 AA Compliance for Mobile Devices
+ *
+ * Fixes:
+ * - Text size minimum 14px (0.875rem at 16px base)
+ * - Touch targets minimum 44px
+ * - Improved contrast ratios
+ * - Mobile typography optimization
+ */
+
+/* ==========================================================================
+   WCAG TEXT SIZE COMPLIANCE (14px minimum)
+   ========================================================================== */
+
+/* Override small text sizes to meet 14px minimum */
+@media (max-width: 47.9rem) {
+  /* Brand subtitle - was 0.875rem (14px), keep at minimum */
+  .brand-subtitle {
+    font-size: 0.875rem; /* 14px - meets minimum */
+  }
+
+  /* Navigation menu items - ensure 14px minimum */
+  .nav-menu a {
+    font-size: 0.875rem; /* 14px minimum */
+    font-weight: 500;
+  }
+
+  /* Timeline component text fixes */
+  .timeline-marker__time {
+    font-size: 0.875rem; /* was 0.875rem, keep at 14px minimum */
+  }
+
+  /* Event type and significance indicators - critical fix */
+  .event-type,
+  .significance-indicator {
+    font-size: 0.875rem; /* was 0.75rem (12px) - now 14px minimum */
+    padding: var(--space-sm) var(--space-md); /* Increase padding for better touch targets */
+  }
+
+  /* Status badges - critical fix */
+  .status-badge {
+    font-size: 0.875rem; /* was 0.75rem (12px) - now 14px minimum */
+    padding: 0.5rem 1rem; /* Increase for 44px touch target */
+  }
+
+  /* Timeline details text */
+  .timeline-marker__details {
+    font-size: 0.875rem; /* was 0.875rem, maintain 14px */
+  }
+
+  /* Participant and evidence refs - critical fix */
+  .participant,
+  .evidence-ref {
+    font-size: 0.875rem; /* was 0.8rem (12.8px) - now 14px minimum */
+    padding: var(--space-sm) var(--space-md); /* Better touch targets */
+  }
+
+  /* Language switcher - was borderline */
+  .language-switcher {
+    font-size: 0.875rem; /* was 0.8125rem (13px) - now 14px minimum */
+  }
+
+  /* Footer content */
+  .footer-content {
+    font-size: 0.875rem; /* Ensure footer meets 14px minimum */
+  }
+
+  /* Table text in mobile */
+  table {
+    font-size: 0.875rem; /* Ensure tables meet 14px minimum */
+  }
+}
+
+/* ==========================================================================
+   WCAG TOUCH TARGET COMPLIANCE (44px minimum)
+   ========================================================================== */
+
+@media (max-width: 47.9rem) {
+  /* Navigation links - enhance touch targets */
+  .nav-menu a {
+    padding: 0.75rem 1rem; /* 12px + 14px + 12px = 38px, plus margin = 44px+ */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  /* Brand link touch target */
+  .brand-link {
+    padding: 0.5rem; /* Additional padding for larger touch area */
+    margin: -0.5rem; /* Negative margin to maintain visual spacing */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Language switcher options */
+  .language-option {
+    padding: 0.75rem 1rem; /* 12px + 14px + 12px = 38px, plus margin = 44px+ */
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  /* Footer links */
+  .footer-content a {
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: underline; /* Ensure links are clearly identified */
+  }
+
+  /* Evidence links in timeline */
+  .evidence-link {
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgba(125, 68, 80, 0.05); /* Better visual indication */
+  }
+
+  /* Skip link enhancement */
+  .skip-link {
+    padding: 1rem 1.5rem; /* Larger touch target */
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem; /* 14px minimum */
+  }
+}
+
+/* ==========================================================================
+   ENHANCED MOBILE TYPOGRAPHY OPTIMIZATION
+   ========================================================================== */
+
+@media (max-width: 47.9rem) {
+  /* Improve line height for better mobile readability */
+  body,
+  .timeline-marker__description,
+  .investigation__content {
+    line-height: 1.7; /* Slightly increased from 1.6 for mobile */
+  }
+
+  /* Ensure heading hierarchy is clear on mobile */
+  h1, .investigation__title {
+    font-size: 1.75rem; /* 28px */
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  h2, .timeline-marker__title {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.3;
+    margin-bottom: 0.875rem;
+  }
+
+  h3 {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Paragraph spacing for mobile */
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.875rem; /* 14px minimum */
+    line-height: 1.7;
+  }
+}
+
+/* ==========================================================================
+   IMPROVED CONTRAST AND FOCUS INDICATORS
+   ========================================================================== */
+
+@media (max-width: 47.9rem) {
+  /* Enhanced focus indicators for mobile */
+  :focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Ensure sufficient contrast for interactive elements */
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    background-color: rgba(255, 255, 255, 0.25); /* Increased opacity for better contrast */
+  }
+
+  .language-option:hover,
+  .language-option:focus {
+    background-color: rgba(255, 255, 255, 0.25); /* Improved contrast */
+  }
+
+  /* Enhanced button contrast */
+  .event-type,
+  .significance-indicator,
+  .status-badge {
+    border-width: 2px; /* Thicker borders for better definition */
+  }
+
+  /* Improved timeline connector visibility */
+  .timeline-marker__connector {
+    width: 3px; /* Slightly thicker for mobile */
+  }
+
+  .timeline-marker__connector::before {
+    width: 16px;
+    height: 16px;
+    border-width: 3px; /* Thicker border for better visibility */
+  }
+}
+
+/* ==========================================================================
+   MOBILE SPACING OPTIMIZATION
+   ========================================================================== */
+
+@media (max-width: 47.9rem) {
+  /* Optimize spacing for touch interaction */
+  .timeline-marker {
+    padding: 1.5rem 0; /* Increased spacing between timeline items */
+    margin-left: 1.5rem; /* Maintain connector alignment */
+  }
+
+  /* Better spacing for interactive clusters */
+  .timeline-marker__meta {
+    gap: 0.75rem; /* Increased gap between badges */
+    margin: 0.75rem 0;
+  }
+
+  /* Footer link spacing */
+  .footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Stack vertically with sufficient spacing */
+  }
+
+  /* Navigation menu spacing */
+  .nav-menu {
+    gap: 0.5rem; /* Sufficient spacing between nav items */
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION COMPLIANCE
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-marker__content,
+  .nav-menu a,
+  .language-option,
+  .evidence-link {
+    transition: none; /* Remove transitions for users who prefer reduced motion */
+  }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  .event-type,
+  .significance-indicator,
+  .status-badge {
+    border-width: 3px; /* Thicker borders for high contrast mode */
+  }
+
+  .timeline-marker__connector::before {
+    border-width: 4px; /* Enhanced visibility in high contrast */
+  }
+
+  /* Force higher contrast on interactive elements */
+  .nav-menu a:hover,
+  .nav-menu a:focus,
+  .language-option:hover,
+  .language-option:focus {
+    background-color: rgba(255, 255, 255, 0.4);
+    outline: 2px solid currentColor;
+  }
+}

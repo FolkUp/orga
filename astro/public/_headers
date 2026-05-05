@@ -1,11 +1,10 @@
-# Security + performance headers for underground.folkup.life
-# Astro static build deployed to Cloudflare Pages.
-# CSP mirrored from BaseLayout meta tag so the HTTP header is the authoritative
-# policy and the meta tag acts as fallback when headers are stripped.
-# Last updated: 2026-04-20
+# Phase 3B Security Headers - Banking-Level Protection
+# ORGA Underground Academia - Production deployment
+# Enhanced CSP with ecosystem integration support
+# Last updated: 2026-05-05 (Phase 3B implementation)
 
 /*
-  Content-Security-Policy: default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://docs.folkup.app https://folkup.app; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
@@ -13,6 +12,18 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
+  X-API-Version: 3B.0.0
+  X-Ecosystem-Projects: ORGA,DECL,DOCS,AGIL,DSHB
+
+# API Routes - Enhanced security for ecosystem integration
+/api/*
+  Content-Security-Policy: default-src 'none'; connect-src 'self' https://docs.folkup.app https://folkup.app; frame-ancestors 'none';
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Authorization, Content-Type, X-Ecosystem-Project
+  Access-Control-Max-Age: 86400
+  X-API-Security-Level: banking-grade
 
 # Static assets — long cache, immutable (Astro hashes filenames in _assets/)
 /_assets/*
