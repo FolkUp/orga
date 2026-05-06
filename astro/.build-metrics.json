@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-05-06T12:19:39.420Z",
+  "timestamp": "2026-05-06T20:57:13.890Z",
   "buildTime": 4250,
   "bundleSizes": {
-    "total": 689159,
-    "assets": 89316,
-    "html": 599843
+    "total": 702139,
+    "assets": 64069,
+    "html": 638070
   },
   "performance": {
     "buildTimeVsBaseline": 1,
-    "bundleSizeVsBaseline": 1.1485983333333334,
+    "bundleSizeVsBaseline": 1.1702316666666666,
     "warnings": []
   }
 }
