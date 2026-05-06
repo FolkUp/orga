@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const entries = await getCollection('longform', (entry) => {
-  return entry.data.language === 'ru';
+  return entry.data.language === 'en';
 });
 entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
@@ -16,12 +16,12 @@ function readingMinutes(words?: number): number | undefined {
 <BaseLayout
   title="Longform — Underground Academia"
   description="Premium music and culture criticism — personal essays and long-form investigations."
-  lang="ru"
+  lang="en"
 >
   <section class="longform-index">
     <header class="longform-index__header">
-      <h1>Лонгформ</h1>
-      <p>Премиум-разборы о музыке, культуре и языке — персональные эссе в формате longread.</p>
+      <h1>Longform</h1>
+      <p>Premium essays on music, culture and language — personal longform investigations.</p>
     </header>
 
     <ul class="longform-index__list">
@@ -30,7 +30,7 @@ function readingMinutes(words?: number): number | undefined {
           const reading = readingMinutes(entry.data.word_count);
           return (
             <li class="longform-card">
-              <a href={`/longform/${entry.slug}/`} class="longform-card__link">
+              <a href={`/en/longform/${entry.slug.replace(/^en\//, '')}/`} class="longform-card__link">
                 <h2 class="longform-card__title">{entry.data.title}</h2>
                 {entry.data.subtitle && (
                   <p class="longform-card__subtitle">{entry.data.subtitle}</p>
@@ -44,14 +44,14 @@ function readingMinutes(words?: number): number | undefined {
                     <dt class="visually-hidden">Published</dt>
                     <dd>
                       <time datetime={entry.data.date.toISOString()}>
-                        {entry.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        {entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                       </time>
                     </dd>
                   </div>
                   {reading !== undefined && (
                     <div>
                       <dt class="visually-hidden">Reading time</dt>
-                      <dd>{reading} мин чтения</dd>
+                      <dd>{reading} min read</dd>
                     </div>
                   )}
                 </dl>
