@@ -1,31 +1,21 @@
 # ORGA — Underground Academia
 
-**Underground Culture Research Platform**  
-**Enhanced Alice v2.0 Level 3 — Phase 3B Ready**
+Underground culture research platform. Production: [underground.folkup.life](https://underground.folkup.life).
 
-## Status: Emergency Constitutional Triage Complete — Phase 3A Evidence Under Review
+## Status (2026-05-19)
 
-### Verified Components
+Live site healthy. Recent 403 outage caused by stale Docker bind-mount after atomic-swap deploy — resolved via container restart. See `BACKLOG.yaml` (`ORGA-INCIDENT-2026-05-19`) for the post-mortem and `ORGA-DEPLOY-001`/`002` for the long-term deploy fix.
 
-| Component | Status | Description |
-|-----------|---------|-------------|
-| **SSL-EMERGENCY-001** | ✅ VERIFIED | SSL Certificate Emergency Resolution via Cloudflare proxy |
+### Open work
 
-### Phase 3A Components (Evidence Verification Required)
-
-| Component | Status | Evidence Issue | 
-|-----------|---------|----------------|
-| **ORGA-090** | ⚠️ PENDING VERIFICATION | Files dated 2026-05-07, claimed completion 2026-05-14 |
-| **ORGA-091** | ⚠️ PENDING VERIFICATION | Files dated 2026-05-07, claimed completion 2026-05-15 |
-| **ORGA-092** | ⚠️ PENDING VERIFICATION | Files dated 2026-05-07, claimed completion 2026-05-13 |
-| **ORGA-094** | ⚠️ PENDING VERIFICATION | Files dated 2026-04-29→05-07, claimed completion 2026-05-16 |
-
-### Current Phase: Constitutional Evidence Verification
-
-| Component | Status | Description |
-|-----------|---------|-------------|
-| **ORGA-093** | 🔄 BLOCKED | Quality Framework — Requires verified Phase 3A foundation |
-| **Constitutional Framework** | ✅ OPERATIONAL | Enhanced Alice v2.0 Level 3 with hostile verification |
+| ID | Priority | Description |
+|----|----------|-------------|
+| ORGA-DEPLOY-001 | P1 | Replace `mv`-swap with `rsync --delete` in `deploy.yml` |
+| ORGA-DEPLOY-002 | P1 | Fix health-check to verify HTTP 200, not any HTTP response |
+| ORGA-090 | P2 | Investigation template system activation |
+| ORGA-091 | P2 | Editorial workflow automation integration |
+| ORGA-092 | P2 | Security audit (JWT, CSP/HSTS, rate limiting) |
+| ORGA-094 | P2 | Mobile UX validation |
 
 ## Architecture
 
@@ -34,18 +24,17 @@
 - **Longform**: Extended analytical pieces  
 - **i18n Support**: Russian + English with automatic detection
 
-### Editorial Automation (ORGA-091)
-- **95% Automation Coverage** — Banking-level quality standards
-- **Content Lifecycle**: draft → development → review → verified → published
-- **Quality Gates**: Pre-build validation, PII detection, source verification
-- **Build Integration**: Astro plugins with STRICT/MODERATE/PERMISSIVE enforcement
+### Editorial Automation (ORGA-091, in progress)
+- Content lifecycle: draft → development → review → verified → published
+- Quality gates: pre-build validation, PII detection, source verification
+- Astro plugins with STRICT / MODERATE / PERMISSIVE enforcement
+- Coverage claim of "95% automation" is not yet end-to-end verified; see ORGA-091
 
 ### Technical Stack
-- **Framework**: Astro 5.x with SSG
-- **Content**: MDX with comprehensive frontmatter schema
-- **Styling**: CSS-first with systematic typography
-- **Deployment**: VPS with nginx reverse proxy
-- **Quality**: Constitutional framework with Alpha+Beta verification
+- Framework: Astro 5.x (SSG)
+- Content: MDX with frontmatter schema
+- Styling: CSS-first
+- Deployment: Hetzner VPS, Docker + nginx, atomic-swap via GitHub Actions self-hosted runner
 
 ## Quick Start
 
@@ -153,29 +142,12 @@ sources: [array of source objects]
 
 ## Deployment
 
-### Production Ready
-- **Phase 3A**: Complete foundation with 95% editorial automation
-- **Phase 3B**: Ready to implement ORGA-093 Quality Framework
-- **Security**: Banking-level standards with constitutional compliance
-- **Performance**: Optimized for concurrent investigation workflows
-
-### Domain
-- **Production**: underground.folkup.life
-- **Infrastructure**: VPS with nginx reverse proxy (Hetzner: 46.225.107.2)
-- **SSL Status**: ✅ RESOLVED - Cloudflare proxy active, valid SSL certificate operational
-- **Monitoring**: Editorial quality metrics and performance tracking
-
-### Infrastructure Status (2026-05-19)
-- **SSL Certificate**: ✅ VERIFIED - Cloudflare-managed TLS 1.3 certificate operational
-- **Live Verification**: CN=underground.folkup.life, Google Trust Services issuer
-- **Access Status**: VPS SSH access under investigation (non-blocking)
-- **Emergency Response**: Complete constitutional-grade documentation preserved
-- **Constitutional Status**: Banking-level standards applied to SSL Emergency Resolution
+- Production: [underground.folkup.life](https://underground.folkup.life)
+- Infrastructure: Hetzner VPS `46.225.107.2`, Docker container `orga-underground` (nginx:1.29-alpine), behind shared `nginx-proxy` + `letsencrypt-nginx-proxy-companion`
+- TLS: Cloudflare proxy in front (TLS 1.3, Google Trust Services); Let's Encrypt on VPS as backup path
+- Pipeline: GitHub Actions self-hosted runner on the VPS → `npm run build:ci` → atomic-swap into `~/orga/public/` → docker health-check
+- Known issue: atomic `mv`-swap rotates the inode of `~/orga/public` and breaks the container's bind-mount. Fix tracked in `ORGA-DEPLOY-001`. Workaround if 403 appears: `ssh vps "docker restart orga-underground"`.
 
 ---
 
-**ORGA Phase 3A Complete — SSL Emergency Resolved — Phase 3B Ready**  
-*Enhanced Alice v2.0 Level 3 Cartouche Autonome Operation*  
-*Banking-level quality standards with constitutional compliance*  
-
-**Last Updated**: 2026-05-19 — Emergency Constitutional Triage Complete + Phantom Progress Eliminated from Documentation
+**Last updated**: 2026-05-19 — 403 outage resolved (bind-mount restart), docs cleaned up.

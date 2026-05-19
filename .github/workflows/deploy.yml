@@ -47,23 +47,25 @@ jobs:
           export BUILD_START_TIME
           npm run build:ci
 
-      - name: Deploy to production (atomic swap)
+      - name: Deploy to production (rsync in place)
         working-directory: ${{ github.workspace }}
         run: |
-          mkdir -p ~/orga/public_staging
-          rsync -a --delete astro/dist/ ~/orga/public_staging/
-          if [ -d ~/orga/public ]; then
-            rm -rf ~/orga/public_backup
-            mv ~/orga/public ~/orga/public_backup
-          fi
-          mv ~/orga/public_staging ~/orga/public
-          mkdir -p ~/orga/public_staging
+          # rsync in place keeps the inode of ~/orga/public stable, so the
+          # orga-underground container's bind-mount survives across deploys.
+          # Previous mv-swap rotated the inode and caused stale-mount 403s.
+          mkdir -p ~/orga/public ~/orga/public_backup
+          # Snapshot current production for rollback
+          rsync -a --delete ~/orga/public/ ~/orga/public_backup/
+          # Deploy new content
+          rsync -a --delete astro/dist/ ~/orga/public/
 
       - name: Health check
         working-directory: ${{ github.workspace }}
         run: |
           for i in 1 2 3 4 5 6 7 8 9 10; do
-            if docker exec orga-underground wget -S -q -O /dev/null http://127.0.0.1/ 2>&1 | grep -q "HTTP/"; then
+            # Require an explicit 200. Previous "HTTP/" match accepted 403/404/5xx
+            # and let broken deploys count as healthy.
+            if docker exec orga-underground wget -S -q -O /dev/null http://127.0.0.1/ 2>&1 | grep -qE "HTTP/[0-9.]+ 200"; then
               echo 'Health check passed — site is live!'
               exit 0
             fi
@@ -72,10 +74,12 @@ jobs:
           done
           echo 'ERROR: Health check failed after 30s — rolling back'
           if [ -d ~/orga/public_backup ]; then
-            rm -rf ~/orga/public_staging
-            mv ~/orga/public ~/orga/public_failed
-            mv ~/orga/public_backup ~/orga/public
-            echo 'Rollback complete'
+            # Preserve the broken deploy for inspection
+            rm -rf ~/orga/public_failed
+            cp -a ~/orga/public ~/orga/public_failed
+            # Roll back in place (keeps inode stable)
+            rsync -a --delete ~/orga/public_backup/ ~/orga/public/
+            echo 'Rollback complete (public restored from public_backup)'
           fi
           exit 1
 
