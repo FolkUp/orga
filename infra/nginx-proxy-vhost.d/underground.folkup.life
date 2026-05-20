@@ -1,0 +1,27 @@
+# underground.folkup.life — nginx-proxy per-vhost security headers
+#
+# Deployed to: /etc/nginx/vhost.d/underground.folkup.life inside the
+# nginx-proxy container (Docker volume folkup_vhost).
+#
+# Mirrors the global block of astro/public/_headers — that file is
+# Netlify-format and plain nginx-proxy does not read it, which is why
+# this duplication exists.
+#
+# Cache-Control rules from _headers (per-extension) are intentionally
+# NOT here — they belong on the backend orga-underground nginx container,
+# not at the reverse-proxy layer (server-level add_header would otherwise
+# apply max-age=31536000 to HTML too, which is wrong for SSG).
+#
+# `always` flag is required so headers also apply to 4xx/5xx responses
+# (nginx default only applies add_header to 2xx/3xx).
+
+add_header Content-Security-Policy "default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://docs.folkup.app https://folkup.app; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;" always;
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()" always;
+add_header Cross-Origin-Opener-Policy "same-origin" always;
+add_header Cross-Origin-Resource-Policy "same-origin" always;
+add_header X-API-Version "3B.0.0" always;
+add_header X-Ecosystem-Projects "ORGA,DECL,DOCS,AGIL,DSHB" always;
