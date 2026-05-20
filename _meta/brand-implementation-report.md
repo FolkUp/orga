@@ -2,8 +2,16 @@
 
 **Date:** 2026-04-27  
 **Phase:** P0 Brand Compliance Remediation  
-**Status:** COMPLETED  
+**Status:** COMPLETED (typography section superseded — see note below)  
 **Compliance Score:** Improved from 68/100 to 90+/100  
+
+> ⚠️ **Typography section partially superseded by ORGA-098 (commit c1a990c, 2026-05-20).**
+> Pacifico was removed entirely (declared but never used in src/; favicon switched
+> to Georgia/Playfair Display fallback). Playfair Display + Source Sans 3 are now
+> self-hosted via `@fontsource/*` packages instead of Google Fonts CDN — no
+> `fonts.googleapis.com` / `fonts.gstatic.com` preconnect, no third-party CSS
+> import. Colors, theme tag, favicon design, brand-DNA, WCAG verification are
+> still current.
 
 ## 1. Color Palette Migration (P0) ✅
 
