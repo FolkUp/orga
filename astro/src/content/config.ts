@@ -74,7 +74,7 @@ const longformCollection = defineCollection({
     naming_justified: z.boolean(),
     author_artwork_separation_predicate: z.string().optional(),
 
-    // Sources (typed, superset of investigations schema)
+    // Sources (typed, for citation tracking)
     sources: z.array(z.object({
       title: z.string(),
       url: z.string().url().optional(),

@@ -3,7 +3,7 @@ title: "Privacy Policy"
 description: "Underground Academia Privacy Policy - GDPR compliant data protection information"
 page_type: "privacy_policy"
 language: "en"
-lastmod: 2026-04-20
+lastmod: 2026-05-20
 draft: false
 translations:
   ru:
@@ -21,7 +21,7 @@ Underground Academia is operated by FolkUp. For data protection matters, contact
 
 We may collect information you voluntarily provide:
 - Email addresses from newsletter subscriptions
-- Comments and feedback on investigations
+- Comments and feedback on articles
 - Contact form submissions
 
 ### Legal Basis
@@ -43,7 +43,7 @@ Underground Academia does not use tracking cookies, analytics, or advertising te
 
 - Contact form data: deleted after 1 year
 - Newsletter subscriptions: until unsubscribed
-- Comments: retained while investigation is published
+- Comments: retained while the article is published
 
 ### Your Rights (GDPR Articles 15-21)
 
@@ -68,4 +68,4 @@ Data is processed within the EU. No international transfers occur without adequa
 
 For privacy inquiries or to exercise your rights: contact@folkup.app
 
-**Last updated:** April 19, 2026
+**Last updated:** May 20, 2026

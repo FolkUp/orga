@@ -3,7 +3,7 @@ title: "AI Transparency"
 description: "How Underground Academia uses automated tools in its editorial workflow, in accordance with EU AI Act Article 50."
 page_type: "ai_transparency"
 language: "en"
-lastmod: 2026-04-20
+lastmod: 2026-05-20
 draft: false
 translations:
   ru:
@@ -19,7 +19,7 @@ Underground Academia researches underground culture. This page explains how auto
 
 ### Verification and research
 
-Every date, figure, and attribution in our longform and investigation articles is cross-checked against independent public sources. Automated searches and source-matching tools assist this verification — they surface candidate sources and flag inconsistencies, but they do not replace human judgement. The editor decides what is trustworthy and what is not.
+Every date, figure, and attribution in our longform articles is cross-checked against independent public sources. Automated searches and source-matching tools assist this verification — they surface candidate sources and flag inconsistencies, but they do not replace human judgement. The editor decides what is trustworthy and what is not.
 
 ### Editorial style review
 
@@ -38,7 +38,7 @@ Before each longform article is published, it is reviewed by adversarial agents 
 
 ## Where automated tools are **not** used
 
-- **Authorship.** Our longform and investigation articles are written by human authors. Automated tools do not generate the final text.
+- **Authorship.** Our longform articles are written by human authors. Automated tools do not generate the final text.
 - **Opinion and framing.** The argument, the judgements, and the perspective are the editor's and author's responsibility.
 - **User profiling.** The site does not use AI — or any technology — to build profiles of visitors, personalise content, or target individual readers.
 - **Decision-making about readers.** We do not make any automated decisions about visitors (no credit-scoring, no moderation classifiers for readers, no behavioural inference).
@@ -69,4 +69,4 @@ Under the EU AI Act and related regulation, you have the right to:
 
 Questions about our editorial workflow or AI usage: `contact@folkup.app`.
 
-**Last updated:** April 20, 2026
+**Last updated:** May 20, 2026

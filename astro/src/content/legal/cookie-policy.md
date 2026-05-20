@@ -3,7 +3,7 @@ title: "Cookie Policy"
 description: "How Underground Academia handles cookies, local storage, and embedded third-party media."
 page_type: "cookie_policy"
 language: "en"
-lastmod: 2026-04-20
+lastmod: 2026-05-20
 draft: false
 translations:
   ru:
@@ -63,7 +63,7 @@ Underground Academia uses automated tools as part of its editorial workflow. Spe
 - **Style review.** Drafts pass through automated style checks (consistency, AI-pattern detection, citation format) alongside human editorial review.
 - **Hostile review.** Before publication, each longform article is reviewed by adversarial agents instructed to find weaknesses, unsupported claims, or compliance gaps.
 
-Human editors are responsible for the final text, the argument, and any opinion expressed in our articles. Automated tools do not author content in our longform and investigation categories; they assist with verification, flagging, and process discipline.
+Human editors are responsible for the final text, the argument, and any opinion expressed in our articles. Automated tools do not author content in our longform category; they assist with verification, flagging, and process discipline.
 
 This disclosure is provided in keeping with the EU AI Act Article 50 transparency principle.
 

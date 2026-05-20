@@ -3,7 +3,7 @@ title: "Terms of Use"
 description: "Underground Academia Terms of Use and platform policies"
 page_type: "terms_of_use"
 language: "en"
-lastmod: 2026-04-20
+lastmod: 2026-05-20
 draft: false
 translations:
   ru:
@@ -15,12 +15,12 @@ translations:
 
 ### Platform Purpose
 
-Underground Academia provides investigative research and analysis of underground cultural phenomena.
+Underground Academia provides research and analysis of underground cultural phenomena.
 
 ### Acceptable Use
 
 You may use this platform to:
-- Read and share our investigations
+- Read and share our longreads
 - Subscribe to updates
 - Provide constructive feedback
 
@@ -39,7 +39,7 @@ All content is published under Creative Commons Attribution 4.0 International (C
 
 ### Editorial Standards
 
-Our investigations aim for factual accuracy but represent analysis and opinion. We:
+Our articles aim for factual accuracy but represent analysis and opinion. We:
 - Use transparent methodology
 - Cite sources where possible
 - Welcome corrections and feedback
@@ -65,4 +65,4 @@ For terms questions: contact@folkup.app
 
 **Part of the FolkUp ecosystem** - see folkup.app
 
-**Last updated:** April 19, 2026
+**Last updated:** May 20, 2026
