@@ -46,5 +46,5 @@ production reads only the files here.
 
 - `underground.folkup.life` — security headers (CSP, HSTS, X-Frame-Options, etc.)
   for `underground.folkup.life`. Mirrors the global `/*` block of
-  `astro/public/_headers` plus Google Fonts whitelist (`fonts.googleapis.com`,
-  `fonts.gstatic.com`) so the production CSP does not break the rendered site.
+  `astro/public/_headers`. Fonts are self-hosted via `@fontsource`, so the CSP
+  contains no `fonts.googleapis.com` / `fonts.gstatic.com` allowance.

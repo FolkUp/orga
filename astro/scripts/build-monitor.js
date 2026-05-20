@@ -9,7 +9,7 @@ import { readdir, stat, readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 
 const BASELINE_BUILD_TIME = 4250; // 4.25s baseline (ms)
-const BASELINE_BUNDLE_SIZE = 600000; // ~600KB baseline (bytes) - full site with assets
+const BASELINE_BUNDLE_SIZE = 1700000; // ~1.7MB baseline (bytes) - includes self-hosted @fontsource woff2
 const MAX_BUILD_TIME = 8000; // 8s warning threshold (ms)
 
 async function getDirectorySize(dirPath) {

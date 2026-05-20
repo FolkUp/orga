@@ -42,7 +42,7 @@ Other available scripts: `build` (build + bundle-size monitor), `preview`, `moni
 - **Infrastructure**: Hetzner VPS, Docker container `orga-underground` (nginx:1.29-alpine), behind shared `nginx-proxy` + `letsencrypt-nginx-proxy-companion`. Backend bind-mount `~/orga/public → /usr/share/nginx/html:ro`.
 - **TLS**: Cloudflare proxy in front (TLS 1.3, Google Trust Services); Let's Encrypt on VPS as backup path.
 - **Pipeline**: GitHub Actions self-hosted runner on the VPS → `npm run build:ci` → `rsync --delete` in-place into `~/orga/public/` → wget health-check requiring `HTTP/[0-9.]+ 200`. The previous atomic `mv`-swap rotated the directory inode and broke the container's bind-mount; rsync-in-place keeps the inode stable (verified ДО=894237 / ПОСЛЕ=894237 across both manual and CI deploys on 2026-05-20).
-- **Security headers**: applied at the reverse-proxy layer through `infra/nginx-proxy-vhost.d/underground.folkup.life` (mounted into `nginx-proxy` via the `folkup_vhost` Docker volume). CSP allows Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) and Spotify/YouTube embeds. The Netlify-format `public/_headers` is kept in sync for documentation but is not consumed by the production proxy.
+- **Security headers**: applied at the reverse-proxy layer through `infra/nginx-proxy-vhost.d/underground.folkup.life` (mounted into `nginx-proxy` via the `folkup_vhost` Docker volume). CSP whitelists only Spotify/YouTube embeds — fonts are self-hosted via `@fontsource/playfair-display` + `@fontsource/source-sans-3`, so neither `fonts.googleapis.com` nor `fonts.gstatic.com` appears in `style-src` / `font-src`. The Netlify-format `public/_headers` is kept in sync for documentation but is not consumed by the production proxy.
 
 ---
 

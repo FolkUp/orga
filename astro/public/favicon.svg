@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
     <style>
-      .text { font-family: 'Pacifico', cursive; font-size: 12px; text-anchor: middle; }
+      .text { font-family: Georgia, 'Playfair Display', serif; font-weight: 700; font-size: 12px; text-anchor: middle; }
       .primary { fill: #7D4450; }
       .accent { fill: #E8AD4A; }
     </style>
