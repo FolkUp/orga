@@ -4,7 +4,7 @@
 >
 > Production: **[underground.folkup.life](https://underground.folkup.life)**
 >
-> **Текущая фаза:** R4 Integration Complete — Timeline component интегрирован, platform production ready
+> **Текущая фаза:** 3B — статическая Astro-сборка на Hetzner VPS за Cloudflare; legal + longform коллекции; @fontsource self-hosted typography (ORGA-098, 2026-05-20).
 
 [![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
@@ -22,19 +22,19 @@ Underground Academia — исследовательская платформа, 
 - **⚡ КиберГонзо** — OSINT культурная сейсмография, верификация tremors 2021-2022
 - **📚 Архивариус** — исторический контекст, культурные прецеденты
 
-**Статус:** R4 Integration Complete — Timeline component operational with Brand Guide v2.5 compliance
+**Статус:** Первый лонгрид опубликован; четырёхмерное расширение — внутренняя редакционная методология (применяется при подготовке текста; не отдельные публичные ленты).
 
 Методология сочетает академическую строгость с независимостью от институциональных рамок: banking-level верификация фактов, прозрачный редакционный процесс, OSINT-подход к первоисточникам.
 
 ## Технологический стек
 
-- **[Astro 5.18](https://astro.build/)** — статический сайт-генератор
-- **Content Collections (Zod)** — типизированные коллекции: `longform`, `investigations`, `legal`
+- **[Astro 5.18](https://astro.build/)** — статический сайт-генератор (`output: 'static'`)
+- **Content Collections (Zod)** — типизированные коллекции: `longform`, `legal`
 - **Svelte 5** — островная интерактивность (где нужна)
-- **@astrojs/sitemap** — sitemap с bilingual URLs
+- **@astrojs/sitemap** — bilingual URLs с `hreflang` alternates + `<lastmod>` per URL
 - **@astrojs/mdx** — расширенный Markdown для контента
-- **Системные шрифты** (Georgia, system-ui) — нулевой сетевой запрос на шрифты
-- **Hosting:** Cloudflare Pages
+- **Self-hosted typography** — `@fontsource/playfair-display` + `@fontsource/source-sans-3` (latin + cyrillic subsets via `unicode-range`); никаких third-party CDN-запросов на шрифты
+- **Hosting:** Hetzner VPS (nginx + Docker bind-mount) за `nginx-proxy` + Cloudflare TLS proxy в front
 
 ## Структура репозитория
 
@@ -44,10 +44,8 @@ orga/
 │   ├── src/
 │   │   ├── content/              # контент-коллекции
 │   │   │   ├── longform/         # премиум-лонгриды (bilingual)
-│   │   │   ├── investigations/   # расследования
-│   │   │   └── legal/            # юридические документы (RU + EN)
-│   │   │       └── ru/           # русские версии legal
-│   │   ├── layouts/              # BaseLayout, PremiumLongformLayout, InvestigationLayout
+│   │   │   └── legal/            # юридические документы (EN + ru/ mirror)
+│   │   ├── layouts/              # BaseLayout, PremiumLongformLayout
 │   │   ├── pages/                # маршруты (dynamic [...slug])
 │   │   └── components/           # Svelte + Astro-компоненты
 │   ├── public/                   # статические ассеты (_headers, robots.txt, PDF)
@@ -104,10 +102,9 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 Ключевые коллекции:
 
 - `longform/` — премиум-лонгриды в жанре personal-essay-criticism. Обязательна banking-level верификация (fact/legal/editorial/hostile reviewed).
-- `investigations/` — расследования с уровнями confidence (high/medium/low) и status (verified/partially_verified/unverified/draft).
 - `legal/` — юридические документы с `language` и `translations` (sibling-slug pointer).
 
-Переводы: suffix-паттерн (`organizatsiya.en.md`) для longform и investigations; nested-folder (`legal/ru/privacy-policy.md`) для legal — каждый путь даёт тот URL, который вы видите.
+Переводы: suffix-паттерн (`organizatsiya.en.md`) для longform; nested-folder (`legal/ru/privacy-policy.md`) для legal — каждый путь даёт тот URL, который вы видите.
 
 ## Редакционный процесс
 
@@ -131,7 +128,7 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 ## Контакт
 
 - Общие вопросы: `contact@folkup.app`
-- Расследования и редакторская обратная связь: `contact@folkup.app`
+- Редакторская обратная связь и сообщения об ошибках: `contact@folkup.app`
 - Часть экосистемы [FolkUp](https://folkup.app)
 
 ## Ссылки
@@ -143,4 +140,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-04-29 · Doc version: 4.0 (R4 Integration complete, Timeline component operational)*
+*Last updated: 2026-05-21 · Doc version: 5.0 (post-ORGA-098: self-hosted fonts, phantom investigations removed, hosting+phase claims aligned with code)*

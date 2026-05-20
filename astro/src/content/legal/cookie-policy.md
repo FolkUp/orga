@@ -70,3 +70,5 @@ This disclosure is provided in keeping with the EU AI Act Article 50 transparenc
 ## Contact
 
 Questions about cookies or the editorial workflow: `contact@folkup.app`.
+
+**Last updated:** May 20, 2026
