@@ -51,7 +51,8 @@ export default defineConfig({
     sitemap({
       serialize(item) {
         const links = linksByUrl.get(item.url);
-        return links ? { ...item, links } : item;
+        const lastmod = new Date().toISOString();
+        return links ? { ...item, links, lastmod } : { ...item, lastmod };
       },
     }),
   ],
