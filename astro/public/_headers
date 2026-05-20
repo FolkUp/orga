@@ -1,10 +1,15 @@
-# Phase 3B Security Headers - Banking-Level Protection
-# ORGA Underground Academia - Production deployment
-# Enhanced CSP with ecosystem integration support
-# Last updated: 2026-05-05 (Phase 3B implementation)
+# Security headers for ORGA Underground Academia.
+#
+# NOTE: this Netlify-format file is NOT consumed by the production nginx-proxy.
+# The live config is `infra/nginx-proxy-vhost.d/underground.folkup.life` —
+# keep the two in sync if you edit either.
+#
+# Last updated: 2026-05-20 — added fonts.googleapis.com to style-src and
+# fonts.gstatic.com to font-src (Google Fonts were blocked by the original
+# CSP, which only mattered once headers were actually enforced on prod).
 
 /*
-  Content-Security-Policy: default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://docs.folkup.app https://folkup.app; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://docs.folkup.app https://folkup.app; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
