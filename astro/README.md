@@ -2,20 +2,19 @@
 
 Underground culture research platform. Production: [underground.folkup.life](https://underground.folkup.life).
 
-## Status (2026-05-19)
+## Status (2026-05-20)
 
-Live site healthy. Recent 403 outage caused by stale Docker bind-mount after atomic-swap deploy — resolved via container restart. See `BACKLOG.yaml` (`ORGA-INCIDENT-2026-05-19`) for the post-mortem and `ORGA-DEPLOY-001`/`002` for the long-term deploy fix.
+Live site healthy. Deploy pipeline hardened (rsync-in-place instead of `mv`-swap — Docker bind-mount inode preserved across deploys, verified empirically in GitHub Actions run #26160196680). Security headers (CSP, HSTS, X-Frame-Options, COOP, CORP, etc.) now enforced at the `nginx-proxy` reverse-proxy layer via `infra/nginx-proxy-vhost.d/underground.folkup.life`. Honest auth.ts review at `docs/AUTH-SECURITY-REVIEW.md` documents the real (static SSG) threat model.
 
 ### Open work
 
 | ID | Priority | Description |
 |----|----------|-------------|
-| ORGA-DEPLOY-001 | P1 | Replace `mv`-swap with `rsync --delete` in `deploy.yml` |
-| ORGA-DEPLOY-002 | P1 | Fix health-check to verify HTTP 200, not any HTTP response |
-| ORGA-090 | P2 | Investigation template system activation |
-| ORGA-091 | P2 | Editorial workflow automation integration |
-| ORGA-092 | P2 | Security audit (JWT, CSP/HSTS, rate limiting) |
+| ORGA-090 | P2 | Activate investigation template system + pipeline integration |
+| ORGA-091 | P2 | End-to-end verify editorial workflow automation |
 | ORGA-094 | P2 | Mobile UX validation |
+| ORGA-093 | P2 | Quality framework (depends on ORGA-090) |
+| ORGA-092 (remainder) | P2 | Phase 3C readiness — real JWT lib selection, rate-limit storage, `ORGA_API_SECRET` env management. Tracked in `docs/AUTH-SECURITY-REVIEW.md` as P2 production-readiness items. |
 
 ## Architecture
 
@@ -31,10 +30,10 @@ Live site healthy. Recent 403 outage caused by stale Docker bind-mount after ato
 - Coverage claim of "95% automation" is not yet end-to-end verified; see ORGA-091
 
 ### Technical Stack
-- Framework: Astro 5.x (SSG)
+- Framework: Astro 5.x (SSG, `output: 'static'` — middleware does not run at runtime; see `docs/AUTH-SECURITY-REVIEW.md`)
 - Content: MDX with frontmatter schema
 - Styling: CSS-first
-- Deployment: Hetzner VPS, Docker + nginx, atomic-swap via GitHub Actions self-hosted runner
+- Deployment: Hetzner VPS, Docker + `nginx-proxy`, `rsync --delete` in-place via GitHub Actions self-hosted runner (preserves bind-mount inode)
 
 ## Quick Start
 
@@ -71,13 +70,11 @@ npm run content:transition -- --file new-investigation.md --stage development
 - **Minimum word count**: 150 words
 - **Source requirement**: 2+ credible sources (3+ for high confidence)
 - **Editorial workflow**: 80% minimum completion for publication
-- **Constitutional compliance**: 100% banking-level standards
 
 ### Build Process
 - **Pre-build validation**: Quality gates prevent low-quality content
 - **Content filtering**: Excludes draft/development content from production
-- **Performance**: <30 seconds for full editorial audit
-- **Accuracy**: 98% quality assessment precision
+- **Performance / accuracy targets**: see scripts in `scripts/editorial-*.js`; end-to-end metrics not yet independently verified (ORGA-091)
 
 ## Content Schema
 
@@ -109,29 +106,23 @@ sources: [array of source objects]
 
 ## Automation Features
 
-### Editorial Automation (Enhanced Alice v2.0)
-- **Content Quality Analysis**: Word count, source validation, PII detection
-- **Workflow Management**: Automated stage transitions with validation
-- **Build Integration**: Quality gates with enforcement policies
-- **Constitutional Compliance**: Banking-level standards with Alpha+Beta verification
-
-### Performance Metrics
-- **Automation Coverage**: 95% of editorial workflow
-- **Quality Gate Accuracy**: 98% precision in content assessment  
-- **Processing Speed**: <30 seconds full audit
-- **Build Integration**: <1% false positive rate
+### Editorial Automation
+- **Content Quality Analysis**: word count, source validation, PII detection
+- **Workflow Management**: stage transitions with validation
+- **Build Integration**: quality gates with enforcement policies
 
 ### Quality Assurance
-- **PII Protection**: Automated detection with review requirements
+- **PII Protection**: automated detection with review requirements
 - **Source Verification**: URL accessibility and credibility checks
-- **Workflow Validation**: Stage transition requirements enforcement
-- **Constitutional Framework**: Evidence-first methodology with multiple verification
+- **Workflow Validation**: stage transition requirements enforcement
+
+Concrete coverage and accuracy numbers depend on end-to-end pipeline verification (ORGA-091). Don't quote them as facts until that ships.
 
 ## Documentation
 
 ### Comprehensive Guides
 - **[Editorial Automation Guide](EDITORIAL-AUTOMATION.md)** — Complete workflow automation documentation
-- **[Editorial Workflow Template](templates/editorial-workflow.md)** — Banking-level quality standards
+- **[Editorial Workflow Template](templates/editorial-workflow.md)** — quality standards reference
 - **[Content Lifecycle Guide](scripts/content-lifecycle.js)** — Automated stage management
 
 ### Scripts and Tools
@@ -142,12 +133,12 @@ sources: [array of source objects]
 
 ## Deployment
 
-- Production: [underground.folkup.life](https://underground.folkup.life)
-- Infrastructure: Hetzner VPS `46.225.107.2`, Docker container `orga-underground` (nginx:1.29-alpine), behind shared `nginx-proxy` + `letsencrypt-nginx-proxy-companion`
-- TLS: Cloudflare proxy in front (TLS 1.3, Google Trust Services); Let's Encrypt on VPS as backup path
-- Pipeline: GitHub Actions self-hosted runner on the VPS → `npm run build:ci` → atomic-swap into `~/orga/public/` → docker health-check
-- Known issue: atomic `mv`-swap rotates the inode of `~/orga/public` and breaks the container's bind-mount. Fix tracked in `ORGA-DEPLOY-001`. Workaround if 403 appears: `ssh vps "docker restart orga-underground"`.
+- **Production**: [underground.folkup.life](https://underground.folkup.life)
+- **Infrastructure**: Hetzner VPS, Docker container `orga-underground` (nginx:1.29-alpine), behind shared `nginx-proxy` + `letsencrypt-nginx-proxy-companion`. Backend bind-mount `~/orga/public → /usr/share/nginx/html:ro`.
+- **TLS**: Cloudflare proxy in front (TLS 1.3, Google Trust Services); Let's Encrypt on VPS as backup path.
+- **Pipeline**: GitHub Actions self-hosted runner on the VPS → `npm run build:ci` → `rsync --delete` in-place into `~/orga/public/` → wget health-check requiring `HTTP/[0-9.]+ 200`. The previous atomic `mv`-swap rotated the directory inode and broke the container's bind-mount; rsync-in-place keeps the inode stable (verified ДО=894237 / ПОСЛЕ=894237 across both manual and CI deploys on 2026-05-20).
+- **Security headers**: applied at the reverse-proxy layer through `infra/nginx-proxy-vhost.d/underground.folkup.life` (mounted into `nginx-proxy` via the `folkup_vhost` Docker volume). CSP allows Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) and Spotify/YouTube embeds. The Netlify-format `public/_headers` is kept in sync for documentation but is not consumed by the production proxy.
 
 ---
 
-**Last updated**: 2026-05-19 — 403 outage resolved (bind-mount restart), docs cleaned up.
+**Last updated**: 2026-05-20 — deploy pipeline hardened (rsync-in-place), CSP/security headers enforced on origin, honest auth review documented.
