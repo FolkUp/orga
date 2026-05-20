@@ -17,7 +17,6 @@ const BILINGUAL_GROUPS = [
   // Homepage
   { ru: '/',                           en: '/en/' },
   // Navigation pages
-  { ru: '/investigations/',            en: '/en/investigations/' },
   { ru: '/methodology/',               en: '/en/methodology/' },
   { ru: '/about/',                     en: '/en/about/' },
   // Legal pages

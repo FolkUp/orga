@@ -8,21 +8,9 @@
     "start": "astro dev",
     "build": "astro build && node scripts/build-monitor.js",
     "build:ci": "astro build",
-    "build:editorial": "node scripts/build-integration.js && astro build",
-    "build:editorial:strict": "node scripts/build-integration.js STRICT && astro build",
-    "build:editorial:moderate": "node scripts/build-integration.js MODERATE && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "monitor": "node scripts/build-monitor.js",
-    "editorial:audit": "node scripts/editorial-automation.js",
-    "editorial:report": "node scripts/editorial-automation.js --report",
-    "editorial:validate": "node scripts/build-integration.js",
-    "content:lifecycle": "node scripts/content-lifecycle.js",
-    "content:transition": "node scripts/content-lifecycle.js transition",
-    "content:status": "node scripts/content-lifecycle.js status",
-    "quality:check": "npm run editorial:audit && npm run content:status",
-    "security:test": "node scripts/security-test-phase3b.js",
-    "phase3b:validate": "npm run security:test && npm run check && npm run build"
+    "monitor": "node scripts/build-monitor.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
@@ -43,12 +31,11 @@
   },
   "keywords": [
     "underground-academia",
-    "cultural-seismography",
-    "investigation-platform",
-    "astro",
-    "soviet-constructivist"
+    "cultural-criticism",
+    "longform",
+    "astro"
   ],
-  "author": "FolkUp Investigation Team",
+  "author": "FolkUp",
   "license": "CC-BY-4.0",
   "repository": {
     "type": "git",

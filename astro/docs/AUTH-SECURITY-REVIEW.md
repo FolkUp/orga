@@ -8,7 +8,10 @@ production vulnerabilities.
 ## The architectural fact that changes everything
 
 `astro.config.mjs` ships with `output: 'static'`. Astro pre-renders every
-route at build time, including `/api/ecosystem/health` and `/api/ecosystem/metadata`.
+route at build time, including `/api/ecosystem/health`. (Historical note: the
+sibling `/api/ecosystem/metadata` endpoint was deleted 2026-05-20 as part of
+the phantom-investigations cleanup; this review predates that removal, but the
+analysis below applies identically to whichever ecosystem endpoints exist.)
 Look at the deployed artifact:
 
 ```
