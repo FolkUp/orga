@@ -481,6 +481,36 @@ const ogImageAltFinal = imageAlt ?? title;
     outline-offset: 2px;
   }
 
+  /* ORGA-110: prevent cookie banner from obscuring footer.
+     Padding is applied to .site-container (the flex column wrapper) instead
+     of <body> to avoid an ivory gap under the bordeaux footer (html bg is
+     --color-ivory). Heights are conservative margins above empirically
+     measured banner heights captured in
+     docs/audit/2026-05-21/focus-obscured/*/*.json (320px: 330.5, 414px:
+     286.4, 768px: 240.3, 1280px: 155.2). The :not([hidden]) selector
+     toggles automatically once the visitor dismisses the banner. */
+  body:has(.consent-banner:not([hidden])) .site-container {
+    padding-bottom: 340px;
+  }
+
+  @media (min-width: 26rem) {
+    body:has(.consent-banner:not([hidden])) .site-container {
+      padding-bottom: 300px;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    body:has(.consent-banner:not([hidden])) .site-container {
+      padding-bottom: 260px;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    body:has(.consent-banner:not([hidden])) .site-container {
+      padding-bottom: 180px;
+    }
+  }
+
   /* Responsive typography and layout */
   @media (min-width: 48rem) {
     .folkup-logo {
