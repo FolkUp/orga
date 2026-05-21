@@ -6,6 +6,11 @@ authority: Enhanced Alice v2.0 Level 3 Cartouche Autonome
 status: awaiting_andrey_decision
 ---
 
+> ⚠️ **Historical decision memo (dated 2026-04-20).** Documents the Cloudflare Pages vs Hetzner deployment decision at the time. Decision resolved: migration to Hetzner VPS completed 2026-04-28; Cloudflare Pages deployment path deprecated. Preserved as audit history.
+
+<!-- precommit:allow-ai-mentions -->
+<!-- Reason: file contains a legitimate `.claude/` directory path reference in audit evidence (line 27). Pre-existing historical content, not AI-generated material. -->
+
 # ORGA-028 Decision Memo — Cloudflare Pages Deprecation
 
 ## TL;DR

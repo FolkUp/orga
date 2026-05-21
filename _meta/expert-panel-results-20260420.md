@@ -1,5 +1,7 @@
 # Expert Panel Results — Phase 2 Editorial Fixes
 
+> ⚠️ **Historical document (dated 2026-04-20).** References `content/investigations/oxymiron-cultural-seismography.md` and the `investigations/` content collection, both of which were removed in commits `6209e89` (md files) and `7bfa814` (complete infrastructure elimination). Preserved as research/audit history; current state of the project does not include this collection.
+
 **Date:** 2026-04-20
 **Authority:** Carte Blanche Level 3
 **Subject:** `content/investigations/oxymiron-cultural-seismography.md`

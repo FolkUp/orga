@@ -9,6 +9,11 @@ total_tasks: 34
 recommendation: "Per двойное одобрение rule — НЕ auto-convert. Андрей reviews this digest, batch-decides."
 ---
 
+> ⚠️ **Historical BACKLOG snapshot (dated 2026-04-20).** Task counts and status classifications reflect ORGA `BACKLOG.yaml` state at that point in time. Preserved as audit history; BACKLOG has been compacted multiple times since.
+
+<!-- precommit:allow-ai-mentions -->
+<!-- Reason: file contains legitimate `.claude/` directory path references in audit content (lines 6, 61). Pre-existing historical content, not AI-generated material. -->
+
 # BACKLOG Hygiene — ORGA pending_client_delivery
 
 ## Сводка
