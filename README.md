@@ -142,4 +142,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-05-21 · Doc version: 5.1 (post-ORGA-094: UX audit harness + accessibility batch ORGA-107..113 closed in commits 78c6e34→307214e; audit/ + docs/audit/ documented in structure)*
+*Last updated: 2026-05-21 · Doc version: 5.2 (post-ORGA-094: UX audit harness + accessibility batch ORGA-107..113 closed in commits 78c6e34→307214e + ORGA-115 cookie consent button closed in 7854128; audit/ + docs/audit/ documented in structure)*
