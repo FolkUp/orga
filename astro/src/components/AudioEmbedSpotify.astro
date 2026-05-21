@@ -268,11 +268,18 @@ const defaultSource: 'spotify' | 'youtube' = hasSpotify ? 'spotify' : 'youtube';
   }
 
   .audio-embed__eyebrow {
+    /* ORGA-112: amber on ivory body bg was 1.94:1 (fails WCAG AA 4.5:1).
+       Switched to chip pattern: bordeaux background + amber text — uses
+       the brand-implementation-report-verified amber/bordeaux pair (4.89:1
+       AA pass) and preserves the amber-accent semantic role. */
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.75rem;
     color: var(--color-amber);
+    background-color: var(--color-bordeaux);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
     margin-right: var(--space-sm);
     font-weight: 700;
   }
