@@ -52,6 +52,8 @@ orga/
 │   ├── astro.config.mjs
 │   └── package.json
 ├── scripts/                      # backup + access-management скрипты
+├── audit/                        # UX/accessibility audit harness (Playwright + axe-core via NODE_PATH bridge к ../../dayforge)
+├── docs/audit/                   # дата-проштампованные SUMMARY.md по результатам аудита; raw артефакты gitignore'нуты
 ├── _meta/                        # внутренние заметки, экспертные ревью, аудит (не деплоится)
 │   └── archive/                  # исторические артефакты (Hugo era, self-hosted deploy)
 ├── LICENSE                       # MIT для исходного кода
@@ -140,4 +142,4 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-05-21 · Doc version: 5.0 (post-ORGA-098: self-hosted fonts, phantom investigations removed, hosting+phase claims aligned with code)*
+*Last updated: 2026-05-21 · Doc version: 5.1 (post-ORGA-094: UX audit harness + accessibility batch ORGA-107..113 closed in commits 78c6e34→307214e; audit/ + docs/audit/ documented in structure)*
