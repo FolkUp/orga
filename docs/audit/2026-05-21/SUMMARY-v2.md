@@ -8,7 +8,7 @@
 |---|---|---|---|
 | Tests passed | 108 | 123 | **+15 (+14%)** |
 | Tests failed | 20 | 5 | **−15 (−75%)** |
-| axe-core nodes (element instances) | 772 | **96** | **−676 (−88%)** |
+| axe-core nodes (element instances) | 772 | **84** | **−688 (−89%)** |
 | axe-core unique rules | 2 (color-contrast + link-in-text-block) | **1 (color-contrast only)** | link-in-text-block eliminated |
 | SC 1.4.10 Reflow @ 320px | 0 violations | 0 violations | unchanged ✓ |
 | SC 1.4.12 Text Spacing | 0 violations | 0 violations | unchanged ✓ |
@@ -31,7 +31,7 @@
 ### ORGA-115 (P2) — Cookie banner accept button: 3.73:1
 **Surfaced by**: WAVE 4 re-audit + phantom-evidence-cascade correction.
 
-`.consent-btn--accept` (CookieConsent.astro:197-201): `color: var(--color-bordeaux); background-color: var(--color-amber)` = **3.73:1**, fails AA 4.5:1 for normal text. 84 nodes (= every page × 4 viewports).
+`.consent-btn--accept` (CookieConsent.astro:197-201): `color: var(--color-bordeaux); background-color: var(--color-amber)` = **3.73:1**, fails AA 4.5:1 for normal text. **All 84 remaining axe nodes are this single selector** (verified post-ORGA-112-v2 clean re-audit).
 
 **Pre-existing** — was always in audit data; previously missed because the brand-implementation-report claimed "Amber on Bordeaux: 4.89:1 (AA)" — phantom value, independently disproved in WAVE 4 (corrected in commit 307214e).
 
@@ -66,7 +66,7 @@ Verified palette-D AA pairs as of this audit:
 
 ## Raw artifacts (local-only, gitignored)
 
-- `axe-violations/*/` — 88 JSON files (1 per URL × viewport), 96 total nodes remaining
+- `axe-violations/*/` — 88 JSON files (1 per URL × viewport), 84 total nodes remaining (all on `.consent-btn--accept`)
 - `focus-obscured/*/` — 20 JSON files, 5 with non-empty violations (per ORGA-116)
 - `screenshots/*/` — failure screenshots
 - `playwright-results.json` — full Playwright report
