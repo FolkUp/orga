@@ -93,7 +93,7 @@ Production разворачивается на **self-hosted infrastructure** (H
 
 Security headers (CSP, HSTS, Permissions-Policy) — обслуживаются nginx-proxy на HTTP-уровне в рамках unified FolkUp infrastructure pattern.
 
-Migration от Cloudflare Pages завершена 2026-04-28. CF Pages artifacts архивированы в `_meta/archive/cloudflare-pages/`. Unified infrastructure обеспечивает консистентность со всеми FolkUp проектами.
+Migration от Cloudflare Pages завершена 2026-04-28. Migration-era артефакты сохранены в `_meta/archive/` (общая) и `_meta/archive/dns-flip-2026-05/` (DNS-flip one-shots). Unified infrastructure обеспечивает консистентность со всеми FolkUp проектами.
 
 ## Авторская разметка
 
