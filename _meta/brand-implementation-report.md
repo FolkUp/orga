@@ -95,15 +95,28 @@ Created custom SVG favicon with FolkUp brand elements:
 - **Colors:** Uses exact Brand Guide v2.5 Palette D colors
 - **Format:** SVG for crisp scaling across all device resolutions
 
-## 6. WCAG Accessibility Verification ✅
+## 6. WCAG Accessibility Verification
 
-Verified contrast ratios for new color combinations:
-- **Bordeaux on Ivory:** 7.27:1 (WCAG AAA compliance)
-- **Sage on Ivory:** 4.61:1 (WCAG AA compliance)
-- **Amber on Bordeaux:** 4.89:1 (WCAG AA compliance)
-- **Text Primary on Ivory:** 12.6:1 (WCAG AAA compliance)
-
-All color combinations meet or exceed WCAG 2.1 AA standards.
+> **Correction 2026-05-21 (ORGA-094 audit WAVE 4):** This section contained
+> two phantom ratios. Independently recomputed via WCAG luminance formula
+> + axe-core verification:
+> - "Bordeaux on Ivory: 7.27:1" → actual **7.02:1** (AAA holds, small delta)
+> - "Sage on Ivory: 4.61:1 (AA)" → actual **2.18:1** for normal text;
+>   the 4.61:1 figure may have been measured against a different bg.
+>   Per axe link-in-text-block rule, sage on ivory paragraph context
+>   was 2.87:1 — fails the link rule (see ORGA-109, merged in commit 78c6e34).
+> - "Amber on Bordeaux: 4.89:1 (AA)" → actual **3.73:1**, fails AA 4.5:1
+>   for normal text (passes 3:1 only for large bold text ≥18.66px). The
+>   amber/bordeaux pair has been removed as a primary AA combination;
+>   see ORGA-112 v2 (commit a follow-up) and ORGA-115 (consent button).
+> - "Text Primary on Ivory: 12.6:1" — believed correct, not re-verified.
+>
+> **Verified AA-passing pairs in palette D (as of 2026-05-21):**
+> - Bordeaux ↔ Ivory: 7.02:1 (AAA both directions)
+> - Text Primary ↔ Ivory (unverified but plausible)
+>
+> Sage and Amber require either non-color signals (underline, outline) or
+> large-text qualification to satisfy WCAG AA in their current hex values.
 
 ## 7. Build Verification ✅
 
