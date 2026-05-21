@@ -150,7 +150,7 @@ const ogImageAltFinal = imageAlt ?? title;
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
           <div class="nav-brand">
             <a href={lang === 'ru' ? "/" : "/en/"} aria-label={lang === 'ru' ? "FolkUp Андерграунд Академия главная" : "FolkUp Underground Academia homepage"} class="brand-link">
-              <img src="/folkup-logo.png" alt="FolkUp" class="folkup-logo" />
+              <img src="/folkup-logo.png" alt="FolkUp" class="folkup-logo" width="720" height="631" />
               <div class="brand-text">
                 <span class="brand-title">{lang === 'ru' ? 'Андерграунд Академия' : 'Underground Academia'}</span>
                 <span class="brand-subtitle">{lang === 'ru' ? 'Исследования культуры' : 'Culture Research'}</span>
@@ -200,6 +200,84 @@ const ogImageAltFinal = imageAlt ?? title;
   </body>
 </html>
 
+<style is:global>
+  /*
+   * Fallback @font-face declarations for CLS suppression during web-font swap.
+   *
+   * Synthetic font families wrap local Arial/Georgia with metric-overrides
+   * matching the target web font, so layout reserved during fallback render
+   * matches layout after @fontsource woff2 loads. Eliminates FOUT reflow.
+   *
+   * Metric values from screenspan.net/fallback for Source Sans 3 (vs Arial)
+   * and Playfair Display (vs Georgia). All weights/styles imported in
+   * frontmatter have a matching fallback variant to cover every swap path.
+   *
+   * Placed in <style is:global> because @font-face names must resolve
+   * cross-component, and Astro scoping behavior for at-rules is implementation-
+   * defined — global declaration removes ambiguity. ORGA-101.
+   */
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    src: local('Arial'), local('Helvetica');
+    font-style: normal;
+    font-weight: 400;
+    ascent-override: 99.3%;
+    descent-override: 27.5%;
+    line-gap-override: 0%;
+    size-adjust: 100.1%;
+  }
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    src: local('Arial Bold'), local('Helvetica Bold');
+    font-style: normal;
+    font-weight: 600;
+    ascent-override: 99.3%;
+    descent-override: 27.5%;
+    line-gap-override: 0%;
+    size-adjust: 100.1%;
+  }
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    src: local('Arial Italic'), local('Helvetica Oblique');
+    font-style: italic;
+    font-weight: 400;
+    ascent-override: 99.3%;
+    descent-override: 27.5%;
+    line-gap-override: 0%;
+    size-adjust: 100.1%;
+  }
+  @font-face {
+    font-family: 'Playfair Display Fallback';
+    src: local('Georgia');
+    font-style: normal;
+    font-weight: 400;
+    ascent-override: 93.6%;
+    descent-override: 24.3%;
+    line-gap-override: 0%;
+    size-adjust: 112.5%;
+  }
+  @font-face {
+    font-family: 'Playfair Display Fallback';
+    src: local('Georgia Bold');
+    font-style: normal;
+    font-weight: 700;
+    ascent-override: 93.6%;
+    descent-override: 24.3%;
+    line-gap-override: 0%;
+    size-adjust: 112.5%;
+  }
+  @font-face {
+    font-family: 'Playfair Display Fallback';
+    src: local('Georgia Italic');
+    font-style: italic;
+    font-weight: 400;
+    ascent-override: 93.6%;
+    descent-override: 24.3%;
+    line-gap-override: 0%;
+    size-adjust: 112.5%;
+  }
+</style>
+
 <style>
   /* CSS Reset and base styles */
   *, *::before, *::after {
@@ -218,9 +296,12 @@ const ogImageAltFinal = imageAlt ?? title;
     --color-text-primary: #2D3748;      /* Text dark */
     --color-text-inverse: #FEFCF6;      /* Text light - Ivory */
 
-    /* Typography - Brand Guide v2.5 Font Stack */
-    --font-display: 'Playfair Display', Georgia, serif;    /* Headings */
-    --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;    /* Body text */
+    /* Typography - Brand Guide v2.5 Font Stack
+     * Synthetic fallback families ('* Fallback') wrap local Arial/Georgia with
+     * metric-overrides matching the web font — keeps CLS near zero during the
+     * @fontsource swap window. See <style is:global> @font-face block above. */
+    --font-display: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;    /* Headings */
+    --font-body: 'Source Sans 3', 'Source Sans 3 Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;    /* Body text */
     --font-size-base: 1rem;
     --line-height-body: 1.6;
     --line-height-heading: 1.2;
