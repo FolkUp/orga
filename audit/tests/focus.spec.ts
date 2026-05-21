@@ -31,12 +31,14 @@ for (const path of SAMPLE_PATHS) {
 
     const findings = await page.evaluate(() => {
       const overlaySel = '*';
-      const overlays: DOMRect[] = [];
+      // ORGA-111: store element ref alongside rect so we can exclude
+      // self-obscuration (element flagged as covered by its own ancestor overlay).
+      const overlays: { el: HTMLElement; rect: DOMRect }[] = [];
       for (const el of Array.from(document.querySelectorAll<HTMLElement>(overlaySel))) {
         const cs = window.getComputedStyle(el);
         if ((cs.position === 'fixed' || cs.position === 'sticky') && cs.visibility !== 'hidden' && cs.display !== 'none') {
           const r = el.getBoundingClientRect();
-          if (r.width > 0 && r.height > 0) overlays.push(r);
+          if (r.width > 0 && r.height > 0) overlays.push({ el, rect: r });
         }
       }
 
@@ -52,7 +54,14 @@ for (const path of SAMPLE_PATHS) {
         // Element must be in viewport at all to be evaluated meaningfully.
         if (r.bottom < 0 || r.top > window.innerHeight) continue;
 
-        const fullyCoveredBy = overlays.findIndex((o) => o.left <= r.left && o.right >= r.right && o.top <= r.top && o.bottom >= r.bottom);
+        // ORGA-111: skip overlays that are ancestors of the focused element
+        // (e.g. buttons inside the cookie banner being flagged as obscured by
+        // the banner itself).
+        const fullyCoveredBy = overlays.findIndex(({ el: o, rect: oRect }) =>
+          !o.contains(el) &&
+          oRect.left <= r.left && oRect.right >= r.right &&
+          oRect.top <= r.top && oRect.bottom >= r.bottom
+        );
         if (fullyCoveredBy >= 0) {
           results.push({
             tag: el.tagName.toLowerCase(),
@@ -62,7 +71,7 @@ for (const path of SAMPLE_PATHS) {
           });
         }
       }
-      return { overlays: overlays.map((o) => ({ x: o.x, y: o.y, w: o.width, h: o.height })), violations: results };
+      return { overlays: overlays.map(({ rect: o }) => ({ x: o.x, y: o.y, w: o.width, h: o.height })), violations: results };
     });
 
     await fs.writeFile(join(outDir, `${slug}.json`), JSON.stringify({ path, project, ...findings }, null, 2));

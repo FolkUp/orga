@@ -38,12 +38,13 @@ const description = "The page you're looking for doesn't exist in our archives."
     }
     a {
       color: #fbbf24;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: text-decoration-thickness 0.2s;
     }
     a:hover {
-      border-bottom-color: #fbbf24;
+      text-decoration-thickness: 2px;
     }
   </style>
 </head>

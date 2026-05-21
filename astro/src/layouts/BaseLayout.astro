@@ -447,13 +447,15 @@ const ogImageAltFinal = imageAlt ?? title;
   }
 
   .footer-content a {
-    color: var(--color-sage);
-    text-decoration: none;
+    color: var(--color-text-inverse);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
 
   .footer-content a:hover,
   .footer-content a:focus {
-    text-decoration: underline;
+    text-decoration-thickness: 2px;
   }
 
   /* Accessibility */
