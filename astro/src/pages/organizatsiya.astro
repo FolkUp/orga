@@ -13,7 +13,7 @@ const timelineData = await fetch('/data/organizatsiya-timeline.json')
 const events = timelineData.core_events || [];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} noindex={true}>
   <main class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
     <!-- Header -->
     <header class="py-8 px-6">

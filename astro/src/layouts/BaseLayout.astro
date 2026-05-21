@@ -36,6 +36,11 @@ export interface Props {
    */
   image?: string;
   imageAlt?: string;
+  /**
+   * When true, emit <meta name="robots" content="noindex,nofollow">.
+   * Use for hidden experimental pages excluded from sitemap.
+   */
+  noindex?: boolean;
 }
 
 const DEFAULT_OG_IMAGE = '/og/default.jpg';
@@ -47,6 +52,7 @@ const {
   alternates = [],
   image,
   imageAlt,
+  noindex = false,
 } = Astro.props;
 
 // Навигационные элементы с переводом
@@ -99,6 +105,7 @@ const ogImageAltFinal = imageAlt ?? title;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title}</title>

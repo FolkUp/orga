@@ -49,6 +49,13 @@ export default defineConfig({
     mdx(),
     svelte(),
     sitemap({
+      filter: (page) => {
+        // Hidden experimental dashboards: keep at their URLs but exclude
+        // from sitemap so Google doesn't index them. Pages also emit
+        // <meta name="robots" content="noindex,nofollow"> for belt+suspenders.
+        const NOINDEX_PATHS = ['/organizatsiya/', '/timeline-demo/'];
+        return !NOINDEX_PATHS.some((p) => page === `${SITE}${p}`);
+      },
       serialize(item) {
         const links = linksByUrl.get(item.url);
         const lastmod = new Date().toISOString();
