@@ -116,6 +116,24 @@ const t = strings[lang];
       }
     });
 
+    // ORGA-116: WCAG 2.2 SC 2.4.11 (Focus Not Obscured). The banner is
+    // position:fixed at the viewport bottom, so a focusable element near the
+    // page bottom can be entirely hidden behind it. When such an element
+    // takes focus, nudge the page up so it clears the banner. Instant scroll
+    // keeps the adjustment synchronous, matching native focus-scroll feel.
+    // ORGA-110's .site-container padding-bottom guarantees the scroll room.
+    document.addEventListener('focusin', (event) => {
+      if (banner.hidden) return;
+      const focused = event.target;
+      if (!(focused instanceof HTMLElement) || banner.contains(focused)) return;
+      const bannerTop = banner.getBoundingClientRect().top;
+      const rect = focused.getBoundingClientRect();
+      const overlap = rect.bottom - bannerTop;
+      if (overlap > 0 && rect.top < window.innerHeight) {
+        window.scrollBy({ top: overlap + 16, behavior: 'instant' });
+      }
+    });
+
     // No-op listener so TypeScript keeps the import live and downstream
     // islands always see the same event contract string.
     window.addEventListener(CONSENT_EVENT_NAME, () => {});
@@ -226,6 +244,13 @@ const t = strings[lang];
     .consent-banner__inner {
       grid-template-columns: 1fr;
       gap: var(--space-md);
+      padding-top: var(--space-md);
+      padding-bottom: var(--space-md);
+    }
+
+    .consent-banner__body {
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
 
     .consent-banner__actions {
