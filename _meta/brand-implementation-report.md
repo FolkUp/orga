@@ -25,6 +25,8 @@ Successfully migrated all color variables from maritime theme to Brand Guide v2.
 | `--color-amber-warm` | `#D69E2E` | `--color-amber` | `#E8AD4A` | Focus states, highlights |
 | `--color-concrete-light` | `#F7FAFC` | `--color-ivory` | `#FEFCF6` | Background, light elements |
 
+> **Note:** File list valid as of original date 2026-04-27. `investigations/index.astro`, `investigations/[...slug].astro`, and `InvestigationLayout.astro` were later removed in commits `6209e89` + `7bfa814` (phantom infrastructure elimination, 2026-05-06).
+
 ### Files Updated (15 total)
 - **Layouts:** BaseLayout.astro, InvestigationLayout.astro, PremiumLongformLayout.astro
 - **Components:** ConfidenceBadge.astro, InvestigationNav.astro, SourceCard.astro, TimelineMarker.astro, EvidenceCard.astro, CulturalContext.astro, AudioEmbedSpotify.astro, AudioStoryPlayer.astro, CookieConsent.astro
