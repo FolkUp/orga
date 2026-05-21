@@ -195,15 +195,20 @@ const t = strings[lang];
   }
 
   .consent-btn--accept {
-    background-color: var(--color-amber);
+    background-color: var(--color-text-inverse);
     color: var(--color-bordeaux);
-    border-color: var(--color-amber);
+    border-color: var(--color-text-inverse);
   }
 
   .consent-btn--accept:hover,
   .consent-btn--accept:focus-visible {
-    background-color: var(--color-text-inverse);
-    border-color: var(--color-text-inverse);
+    background-color: var(--color-amber);
+    border-color: var(--color-amber);
+  }
+
+  .consent-btn--accept:focus-visible {
+    outline: 2px solid var(--color-text-inverse);
+    outline-offset: 2px;
   }
 
   .consent-btn--reject {
