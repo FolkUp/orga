@@ -1,0 +1,17 @@
+{
+  "name": "orga-audit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "UX/a11y audit harness for underground.folkup.life — uses Playwright + axe-core from sibling dayforge project (no local install).",
+  "scripts": {
+    "list": "node ./run.js --list",
+    "audit": "node ./run.js",
+    "audit:320": "node ./run.js --project=responsive-320",
+    "audit:focus": "node ./run.js tests/focus.spec.ts",
+    "audit:text-spacing": "node ./run.js tests/text-spacing.spec.ts"
+  },
+  "notes": {
+    "no-dependencies": "Intentional. @playwright/test@1.58.2 and @axe-core/playwright@4.11.1 are consumed from ../../dayforge/node_modules via NODE_PATH in run.js. This avoids duplicating ~250MB and reuses already-downloaded browser binaries.",
+    "fallback-if-resolver-breaks": "Add { \"dependencies\": { \"@playwright/test\": \"file:../../dayforge/node_modules/@playwright/test\", \"@axe-core/playwright\": \"file:../../dayforge/node_modules/@axe-core/playwright\" } } and run npm install --no-package-lock."
+  }
+}

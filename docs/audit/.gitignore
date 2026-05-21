@@ -1,0 +1,11 @@
+# UX audit raw artifacts — local only, regenerable via orga/audit/ pipeline.
+# Commit only SUMMARY.md from each dated subfolder.
+
+*/screenshots/
+*/playwright-report/
+*/test-results/
+*/axe-violations/
+*/focus-obscured/
+*/overflow/
+*/text-spacing/
+*/playwright-results.json
