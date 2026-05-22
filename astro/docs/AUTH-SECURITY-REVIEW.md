@@ -1,5 +1,14 @@
 # auth.ts — honest security review (2026-05-20)
 
+> **Historical document — 2026-05-22.** The code reviewed here —
+> `src/middleware/auth.ts`, `src/middleware/index.ts` and the
+> `/api/ecosystem/*` endpoint — was removed in the ORGA-092
+> phantom-scaffolding cleanup. Phase 3C was shelved; the ecosystem API
+> was never built. This document is kept for the reasoning it preserves
+> — why `output: 'static'` left the middleware dormant, and why the
+> earlier "auth bypass / credential exposure" framing was wrong — not as
+> a description of current code.
+
 Scope: `src/middleware/auth.ts` and how it actually behaves in the
 currently-deployed build. Replaces the inaccurate Cooper-subagent report
 that framed three documented Phase 3B in-progress states as "BLOCKING"

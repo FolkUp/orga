@@ -2,16 +2,15 @@
 
 Underground culture research platform. Production: [underground.folkup.life](https://underground.folkup.life).
 
-## Status (2026-05-20)
+## Status (2026-05-22)
 
-Live site healthy. Deploy pipeline hardened (rsync-in-place instead of `mv`-swap — Docker bind-mount inode preserved across deploys, verified empirically in GitHub Actions run #26160196680). Security headers (CSP, HSTS, X-Frame-Options, COOP, CORP, etc.) enforced at the `nginx-proxy` reverse-proxy layer via `infra/nginx-proxy-vhost.d/underground.folkup.life`. Honest auth.ts review at `docs/AUTH-SECURITY-REVIEW.md` documents the real (static SSG) threat model. Phantom `investigations` infrastructure removed 2026-05-20 — the collection was never registered in `src/content/config.ts`; templates, validator scripts, dormant API endpoint, and 404-bound nav links are gone. What remains targets longform criticism only.
+Live site healthy. Deploy pipeline hardened (rsync-in-place instead of `mv`-swap — Docker bind-mount inode preserved across deploys, verified empirically in GitHub Actions run #26160196680). Security headers (CSP, HSTS, X-Frame-Options, COOP, CORP, etc.) enforced at the `nginx-proxy` reverse-proxy layer via `infra/nginx-proxy-vhost.d/underground.folkup.life`. Phantom Phase-3B ecosystem scaffolding (dormant auth middleware, the unused `/api/ecosystem/*` endpoint, unread env flags, the `jsonwebtoken` dependency) was removed 2026-05-22 in the ORGA-092 cleanup — the site is a static SSG with no API surface. Phantom `investigations` infrastructure removed 2026-05-20 — the collection was never registered in `src/content/config.ts`; templates, validator scripts, dormant API endpoint, and 404-bound nav links are gone. What remains targets longform criticism only.
 
 ### Open work
 
 | ID | Priority | Description |
 |----|----------|-------------|
-| ORGA-094 | P2 | Mobile UX validation |
-| ORGA-092 (remainder) | P2 | Phase 3C readiness — real JWT lib selection, rate-limit storage, `ORGA_API_SECRET` env management. Tracked in `docs/AUTH-SECURITY-REVIEW.md` as P2 production-readiness items. |
+| ORGA-VPS-CSP-DEPLOY | P3 | Manual deploy of the narrowed CSP to the production nginx-proxy (VPS shell step). |
 
 ## Architecture
 
@@ -20,7 +19,7 @@ Live site healthy. Deploy pipeline hardened (rsync-in-place instead of `mv`-swap
 - **Longform**: Premium personal-essay music/culture criticism (bilingual)
 
 ### Technical Stack
-- Framework: Astro 5.x (SSG, `output: 'static'` — middleware does not run at runtime; see `docs/AUTH-SECURITY-REVIEW.md`)
+- Framework: Astro 5.x (SSG, `output: 'static'` — no server runtime, no API surface)
 - Content: MDX with frontmatter schema (`src/content/config.ts`)
 - Styling: CSS-first
 - Deployment: Hetzner VPS, Docker + `nginx-proxy`, `rsync --delete` in-place via GitHub Actions self-hosted runner (preserves bind-mount inode)
@@ -46,4 +45,4 @@ Other available scripts: `build` (build + bundle-size monitor), `preview`, `moni
 
 ---
 
-**Last updated**: 2026-05-20 — phantom investigations infrastructure removed; deploy + security pipelines documented honestly.
+**Last updated**: 2026-05-22 — phantom Phase-3B ecosystem scaffolding removed (ORGA-092); site is a static SSG with no API surface.
