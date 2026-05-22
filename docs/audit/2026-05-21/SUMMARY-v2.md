@@ -2,6 +2,8 @@
 
 > Companion to `SUMMARY.md` (pre-fix baseline). Re-audit run after WAVE 1+2+3 fixes (commits 78c6e34, 6ffb290, c433627, plus follow-up 307214e). Same harness: 22 URLs × 4 viewports = 88 main + 20 SC 2.4.11 focus + 20 SC 1.4.12 text-spacing = **128 tests**.
 
+> **Update 2026-05-22:** the two items in "What remains" are now resolved — ORGA-115 (accept-button contrast) in commit 7854128, ORGA-116 (SC 2.4.11 focus-obscured) in commits 4900c8f + b5868c3. A full re-audit on 2026-05-22 passed **128/128** (0 axe color-contrast, 0 SC 2.4.11, 0 SC 1.4.12). This document is retained as the WAVE-4 snapshot.
+
 ## Headline numbers
 
 | Metric | Pre-fix (SUMMARY.md) | Post-fix (this run) | Delta |
@@ -27,6 +29,8 @@
 | ORGA-112 | Audio embed eyebrow gold/cream 1.94:1 (12 nodes) | c433627 → re-fix 307214e | reverted broken chip; bordeaux text on cream 7.02:1 ✓ |
 
 ## What remains (filed as new BACKLOG entries)
+
+> **Resolved 2026-05-22** — both entries below were closed after this snapshot (see the update note at the top). Kept for the WAVE-4 record.
 
 ### ORGA-115 (P2) — Cookie banner accept button: 3.73:1
 **Surfaced by**: WAVE 4 re-audit + phantom-evidence-cascade correction.
