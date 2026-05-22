@@ -139,9 +139,10 @@ const ogImageAltFinal = imageAlt ?? title;
     <meta name="theme-color" content="#7D4450" />
 
     <!--
-      Phase 3B CSP Migration: Primary CSP now enforced via HTTP headers (_headers file).
-      This meta tag serves as fallback for local development and CDN scenarios
-      where headers might be stripped. Enhanced connect-src for ecosystem integration.
+      Fallback CSP. The primary CSP is enforced at the nginx-proxy layer
+      (infra/nginx-proxy-vhost.d/underground.folkup.life); this meta tag
+      is a fallback for local development and CDN scenarios where the
+      HTTP header might be stripped.
     -->
     <meta
       http-equiv="Content-Security-Policy"
