@@ -485,10 +485,10 @@ const ogImageAltFinal = imageAlt ?? title;
      Padding is applied to .site-container (the flex column wrapper) instead
      of <body> to avoid an ivory gap under the bordeaux footer (html bg is
      --color-ivory). Heights are conservative margins above empirically
-     measured banner heights captured in
-     docs/audit/2026-05-21/focus-obscured/*/*.json (320px: 330.5, 414px:
-     286.4, 768px: 240.3, 1280px: 155.2). The :not([hidden]) selector
-     toggles automatically once the visitor dismisses the banner. */
+     measured banner heights captured in the 2026-05-21 focus-obscured
+     audit JSON artifacts (320px: 330.5, 414px: 286.4, 768px: 240.3,
+     1280px: 155.2). The :not([hidden]) selector toggles automatically
+     once the visitor dismisses the banner. */
   body:has(.consent-banner:not([hidden])) .site-container {
     padding-bottom: 340px;
   }
