@@ -1,0 +1,98 @@
+# CF Pages backup deploy — runs параллельно с deploy.yml (VPS via self-hosted runner)
+# Failure isolation: ubuntu-latest, не self-hosted, чтобы build/deploy CF Pages работал
+# даже когда VPS заблокирован (как 2026-06-02 INC-006).
+#
+# Pilot scope expansion: underground.folkup.life added 2026-06-03 Cartouche L3 autonomous batch.
+# Pattern copied from folkup-padel/.github/workflows/deploy-cf-backup.yml (proven 2026-06-02).
+# Owner: Кочегар (DevOps) | Security review: Купер | Plan author: Алиса (COOPER session)
+
+name: Deploy to CF Pages (backup)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cf-backup-${{ github.repository }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  ACTIONS_STEP_DEBUG: "false"   # Per agent-secret-hygiene.md §2 + G1 incident precedent
+  NODE_VERSION: "22"
+
+jobs:
+  build-and-deploy-cf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: astro
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'astro/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          HUSKY: 0
+
+      - name: Build Astro site (CI mode)
+        run: npm run build:ci
+
+      - name: Generate _redirects + _headers для CF Pages
+        run: |
+          # Mirror selected nginx behaviors:
+          #   - HSTS via _headers
+          #   - Immutable cache for /assets/* via _headers
+          cat > dist/_headers <<'EOF'
+          /*
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            Referrer-Policy: strict-origin-when-cross-origin
+
+          /assets/*
+            Cache-Control: public, max-age=31536000, immutable
+          EOF
+
+          cat > dist/_redirects <<'EOF'
+          # CF Pages handles directory-index fallback natively.
+          EOF
+
+      - name: Deploy to Cloudflare Pages
+        # Pinned to wrangler-action commit SHA per agent-secret-hygiene.md §1 (G1 incident).
+        # Update SHA only after Купер review of release notes.
+        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: astro
+          command: pages deploy dist --project-name=underground-backup --branch=main
+
+      # precommit:allow-secrets — step below intentionally contains secret-format
+      # regex patterns for §4 self-verify. These are detection patterns, not values.
+      - name: Post-deploy secret scan (agent-secret-hygiene §4)
+        if: always()
+        working-directory: ${{ github.workspace }}
+        run: |
+          if [ -n "${GITHUB_STEP_SUMMARY:-}" ] && [ -f "${GITHUB_STEP_SUMMARY}" ]; then
+            PATTERNS='(ghp_|github_pat_|xoxb-|sk_live_|r8_|AKIA[0-9A-Z]{16}|AGE-SECRET-KEY-1|-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----|[0-9]{8,10}:[A-Za-z0-9_-]{35})'
+            if grep -qE "$PATTERNS" "${GITHUB_STEP_SUMMARY}" 2>/dev/null; then
+              echo "::error::Potential secret detected в step summary — investigate immediately"
+              exit 1
+            fi
+          fi
+          echo "::notice::Step-summary secret scan complete (full run-log scan deferred to Phase 7 — ACTIONS_STEP_DEBUG=false is the primary G1 mitigation)"
