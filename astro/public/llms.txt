@@ -1,0 +1,43 @@
+# Underground Academia
+
+> Платформа культурной сейсмографии. Independent research platform fixing pre-surface cultural shifts before they appear on the surface. Russian primary, English secondary. CC-BY 4.0 content, MIT code.
+
+## About
+
+Underground Academia is an independent research platform combining academic rigor with freedom from institutional frameworks. Methodology: banking-level fact verification, transparent editorial process, OSINT primary-source approach. Content licensed CC-BY 4.0; code MIT.
+
+Hosting: Hetzner VPS (nginx + Docker) behind Cloudflare TLS. Stack: Astro 5 static SSG, Svelte 5 islands, self-hosted typography (Playfair Display + Source Sans 3).
+
+## Long-form pieces
+
+- [Organizatsiya by Oxxxymiron — 333-day seismographic arc (RU)](https://underground.folkup.life/longform/organizatsiya/): The first long-form piece. A case study of cultural prediction: November 2021 → October 2022. Multidimensional analysis across musical (Vilensky), poetic (Tsvetik), OSINT-cultural (CyberGonzo), historical (Archivist) axes.
+- [Organizatsiya by Oxxxymiron (EN)](https://underground.folkup.life/en/longform/organizatsiya/): English rendering of the same long-form piece.
+
+## Methodology
+
+- [Methodology (RU)](https://underground.folkup.life/methodology/): Editorial principles, verification standards, source policy.
+- [Methodology (EN)](https://underground.folkup.life/en/methodology/): English rendering.
+
+## About the platform
+
+- [About (RU)](https://underground.folkup.life/about/): About Underground Academia, contributors, editorial policy.
+- [About (EN)](https://underground.folkup.life/en/about/): English rendering.
+
+## Legal
+
+- [Legal hub (RU)](https://underground.folkup.life/legal/ru/)
+- [Legal hub (EN)](https://underground.folkup.life/legal/)
+- Privacy Policy, Cookie Policy, Terms of Use, AI Transparency (EU AI Act Art. 50).
+
+## Sitemap
+
+Canonical sitemap (Astro split-file convention with hreflang alternates):
+- [sitemap-index.xml](https://underground.folkup.life/sitemap-index.xml)
+
+## Contact
+
+- Part of the FolkUp ecosystem: https://folkup.app
+- Email: hello@folkup.app
+
+---
+Site: https://underground.folkup.life
