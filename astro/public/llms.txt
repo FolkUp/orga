@@ -6,12 +6,30 @@
 
 Underground Academia is an independent research platform combining academic rigor with freedom from institutional frameworks. Methodology: banking-level fact verification, transparent editorial process, OSINT primary-source approach. Content licensed CC-BY 4.0; code MIT.
 
-Hosting: Hetzner VPS (nginx + Docker) behind Cloudflare TLS. Stack: Astro 5 static SSG, Svelte 5 islands, self-hosted typography (Playfair Display + Source Sans 3).
+Hosting: Cloudflare Pages (canonical post-INC-006, 2026-06-07). Stack: Astro 5 static SSG, Svelte 5 islands, self-hosted typography (Playfair Display + Source Sans 3). Content pipeline: editorial ЩИТ v5.0 canon (banking-level compliance) + FACT-GATE hostile verification pre-publication.
 
 ## Long-form pieces
 
+### Music/culture criticism
+
 - [Organizatsiya by Oxxxymiron — 333-day seismographic arc (RU)](https://underground.folkup.life/longform/organizatsiya/): The first long-form piece. A case study of cultural prediction: November 2021 → October 2022. Multidimensional analysis across musical (Vilensky), poetic (Tsvetik), OSINT-cultural (CyberGonzo), historical (Archivist) axes.
 - [Organizatsiya by Oxxxymiron (EN)](https://underground.folkup.life/en/longform/organizatsiya/): English rendering of the same long-form piece.
+
+### FolkUp book series companion — «Как жить умно и свободно» (first wave, 2026)
+
+Four cultural-criticism longreads accompanying the Agile Sapiens 7-book series (RU). One piece per book, popular angle, standalone value:
+
+- [Палимпсест Архимеда: посчитайте руки](https://underground.folkup.life/longform/palimpsest-arhimeda/): Companion to кн.5 «Чужими руками». On intermediaries in cultural transmission — from the monk who scraped Archimedes for prayer parchment through Perkins/Wolfe editorial, Diaghilev impresario, Greenberg critic, to the algorithm that decides silently for us.
+- [Письмо из одних согласных: почему открыть дверь — это ещё не всё](https://underground.folkup.life/longform/pismo-iz-soglasnyh/): Companion to кн.2 «Согласные без гласных». On open knowledge vs transferred skill — Torah consonants without vowels, Gutenberg indulgences, Kearns/Stallman/Swartz on authorship and access, Socrates on teaching thinking.
+- [Лайнер или архипелаг: почему мир лечат таблеткой, а не ремонтом](https://underground.folkup.life/longform/layner-ili-arhipelag/): Companion to кн.3 «Город Солнца». On the image/project split in urban utopias, why systems fix people not conditions — Campanella, Huxley/Leary, and real communities that fix conditions (Mietshäuser Syndikat, Buurtzorg, Mondragon).
+- [Вам продали обратно то, что вы умели с детства](https://underground.folkup.life/longform/prodali-obratno/): Companion to кн.1 «Agile Sapiens». On how the agile industry became the most inflexible thing in the office — 2001 Snowbird Utah manifesto, ancient iterative practice from Sherlock Holmes to Jules Verne, taking the skill back.
+
+### Series «Что осталось за переплётом» — real stories that didn't fit in the books
+
+Genre-defined canon (S154): the article = a real story NOT in the book + honest boundary + anti-infogypsy motive + CTA. Counter 3/7 published:
+
+- [Человек, который купил Архимеда — и раздал](https://underground.folkup.life/longform/chelovek-kupil-arhimeda/): №2. Companion to кн.5 «Чужими руками». The anonymous 1998 buyer of the Archimedes Palimpsest at Christie's who spent $2M and released everything under Creative Commons after 12 years of restoration at Walters + Stanford synchrotron.
+- [Рай по предоплате](https://underground.folkup.life/longform/raj-po-predoplate/): №3. Companion to кн.3 «Город Солнца». Étienne Cabet and the Icarians: how a utopia from a book acquired a cash register and a leader at first step onto land in 1848.
 
 ## Methodology
 
