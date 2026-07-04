@@ -4,7 +4,7 @@
 >
 > Production: **[underground.folkup.life](https://underground.folkup.life)**
 >
-> **Текущая фаза:** 3B — статическая Astro-сборка на Hetzner VPS за Cloudflare; legal + longform коллекции; @fontsource self-hosted typography (ORGA-098, 2026-05-20).
+> **Текущая фаза:** 3C — статическая Astro-сборка на **Cloudflare Pages canonical** (post-INC-006 2026-06-07, CX33 decommissioned); legal + longform коллекции наполнены (7 longreads live); @fontsource self-hosted typography (ORGA-098, 2026-05-20).
 
 [![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
@@ -12,7 +12,18 @@
 
 ## О проекте
 
-Underground Academia — исследовательская платформа, фиксирующая подземные культурные сдвиги до того, как они проявляются на поверхности. Первый лонгрид — «Организация» Оксимирона как случай 333-дневной сейсмографической дуги (ноябрь 2021 → октябрь 2022).
+Underground Academia — исследовательская платформа, фиксирующая подземные культурные сдвиги до того, как они проявляются на поверхности.
+
+**Longform collection (7 pieces LIVE):**
+- «Организация» Оксимирона (RU + EN) — 333-дневная сейсмографическая дуга (первый лонгрид)
+- **FolkUp book series companion** «Как жить умно и свободно» — 4 первой волны, по одному лонгриду на кн.1/2/3/5 трилогии Agile Sapiens (cont +46 2026-07-04):
+  - Палимпсест Архимеда: посчитайте руки (кн.5)
+  - Письмо из одних согласных (кн.2)
+  - Лайнер или архипелаг (кн.3)
+  - Вам продали обратно то, что вы умели с детства (кн.1)
+- **Серия «Что осталось за переплётом»** (счётчик 3/7) — реальные истории, не вошедшие в книги:
+  - Человек, который купил Архимеда — и раздал (кн.5)
+  - Рай по предоплате (кн.3)
 
 ## Многомерный анализ "Организация"
 
