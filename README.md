@@ -153,4 +153,5 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ---
 
-*Last updated: 2026-05-22 · Doc version: 5.3 (post-ORGA-094: UX audit harness + accessibility batch ORGA-107..116 closed — color-contrast, focus-not-obscured (SC 2.4.11) and text-spacing all clean, audit harness 128/128; commits 78c6e34→b5868c3)*
+*Last updated: 2026-07-04 · Doc version: 5.4 (post-cont +46 longform batch: 7 pieces LIVE including FolkUp book series companions «Как жить умно и свободно» + серия «Что осталось за переплётом»; Phase 3C = **CF Pages canonical** post-INC-006 2026-06-07 CX33 decommissioned; commits 7380984→4ffde56)*
+*Prior: Doc version 5.3 2026-05-22 — post-ORGA-094 UX audit harness + accessibility batch ORGA-107..116 (color-contrast, focus-not-obscured SC 2.4.11, text-spacing clean, audit harness 128/128; commits 78c6e34→b5868c3)*
