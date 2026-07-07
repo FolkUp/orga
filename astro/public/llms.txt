@@ -26,10 +26,11 @@ Four cultural-criticism longreads accompanying the Agile Sapiens 7-book series (
 
 ### Series «Что осталось за переплётом» — real stories that didn't fit in the books
 
-Genre-defined canon (S154): the article = a real story NOT in the book + honest boundary + anti-infogypsy motive + CTA. Counter 3/7 published:
+Genre-defined canon (S154): the article = a real story NOT in the book + honest boundary + anti-infogypsy motive + CTA. Counter as of 2026-07-07: 3/7 published (№2, №3, №5). All 7/7 approved for publishing per Иве canon v1.4 S168.
 
 - [Человек, который купил Архимеда — и раздал](https://underground.folkup.life/longform/chelovek-kupil-arhimeda/): №2. Companion to кн.5 «Чужими руками». The anonymous 1998 buyer of the Archimedes Palimpsest at Christie's who spent $2M and released everything under Creative Commons after 12 years of restoration at Walters + Stanford synchrotron.
 - [Рай по предоплате](https://underground.folkup.life/longform/raj-po-predoplate/): №3. Companion to кн.3 «Город Солнца». Étienne Cabet and the Icarians: how a utopia from a book acquired a cash register and a leader at first step onto land in 1848.
+- [Три года без чека](https://underground.folkup.life/longform/tri-goda-bez-cheka/): №5. Companion to кн.1 «Agile Sapiens». Chrysler C3 project (1994-2000): three years without a single paycheck, Kent Beck's restart on maxed-out dials, birth of Extreme Programming, the 10 000 first paychecks in 1997, DaimlerChrysler closure in 2000, rollback to legacy code, XP banned inside the company — method survived because it was given away through Cunningham's WikiWikiWeb.
 
 ## Methodology
 
