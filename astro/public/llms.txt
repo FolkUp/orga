@@ -32,6 +32,19 @@ Genre-defined canon (S154): the article = a real story NOT in the book + honest 
 - [Рай по предоплате](https://underground.folkup.life/longform/raj-po-predoplate/): №3. Companion to кн.3 «Город Солнца». Étienne Cabet and the Icarians: how a utopia from a book acquired a cash register and a leader at first step onto land in 1848.
 - [Три года без чека](https://underground.folkup.life/longform/tri-goda-bez-cheka/): №5. Companion to кн.1 «Agile Sapiens». Chrysler C3 project (1994-2000): three years without a single paycheck, Kent Beck's restart on maxed-out dials, birth of Extreme Programming, the 10 000 first paychecks in 1997, DaimlerChrysler closure in 2000, rollback to legacy code, XP banned inside the company — method survived because it was given away through Cunningham's WikiWikiWeb.
 
+### Series «Джаз как опен-сорс» — cultural cases of open source metaphor
+
+Standalone cultural-criticism essays applying the open-source lens to music/art history. Command FolkUp byline, CC BY-SA 4.0.
+
+- [Четыре аккорда против империи глянца: Нирвана как открытый код искренности](https://underground.folkup.life/longform/chetyre-akkorda-protiv-glyantsa/): First piece of the line. January 1992: Nevermind displaces Michael Jackson at the top of the Billboard chart. What happened between glam-metal's proprietary sound and grunge's four-chord accessibility — and why the open source of sincerity outlives its author. Cobain's Incesticide inlay, the dress at Amherst/Rio/The Face, the industry's later capture of «raw sound» as another product line.
+
+### Series «Вовремя уйти в сторонку» — Letov cycle on observation position
+
+8-piece cycle (2/8 published) on the position of the observer, using Egor Letov as anchor. The cycle's carrying contradiction: «warrior in the sidelines» — breaks both the Western cooling detachment (Camus/Meursault, flâneur) and the Russian sanctifying humility (starets, silence-vow, Tyutchev's «hush»). Command FolkUp byline, CC BY-SA 4.0.
+
+- [Уйти в сторонку](https://underground.folkup.life/longform/uyti-v-storonku/): №1. Letov's «art of stepping aside» from the 1989 album «Russian Field of Experiments». The observer position across traditions: Camus's condemned outsider vs. Letov's self-chosen one, Siddhartha's radical stepping-aside as work not rest, Pelevin's «world exists while it is observed», the internal censor's starvation on the sidelines. Comparison to Bulgakov's Master: same fork, opposite outcome.
+- [Студия на кухне](https://underground.folkup.life/longform/studiya-na-kuhne/): №2. GrOb-Records as a position of production ownership. Magnitizdat as copyleft-before-copyleft — pre-Internet peer-to-peer distribution where the tape not copied is dead. Letov's six-word answer on copyright (2005) + moratorium on «100 Years of Solitude» (1993) as authorship without lawyers. Two comandantes as mirror posthumous fates: Che/Korda (Cuban non-adherence to Berne + 2000 vodka lawsuit) vs. Letov (posthumous corporate wrapping of his own recordings).
+
 ## Methodology
 
 - [Methodology (RU)](https://underground.folkup.life/methodology/): Editorial principles, verification standards, source policy.
