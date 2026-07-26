@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = "Андерграунд Академия — Исследования андерграундной культуры";
-const description = "Исследования современной андерграундной культуры и анализ культурных феноменов";
+// Iskra S218 UNDERGROUND rebrand визы Andrey 2026-07-26 вечер (вариант В «дерзкий», лицензию не выпячивать per C10 candidate).
+// Snят: заглушка «Изучаем современную...» + «Что мы исследуем» блок — эпоха одного расследования, не соответствует реальности сайта.
+const title = "Андерграунд Академия";
+const description = "Академия без кафедры и без билетов. Разбираем музыку, которая обошлась без разрешения, — и раздаём разборы так же: бери, читай, переделывай.";
 
 const alternates = [
   { lang: 'en' as const, href: '/en/' }
@@ -12,22 +14,25 @@ const alternates = [
 <BaseLayout title={title} description={description} lang="ru" alternates={alternates}>
   <section class="hero">
     <h1>Андерграунд Академия</h1>
-    <p class="hero-subtitle">Исследования андерграундной культуры</p>
     <p class="hero-description">
-      Изучаем современную андерграундную культуру — от хип-хопа до независимого искусства.
-      Ведём исследования, собираем факты, анализируем тенденции.
+      Академия без кафедры и без билетов. Разбираем музыку, которая обошлась без разрешения, — и раздаём разборы так же: бери, читай, переделывай.
     </p>
   </section>
 
-  <section class="research-areas">
-    <h2>Что мы исследуем</h2>
-    <ul class="research-list">
-      <li>Современный российский хип-хоп и рэп-культура</li>
-      <li>Независимые художники и музыканты</li>
-      <li>Культурные феномены в соцсетях</li>
-      <li>История и развитие андерграундных движений</li>
+  <nav class="cycles-nav" aria-label="Живые циклы Академии">
+    <h2>Живые циклы</h2>
+    <ul class="cycles-list">
+      <li>
+        <a href="/longform/uyti-v-storonku/">«Вовремя уйти в сторонку» — цикл из десяти статей о позиции наблюдателя</a>
+      </li>
+      <li>
+        <a href="/longform/palimpsest-arhimeda/">«Что осталось за переплётом» — реальные истории, не вошедшие в книги</a>
+      </li>
+      <li>
+        <a href="/longform/">Все лонгриды →</a>
+      </li>
     </ul>
-  </section>
+  </nav>
 </BaseLayout>
 
 <style>
@@ -47,23 +52,16 @@ const alternates = [
     line-height: var(--line-height-heading);
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-lg);
-    font-weight: 500;
-  }
-
   .hero-description {
     max-width: 40rem;
     margin: 0 auto;
-    font-size: 1.125rem;
-    color: #4A5568;
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
     line-height: 1.7;
   }
 
 
-  .research-areas h2 {
+  .cycles-nav h2 {
     font-family: var(--font-display);
     font-size: 2rem;
     color: var(--color-bordeaux);
@@ -71,14 +69,14 @@ const alternates = [
     text-align: center;
   }
 
-  .research-list {
-    max-width: 35rem;
+  .cycles-list {
+    max-width: 40rem;
     margin: 0 auto;
     padding: 0;
     list-style: none;
   }
 
-  .research-list li {
+  .cycles-list li {
     padding: var(--space-md);
     margin-bottom: var(--space-sm);
     background: white;
@@ -87,11 +85,14 @@ const alternates = [
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .research-list li::before {
-    content: "▶";
-    color: var(--color-amber);
-    font-weight: bold;
-    margin-right: var(--space-sm);
+  .cycles-list a {
+    color: var(--color-bordeaux);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .cycles-list a:hover {
+    text-decoration: underline;
   }
 
   /* Responsive */
