@@ -16,6 +16,9 @@ subject_work_release: 2026-06-15
 longform_type: "hybrid"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "po-motivam"
+order: 4
+linked_book: "kn5"
 tags:
   - agile-sapiens-series
   - kn5-chuzhimi-rukami

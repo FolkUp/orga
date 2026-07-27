@@ -16,6 +16,8 @@ subject_work: "Академическая история летовианы 1998
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 8
 tags:
   - letov-cycle
   - egor-letov

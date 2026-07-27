@@ -15,6 +15,9 @@ subject_work: "«Город Солнца» (кн.3 трилогии FolkUp)"
 longform_type: "hybrid"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "za-perepletom"
+order: 6
+linked_book: "kn3"
 tags:
   - agile-sapiens-series
   - kn3-gorod-solnca

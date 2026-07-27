@@ -16,6 +16,8 @@ subject_work: "Эпитафия Сковороды («Мир ловил меня
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 7
 tags:
   - letov-cycle
   - egor-letov

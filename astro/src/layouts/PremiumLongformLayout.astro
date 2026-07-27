@@ -29,6 +29,16 @@ export interface Props {
   alternates?: Array<{ lang: 'ru' | 'en' | 'pt'; href: string }>;
   ogImage?: string;
   ogImageAlt?: string;
+  /**
+   * Cycle navigation (Iskra SPEC S219): prev/next articles within same cycle +
+   * link к финалу «Другие циклы» с последней статьи цикла. Undefined = out of cycle.
+   */
+  cycleNav?: {
+    cycleLabel: string;
+    prev?: { title: string; slug: string };
+    next?: { title: string; slug: string };
+    isFinal?: boolean;
+  };
 }
 
 const {
@@ -48,7 +58,15 @@ const {
   alternates = [],
   ogImage,
   ogImageAlt,
+  cycleNav,
 } = Astro.props;
+
+const cycleNavLabels = {
+  ru: { prev: 'Пред.', next: 'След.', otherCycles: 'Другие циклы', inCycle: 'В цикле' },
+  en: { prev: 'Prev.', next: 'Next', otherCycles: 'Other cycles', inCycle: 'In cycle' },
+  pt: { prev: 'Ant.', next: 'Próx.', otherCycles: 'Outros ciclos', inCycle: 'No ciclo' },
+};
+const cn = cycleNavLabels[language];
 
 // Language switcher labels. Current locale shown as full endonym (signals
 // "you are reading in X" — identity, not button). Other locales shown as ISO
@@ -92,7 +110,7 @@ function formatDate(d: Date | undefined): string {
 const labels = {
   ru: {
     breadcrumbHome: 'Главная',
-    breadcrumbLongform: 'Лонгформ',
+    breadcrumbLongform: 'Лонгриды',
     readingTime: (n: number) => `${n} мин чтения`,
     aiTransparencyBody:
       'Редакционный процесс использует автоматизированные инструменты для верификации фактов и проверки стиля (EU AI Act Art. 50).',
@@ -166,7 +184,7 @@ const articleSchema = {
 ---
 
 <BaseLayout
-  title={`${title} — Underground Academia`}
+  title={`${title} — ${language === 'ru' ? 'Андерграунд Академия' : 'Underground Academia'}`}
   description={description}
   lang={language}
   alternates={alternates}
@@ -268,15 +286,37 @@ const articleSchema = {
     </div>
 
     {
+      cycleNav && (
+        <nav class="longform__cycle-nav" aria-label={cn.inCycle}>
+          <p class="longform__cycle-label">{cn.inCycle}: <em>{cycleNav.cycleLabel}</em></p>
+          <div class="longform__cycle-links">
+            {cycleNav.prev ? (
+              <a href={`/longform/${cycleNav.prev.slug}/`} class="longform__cycle-prev" rel="prev">
+                <span aria-hidden="true">←</span> {cn.prev} <em>{cycleNav.prev.title}</em>
+              </a>
+            ) : <span></span>}
+            {cycleNav.next ? (
+              <a href={`/longform/${cycleNav.next.slug}/`} class="longform__cycle-next" rel="next">
+                {cn.next} <em>{cycleNav.next.title}</em> <span aria-hidden="true">→</span>
+              </a>
+            ) : cycleNav.isFinal ? (
+              <a href="/longform/#other-cycles" class="longform__cycle-next">
+                {cn.otherCycles} <span aria-hidden="true">→</span>
+              </a>
+            ) : <span></span>}
+          </div>
+        </nav>
+      )
+    }
+
+    {
       tags.length > 0 && (
         <footer class="longform__tags" aria-label={l.tagsLabel}>
           <span class="longform__tags-label">{l.tagsLabel}:</span>
           <ul>
             {tags.map((tag) => (
               <li>
-                <a href={`/longform/?tag=${encodeURIComponent(tag)}`} rel="tag">
-                  {tag}
-                </a>
+                <span class="longform__tag" data-tag={tag}>{tag}</span>
               </li>
             ))}
           </ul>
@@ -579,20 +619,80 @@ const articleSchema = {
     margin: 0;
   }
 
-  .longform__tags a {
-    color: var(--color-text-primary);
-    text-decoration: none;
+  .longform__tag {
+    color: rgba(45, 55, 72, 0.75);
     padding: 0.15rem 0.5rem;
-    border: 1px solid rgba(26, 54, 93, 0.2);
+    border: 1px solid rgba(26, 54, 93, 0.15);
     border-radius: 3px;
     font-size: 0.8rem;
-    transition: background-color 0.18s ease, border-color 0.18s ease;
+    background-color: rgba(26, 54, 93, 0.03);
+    /* Non-clickable per Andrey verdict S219: теги — метка, не навигация.
+       Static tag-pages будут добавлены отдельным PR (Astro getStaticPaths). */
   }
 
-  .longform__tags a:hover,
-  .longform__tags a:focus-visible {
+  .longform__cycle-nav {
+    margin: var(--space-2xl) 0 var(--space-lg) 0;
+    padding: var(--space-md) 0;
+    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.12);
+  }
+
+  .longform__cycle-label {
+    font-size: 0.85rem;
+    color: var(--color-bordeaux);
+    margin: 0 0 var(--space-sm) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .longform__cycle-label em {
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .longform__cycle-links {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    font-size: 0.9rem;
+  }
+
+  .longform__cycle-links a {
+    color: var(--color-bordeaux);
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 3px;
+    transition: background-color 0.18s ease;
+  }
+
+  .longform__cycle-links a:hover,
+  .longform__cycle-links a:focus-visible {
     background-color: rgba(26, 54, 93, 0.05);
-    border-color: var(--color-bordeaux);
+    text-decoration: underline;
+  }
+
+  .longform__cycle-links em {
+    font-style: italic;
+    color: var(--color-text-primary);
+  }
+
+  .longform__cycle-next {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  @media (max-width: 560px) {
+    .longform__cycle-links {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .longform__cycle-next {
+      margin-left: 0;
+      text-align: left;
+    }
   }
 
   .longform__ai-transparency {

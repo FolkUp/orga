@@ -15,6 +15,8 @@ subject_work: "Проект «Коммунизм» (1988–1990, ~15 альбо�
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 10
 tags:
   - letov-cycle
   - egor-letov
