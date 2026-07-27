@@ -17,6 +17,9 @@ subject_work_release: 2026-07-07
 longform_type: "hybrid"
 genre: "technology-history"
 register: "premium"
+cycle: "za-perepletom"
+order: 5
+linked_book: "kn1"
 tags:
   - agile-sapiens-series
   - kn1-agile-sapiens

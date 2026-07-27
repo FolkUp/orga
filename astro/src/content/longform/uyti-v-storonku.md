@@ -16,6 +16,8 @@ subject_work: "«Русское поле экспериментов» (альб�
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 1
 tags:
   - letov-cycle
   - egor-letov

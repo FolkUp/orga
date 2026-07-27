@@ -15,6 +15,9 @@ subject_work: "«Agile Sapiens» (кн.1 трилогии FolkUp)"
 longform_type: "hybrid"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "po-motivam"
+order: 1
+linked_book: "kn1"
 tags:
   - agile-sapiens-series
   - kn1-agile-sapiens

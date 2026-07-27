@@ -16,6 +16,8 @@ subject_work: "«Путники среди гор и потоков» Фань �
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 5
 tags:
   - letov-cycle
   - egor-letov

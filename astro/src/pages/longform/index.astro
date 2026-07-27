@@ -1,11 +1,39 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const entries = await getCollection('longform', (entry) => {
-  return entry.data.language === 'ru';
-});
-entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// Iskra SPEC S219 + Andrey verdict S219: секции по циклам + отдельные исследования внизу.
+// Внутри цикла — порядок по order (не date). Даты остаются на карточках, не правят сортировку.
+const all = await getCollection('longform', (entry) => entry.data.language === 'ru');
+
+type Entry = CollectionEntry<'longform'>;
+
+const CYCLE_ORDER = ['letov-storonka', 'za-perepletom', 'po-motivam'] as const;
+const CYCLE_META: Record<string, { title: string; blurb: string }> = {
+  'letov-storonka': {
+    title: 'Вовремя уйти в сторонку',
+    blurb: 'Цикл из 10 статей о позиции наблюдателя — от «Русского поля экспериментов» до финальных «Чужих шумов».',
+  },
+  'za-perepletom': {
+    title: 'Что осталось за переплётом',
+    blurb: 'Живой цикл — заметки на полях книг серии: сюжеты, которые не поместились в главную линию.',
+  },
+  'po-motivam': {
+    title: 'Лонгриды по мотивам книг',
+    blurb: 'По одному длинному разбору на книгу — расширения ключевых сюжетов серии.',
+  },
+};
+const OTHER_CYCLES_TITLE = 'Отдельные исследования';
+
+// Group + sort
+function byCycle(cycle: string): Entry[] {
+  return all
+    .filter((e) => e.data.cycle === cycle)
+    .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+}
+const uncategorized = all
+  .filter((e) => !e.data.cycle)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 function readingMinutes(words?: number): number | undefined {
   if (!words) return undefined;
@@ -15,52 +43,78 @@ function readingMinutes(words?: number): number | undefined {
 
 <BaseLayout
   title="Лонгриды — Андерграунд Академия"
-  description="Длинные разборы музыки и культуры — эссе и исследования."
+  description="Длинные разборы музыки и культуры — циклы, эссе, исследования по мотивам книг серии."
   lang="ru"
 >
   <section class="longform-index">
     <header class="longform-index__header">
       <h1>Лонгриды</h1>
-      <p>Длинные разборы музыки и культуры — эссе и исследования.</p>
+      <p>Длинные разборы — циклы о позиции наблюдателя, заметки за переплётом книг, эссе по их мотивам и отдельные исследования.</p>
     </header>
 
-    <ul class="longform-index__list">
-      {
-        entries.map((entry) => {
-          const reading = readingMinutes(entry.data.word_count);
-          return (
-            <li class="longform-card">
-              <a href={`/longform/${entry.slug}/`} class="longform-card__link">
-                <h2 class="longform-card__title">{entry.data.title}</h2>
-                {entry.data.subtitle && (
-                  <p class="longform-card__subtitle">{entry.data.subtitle}</p>
-                )}
-                <dl class="longform-card__meta">
-                  <div>
-                    <dt class="visually-hidden">Author</dt>
-                    <dd>{entry.data.byline}</dd>
-                  </div>
-                  <div>
-                    <dt class="visually-hidden">Published</dt>
-                    <dd>
-                      <time datetime={entry.data.date.toISOString()}>
-                        {entry.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
-                      </time>
-                    </dd>
-                  </div>
-                  {reading !== undefined && (
-                    <div>
-                      <dt class="visually-hidden">Reading time</dt>
-                      <dd>{reading} мин чтения</dd>
-                    </div>
+    {CYCLE_ORDER.map((cycleKey) => {
+      const items = byCycle(cycleKey);
+      if (items.length === 0) return null;
+      const meta = CYCLE_META[cycleKey];
+      return (
+        <section class="longform-cycle" aria-labelledby={`cycle-${cycleKey}`}>
+          <header class="longform-cycle__header">
+            <h2 id={`cycle-${cycleKey}`}>{meta.title}</h2>
+            <p>{meta.blurb}</p>
+          </header>
+          <ol class="longform-index__list">
+            {items.map((entry) => {
+              const reading = readingMinutes(entry.data.word_count);
+              return (
+                <li class="longform-card" value={entry.data.order}>
+                  <a href={`/longform/${entry.slug}/`} class="longform-card__link">
+                    <span class="longform-card__order" aria-hidden="true">{entry.data.order}</span>
+                    <h3 class="longform-card__title">{entry.data.title}</h3>
+                    {entry.data.subtitle && (
+                      <p class="longform-card__subtitle">{entry.data.subtitle}</p>
+                    )}
+                    <dl class="longform-card__meta">
+                      <div><dt class="visually-hidden">Автор</dt><dd>{entry.data.byline}</dd></div>
+                      <div><dt class="visually-hidden">Опубликовано</dt><dd><time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd></div>
+                      {reading !== undefined && (<div><dt class="visually-hidden">Время чтения</dt><dd>{reading} мин чтения</dd></div>)}
+                    </dl>
+                  </a>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      );
+    })}
+
+    {uncategorized.length > 0 && (
+      <section class="longform-cycle" id="other-cycles" aria-labelledby="cycle-other">
+        <header class="longform-cycle__header">
+          <h2 id="cycle-other">{OTHER_CYCLES_TITLE}</h2>
+          <p>Материалы, не входящие в циклы — самостоятельные разборы.</p>
+        </header>
+        <ul class="longform-index__list">
+          {uncategorized.map((entry) => {
+            const reading = readingMinutes(entry.data.word_count);
+            return (
+              <li class="longform-card">
+                <a href={`/longform/${entry.slug}/`} class="longform-card__link">
+                  <h3 class="longform-card__title">{entry.data.title}</h3>
+                  {entry.data.subtitle && (
+                    <p class="longform-card__subtitle">{entry.data.subtitle}</p>
                   )}
-                </dl>
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
+                  <dl class="longform-card__meta">
+                    <div><dt class="visually-hidden">Автор</dt><dd>{entry.data.byline}</dd></div>
+                    <div><dt class="visually-hidden">Опубликовано</dt><dd><time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd></div>
+                    {reading !== undefined && (<div><dt class="visually-hidden">Время чтения</dt><dd>{reading} мин чтения</dd></div>)}
+                  </dl>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
   </section>
 </BaseLayout>
 
@@ -93,12 +147,41 @@ function readingMinutes(words?: number): number | undefined {
     max-width: 42rem;
   }
 
+  .longform-cycle {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .longform-cycle__header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(26, 54, 93, 0.08);
+  }
+
+  .longform-cycle__header h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.5rem, 2vw + 0.8rem, 2rem);
+    color: var(--color-bordeaux);
+    margin: 0 0 var(--space-xs) 0;
+    letter-spacing: -0.01em;
+  }
+
+  .longform-cycle__header p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(45, 55, 72, 0.75);
+    margin: 0;
+    max-width: 42rem;
+  }
+
   .longform-index__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
+    counter-reset: none;
   }
 
   .longform-card__link {
@@ -109,6 +192,7 @@ function readingMinutes(words?: number): number | undefined {
     border: 1px solid rgba(26, 54, 93, 0.12);
     border-radius: 6px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
   }
 
   .longform-card__link:hover,
@@ -117,19 +201,29 @@ function readingMinutes(words?: number): number | undefined {
     box-shadow: 0 4px 18px rgba(26, 54, 93, 0.08);
   }
 
+  .longform-card__order {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-md);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: rgba(26, 54, 93, 0.25);
+    font-weight: 700;
+  }
+
   .longform-card__title {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(1.3rem, 1.5vw + 0.8rem, 1.65rem);
+    font-size: clamp(1.15rem, 1.3vw + 0.75rem, 1.45rem);
     line-height: 1.25;
     color: var(--color-bordeaux);
-    margin: 0 0 var(--space-sm) 0;
+    margin: 0 var(--space-xl) var(--space-sm) 0;
     letter-spacing: -0.005em;
   }
 
   .longform-card__subtitle {
     font-family: Georgia, 'Times New Roman', serif;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.5;
     color: rgba(45, 55, 72, 0.85);
     margin: 0 0 var(--space-md) 0;

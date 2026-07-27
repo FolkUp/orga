@@ -16,6 +16,8 @@ subject_work: "«Аутсайдер» К. Уилсона (1956), «Книга б
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 6
 tags:
   - letov-cycle
   - egor-letov

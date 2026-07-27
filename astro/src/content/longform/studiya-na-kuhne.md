@@ -16,6 +16,8 @@ subject_work: "«Сто лет одиночества» (альбом 1993, Гр
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 2
 tags:
   - letov-cycle
   - egor-letov

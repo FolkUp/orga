@@ -16,6 +16,8 @@ subject_work: "Расписание 1990-1994 — развилка между д
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 4
 tags:
   - letov-cycle
   - egor-letov

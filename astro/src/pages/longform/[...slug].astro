@@ -3,10 +3,34 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import PremiumLongformLayout from '../../layouts/PremiumLongformLayout.astro';
 
 type Alternate = { lang: 'ru' | 'en' | 'pt'; href: string };
+type CycleNav = {
+  cycleLabel: string;
+  prev?: { title: string; slug: string };
+  next?: { title: string; slug: string };
+  isFinal?: boolean;
+};
 
 export async function getStaticPaths() {
+  const CYCLE_LABELS: Record<string, { ru: string; en: string; pt: string }> = {
+    'letov-storonka':  { ru: 'Вовремя уйти в сторонку', en: 'Time to step aside', pt: 'A hora de se afastar' },
+    'za-perepletom':   { ru: 'Что осталось за переплётом', en: 'Beyond the binding', pt: 'Além da encadernação' },
+    'po-motivam':      { ru: 'Лонгриды по мотивам книг', en: 'Essays inspired by the books', pt: 'Ensaios inspirados nos livros' },
+  };
   const entries = await getCollection('longform');
   const slugToEntry = new Map(entries.map((e) => [e.slug, e]));
+
+  // Group by cycle + sort by order (Iskra SPEC S219 — order-based, не date).
+  // za-perepletom has gap at order 1/4 — prev/next resolves по факту existующих.
+  const byCycle = new Map<string, CollectionEntry<'longform'>[]>();
+  for (const e of entries) {
+    const c = e.data.cycle;
+    if (!c) continue;
+    if (!byCycle.has(c)) byCycle.set(c, []);
+    byCycle.get(c)!.push(e);
+  }
+  for (const list of byCycle.values()) {
+    list.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+  }
 
   return entries.map((entry) => {
     const translations = entry.data.translations ?? {};
@@ -19,9 +43,25 @@ export async function getStaticPaths() {
         href: `/longform/${meta.slug}/`,
       }));
 
+    // Compute cycleNav если статья в цикле
+    let cycleNav: CycleNav | undefined;
+    const c = entry.data.cycle;
+    if (c && byCycle.has(c)) {
+      const list = byCycle.get(c)!;
+      const idx = list.findIndex((e) => e.slug === entry.slug);
+      const lang = entry.data.language;
+      const labels = CYCLE_LABELS[c];
+      cycleNav = {
+        cycleLabel: labels ? labels[lang] : c,
+        prev: idx > 0 ? { title: list[idx - 1].data.title, slug: list[idx - 1].slug } : undefined,
+        next: idx < list.length - 1 ? { title: list[idx + 1].data.title, slug: list[idx + 1].slug } : undefined,
+        isFinal: idx === list.length - 1,
+      };
+    }
+
     return {
       params: { slug: entry.slug },
-      props: { entry, alternates },
+      props: { entry, alternates, cycleNav },
     };
   });
 }
@@ -29,9 +69,10 @@ export async function getStaticPaths() {
 interface Props {
   entry: CollectionEntry<'longform'>;
   alternates: Alternate[];
+  cycleNav?: CycleNav;
 }
 
-const { entry, alternates } = Astro.props;
+const { entry, alternates, cycleNav } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
 ---
@@ -59,6 +100,7 @@ const data = entry.data;
   alternates={alternates}
   ogImage={data.og_image}
   ogImageAlt={data.og_image_alt}
+  cycleNav={cycleNav}
 >
   <Content />
 </PremiumLongformLayout>

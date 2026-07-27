@@ -15,6 +15,9 @@ subject_work: "«Согласные без гласных» (кн.2 трилог
 longform_type: "hybrid"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "po-motivam"
+order: 2
+linked_book: "kn2"
 tags:
   - agile-sapiens-series
   - kn2-soglasnye-bez-glasnyh

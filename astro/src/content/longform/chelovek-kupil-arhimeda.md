@@ -15,6 +15,9 @@ subject_work: "«Чужими руками» (кн.5 трилогии FolkUp)"
 longform_type: "hybrid"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "za-perepletom"
+order: 2
+linked_book: "kn5"
 tags:
   - agile-sapiens-series
   - kn5-chuzhimi-rukami

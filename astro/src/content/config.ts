@@ -51,6 +51,14 @@ const longformCollection = defineCollection({
     register: z.enum(['premium', 'standard']).default('premium'),
     tags: z.array(z.string()),
 
+    // Cycle membership (Iskra SPEC S219): navigation внутри цикла + группировка на index.
+    // cycle: letov-storonka (10 articles), za-perepletom (4 written, gap at 1/4), po-motivam (4 по книгам).
+    // Отсутствие поля = «none» — статья вне циклов (chetyre-akkorda / organizatsiya).
+    // order: позиция внутри цикла (используется для prev/next + сортировки в секциях, не date).
+    cycle: z.enum(['letov-storonka', 'za-perepletom', 'po-motivam']).optional(),
+    order: z.number().optional(),
+    linked_book: z.enum(['kn1', 'kn2', 'kn3', 'kn4', 'kn5', 'kn6', 'kn7']).optional(),
+
     // Banking-level verification metadata
     fact_verified: z.boolean(),
     fact_verified_by: z.string().optional(),

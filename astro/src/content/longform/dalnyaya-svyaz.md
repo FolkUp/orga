@@ -16,6 +16,8 @@ subject_work: "Земля-Луна-Земля инсталляция на Пик
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 9
 tags:
   - letov-cycle
   - egor-letov

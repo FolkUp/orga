@@ -16,6 +16,8 @@ subject_work: "«Заговор» — песня 1989 (альбом «Здоро
 longform_type: "personal-essay-criticism"
 genre: "cultural-criticism"
 register: "premium"
+cycle: "letov-storonka"
+order: 3
 tags:
   - letov-cycle
   - egor-letov
