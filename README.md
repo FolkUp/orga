@@ -1,44 +1,39 @@
-# ORGA — Underground Academia
+# Underground Academia · Независимая longform-платформа FolkUp
 
-> Платформа культурной сейсмографии. Статический Astro-сайт, русский как основной язык, английский как вторичный.
->
-> Production: **[underground.folkup.life](https://underground.folkup.life)**
->
-> **Текущая фаза:** 3C — статическая Astro-сборка на **Cloudflare Pages canonical** (post-INC-006 2026-06-07, CX33 decommissioned); legal + longform коллекции наполнены (7 longreads live); @fontsource self-hosted typography (ORGA-098, 2026-05-20).
-
-[![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
-[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC_BY--SA_4.0-green.svg)](LICENSE-CONTENT)
+[![License MIT (code)](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License CC BY-SA 4.0 (content)](https://img.shields.io/badge/content-CC%20BY--SA%204.0-green.svg)](LICENSE-CONTENT)
+[![Site](https://img.shields.io/badge/live-underground.folkup.life-blue.svg)](https://underground.folkup.life)
 [![DMCA Policy](https://img.shields.io/badge/DMCA-info%40folkup.app-lightgrey.svg)](DMCA.md)
 
-## О проекте
+**Astro 5 SSG для лонгридов, OSINT-исследований, эссе за переплётом книг FolkUp. Не корпоративное медиа, не университетский журнал — независимая kitchen-table academia на русском языке.**
 
-Underground Academia — исследовательская платформа, фиксирующая подземные культурные сдвиги до того, как они проявляются на поверхности.
+## About / Manifesto
 
-**Longform collection (7 pieces LIVE):**
-- «Организация» Оксимирона (RU + EN) — 333-дневная сейсмографическая дуга (первый лонгрид)
-- **FolkUp book series companion** «Как жить умно и свободно» — 4 первой волны, по одному лонгриду на кн.1/2/3/5 трилогии Agile Sapiens (cont +46 2026-07-04):
+«Underground Academia» — не про эстетику андеграунда 90-х. Про academic mode of inquiry вне institutional gatekeeping:
+
+- Longform, а не clickbait
+- Argument с evidence, а не op-ed с эмоцией
+- CC BY-SA 4.0 — knowledge should propagate, not gatekeep
+
+Формат: essays (5000–15000 слов), OSINT investigations, критические анализы.
+
+LIVE at [underground.folkup.life](https://underground.folkup.life).
+
+Автор — Команданте FolkUp (Команданте FolkUp is a literary pseudonym; legal identification and AI-use disclosure: [/legal/ai-transparency/](https://underground.folkup.life/legal/ai-transparency/)).
+
+## Опубликованные лонгриды
+
+- **«Организация» Оксимирона** (RU + EN) — культурная сейсмография
+- **Companion-серия к трилогии Agile Sapiens** «Как жить умно и свободно»:
   - Палимпсест Архимеда: посчитайте руки (кн.5)
   - Письмо из одних согласных (кн.2)
   - Лайнер или архипелаг (кн.3)
   - Вам продали обратно то, что вы умели с детства (кн.1)
-- **Серия «Что осталось за переплётом»** (счётчик 3/7) — реальные истории, не вошедшие в книги:
+- **Серия «Что осталось за переплётом»** — реальные истории, не вошедшие в книги:
   - Человек, который купил Архимеда — и раздал (кн.5)
   - Рай по предоплате (кн.3)
 
-## Многомерный анализ "Организация"
-
-Проект расширения существующего лонгрида четырёхмерным анализом песни Оксимирона:
-- **🎵 Виленский** — музыкальная сейсмография, аккордовые прогрессии, культурное предсказание
-- **🎭 Цветик** — поэтическая архитектура, дольник, связь с серебряным веком
-- **⚡ КиберГонзо** — OSINT культурная сейсмография, верификация tremors 2021-2022
-- **📚 Архивариус** — исторический контекст, культурные прецеденты
-
-**Статус:** Первый лонгрид опубликован; четырёхмерное расширение — внутренняя редакционная методология (применяется при подготовке текста; не отдельные публичные ленты).
-
-Методология сочетает академическую строгость с независимостью от институциональных рамок: banking-level верификация фактов, прозрачный редакционный процесс, OSINT-подход к первоисточникам.
-
-## Технологический стек
+## Стек
 
 - **[Astro 5.18](https://astro.build/)** — статический сайт-генератор (`output: 'static'`)
 - **Content Collections (Zod)** — типизированные коллекции: `longform`, `legal`
@@ -46,7 +41,21 @@ Underground Academia — исследовательская платформа, 
 - **@astrojs/sitemap** — bilingual URLs с `hreflang` alternates + `<lastmod>` per URL
 - **@astrojs/mdx** — расширенный Markdown для контента
 - **Self-hosted typography** — `@fontsource/playfair-display` + `@fontsource/source-sans-3` (latin + cyrillic subsets via `unicode-range`); никаких third-party CDN-запросов на шрифты
-- **Hosting:** Hetzner VPS (nginx + Docker bind-mount) за `nginx-proxy` + Cloudflare TLS proxy в front
+- **Hosting:** Cloudflare Pages (canonical post-INC-006 2026-06-07)
+
+## Разработка
+
+Node.js 20+ required.
+
+```bash
+cd astro
+npm install
+
+npm run dev        # Dev-сервер (http://localhost:4321)
+npm run build      # Продакшен-сборка (astro/dist/)
+npm run preview    # Локальный просмотр собранного
+npm run check      # Типовая проверка Astro + Zod
+```
 
 ## Структура репозитория
 
@@ -64,12 +73,9 @@ orga/
 │   ├── astro.config.mjs
 │   └── package.json
 ├── scripts/                      # backup + access-management скрипты
-├── audit/                        # UX/accessibility audit harness (Playwright + axe-core via NODE_PATH bridge к ../../dayforge)
-├── docs/audit/                   # дата-проштампованные SUMMARY.md по результатам аудита; raw артефакты gitignore'нуты
-├── _meta/                        # внутренние заметки, экспертные ревью, аудит (не деплоится)
-│   └── archive/                  # исторические артефакты (Hugo era, self-hosted deploy)
 ├── LICENSE                       # MIT для исходного кода
-└── LICENSE-CONTENT               # CC BY-SA 4.0 для контента
+├── LICENSE-CONTENT               # CC BY-SA 4.0 для контента
+└── DMCA.md                       # DMCA policy
 ```
 
 ## Языковая политика
@@ -79,35 +85,11 @@ orga/
 - **hreflang x-default = RU** для SEO-сигнала.
 - Португальский и другие языки в scope проекта не входят.
 
-## Разработка
+## Deploy
 
-Предполагается установленный Node.js 20+.
+Production runs on **Cloudflare Pages** (canonical post-INC-006 2026-06-07). Push to `main` triggers GitHub Actions build + `wrangler pages deploy`.
 
-```bash
-# Установка зависимостей
-cd astro
-npm install
-
-# Dev-сервер (http://localhost:4321)
-npm run dev
-
-# Продакшен-сборка (в astro/dist/)
-npm run build
-
-# Локальный просмотр собранного
-npm run preview
-
-# Типовая проверка Astro + Zod
-npm run check
-```
-
-## Деплой
-
-Production разворачивается на **self-hosted infrastructure** (Hetzner VPS) с полной интеграцией в FolkUp экосистему. Build pipeline: GitHub Actions → rsync → nginx-proxy + Let's Encrypt.
-
-Security headers (CSP, HSTS, Permissions-Policy) — обслуживаются nginx-proxy на HTTP-уровне в рамках unified FolkUp infrastructure pattern.
-
-Migration от Cloudflare Pages завершена 2026-04-28. Migration-era артефакты сохранены в `_meta/archive/` (общая) и `_meta/archive/dns-flip-2026-05/` (DNS-flip one-shots). Unified infrastructure обеспечивает консистентность со всеми FolkUp проектами.
+Security headers (CSP, HSTS, Permissions-Policy) обслуживаются через `_headers` файл в CF Pages.
 
 ## Авторская разметка
 
@@ -115,7 +97,7 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 Ключевые коллекции:
 
-- `longform/` — премиум-лонгриды в жанре personal-essay-criticism. Обязательна banking-level верификация (fact/legal/editorial/hostile reviewed).
+- `longform/` — премиум-лонгриды в жанре personal-essay-criticism. Обязательна banking-level верификация (fact / legal / editorial / hostile reviewed).
 - `legal/` — юридические документы с `language` и `translations` (sibling-slug pointer).
 
 Переводы: suffix-паттерн (`organizatsiya.en.md`) для longform; nested-folder (`legal/ru/privacy-policy.md`) для legal — каждый путь даёт тот URL, который вы видите.
@@ -125,34 +107,50 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 Каждый опубликованный лонгрид проходит через цепочку:
 
 1. **Fact verification** — каждая дата, цифра, атрибуция сверяется с независимыми источниками
-2. **Legal review** — PII-аудит, naming-justification (тройной тест), risk-classification
+2. **Legal review** — PII-аудит, naming-justification, risk-classification
 3. **Editorial review** — стиль, согласованность, fact-checking финального текста
-4. **Hostile review** — adversarial агенты ищут слабые места и compliance-пробелы
+4. **Hostile review** — adversarial проверки на слабые места и compliance-пробелы
 5. **Final editorial pass** — человек-редактор принимает или откатывает все правки
 
 Подробнее о применении автоматизированных инструментов: [/legal/ai-transparency/](https://underground.folkup.life/legal/ai-transparency/) (EU AI Act Art. 50 transparency).
 
-## Лицензии
+## Related projects (FolkUp Ecosystem)
 
-- **Исходный код:** [MIT](LICENSE)
-- **Контент** (тексты расследований, лонгриды, данные): [Creative Commons BY-SA 4.0](LICENSE-CONTENT)
+- [folkup-books-portal](https://github.com/FolkUp/folkup-books-portal) — books.folkup.life (портал семикнижной серии)
+- [agile-sapiens](https://github.com/FolkUp/agile-sapiens) — kn.1 monograph source
+- [folkup-landing](https://github.com/FolkUp/folkup-landing) — FolkUp ecosystem entry point
 
-Третьеcторонние зависимости — см. `astro/package.json` и их соответствующие лицензии.
+Full ecosystem map: [folkup.app](https://folkup.app).
 
-## Контакт
+## Licensing
 
-- Общие вопросы: `info@folkup.app`
-- Редакторская обратная связь и сообщения об ошибках: `info@folkup.app`
-- Часть экосистемы [FolkUp](https://folkup.app)
+Dual-licensed following the FolkUp ecosystem canon:
 
-## Ссылки
+- **Code (Astro components, Svelte islands, scripts, config, workflows)** — MIT.
+  See [`LICENSE`](./LICENSE).
+- **Content (longforms, OSINT investigations, essays, legal documents)** —
+  Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+  See [`LICENSE-CONTENT`](./LICENSE-CONTENT).
 
-- [Privacy Policy](https://underground.folkup.life/legal/privacy-policy/)
-- [Terms of Use](https://underground.folkup.life/legal/terms-of-use/)
-- [Cookie Policy](https://underground.folkup.life/legal/cookie-policy/)
-- [AI Transparency](https://underground.folkup.life/legal/ai-transparency/)
+Attribution format for CC BY-SA content:
+
+> «Longform Title» by Команданте FolkUp, licensed under CC BY-SA 4.0.
+> Source: https://github.com/FolkUp/orga/blob/main/astro/src/content/longform/<path>
+> Modifications: [describe if any].
+
+Copyright infringement notices → [`DMCA.md`](./DMCA.md) (GitHub referral +
+direct contact `info@folkup.app`, subject: DMCA).
+
+## Contributing
+
+Pull requests welcomed. Content edits and code contributions: DCO Signed-off-by required.
+
+## Contact
+
+- Editorial / content: `info@folkup.app`
+- DMCA / copyright: `info@folkup.app` (subject: DMCA) — see [`DMCA.md`](./DMCA.md)
+- Publisher: Команданте FolkUp / FolkUp Ecosystem
 
 ---
 
-*Last updated: 2026-07-04 · Doc version: 5.4 (post-cont +46 longform batch: 7 pieces LIVE including FolkUp book series companions «Как жить умно и свободно» + серия «Что осталось за переплётом»; Phase 3C = **CF Pages canonical** post-INC-006 2026-06-07 CX33 decommissioned; commits 7380984→4ffde56)*
-*Prior: Doc version 5.3 2026-05-22 — post-ORGA-094 UX audit harness + accessibility batch ORGA-107..116 (color-contrast, focus-not-obscured SC 2.4.11, text-spacing clean, audit harness 128/128; commits 78c6e34→b5868c3)*
+**© 2026 Команданте FolkUp · Publisher: FolkUp Ecosystem · Content CC BY-SA 4.0 · Code MIT**
