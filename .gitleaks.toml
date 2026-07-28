@@ -1,0 +1,119 @@
+# precommit:allow-secrets
+# FolkUp Ecosystem — gitleaks configuration
+# Custom rules per vault/TOKENS-REGISTRY.md + agent-secret-hygiene.md §2 regex table
+# NOTE: this file CONTAINS regex patterns FOR secret detection, not actual secrets.
+# The precommit:allow-secrets marker above bypasses the hook's own scanner
+# for this config-of-scanners file.
+#
+# Usage:
+#   gitleaks detect --config=.gitleaks.toml
+#   gitleaks protect --config=.gitleaks.toml
+
+[extend]
+useDefault = true
+
+# ============================================================================
+# FolkUp-specific custom rules
+# ============================================================================
+
+[[rules]]
+id = "folkup-replicate-api-token"
+description = "Replicate API token (r8_ prefix)"
+regex = '''r8_[A-Za-z0-9]{32,}'''
+tags = ["folkup", "api-token", "replicate"]
+keywords = ["r8_", "REPLICATE_API_TOKEN"]
+
+[[rules]]
+id = "folkup-brevo-smtp-api-key"
+description = "Brevo (Sendinblue) SMTP API key (xkeysib- prefix)"
+regex = '''xkeysib-[A-Za-z0-9]{40,}'''
+tags = ["folkup", "smtp-key", "brevo"]
+keywords = ["xkeysib-", "BREVO"]
+
+[[rules]]
+id = "folkup-telegram-bot-token"
+description = "Telegram bot token (numeric:alphanumeric format)"
+regex = '''\b[0-9]{8,10}:[A-Za-z0-9_-]{35}\b'''
+tags = ["folkup", "bot-token", "telegram"]
+keywords = ["telegram", "bot", "TELEGRAM", "bot_token"]
+
+[[rules]]
+id = "folkup-age-private-key"
+description = "age encryption private key (SOPS vault master key)"
+regex = '''AGE-SECRET-KEY-1[A-Z0-9]+'''
+tags = ["folkup", "encryption-key", "age", "critical"]
+keywords = ["AGE-SECRET-KEY"]
+
+[[rules]]
+id = "folkup-hetzner-api-token"
+description = "Hetzner Cloud API token (64-char hex)"
+regex = '''\b[a-f0-9]{64}\b'''
+tags = ["folkup", "api-token", "hetzner"]
+keywords = ["HETZNER", "hetzner_token"]
+
+[[rules]]
+id = "folkup-cloudflare-api-token"
+description = "Cloudflare API token (40-char alphanumeric с underscore/dash)"
+regex = '''\b[A-Za-z0-9_-]{40}\b'''
+tags = ["folkup", "api-token", "cloudflare"]
+keywords = ["CLOUDFLARE", "cf_token", "CLOUDFLARE_API_TOKEN", "cloudflare_api"]
+
+[[rules]]
+id = "folkup-github-pat-fine-grained"
+description = "GitHub fine-grained PAT (github_pat_ prefix)"
+regex = '''github_pat_[A-Za-z0-9_]{82}'''
+tags = ["folkup", "api-token", "github", "pat"]
+keywords = ["github_pat_"]
+
+[[rules]]
+id = "folkup-google-oauth-client-secret"
+description = "Google OAuth client secret (GOCSPX- prefix)"
+regex = '''GOCSPX-[A-Za-z0-9_-]{28}'''
+tags = ["folkup", "oauth-secret", "google"]
+keywords = ["GOCSPX-", "GOOGLE_CLIENT_SECRET"]
+
+[[rules]]
+id = "folkup-sops-encrypted-content"
+description = "SOPS-encrypted content (base64 ENC[AES256_GCM,data:...])"
+regex = '''ENC\[AES256_GCM,data:'''
+tags = ["folkup", "sops", "info"]
+keywords = ["ENC[AES256_GCM"]
+
+# ============================================================================
+# Allowlists
+# ============================================================================
+
+[allowlist]
+description = "FolkUp allowed paths (SOPS-encrypted vault files, test fixtures, docs)"
+
+paths = [
+  '''\.enc\.yaml$''',
+  '''\.enc\.json$''',
+  '''vault/secrets/.*''',
+  '''tests?/fixtures/.*''',
+  '''__tests__/fixtures/.*''',
+  '''docs?/.*secret.*\.md$''',
+  '''docs?/.*token.*\.md$''',
+  # orga-specific
+  '''astro/scripts/indexnow-ping\.mjs$''',            # IndexNow key discovery pattern
+  '''astro/public/[0-9a-f]{16,128}\.txt$''',          # IndexNow public verification file (key IS content, intentional)
+  '''astro/docs/performance/.*\.report\.(json|html)$''', # Lighthouse reports
+  '''astro/dist/.*''',                                 # Astro SSG build output
+  '''_meta/.*''',                                      # internal working docs (не деплоится)
+]
+
+regexes = [
+  '''example[-_]token[-_]?value''',
+  '''YOUR[-_]?TOKEN[-_]?HERE''',
+  '''\$\{[A-Z_]+_TOKEN\}''',
+  '''<[a-zA-Z_-]+_TOKEN>''',
+]
+
+commits = []
+
+# Severity mapping:
+# critical: folkup-age-private-key, folkup-github-pat-fine-grained
+# high: folkup-replicate-api-token, folkup-brevo-smtp-api-key,
+#       folkup-telegram-bot-token, folkup-google-oauth-client-secret
+# medium: folkup-hetzner-api-token, folkup-cloudflare-api-token
+# info: folkup-sops-encrypted-content
