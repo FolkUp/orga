@@ -41,3 +41,7 @@ sensitive/
 .claude/
 
 # Last updated: 2026-04-20 — post-Hugo cleanup (ORGA-055)
+
+# ===== cont+25 pre-open-repo sanitize =====
+# Internal кухня — 48 tracked files remain в приватном, при clean mirror flow не копируются в public
+_meta/
