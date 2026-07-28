@@ -10,7 +10,8 @@
     "build:ci": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "monitor": "node scripts/build-monitor.js"
+    "monitor": "node scripts/build-monitor.js",
+    "indexnow": "node scripts/indexnow-ping.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",
