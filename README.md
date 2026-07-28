@@ -141,8 +141,8 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 
 ## Контакт
 
-- Общие вопросы: `contact@folkup.app`
-- Редакторская обратная связь и сообщения об ошибках: `contact@folkup.app`
+- Общие вопросы: `info@folkup.app`
+- Редакторская обратная связь и сообщения об ошибках: `info@folkup.app`
 - Часть экосистемы [FolkUp](https://folkup.app)
 
 ## Ссылки
