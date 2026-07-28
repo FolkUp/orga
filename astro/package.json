@@ -1,7 +1,7 @@
 {
   "name": "orga-underground-academia",
   "version": "1.0.0",
-  "description": "Underground Academia — Underground Culture Research",
+  "description": "Underground Academia — longform research companion to the FolkUp book series.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
