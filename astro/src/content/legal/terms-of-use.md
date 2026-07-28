@@ -32,10 +32,11 @@ You may not:
 
 ### Content License
 
-All content is published under Creative Commons Attribution 4.0 International (CC BY 4.0) unless otherwise noted. You may:
+All content is published under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) unless otherwise noted. You may:
 - Share and adapt our content
 - Use for commercial purposes
 - Must provide attribution to Underground Academia
+- Must license derivative works under the same CC BY-SA 4.0 terms
 
 ### Editorial Standards
 
