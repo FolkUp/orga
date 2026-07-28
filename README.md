@@ -8,7 +8,8 @@
 
 [![Astro 5](https://img.shields.io/badge/Astro-5.18-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
-[![License: CC BY 4.0](https://img.shields.io/badge/Content-CC_BY_4.0-green.svg)](LICENSE-CONTENT)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/Content-CC_BY--SA_4.0-green.svg)](LICENSE-CONTENT)
+[![DMCA Policy](https://img.shields.io/badge/DMCA-info%40folkup.app-lightgrey.svg)](DMCA.md)
 
 ## О проекте
 
