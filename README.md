@@ -69,7 +69,7 @@ orga/
 ├── _meta/                        # внутренние заметки, экспертные ревью, аудит (не деплоится)
 │   └── archive/                  # исторические артефакты (Hugo era, self-hosted deploy)
 ├── LICENSE                       # MIT для исходного кода
-└── LICENSE-CONTENT               # CC BY 4.0 для контента
+└── LICENSE-CONTENT               # CC BY-SA 4.0 для контента
 ```
 
 ## Языковая политика
@@ -135,7 +135,7 @@ Frontmatter-схемы определены в `astro/src/content/config.ts`. П
 ## Лицензии
 
 - **Исходный код:** [MIT](LICENSE)
-- **Контент** (тексты расследований, лонгриды, данные): [Creative Commons BY 4.0](LICENSE-CONTENT)
+- **Контент** (тексты расследований, лонгриды, данные): [Creative Commons BY-SA 4.0](LICENSE-CONTENT)
 
 Третьеcторонние зависимости — см. `astro/package.json` и их соответствующие лицензии.
 
