@@ -85,6 +85,9 @@ keywords = ["ENC[AES256_GCM"]
 
 [allowlist]
 description = "FolkUp allowed paths (SOPS-encrypted vault files, test fixtures, docs)"
+# regexTarget = "line" — per Iskra S227 canonical, match regex against full line
+# context (not just matched secret value) so patterns like owner/action@hex40 work
+regexTarget = "line"
 
 paths = [
   '''\.enc\.yaml$''',
@@ -107,10 +110,10 @@ regexes = [
   '''YOUR[-_]?TOKEN[-_]?HERE''',
   '''\$\{[A-Z_]+_TOKEN\}''',
   '''<[a-zA-Z_-]+_TOKEN>''',
-  # GitHub Action SHA pins (Renovate/Dependabot pin actions к 40-char commit SHA)
-  # Per Iskra S226 Q1 «accept некоторые FPs» philosophy: filter known FP class
-  '''-action@[a-f0-9]{40}''',
-  '''actions/[a-z0-9-]+@[a-f0-9]{40}''',
+  # Iskra S227 canonical — GitHub Actions SHA-pinning FP filter
+  # Git SHA = hex-only (a-f0-9); CF token = base62 mixed-case.
+  # Context owner/action@hex40 = always Git SHA. Единое правило.
+  '''[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+@[a-f0-9]{40}''',
 ]
 
 commits = []

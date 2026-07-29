@@ -16,7 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # Full history for weekly cron scan; shallow для PR/push
+          # (PR-diff mode limits scope к new commits — per Iskra R-K5 Q4 canon
+          #  «weekly full history + PR-diff on every PR»)
+          fetch-depth: ${{ github.event_name == 'schedule' && 0 || 50 }}
 
       - name: Install gitleaks (binary, version-pinned)
         run: |
@@ -27,5 +30,18 @@ jobs:
           sudo mv gitleaks /usr/local/bin/gitleaks
           gitleaks version
 
-      - name: Run gitleaks scan
+      - name: Run gitleaks scan (weekly full history)
+        if: github.event_name == 'schedule'
         run: gitleaks detect --config=.gitleaks.toml --verbose --redact --no-git=false
+
+      - name: Run gitleaks scan (PR-diff / push new commits)
+        if: github.event_name != 'schedule'
+        run: |
+          # Scan only new commits: PR-diff for pull_request, HEAD~1..HEAD for push
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            LOG_OPTS="origin/${{ github.base_ref }}..HEAD"
+          else
+            LOG_OPTS="HEAD~1..HEAD"
+          fi
+          echo "Scanning с log-opts: $LOG_OPTS"
+          gitleaks detect --config=.gitleaks.toml --verbose --redact --log-opts="$LOG_OPTS"
