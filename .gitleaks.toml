@@ -114,6 +114,9 @@ regexes = [
   # Git SHA = hex-only (a-f0-9); CF token = base62 mixed-case.
   # Context owner/action@hex40 = always Git SHA. Единое правило.
   '''[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+@[a-f0-9]{40}''',
+  # Iskra S228 A' addition — historical README vault/memory refs (weekly cron FP class)
+  # Lab-verified 8.24.3 × 4 progona PASS (Iskra DOPOLNENIE 2026-07-29)
+  '''vault/memory/[A-Za-z0-9_-]{40}''',
 ]
 
 commits = []
