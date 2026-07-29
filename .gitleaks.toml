@@ -107,6 +107,10 @@ regexes = [
   '''YOUR[-_]?TOKEN[-_]?HERE''',
   '''\$\{[A-Z_]+_TOKEN\}''',
   '''<[a-zA-Z_-]+_TOKEN>''',
+  # GitHub Action SHA pins (Renovate/Dependabot pin actions к 40-char commit SHA)
+  # Per Iskra S226 Q1 «accept некоторые FPs» philosophy: filter known FP class
+  '''-action@[a-f0-9]{40}''',
+  '''actions/[a-z0-9-]+@[a-f0-9]{40}''',
 ]
 
 commits = []
