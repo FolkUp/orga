@@ -73,6 +73,7 @@ orga/
 │   ├── astro.config.mjs
 │   └── package.json
 ├── scripts/                      # backup + access-management скрипты
+├── translations/                 # multi-language translation packages (см. translations/README.md)
 ├── LICENSE                       # MIT для исходного кода
 ├── LICENSE-CONTENT               # CC BY-SA 4.0 для контента
 └── DMCA.md                       # DMCA policy
