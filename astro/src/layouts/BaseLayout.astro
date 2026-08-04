@@ -47,7 +47,7 @@ const DEFAULT_OG_IMAGE = '/og/default.jpg';
 
 const {
   title,
-  description = "Андерграунд Академия — Исследования андерграундной культуры",
+  description = "Андеграунд — Исследования культуры",
   lang = "ru",
   alternates = [],
   image,
@@ -157,10 +157,10 @@ const ogImageAltFinal = imageAlt ?? title;
       <header class="site-header">
         <nav class="main-nav" role="navigation" aria-label="Main navigation">
           <div class="nav-brand">
-            <a href={lang === 'ru' ? "/" : "/en/"} aria-label={lang === 'ru' ? "FolkUp Андерграунд Академия главная" : "FolkUp Underground Academia homepage"} class="brand-link">
+            <a href={lang === 'ru' ? "/" : "/en/"} aria-label={lang === 'ru' ? "FolkUp Андеграунд главная" : "FolkUp Underground Academia homepage"} class="brand-link">
               <img src="/folkup-logo.png" alt="FolkUp" class="folkup-logo" width="720" height="631" />
               <div class="brand-text">
-                <span class="brand-title">{lang === 'ru' ? 'Андерграунд Академия' : 'Underground Academia'}</span>
+                <span class="brand-title">{lang === 'ru' ? 'Андеграунд' : 'Underground Academia'}</span>
                 <span class="brand-subtitle">{lang === 'ru' ? 'Исследования культуры' : 'Culture Research'}</span>
               </div>
             </a>
