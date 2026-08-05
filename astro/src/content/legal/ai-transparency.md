@@ -1,6 +1,6 @@
 ---
 title: "AI Transparency"
-description: "How Underground Academia uses automated tools in its editorial workflow, in accordance with EU AI Act Article 50."
+description: "How Underground uses automated tools in its editorial workflow, in accordance with EU AI Act Article 50."
 page_type: "ai_transparency"
 language: "en"
 lastmod: 2026-05-20
@@ -13,7 +13,7 @@ translations:
 
 ## About this page
 
-Underground Academia researches underground culture. This page explains how automated tools are used in our editorial workflow, in keeping with the transparency principle of **EU AI Act, Article 50**.
+Underground researches underground culture. This page explains how automated tools are used in our editorial workflow, in keeping with the transparency principle of **EU AI Act, Article 50**.
 
 ## Where automated tools are used
 
@@ -45,7 +45,7 @@ Before each longform article is published, it is reviewed by adversarial agents 
 
 ## Human responsibility
 
-Final responsibility for every published article — for the text, the facts, the opinions, and the compliance posture — rests with the Underground Academia editorial team, which is part of FolkUp. Automated tools are a productivity and quality-control aid; they do not dilute editorial accountability.
+Final responsibility for every published article — for the text, the facts, the opinions, and the compliance posture — rests with the Underground editorial team, which is part of FolkUp. Automated tools are a productivity and quality-control aid; they do not dilute editorial accountability.
 
 ## Known limitations
 

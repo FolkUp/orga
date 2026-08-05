@@ -1,6 +1,6 @@
 ---
 title: "Cookie Policy"
-description: "How Underground Academia handles cookies, local storage, and embedded third-party media."
+description: "How Underground handles cookies, local storage, and embedded third-party media."
 page_type: "cookie_policy"
 language: "en"
 lastmod: 2026-05-20
@@ -13,7 +13,7 @@ translations:
 
 ## Overview
 
-Underground Academia keeps its technical footprint deliberately small. We do not use analytics, advertising, or social-media tracking. The only client-side storage we rely on is a single localStorage entry that remembers your consent choice for embedded media.
+Underground keeps its technical footprint deliberately small. We do not use analytics, advertising, or social-media tracking. The only client-side storage we rely on is a single localStorage entry that remembers your consent choice for embedded media.
 
 ## What we store locally
 
@@ -36,7 +36,7 @@ You can change your mind at any time:
 
 ## Essential operation
 
-No cookies are set by Underground Academia itself. The site is statically generated; there is no session, no login, no server-side state that requires cookies.
+No cookies are set by Underground itself. The site is statically generated; there is no session, no login, no server-side state that requires cookies.
 
 ## Fonts
 
@@ -57,7 +57,7 @@ We will update this page when our media or storage handling changes. The last up
 
 ## Editorial workflow
 
-Underground Academia uses automated tools as part of its editorial workflow. Specifically:
+Underground uses automated tools as part of its editorial workflow. Specifically:
 
 - **Fact verification.** Every date, figure, and attribution is cross-checked against independent public sources; automated searches assist this verification but do not replace human judgement.
 - **Style review.** Drafts pass through automated style checks (consistency, AI-pattern detection, citation format) alongside human editorial review.

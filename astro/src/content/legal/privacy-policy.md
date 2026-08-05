@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy"
-description: "Underground Academia Privacy Policy - GDPR compliant data protection information"
+description: "Underground Privacy Policy - GDPR compliant data protection information"
 page_type: "privacy_policy"
 language: "en"
 lastmod: 2026-05-20
@@ -15,7 +15,7 @@ translations:
 
 ### Data Controller
 
-Underground Academia is operated by FolkUp. For data protection matters, contact: contact@folkup.app
+Underground is operated by FolkUp. For data protection matters, contact: contact@folkup.app
 
 ### Information We Collect
 
@@ -37,7 +37,7 @@ We use your information to:
 
 ### No Tracking
 
-Underground Academia does not use tracking cookies, analytics, or advertising technologies after our font loading fix.
+Underground does not use tracking cookies, analytics, or advertising technologies after our font loading fix.
 
 ### Data Retention
 
