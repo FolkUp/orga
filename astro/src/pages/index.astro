@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Iskra S218 UNDERGROUND rebrand визы Andrey 2026-07-26 вечер (вариант В «дерзкий», лицензию не выпячивать per C10 candidate).
-// Snят: заглушка «Изучаем современную...» + «Что мы исследуем» блок — эпоха одного расследования, не соответствует реальности сайта.
-const title = "Андерграунд Академия";
-const description = "Академия без кафедры и без билетов. Разбираем музыку, которая обошлась без разрешения, — и раздаём разборы так же: бери, читай, переделывай.";
+// Iskra S218 UNDERGROUND rebrand visa Andrey 2026-07-26 (variant B "brash").
+// cont+51 EXT S3SCOOP: strip "Академия" per Iskra V2 GO + Andrey S254 canon (2026-08-05).
+// Voice mirrors /about/ RU (cont+49 "подвал издательства FolkUp" / "мастерская при нём").
+const title = "Андеграунд — FolkUp";
+const description = "Подвал издательства FolkUp: циклы статей и разборы на полях книжной серии — то, что не поместилось между обложек.";
 
 const alternates = [
   { lang: 'en' as const, href: '/en/' }
@@ -13,13 +14,13 @@ const alternates = [
 
 <BaseLayout title={title} description={description} lang="ru" alternates={alternates}>
   <section class="hero">
-    <h1>Андерграунд Академия</h1>
+    <h1>Андеграунд</h1>
     <p class="hero-description">
-      Академия без кафедры и без билетов. Разбираем музыку, которая обошлась без разрешения, — и раздаём разборы так же: бери, читай, переделывай.
+      Подвал издательства FolkUp. Здесь — циклы статей, разборы и длинные истории на полях книжной серии. Тексты свободны: читайте, копируйте, делитесь на тех же условиях.
     </p>
   </section>
 
-  <nav class="cycles-nav" aria-label="Живые циклы Академии">
+  <nav class="cycles-nav" aria-label="Живые циклы">
     <h2>Живые циклы</h2>
     <ul class="cycles-list">
       <li>
