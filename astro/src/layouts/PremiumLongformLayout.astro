@@ -161,7 +161,7 @@ const articleSchema = {
   ...(lastmod && { "dateModified": lastmod.toISOString() }),
   "publisher": {
     "@type": "Organization",
-    "name": "FolkUp Underground Academia",
+    "name": "FolkUp Underground",
     "url": "https://underground.folkup.life"
   },
   "mainEntityOfPage": {
@@ -184,7 +184,7 @@ const articleSchema = {
 ---
 
 <BaseLayout
-  title={`${title} — ${language === 'ru' ? 'Андерграунд Академия' : 'Underground Academia'}`}
+  title={`${title} — ${language === 'ru' ? 'Андеграунд' : 'Underground'}`}
   description={description}
   lang={language}
   alternates={alternates}

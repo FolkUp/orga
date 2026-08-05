@@ -3,7 +3,7 @@ title: "«Organizatsiya» — a legal performative, ratified by the state"
 subtitle: "A reading of one song as the document that did what it declared itself to be"
 slug: "en/organizatsiya"
 byline: "Comandante FolkUp"
-byline_note: "editorial pseudonym of Underground Academia"
+byline_note: "editorial pseudonym of Underground"
 
 date: 2026-04-20
 lastmod: 2026-04-20
@@ -305,6 +305,6 @@ Of that the song does not speak. That it leaves to each of us on our own.
 
 *Quotations from the track "Organizatsiya" (Oxxxymiron, Miron Fyodorov, 2021) are reproduced for analytical purposes under the right of quotation (InfoSoc Directive 2001/29/EC Art. 5(3)(d); CDADC Art. 75(2)(b)). All rights to the lyrics and musical work belong to their respective holders.*
 
-*"Comandante FolkUp" is the editorial pseudonym of Underground Academia. The persona is a consistent authorial voice; biographical details are narrative framing, not the autobiography of any specific author.*
+*"Comandante FolkUp" is the editorial pseudonym of Underground. The persona is a consistent authorial voice; biographical details are narrative framing, not the autobiography of any specific author.*
 
-*Underground Academia is published at [orga.folkup.app](https://orga.folkup.app). Support the editors at [Ko-fi](https://ko-fi.com/folkup).*
+*Underground is published at [orga.folkup.app](https://orga.folkup.app). Support the editors at [Ko-fi](https://ko-fi.com/folkup).*

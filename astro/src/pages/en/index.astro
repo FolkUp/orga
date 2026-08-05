@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = "Underground Academia — Underground Culture Research";
-const description = "Research on contemporary underground culture and analysis of cultural phenomena";
+// cont+51 EXT S3SCOOP: strip "Academia" per Iskra V2 GO EN "Underground" + Andrey S254 canon (2026-08-05).
+// Voice mirrors /en/about/ (cont+51 EXT "basement of FolkUp's publishing house" / "workshop beside it").
+const title = "Underground — FolkUp";
+const description = "The basement of FolkUp's publishing house: cycles of articles and longform on the margins of the book series.";
 
 const alternates = [
   { lang: 'ru' as const, href: '/' }
@@ -11,21 +13,20 @@ const alternates = [
 
 <BaseLayout title={title} description={description} lang="en" alternates={alternates}>
   <section class="hero">
-    <h1>Underground Academia</h1>
-    <p class="hero-subtitle">Underground Culture Research</p>
+    <h1>Underground</h1>
+    <p class="hero-subtitle">The basement of FolkUp's publishing house</p>
     <p class="hero-description">
-      We study contemporary underground culture — from hip-hop to independent art.
-      We conduct research, collect facts, analyze trends.
+      Here you'll find cycles of articles, close readings, and longform on the margins of the book series — texts that didn't fit between the covers. Free to read, copy, and share on the same terms.
     </p>
   </section>
 
   <section class="research-areas">
-    <h2>What We Research</h2>
+    <h2>What lives here</h2>
     <ul class="research-list">
-      <li>Contemporary Russian hip-hop and rap culture</li>
-      <li>Independent artists and musicians</li>
-      <li>Cultural phenomena in social media</li>
-      <li>History and development of underground movements</li>
+      <li>Longform pieces on the margins of the book series</li>
+      <li>Cycles of articles — companions to the books</li>
+      <li>Stories that started as footnotes and refused to stay there</li>
+      <li>Close readings of lives, crafts, and cultural moments</li>
     </ul>
   </section>
 </BaseLayout>
