@@ -116,9 +116,9 @@ description: "«Организация» Oxxxymiron — не песня о со�
 # Social-share image (OG / Twitter Card). Source: Oxxxymiron._Reebok.png by Lado Kvataniya
 # (CC0 1.0 Public Domain), Wikimedia Commons. Verified 2026-04-21 via WebFetch — see
 # _meta/media-verification.md §4. Cropped to 1200×630 via sharp smart-crop.
-og_image: "/og/organizatsiya.jpg"
-og_image_alt: "Чёрно-белый портрет Oxxxymiron'а — featured image для лонгрида «Организация»"
-og_image_credit: "Photo: Lado Kvataniya / Wikimedia Commons (CC0 1.0)"
+og_image: "/og/og-organizatsiya.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) — Victorian engraving для лонгрида «Организация»"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 — Batch B underground longform"
 
 # Translation
 translations:
