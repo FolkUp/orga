@@ -63,6 +63,9 @@ sources:
     type: secondary
   - title: "Music criticism of grunge era / open source authenticity metaphor discourse"
     type: secondary
+og_image: "/og/og-chetyre-akkorda-protiv-glyantsa.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 # Четыре аккорда против империи глянца

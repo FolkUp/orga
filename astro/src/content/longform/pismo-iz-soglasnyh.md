@@ -63,6 +63,9 @@ sources:
     type: primary
 
 description: "Свиток Торы пишут без гласных. Открытый репозиторий — тоже. Лонгрид кн.2 «Согласные без гласных» про то, что открыть замок — это ещё не значит передать умение. Прометей, Гутенберг, Кёрнс, Столлман, Шварц, Сократ."
+og_image: "/og/og-pismo-iz-soglasnyh.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 *Лонгрид. Серия «Как жить умно и свободно», по мотивам второй книги «Согласные без гласных». Кандидат для тех-аудитории.*

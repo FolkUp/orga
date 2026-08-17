@@ -69,6 +69,9 @@ sources:
     type: primary
   - title: "Музей-квартира Егора Летова, Омск — план открытия 1.5-2 года, фонд «Сияние», гл. экспонат — комната со студией"
     type: primary
+og_image: "/og/og-kafedra-dlya-postoronnego.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 Сентябрь 2025 года, Омск. В аудитории государственного университета не протолкнуться: слушатели съехались из разных концов страны. За кафедрой — доктор филологических наук, профессор из Москвы. Тема лекции — русская рок-поэзия. Герой дня — человек, который всю жизнь шёл против течения и добровольно держался как можно дальше от любых кафедр.

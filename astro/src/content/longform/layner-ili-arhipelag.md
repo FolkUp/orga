@@ -67,6 +67,9 @@ sources:
     type: primary
 
 description: "Города веками строили для бога, для государя, для машины — для жителя реже всего. Лонгрид кн.3 «Город Солнца» про пару образ/проект: чинить среду или чинить того, кто на среду пожаловался. Кампанелла, Хаксли, архипелаг реальных сообществ."
+og_image: "/og/og-layner-ili-arhipelag.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 *Лонгрид. Серия «Как жить умно и свободно», по мотивам третьей книги «Город Солнца». Угол — про среду, в которой мы живём, и про то, кого в ней принято чинить.*

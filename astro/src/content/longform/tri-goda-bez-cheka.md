@@ -71,6 +71,9 @@ sources:
     type: primary
   - title: "DaimlerChrysler XP conference statement (2000)"
     type: secondary
+og_image: "/og/og-tri-goda-bez-cheka.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 Представьте машину, которую строят, чтобы она делала одну вещь: раз в две недели печатала зарплатные чеки. Обычные чеки для обычных людей — сборщиков, инженеров, клерков автомобильного концерна. Машину строят год. Потом второй. Потом третий. За три года она не напечатала ни одного чека.

@@ -67,6 +67,9 @@ sources:
     type: secondary
   - title: "Факт-база статьи «Четыре аккорда против империи глянца» (утверждена 17.07.2026)"
     type: secondary
+og_image: "/og/og-pank-dvuh-mirov.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 13 апреля 1990 года. Таллин, зал Линнахалл. «Гражданская Оборона» на пике: её записи расходятся по стране со скоростью, которой позавидовала бы государственная фирма грамзаписи. И в этот вечер Егор Летов объявляет со сцены: группы больше нет. Мотив он назовёт сам — страх превратиться в «коммерческий псевдоконтркультурный проект». Перевод с летовского: нас начали покупать. Пора уходить.

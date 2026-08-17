@@ -66,6 +66,9 @@ sources:
     type: primary
   - title: "Егор Летов — офлайн-интервью (1985 биография / принудительная госпитализация)"
     type: secondary
+og_image: "/og/og-uyti-v-storonku.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 Самый громкий голос сибирского подполья всю жизнь оттачивал искусство тишины.

@@ -70,6 +70,9 @@ sources:
     type: secondary
   - title: "К. Рябинов — армейский призыв 1985 при больном сердце (сводные биографические источники)"
     type: secondary
+og_image: "/og/og-storonka-po-russki.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 Осенью 1794 года в селе под Харьковом умирал странник. Перед смертью он распорядился: на могильном камне выбить одну фразу. «Мир ловил меня, но не поймал».

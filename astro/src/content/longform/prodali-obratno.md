@@ -57,6 +57,9 @@ sources:
     type: primary
 
 description: "В 2001 году семнадцать программистов на лыжном курорте в Юте написали манифест — но эти люди ничего не изобрели, они вспомнили. Лонгрид кн.1 «Agile Sapiens» про то, как индустрия гибкости стала самым негибким в офисе."
+og_image: "/og/og-prodali-obratno.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 *Лонгрид. Серия «Как жить умно и свободно», по мотивам первой книги «Agile Sapiens». Кандидат для тех-аудитории — потому что начинается всё именно с неё, хоть и не про неё.*

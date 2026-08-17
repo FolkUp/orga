@@ -64,6 +64,9 @@ sources:
     type: primary
 
 description: "Через что прошли книги, музыка, картины прежде чем дойти до нас — очерк по кн.5 «Чужими руками». Восемь чужих рук от монаха, соскоблившего Архимеда, до алгоритма, который решает за нас молча."
+og_image: "/og/og-palimpsest-arhimeda.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 *Лонгрид. Серия «Как жить умно и свободно», по мотивам пятой книги «Чужими руками».*

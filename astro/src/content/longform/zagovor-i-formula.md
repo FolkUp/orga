@@ -73,6 +73,9 @@ sources:
     type: primary
   - title: "«Ленин — гриб» — Курёхин/Шолохов, «Пятое колесо», 17.05.1991"
     type: primary
+og_image: "/og/og-zagovor-i-formula.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 1989 год, альбом «Здорово и вечно». Пятым номером стоит песня с названием из одного слова: «Заговор».

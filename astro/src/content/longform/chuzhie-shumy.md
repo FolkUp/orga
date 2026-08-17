@@ -71,6 +71,9 @@ sources:
     type: primary
   - title: "Возрождённый «Коммунизм» (Судаков + Рябинов, с 2010, без Летова)"
     type: primary
+og_image: "/og/og-chuzhie-shumy.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 Омск, 1988 год. Трое сидят у магнитофона и слушают не музыку — эфир. Радиоспектакль, где актёр с поставленным голосом читает про счастливое детство. Эстрадный оркестр, играющий бодрое и никому не адресованное. Дембельская песня под расстроенную гитару. Для всей страны это фон, звуковой мусор эпохи. Для этих троих — каменоломня.

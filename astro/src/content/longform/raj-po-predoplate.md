@@ -68,6 +68,9 @@ sources:
     type: media
 
 description: "В феврале 1848-го из Гавра отчалил корабль с семьюдесятью французами, ехавшими переселяться в роман. Автор Этьен Кабе назначил вход в страну всеобщего равенства: 600 франков с человека. Статья №3 серии «Что осталось за переплётом»."
+og_image: "/og/og-raj-po-predoplate.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 В феврале 1848 года из Гавра отчалил корабль, на борту которого около семидесяти французов ехали переселяться в роман.

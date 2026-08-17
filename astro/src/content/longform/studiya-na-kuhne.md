@@ -70,6 +70,9 @@ sources:
     type: news
   - title: "Бернская конвенция по охране литературных и художественных произведений (1886, ратификации)"
     type: legislation
+og_image: "/og/og-studiya-na-kuhne.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 1993 год. Егор Летов заканчивает альбом «Сто лет одиночества» — и запрещает его копировать. Мораторий: до выхода пластинки ни одной плёнки на сторону. Человек, чьи записи страна годами переписывала свободно и бесконтрольно, вдруг пользуется правом автора. И — все слушаются.

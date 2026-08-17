@@ -63,6 +63,9 @@ sources:
     type: primary
 
 description: "В 1935-м Сартр попросил приятеля-психиатра сделать ему мескалиновую инъекцию: он писал книгу о воображении и хотел понять галлюцинации изнутри. Двадцать четыре года спустя те же крабы вышли на сцену «Затворников Альтоны» — как трибунал будущего. Как личное становится общим? Статья №6 серии «Что осталось за переплётом»."
+og_image: "/og/og-krab-sartra.jpg"
+og_image_alt: "Remedios (Frida-fornit FolkUp) -- Victorian engraving for longform article"
+og_image_credit: "Remedios (Frida-fornit FolkUp, Flux 1.1 Pro), 2026-08 -- Batch B underground longform"
 ---
 
 # Краб Сартра
