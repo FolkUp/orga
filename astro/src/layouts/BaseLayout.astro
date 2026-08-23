@@ -44,6 +44,13 @@ export interface Props {
 }
 
 const DEFAULT_OG_IMAGE = '/og/default.jpg';
+// F-4 dedicated alt для дефолт fallback image (Andrey verdict A cont+0 2026-08-23 orga upgrade).
+// Per-language descriptions of Ремедиос illustration by Frida-fornit FolkUp.
+const DEFAULT_OG_IMAGE_ALT: Record<string, string> = {
+  ru: 'Ремедиос (Frida-форнит FolkUp) — Наборщик за печатным станком, силуэт в стиле underground',
+  en: 'Remedios (Frida-fornit FolkUp) — Typesetter at printing press, underground silhouette',
+  pt: 'Remedios (Frida-fornit FolkUp) — Tipógrafo na prensa, silhueta em estilo underground',
+};
 
 const {
   title,
@@ -96,7 +103,9 @@ const xDefaultHref =
 // won't follow relative paths). Branded default ensures twitter:card="summary_large_image"
 // declaration always has a valid image (otherwise scrapers fall back to plain link).
 const ogImageAbsolute = toAbsolute(image ?? DEFAULT_OG_IMAGE);
-const ogImageAltFinal = imageAlt ?? title;
+// Fallback logic: если page explicit imageAlt — use it; если page provided own image — describe page via title;
+// если page falls back to DEFAULT_OG_IMAGE (F-4 Ремедиос) — use dedicated per-lang F-4 alt.
+const ogImageAltFinal = imageAlt ?? (image ? title : (DEFAULT_OG_IMAGE_ALT[lang] ?? DEFAULT_OG_IMAGE_ALT.ru));
 ---
 
 <!doctype html>
