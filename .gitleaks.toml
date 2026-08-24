@@ -90,6 +90,8 @@ description = "FolkUp allowed paths (SOPS-encrypted vault files, test fixtures, 
 regexTarget = "line"
 
 paths = [
+  # Gitleaks ignore file itself (contains fingerprints as long hashes — false positive per Kochegar cont+2 2026-08-24)
+  '''\.gitleaksignore$''',
   '''\.enc\.yaml$''',
   '''\.enc\.json$''',
   '''vault/secrets/.*''',
