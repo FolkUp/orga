@@ -1,0 +1,10 @@
+# Gitleaks ignore — all false positives per Kochegar S1KOCHEGAR cont+2 triage 2026-08-24
+# astro/BACKLOG.yaml:32,114 — constitutional strings ("banking_level_emergency_response_applied", etc), custom rule too broad
+# astro/src/lib/consent.ts:8 — CONSENT_STORAGE_KEY = 'orga-consent-v1' — localStorage variable name, not API key
+# astro/src/components/CookieConsent.astro:114 — storage event handler `event.key === 'orga-consent-v1'`
+# Reference: POMETKA-Kochegar-S1KOCHEGAR-cont2-03 + cont2-04 (bridge Drive) — primary-source verified
+
+6b5a55ce43c994a86458bbe57ef1290ce25e07e2:astro/BACKLOG.yaml:folkup-cloudflare-api-token:32
+6b5a55ce43c994a86458bbe57ef1290ce25e07e2:astro/BACKLOG.yaml:folkup-cloudflare-api-token:114
+6b5a55ce43c994a86458bbe57ef1290ce25e07e2:astro/src/lib/consent.ts:generic-api-key:8
+6b5a55ce43c994a86458bbe57ef1290ce25e07e2:astro/src/components/CookieConsent.astro:generic-api-key:114
