@@ -2,7 +2,7 @@
  * ORGA consent contract — shared by CookieConsent banner and any embed component
  * that must stay inert until the user opts in.
  *
- * Scope: orga.folkup.app origin only. localStorage does not cross subdomains.
+ * Scope: underground.folkup.life origin only. localStorage does not cross subdomains.
  */
 
 export const CONSENT_STORAGE_KEY = 'orga-consent-v1';
