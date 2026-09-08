@@ -309,4 +309,4 @@ Meduza получила статус иностранного агента в а
 
 *«Команданте FolkUp» — редакционный псевдоним Underground. Персонаж представляет собой последовательный авторский голос; биографические детали являются нарративным обрамлением, а не автобиографией конкретного автора.*
 
-*Underground публикуется на [orga.folkup.app](https://orga.folkup.app). Поддержать редакцию — [Ko-fi](https://ko-fi.com/folkup).*
+*Underground публикуется на [underground.folkup.life](https://underground.folkup.life). Поддержать редакцию — [Ko-fi](https://ko-fi.com/folkup).*

@@ -9,4 +9,4 @@ Per Лев legal verdict 2026-04-20 (resolves B1 + B3 blockers).
 
 *«Команданте FolkUp» — редакционный псевдоним Underground Academia. Персонаж представляет собой последовательный авторский голос; биографические детали являются нарративным обрамлением, а не автобиографией конкретного автора.*
 
-*Underground Academia публикуется на [orga.folkup.app](https://orga.folkup.app). Поддержать редакцию — [Ko-fi](https://ko-fi.com/folkup).*
+*Underground Academia публикуется на [underground.folkup.life](https://underground.folkup.life). Поддержать редакцию — [Ko-fi](https://ko-fi.com/folkup).*

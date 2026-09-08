@@ -307,4 +307,4 @@ Of that the song does not speak. That it leaves to each of us on our own.
 
 *"Comandante FolkUp" is the editorial pseudonym of Underground. The persona is a consistent authorial voice; biographical details are narrative framing, not the autobiography of any specific author.*
 
-*Underground is published at [orga.folkup.app](https://orga.folkup.app). Support the editors at [Ko-fi](https://ko-fi.com/folkup).*
+*Underground is published at [underground.folkup.life](https://underground.folkup.life). Support the editors at [Ko-fi](https://ko-fi.com/folkup).*
